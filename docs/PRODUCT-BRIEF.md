@@ -1,0 +1,135 @@
+# Found It: product brief
+
+Working name. Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made.
+
+## 1. The idea in one line
+
+A QR tag for your belongings, pets and loved ones. Anyone who finds them can reach you in seconds, and nobody's private details are shown.
+
+## 2. Principles
+
+- **Private by default.** Neither owner nor finder sees the other's contact unless they choose to share it.
+- **Ten seconds for the finder.** No app, no sign-up, no stress.
+- **Universal.** Works in any country, any language, any phone.
+- **One tag, one thing.** A tag ID is permanent and never reused.
+- **Safe for people.** Care tags show the minimum, and every scan alerts the guardian.
+
+## 3. Tag types
+
+Type is chosen at registration and **locked** afterwards.
+
+| Type | Purpose | Finder page focus |
+|---|---|---|
+| **Item** | Return | "Please help me get back to my owner" |
+| **Travel** | Return during a journey (plane, train, bus, ferry, taxi or ride, hotel) | Destination or hotel, operator, "hand to staff or message the owner". Trip details expire after the travel dates |
+| **Pet** | Help and return | Name, temperament, care notes, "please call my owner" |
+| **Care (child or older relative)** | Help, not return | "I may need help. Please contact my guardian." Minimal info; emergency details behind a tap; every view logged and alerts the guardian |
+
+**Out of scope:** professional identification of students, patients or clients by teachers, doctors, vets or carers. That is a different, regulated product (medical and child-safety law), and a public tag with full identity details is a safety risk.
+
+## 4. Owner-written finder message
+
+- **Templates per type.** The owner picks one, or writes their own.
+  - Item: "Found me? Thank you! Tap below to tell my owner where I am."
+  - Travel: "I'm travelling to [destination]. Please hand me to staff or message my owner."
+  - Pet: "Hi, I'm [name]. I'm friendly. Please message my owner. I may be scared."
+  - Care: "I may need help. Please contact my guardian using the button below."
+- **Custom text.** Up to 160 characters, with a live preview.
+- **Safety checks on custom text.** A warning if it contains a phone number, email or address ("This will be public to anyone who scans"). A block on abusive words.
+- **Translation.** The message is shown in the finder's language, with the original one tap away.
+
+## 5. Finder flow
+
+1. Scan the QR (or type the short code on the website).
+2. See the owner's message and optional photo.
+3. **Where is it now?** With me · Handed to staff · Left where I found it.
+4. **Where exactly?** One field with suggestions, plus a Share my location button.
+5. **Anything else?** Optional note.
+6. **Want a reply?** Optional email, kept hidden. Otherwise anonymous.
+7. Thank-you screen.
+
+## 6. Privacy in the interface
+
+- Owner setup: "Your contact is never shown. Finders message you through Found It."
+- Finder page: "🔒 Your details stay private unless you choose to share them."
+- Message box: "Only add your number or email if you want the owner to contact you directly."
+- Phone or email detected in a message: "This will share your number with the owner. Continue?"
+- Messages are relayed: neither side sees the other's email or number.
+- One short, plain privacy page.
+
+Phone detection: **libphonenumber-js** (open-source port of Google's libphonenumber) finds phone numbers in free text for any country. A simple pattern catches emails.
+
+## 7. Editing rules
+
+| Locked forever | Locked during Lost mode or an active return | Always editable |
+|---|---|---|
+| Tag ID and QR link | Item name, photo, description | Contacts, names, numbers |
+| Tag type | | Emergency and medical notes |
+| | | Finder message, language, Lost mode, tag on or off |
+
+- Edit history is visible to the finder ("Photo updated 3 days ago").
+- The QR code holds only a permanent link with the tag ID, so details change without reprinting.
+
+## 8. Lost mode
+
+Owner taps **Lost**. The finder page turns urgent: "This item is missing", with photo and a clear call to action. Scans show time and place. **No public reward amount** (it could invite theft); the owner can thank or reward privately after the return.
+
+## 9. Short code and channels
+
+| Channel | Solves | Needs internet | Phase |
+|---|---|---|---|
+| QR scan | Normal case | Yes | MVP |
+| Website code (e.g. FND-4821) | Damaged QR, camera trouble | Yes | MVP |
+| WhatsApp | People who prefer WhatsApp | Yes | Later |
+| SMS | No data at all | **No** | Later, starting in markets that need it |
+
+## 10. Tag IDs and monetisation
+
+- Each tag ID is random, at least 8 characters, unguessable and **never reused**.
+- A tag belongs to one item. If the item is gone, the owner **retires** the tag; the ID stays dead.
+- **No own printing company needed.** Recommended order:
+  1. **Print on demand (main revenue):** orders go through Found It; a print-on-demand partner prints and ships under our brand; we set the price and keep the margin. Candidates to check: Printful, Printify, Gelato (sticker and keychain support, API, shipping to Europe and Ghana).
+  2. **Affiliate links (quick start):** link to a printer with a referral programme and earn a commission per order. Lower income, zero stock.
+  3. **Wholesale NFC or QR tags later:** buy blank tags in bulk, sell activated tags when volume justifies it.
+- **Digital tags** (phone lock screen, digital card) are free and count towards the free limit of 3 tags. Premium (later): unlimited tags, SMS fallback, family sharing, extra contacts.
+- Never sell or share user data. Privacy is the product.
+
+## 11. Tag design and preview
+
+- A **live preview** step in registration: the QR code inside a frame with the chosen line underneath ("Found me? Scan to return", or custom).
+- 4 to 6 styles (rounded sticker, keychain, pet tag, luggage label), a few colour themes, the item's icon.
+- QR stays high contrast and scannable whatever the style.
+- Download as PNG or PDF, or **Order this tag** through a print partner (to be confirmed; check which services accept an uploaded design and offer partner links).
+
+## 12. Translation
+
+- Pages appear in the phone's language; a picker covers 100+ languages.
+- Messages are translated both ways, with "show original".
+- Service: Google Cloud Translation, DeepL or an AI model. Check current prices before choosing.
+
+## 13. More additions agreed in principle
+
+- Owner verification before handover (a question only the real owner can answer).
+- Safe meeting point suggestions (staff desks, shops, police).
+- Backup contact if the owner does not reply within a set time.
+- Report abuse on any message or tag.
+- Scan alerts and a simple scan history per tag.
+- Accessibility: large text, high contrast, works with screen readers.
+- Data retention: messages deleted after a set period; retired tags keep no personal data.
+
+## 14. Open decisions
+
+- [ ] Final product name (check trademarks and domains)
+- [ ] MVP scope (recommended: Item, Travel and Pet; Care tags in phase 2)
+- [ ] Print partner
+- [ ] Translation provider
+- [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
+
+## 15. Validation
+
+- Nov 2026: Selasey spoke with about 7 people. Their questions and recommendations shaped the brief (privacy for finders, editable details, travel beyond flights, custom finder messages). Add a short summary of who they were and what they said.
+
+## 16. Change log
+
+- 8 Nov 2026: Brief created from discussion: privacy messaging, universal use, travel mode, care tags, editing rules, short code correction, translator, owner-written finder message, permanent tag IDs and monetisation, tag preview.
+- 8 Nov 2026: Monetisation revised (print on demand first, affiliate as quick start, digital tags free within the limit). Validation recorded. Moved to its own repo.
