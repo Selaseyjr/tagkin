@@ -160,3 +160,4 @@ Next: before the prototype test, note who the 3 were (age range, country, how th
 - 8 Nov 2026: Validation corrected to 3 people. Trademark search clear on EUIPO and USPTO.
 - 8 Nov 2026: MVP scope confirmed. Phase 3 started: user flows drafted in docs/USER-FLOWS.md, with tag states and five open questions.
 - 8 Nov 2026: Five flow decisions accepted (sign-in, return end, verification later, anonymous replies, city-level scan location).
+- 8 Nov 2026: Finder flow wireframes (9 low-fi mobile screens, incl. Lost mode and inactive tag) built in Figma: https://www.figma.com/design/VIZaDBqDAKPsPWEmCY3Kog. Figma MCP limit hit again straight after; visual check pending.
