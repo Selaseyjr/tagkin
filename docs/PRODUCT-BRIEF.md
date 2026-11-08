@@ -119,11 +119,15 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 
 ## 14. Open decisions
 
-- [ ] Final product name. Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing.
+- [ ] Final product name. Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
 - [ ] MVP scope (recommended: Item, Travel and Pet; Care tags in phase 2)
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
+
+## 14b. Competitors to beat
+
+Similar QR lost-and-found tags already exist: Tile Lost and Found labels, PingTag (anonymous messaging), LostTags, MyTags, HeyOwner, Animal ID pet tags. Our edge must be clear: owner-written finder messages, Care and Travel modes, translation in both directions, editing rules with lock during returns, and beautiful tags.
 
 ## 15. Validation
 
@@ -150,3 +154,4 @@ Next: before the prototype test, note who the 7 were (age range, country, how th
 - 8 Nov 2026: Brief created from discussion: privacy messaging, universal use, travel mode, care tags, editing rules, short code correction, translator, owner-written finder message, permanent tag IDs and monetisation, tag preview.
 - 8 Nov 2026: Monetisation revised (print on demand first, affiliate as quick start, digital tags free within the limit). Validation recorded. Moved to its own repo.
 - 8 Nov 2026: Validation themes recorded. Repo moved to ~/Desktop/found-it. Name shortlist added.
+- 8 Nov 2026: Hellotag rejected (name in use). Tagkin recommended. Competitor list added.
