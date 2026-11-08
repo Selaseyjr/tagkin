@@ -1,6 +1,6 @@
 # Tagkin: product brief
 
-Name: Tagkin (chosen 8 Nov 2026; trademark check pending). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made.
+Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app before launch). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made.
 
 ## 1. The idea in one line
 
@@ -120,7 +120,8 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 ## 14. Open decisions
 
 - [x] Name: **Tagkin** (chosen 8 Nov). Trademark search on EUIPO and USPTO: no results (8 Nov). Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
-- [ ] MVP scope (recommended: Item, Travel and Pet; Care tags in phase 2)
+- [x] MVP scope: Item, Travel and Pet. Care tags in phase 2 (8 Nov).
+- [ ] Flow sign-offs: sign-in method, when a return ends, owner verification timing, anonymous replies, scan location precision (see docs/USER-FLOWS.md)
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -157,3 +158,4 @@ Next: before the prototype test, note who the 3 were (age range, country, how th
 - 8 Nov 2026: Hellotag rejected (name in use). Tagkin recommended. Competitor list added.
 - 8 Nov 2026: Name chosen: Tagkin. Folder renamed to ~/Desktop/tagkin.
 - 8 Nov 2026: Validation corrected to 3 people. Trademark search clear on EUIPO and USPTO.
+- 8 Nov 2026: MVP scope confirmed. Phase 3 started: user flows drafted in docs/USER-FLOWS.md, with tag states and five open questions.
