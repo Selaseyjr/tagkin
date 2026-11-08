@@ -119,7 +119,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 
 ## 14. Open decisions
 
-- [ ] Final product name (check trademarks and domains)
+- [ ] Final product name. Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing.
 - [ ] MVP scope (recommended: Item, Travel and Pet; Care tags in phase 2)
 - [ ] Print partner
 - [ ] Translation provider
@@ -127,9 +127,26 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 
 ## 15. Validation
 
-- Nov 2026: Selasey spoke with about 7 people. Their questions and recommendations shaped the brief (privacy for finders, editable details, travel beyond flights, custom finder messages). Add a short summary of who they were and what they said.
+Nov 2026: Selasey spoke with about 7 people about losing and returning belongings. Combined themes below, summarised by Selasey after the conversations; not verbatim quotes, and not split by person.
+
+| Theme raised | What it changed |
+|---|---|
+| Finders also want privacy, not only owners | Relayed messages; finder details hidden unless shared; warning when a number is typed |
+| A public reward could tempt people to take things | No reward amount on the tag; owner thanks privately |
+| "I have it" is not enough to find the item | Three short steps: status, exact place with location, optional note |
+| Details change after a tag is printed | Permanent QR link; contacts and notes always editable |
+| Editing a photo mid-return could confuse or mislead | Name, photo and description locked during Lost mode or a return; visible edit history |
+| Luggage travels by train, bus, ferry and taxi too | Travel mode for every transport type; trip details expire |
+| Pets and people need help, not "return me" | Pet and Care tags with their own messages |
+| Owners want to choose what the finder reads | Templates per type plus custom text with preview |
+| Cutting out printed tags is messy | Order ready-made tags (print on demand) |
+| A photo helps the finder confirm the item | Optional photo on the finder page |
+| Used worldwide, in any language | Translation of pages and messages, 100+ languages |
+
+Next: before the prototype test, note who the 7 were (age range, country, how they lose things) in one line each.
 
 ## 16. Change log
 
 - 8 Nov 2026: Brief created from discussion: privacy messaging, universal use, travel mode, care tags, editing rules, short code correction, translator, owner-written finder message, permanent tag IDs and monetisation, tag preview.
 - 8 Nov 2026: Monetisation revised (print on demand first, affiliate as quick start, digital tags free within the limit). Validation recorded. Moved to its own repo.
+- 8 Nov 2026: Validation themes recorded. Repo moved to ~/Desktop/found-it. Name shortlist added.
