@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Owner registration wireframes</title>
+<style>
+:root{--bg:#f2f2f2;--ph:#fff;--ink:#1a1a1a;--mute:#6b6b6b;--line:#c4c4c4;--box:#ececec;--pri:#262626;--on:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111;--ph:#1c1c1c;--ink:#eee;--mute:#9a9a9a;--line:#444;--box:#262626;--pri:#eee;--on:#111}}
+:root[data-theme="dark"]{--bg:#111;--ph:#1c1c1c;--ink:#eee;--mute:#9a9a9a;--line:#444;--box:#262626;--pri:#eee;--on:#111}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 Inter,system-ui,sans-serif}
+header.top{padding:24px 16px 8px;max-width:1200px;margin:auto}
+header.top h1{font-size:20px;margin:0 0 4px}
+header.top p{margin:0;color:var(--mute);font-size:13px}
+.row{display:flex;flex-wrap:wrap;gap:24px;padding:16px;max-width:1200px;margin:auto}
+.s{width:100%;max-width:320px}
+.s h2{font-size:12px;font-weight:600;color:var(--mute);margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em}
+.ph{background:var(--ph);border:1px solid var(--line);border-radius:28px;height:620px;padding:40px 18px 22px;display:flex;flex-direction:column;gap:12px}
+.bar{display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+.bar b{color:var(--ink)}
+.t{font-size:21px;font-weight:600;margin:4px 0 0}
+.m{color:var(--mute);font-size:13px;margin:0}
+.f{border:1px solid var(--line);background:var(--box);border-radius:12px;padding:14px;color:var(--mute)}
+.opt{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;gap:10px}
+.opt.on{border:2px solid var(--ink)}
+.b{background:var(--pri);color:var(--on);border-radius:12px;padding:14px;text-align:center;font-weight:600}
+.b2{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;font-weight:600}
+.sp{flex:1}
+.photo{background:var(--box);border:1px dashed var(--line);border-radius:14px;height:110px;display:grid;place-items:center;color:var(--mute);font-size:13px}
+.warn{background:var(--box);border-radius:10px;padding:10px;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:99px;padding:5px 10px;font-size:12px}
+.chip.on{border-color:var(--ink);font-weight:600}
+.tag{margin:auto;width:200px;border:2px solid var(--ink);border-radius:22px;padding:16px;text-align:center}
+.qr{width:120px;height:120px;margin:0 auto 8px;background:repeating-conic-gradient(var(--ink) 0 25%,var(--ph) 0 50%) 0 0/20px 20px}
+.tag small{display:block;color:var(--mute);font-size:11px;margin-top:4px;font-weight:600}
+.note{font-size:12px;color:var(--mute);margin-top:8px}
+</style>
+</head>
+<body>
+<header class="top">
+<h1>Tagkin · Owner registration</h1>
+<p>Low-fi wireframes, MVP (Item, Travel, Pet). Flow 1 in docs/USER-FLOWS.md.</p>
+</header>
+<main class="row">
+
+<section class="s"><h2>1 Sign in</h2><div class="ph">
+<div class="bar"><b>Tagkin</b><span>EN ▾</span></div>
+<p class="t">Make your first tag</p>
+<p class="m">No password. We send you a code.</p>
+<div class="f">Email</div>
+<div class="b">Send code</div>
+<div class="sp"></div>
+<p class="m">🔒 Your contact is never shown. Finders message you through Tagkin.</p>
+</div></section>
+
+<section class="s"><h2>2 Enter code</h2><div class="ph">
+<div class="bar"><b>Tagkin</b><span>EN ▾</span></div>
+<p class="t">Check your email</p>
+<p class="m">We sent a 6-digit code to s•••@gmail.com</p>
+<div class="f">_ _ _ _ _ _</div>
+<div class="b">Continue</div>
+<p class="m">Resend code in 30 s</p>
+</div></section>
+
+<section class="s"><h2>3 Tag type</h2><div class="ph">
+<div class="bar"><b>New tag</b><span>1 of 5</span></div>
+<p class="t">What is it for?</p>
+<div class="opt on">🎒 <span><b>Item</b><br><span class="m">Keys, bag, laptop</span></span></div>
+<div class="opt">🧳 <span><b>Travel</b><br><span class="m">Luggage on a journey</span></span></div>
+<div class="opt">🐾 <span><b>Pet</b><br><span class="m">Collar tag</span></span></div>
+<p class="warn">You can't change the type later.</p>
+<div class="sp"></div>
+<div class="b">Next</div>
+</div></section>
+
+<section class="s"><h2>4 Details</h2><div class="ph">
+<div class="bar"><b>New tag</b><span>2 of 5</span></div>
+<p class="t">Tell us about it</p>
+<div class="f">Name, e.g. Black backpack</div>
+<div class="photo">+ Add photo (optional)</div>
+<div class="f">Description (optional)</div>
+<div class="sp"></div>
+<div class="b">Next</div>
+<p class="note">Travel adds: destination or hotel, operator, travel dates.<br>Pet adds: temperament, care notes.</p>
+</div></section>
+
+<section class="s"><h2>5 Finder message</h2><div class="ph">
+<div class="bar"><b>New tag</b><span>3 of 5</span></div>
+<p class="t">What should a finder read?</p>
+<div class="chips"><span class="chip on">Template</span><span class="chip">Write my own</span></div>
+<div class="f" style="color:var(--ink)">Found me? Thank you! Tap below to tell my owner where I am.</div>
+<p class="m" style="text-align:right">58 / 160</p>
+<p class="warn">⚠ This contains a phone number. It will be public to anyone who scans.</p>
+<p class="m">Finders see it in their own language.</p>
+<div class="sp"></div>
+<div class="b">Next</div>
+</div></section>
+
+<section class="s"><h2>6 Design</h2><div class="ph">
+<div class="bar"><b>New tag</b><span>4 of 5</span></div>
+<p class="t">Pick a style</p>
+<div class="chips"><span class="chip on">Sticker</span><span class="chip">Keychain</span><span class="chip">Pet tag</span><span class="chip">Luggage</span></div>
+<div class="tag"><div class="qr"></div><b>Found me? Scan to return</b><small>tagkin.app · FND-4821</small></div>
+<p class="m" style="text-align:center">Address and code are always printed.</p>
+<div class="sp"></div>
+<div class="b">Next</div>
+</div></section>
+
+<section class="s"><h2>7 Done</h2><div class="ph">
+<div class="bar"><b>New tag</b><span>5 of 5</span></div>
+<div class="sp"></div>
+<p class="t">Your tag is live.</p>
+<p class="m">Black backpack · FND-4821</p>
+<div class="b">Order printed tag</div>
+<div class="b2">Download PNG or PDF</div>
+<div class="b2">Save to phone lock screen</div>
+<div class="sp"></div>
+<p class="m">1 of 3 free tags used</p>
+</div></section>
+
+<section class="s"><h2>7b Free limit reached</h2><div class="ph">
+<div class="bar"><b>New tag</b><span></span></div>
+<div class="sp"></div>
+<p class="t">You've used your 3 free tags.</p>
+<p class="m">Retire a tag you no longer need, or wait for Premium.</p>
+<div class="b">Manage my tags</div>
+<div class="b2">Notify me about Premium</div>
+<div class="sp"></div>
+</div></section>
+
+</main>
+</body>
+</html>

@@ -99,6 +99,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - A **live preview** step in registration: the QR code inside a frame with the chosen line underneath ("Found me? Scan to return", or custom).
 - 4 to 6 styles (rounded sticker, keychain, pet tag, luggage label), a few colour themes, the item's icon.
 - QR stays high contrast and scannable whatever the style.
+- **Every tag prints the address and code under the QR** (e.g. tagkin.app · FND-4821), whatever the style. It is the only way in when the QR will not scan or the finder's camera cannot read QR codes.
 - Download as PNG or PDF, or **Order this tag** through a print partner (to be confirmed; check which services accept an uploaded design and offer partner links).
 
 ## 12. Translation
@@ -122,6 +123,8 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [x] Name: **Tagkin** (chosen 8 Nov). Trademark search on EUIPO and USPTO: no results (8 Nov). Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
 - [x] MVP scope: Item, Travel and Pet. Care tags in phase 2 (8 Nov).
 - [x] Flow decisions (8 Nov): sign-in by email one-time code, no passwords. A return ends when the owner marks Returned, or after 14 days with no messages. Owner verification before handover comes after the MVP. Anonymous finders see replies only while the thank-you page is open, with a gentle nudge to leave an email. Scan location is city level unless the finder shares exact location.
+- [x] Wireframe method (8 Nov): HTML click-through wireframes in docs/wireframes/; Figma for the final UI once the plan allows.
+- [ ] Budget: buy tagkin.app and consider Figma Professional around 14 Nov 2026, when funds allow.
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -161,3 +164,4 @@ Next: before the prototype test, note who the 3 were (age range, country, how th
 - 8 Nov 2026: MVP scope confirmed. Phase 3 started: user flows drafted in docs/USER-FLOWS.md, with tag states and five open questions.
 - 8 Nov 2026: Five flow decisions accepted (sign-in, return end, verification later, anonymous replies, city-level scan location).
 - 8 Nov 2026: Finder flow wireframes (9 low-fi mobile screens, incl. Lost mode and inactive tag) built in Figma: https://www.figma.com/design/VIZaDBqDAKPsPWEmCY3Kog. Figma MCP limit hit again straight after; visual check pending.
+- 8 Nov 2026: Address and code always printed on the tag. Wireframes move to HTML (Figma Starter limit); domain and Figma upgrade planned for around 14 Nov.
