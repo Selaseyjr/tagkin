@@ -166,3 +166,4 @@ Next: before the prototype test, note who the 3 were (age range, country, how th
 - 8 Nov 2026: Finder flow wireframes (9 low-fi mobile screens, incl. Lost mode and inactive tag) built in Figma: https://www.figma.com/design/VIZaDBqDAKPsPWEmCY3Kog. Figma MCP limit hit again straight after; visual check pending.
 - 8 Nov 2026: Address and code always printed on the tag. Wireframes move to HTML (Figma Starter limit); domain and Figma upgrade planned for around 14 Nov.
 - 8 Nov 2026: Lost mode and messages wireframes added (docs/wireframes/lost-mode-and-messages.html, 8 screens).
+- 8 Nov 2026: Finder flow rebuilt in HTML (docs/wireframes/finder-flow.html, 9 screens). All MVP wireframes now in docs/wireframes/; the Figma file is superseded until the UI phase.
