@@ -123,7 +123,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [x] Name: **Tagkin** (chosen 8 Nov). Trademark search on EUIPO and USPTO: no results (8 Nov). Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
 - [x] MVP scope: Item, Travel and Pet. Care tags in phase 2 (8 Nov).
 - [x] Flow decisions (8 Nov): sign-in by email one-time code, no passwords. A return ends when the owner marks Returned, or after 14 days with no messages. Owner verification before handover comes after the MVP. Anonymous finders see replies only while the thank-you page is open, with a gentle nudge to leave an email. Scan location is city level unless the finder shares exact location.
-- [x] Wireframe method (8 Nov): HTML click-through wireframes in docs/wireframes/; Figma for the final UI once the plan allows.
+- [x] Wireframe method (8 Nov): static HTML wireframes in docs/wireframes/ (screens side by side, not yet clickable); Figma for the final UI once the plan allows.
 - [ ] Budget: buy tagkin.app and consider Figma Professional around 14 Nov 2026, when funds allow.
 - [ ] Print partner
 - [ ] Translation provider
@@ -151,7 +151,12 @@ Nov 2026: Selasey spoke with 3 people about losing and returning belongings. Com
 | A photo helps the finder confirm the item | Optional photo on the finder page |
 | Used worldwide, in any language | Translation of pages and messages, 100+ languages |
 
-Next: before the prototype test, note who the 3 were (age range, country, how they lose things) in one line each.
+Participants (anonymous at their request; no names or identifying details kept):
+- Ages: two aged 20 to 26, one aged 33.
+- Countries: one German living in Germany, one Ghanaian living in Germany, one Ghanaian living in Ghana.
+- How they lost things: left something on a train; left a bag on a bench while waiting for a bus at a station. The third person's loss was not recorded.
+
+Next: the third person's loss, if they are happy to share it, before the prototype test.
 
 ## 16. Change log
 
@@ -167,3 +172,4 @@ Next: before the prototype test, note who the 3 were (age range, country, how th
 - 8 Nov 2026: Address and code always printed on the tag. Wireframes move to HTML (Figma Starter limit); domain and Figma upgrade planned for around 14 Nov.
 - 8 Nov 2026: Lost mode and messages wireframes added (docs/wireframes/lost-mode-and-messages.html, 8 screens).
 - 8 Nov 2026: Finder flow rebuilt in HTML (docs/wireframes/finder-flow.html, 9 screens). All MVP wireframes now in docs/wireframes/; the Figma file is superseded until the UI phase.
+- 8 Nov 2026: Validation participants described anonymously. Wireframe wording corrected: static screens, not click-through.
