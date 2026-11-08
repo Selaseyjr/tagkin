@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tagkin logo concepts</title>
+<style>
+:root{--bg:#f4f3f0;--card:#fff;--ink:#141414;--mute:#6b6b6b;--line:#dcdad5;--acc:#1f6f5c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101010;--card:#1b1b1b;--ink:#f2f2f2;--mute:#9a9a9a;--line:#333;--acc:#5fc4a8}}
+:root[data-theme="dark"]{--bg:#101010;--card:#1b1b1b;--ink:#f2f2f2;--mute:#9a9a9a;--line:#333;--acc:#5fc4a8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--mute);margin:0 0 24px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.c h2{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin:0}
+.hero{display:flex;align-items:center;gap:14px;min-height:96px}
+.word{font-size:34px;font-weight:700;letter-spacing:-.02em}
+.sizes{display:flex;align-items:flex-end;gap:18px;border-top:1px solid var(--line);padding-top:14px}
+.sizes span{font-size:11px;color:var(--mute);display:block;text-align:center;margin-top:4px}
+.idea{font-size:13px;color:var(--mute);margin:0}
+.idea b{color:var(--ink)}
+.tag{margin-top:auto;align-self:center;width:150px;border:2px solid var(--ink);border-radius:18px;padding:12px;text-align:center}
+.qr{width:84px;height:84px;margin:6px auto;background:repeating-conic-gradient(var(--ink) 0 25%,var(--card) 0 50%) 0 0/14px 14px}
+.tag small{display:block;font-size:10px;font-weight:600;color:var(--mute)}
+svg{display:block}
+.dotless{position:relative;display:inline-block}
+.ring{position:absolute;left:50%;top:.1em;width:.28em;height:.28em;transform:translateX(-50%);border:.08em solid var(--acc);border-radius:50%;box-sizing:border-box}
+.ink{fill:none;stroke:var(--ink)}
+.acc{fill:var(--acc)}
+.accs{fill:none;stroke:var(--acc)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Tagkin · Logo concepts</h1>
+<p class="sub">Three directions, rough sketches. Pick one to refine; colour is a placeholder.</p>
+<div class="grid">
+
+<!-- A: Tag -->
+<section class="c">
+<h2>A · The tag</h2>
+<div class="hero">
+<svg width="64" height="64" viewBox="0 0 64 64" aria-label="Tagkin tag mark"><path class="ink" stroke-width="5" stroke-linejoin="round" d="M10 22 L26 8 H54 V56 H26 L10 42 Z"/><circle class="accs" stroke-width="5" cx="24" cy="32" r="5"/></svg>
+<span class="word">tagkin</span>
+</div>
+<p class="idea"><b>Idea:</b> a luggage tag with its hole. Says "tag" at a glance, works for items, bags and pets.</p>
+<div class="sizes">
+<div><svg width="32" height="32" viewBox="0 0 64 64"><path class="ink" stroke-width="6" stroke-linejoin="round" d="M10 22 L26 8 H54 V56 H26 L10 42 Z"/><circle class="accs" stroke-width="6" cx="24" cy="32" r="5"/></svg><span>32</span></div>
+<div><svg width="16" height="16" viewBox="0 0 64 64"><path class="ink" stroke-width="8" stroke-linejoin="round" d="M10 22 L26 8 H54 V56 H26 L10 42 Z"/><circle class="acc" cx="24" cy="32" r="7"/></svg><span>16</span></div>
+</div>
+<div class="tag"><svg width="22" height="22" viewBox="0 0 64 64" style="margin:auto"><path class="ink" stroke-width="6" stroke-linejoin="round" d="M10 22 L26 8 H54 V56 H26 L10 42 Z"/><circle class="accs" stroke-width="6" cx="24" cy="32" r="5"/></svg><div class="qr"></div><small>tagkin.app · FND-4821</small></div>
+</section>
+
+<!-- B: Link -->
+<section class="c">
+<h2>B · The link</h2>
+<div class="hero">
+<svg width="64" height="64" viewBox="0 0 64 64" aria-label="Tagkin link mark"><rect class="ink" stroke-width="5" x="6" y="14" width="30" height="30" rx="10"/><rect class="accs" stroke-width="5" x="28" y="20" width="30" height="30" rx="10"/></svg>
+<span class="word">tagkin</span>
+</div>
+<p class="idea"><b>Idea:</b> two rounded tags linked. The owner and the finder, connected but separate: "kin" and privacy in one shape.</p>
+<div class="sizes">
+<div><svg width="32" height="32" viewBox="0 0 64 64"><rect class="ink" stroke-width="6" x="6" y="14" width="30" height="30" rx="10"/><rect class="accs" stroke-width="6" x="28" y="20" width="30" height="30" rx="10"/></svg><span>32</span></div>
+<div><svg width="16" height="16" viewBox="0 0 64 64"><rect class="ink" stroke-width="9" x="6" y="14" width="30" height="30" rx="10"/><rect class="accs" stroke-width="9" x="28" y="20" width="30" height="30" rx="10"/></svg><span>16</span></div>
+</div>
+<div class="tag"><svg width="22" height="22" viewBox="0 0 64 64" style="margin:auto"><rect class="ink" stroke-width="6" x="6" y="14" width="30" height="30" rx="10"/><rect class="accs" stroke-width="6" x="28" y="20" width="30" height="30" rx="10"/></svg><div class="qr"></div><small>tagkin.app · FND-4821</small></div>
+</section>
+
+<!-- C: Wordmark -->
+<section class="c">
+<h2>C · The wordmark</h2>
+<div class="hero">
+<span class="word" aria-label="tagkin">tagk<span class="dotless">ı<i class="ring"></i></span>n</span>
+</div>
+<p class="idea"><b>Idea:</b> the name alone, with the dot of the i as a tag hole. Quiet, confident; the ring doubles as the small mark.</p>
+<div class="sizes">
+<div><svg width="32" height="32" viewBox="0 0 32 32"><rect x="0" y="0" width="32" height="32" rx="8" fill="var(--ink)"/><circle cx="16" cy="16" r="7" fill="none" stroke="var(--acc)" stroke-width="4"/></svg><span>32</span></div>
+<div><svg width="16" height="16" viewBox="0 0 32 32"><rect x="0" y="0" width="32" height="32" rx="8" fill="var(--ink)"/><circle cx="16" cy="16" r="7" fill="none" stroke="var(--acc)" stroke-width="5"/></svg><span>16</span></div>
+</div>
+<div class="tag"><div style="font-weight:700;font-size:15px;letter-spacing:-.02em">tagkin</div><div class="qr"></div><small>tagkin.app · FND-4821</small></div>
+</section>
+
+</div>
+</div>
+</body>
+</html>
