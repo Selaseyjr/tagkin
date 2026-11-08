@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lost mode and messages</title>
+<style>
+:root{--bg:#f2f2f2;--ph:#fff;--ink:#1a1a1a;--mute:#6b6b6b;--line:#c4c4c4;--box:#ececec;--pri:#262626;--on:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111;--ph:#1c1c1c;--ink:#eee;--mute:#9a9a9a;--line:#444;--box:#262626;--pri:#eee;--on:#111}}
+:root[data-theme="dark"]{--bg:#111;--ph:#1c1c1c;--ink:#eee;--mute:#9a9a9a;--line:#444;--box:#262626;--pri:#eee;--on:#111}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 Inter,system-ui,sans-serif}
+header.top{padding:24px 16px 8px;max-width:1200px;margin:auto}
+header.top h1{font-size:20px;margin:0 0 4px}
+header.top p{margin:0;color:var(--mute);font-size:13px}
+.row{display:flex;flex-wrap:wrap;gap:24px;padding:16px;max-width:1200px;margin:auto}
+.s{width:100%;max-width:320px}
+.s h2{font-size:12px;font-weight:600;color:var(--mute);margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em}
+.ph{background:var(--ph);border:1px solid var(--line);border-radius:28px;height:620px;padding:40px 18px 22px;display:flex;flex-direction:column;gap:12px}
+.bar{display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+.bar b{color:var(--ink)}
+.t{font-size:21px;font-weight:600;margin:4px 0 0}
+.m{color:var(--mute);font-size:13px;margin:0}
+.f{border:1px solid var(--line);background:var(--box);border-radius:12px;padding:14px;color:var(--mute)}
+.opt{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;gap:10px}
+.opt.on{border:2px solid var(--ink)}
+.b{background:var(--pri);color:var(--on);border-radius:12px;padding:14px;text-align:center;font-weight:600}
+.b2{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;font-weight:600}
+.sp{flex:1}
+.photo{background:var(--box);border:1px dashed var(--line);border-radius:14px;height:110px;display:grid;place-items:center;color:var(--mute);font-size:13px}
+.warn{background:var(--box);border-radius:10px;padding:10px;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);border-radius:99px;padding:5px 10px;font-size:12px}
+.chip.on{border-color:var(--ink);font-weight:600}
+.tag{margin:auto;width:200px;border:2px solid var(--ink);border-radius:22px;padding:16px;text-align:center}
+.qr{width:120px;height:120px;margin:0 auto 8px;background:repeating-conic-gradient(var(--ink) 0 25%,var(--ph) 0 50%) 0 0/20px 20px}
+.tag small{display:block;color:var(--mute);font-size:11px;margin-top:4px;font-weight:600}
+.note{font-size:12px;color:var(--mute);margin-top:8px}
+</style>
+<style>
+.lock{font-size:12px;color:var(--mute)}
+.state{display:inline-block;align-self:center;flex:none;white-space:nowrap;line-height:1.4;border:1px solid var(--ink);border-radius:99px;padding:2px 8px;font-size:11px;font-weight:600}
+.state.lost{background:var(--pri);color:var(--on)}
+.li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 0;font-size:13px}
+.msg{border-radius:14px;padding:10px 12px;font-size:13px;max-width:85%}
+.in{background:var(--box)}.out{border:1px solid var(--line);align-self:flex-end}
+.link{font-size:11px;color:var(--mute);text-decoration:underline}
+</style>
+</head>
+<body>
+<header class="top"><h1>Tagkin · Lost mode and messages</h1><p>Low-fi wireframes. Flows 3 and 4 in docs/USER-FLOWS.md.</p></header>
+<main class="row">
+<section class="s"><h2>1 My tags</h2><div class="ph"><div class="bar"><b>My tags</b><span>+ New</span></div>
+<div class="opt">🎒 <span style="flex:1"><b>Black backpack</b><br><span class="m">FND-4821</span></span><span class="state">Normal</span></div>
+<div class="opt">🐾 <span style="flex:1"><b>Milo</b><br><span class="m">FND-7730</span></span><span class="state lost">Lost</span></div>
+<div class="opt">🧳 <span style="flex:1"><b>Blue suitcase</b><br><span class="m">FND-2196 · trip ends 20 Nov</span></span><span class="state">Return active</span></div>
+<div class="sp"></div><p class="m">3 of 3 free tags used</p></div></section>
+<section class="s"><h2>2 Tag detail</h2><div class="ph"><div class="bar"><b>‹ Black backpack</b><span class="state">Normal</span></div>
+<div class="photo">Photo</div>
+<div class="li"><span>Finder message</span><span>Edit</span></div>
+<div class="li"><span>Contacts</span><span>Edit</span></div>
+<div class="li"><span>Scan history</span><span>2 scans</span></div>
+<div class="li"><span>Tag on</span><span>●</span></div>
+<div class="sp"></div>
+<div class="b">Mark as lost</div>
+<div class="b2">Retire tag</div></div></section>
+<section class="s"><h2>3 Confirm Lost</h2><div class="ph"><div class="bar"><b>‹ Back</b><span></span></div>
+<p class="t">Mark Black backpack as lost?</p>
+<p class="m">Finders see an urgent page. You get an alert with the city every time it is scanned.</p>
+<p class="warn">🔒 Name, photo and description lock until it is found. Contacts and message stay editable.</p>
+<p class="warn">No reward amount is shown. You can thank the finder privately later.</p>
+<div class="sp"></div>
+<div class="b">Mark as lost</div><div class="b2">Cancel</div></div></section>
+<section class="s"><h2>4 Lost: scan alerts</h2><div class="ph"><div class="bar"><b>‹ Milo</b><span class="state lost">Lost</span></div>
+<p class="t">Scans</p>
+<div class="li"><span>Today 14:02</span><span>Darmstadt</span></div>
+<div class="li"><span>Today 09:41</span><span>Darmstadt</span></div>
+<div class="li"><span>Yesterday 18:20</span><span>Griesheim</span></div>
+<p class="m">City only, unless a finder shares their location.</p>
+<div class="li"><span>Name, photo <span class="lock">🔒 locked</span></span><span></span></div>
+<div class="sp"></div>
+<div class="b">I found it myself</div></div></section>
+<section class="s"><h2>5 Finder report alert</h2><div class="ph"><div class="bar"><b>Notification</b><span>now</span></div>
+<div class="f" style="color:var(--ink)"><b>Someone found Black backpack</b><br>With me · Darmstadt Hbf, Lost &amp; Found desk</div>
+<p class="m">Tag is now in Return active. Name, photo and description are locked.</p>
+<div class="sp"></div>
+<div class="b">Open message</div></div></section>
+<section class="s"><h2>6 Message thread</h2><div class="ph"><div class="bar"><b>‹ Finder</b><span>⋯ Report · Block</span></div>
+<div class="msg in"><b>With me</b> · Darmstadt Hbf, Lost &amp; Found desk<br>I left it with the staff at counter 2.<br><span class="link">Translated from French · Show original</span></div>
+<div class="msg out">Thank you so much! I'll pick it up tonight.</div>
+<p class="m" style="text-align:center">Finder left an email. Your reply reaches them by email, translated.</p>
+<div class="sp"></div>
+<p class="warn">⚠ This will share your number with the finder. Continue?</p>
+<div class="f">Write a reply</div></div></section>
+<section class="s"><h2>6b Anonymous finder</h2><div class="ph"><div class="bar"><b>‹ Finder</b><span>⋯ Report · Block</span></div>
+<div class="msg in"><b>Left where I found it</b> · Luisenplatz, bench by the fountain</div>
+<p class="warn">This finder is anonymous. They see your reply only while their page is open.</p>
+<div class="sp"></div>
+<div class="f">Write a reply</div></div></section>
+<section class="s"><h2>7 Mark returned</h2><div class="ph"><div class="bar"><b>‹ Black backpack</b><span class="state">Return active</span></div>
+<p class="t">Got it back?</p>
+<p class="m">Locks lift and the tag goes back to Normal. The return closes on its own after 14 days with no messages.</p>
+<div class="f">Private thank-you (optional)</div>
+<div class="sp"></div>
+<div class="b">Mark as returned</div></div></section>
+</main>
+</body>
+</html>
