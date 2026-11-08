@@ -1,6 +1,6 @@
-# Found It: product brief
+# Tagkin: product brief
 
-Working name. Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made.
+Name: Tagkin (chosen 8 Nov 2026; trademark check pending). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made.
 
 ## 1. The idea in one line
 
@@ -50,7 +50,7 @@ Type is chosen at registration and **locked** afterwards.
 
 ## 6. Privacy in the interface
 
-- Owner setup: "Your contact is never shown. Finders message you through Found It."
+- Owner setup: "Your contact is never shown. Finders message you through Tagkin."
 - Finder page: "🔒 Your details stay private unless you choose to share them."
 - Message box: "Only add your number or email if you want the owner to contact you directly."
 - Phone or email detected in a message: "This will share your number with the owner. Continue?"
@@ -88,7 +88,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - Each tag ID is random, at least 8 characters, unguessable and **never reused**.
 - A tag belongs to one item. If the item is gone, the owner **retires** the tag; the ID stays dead.
 - **No own printing company needed.** Recommended order:
-  1. **Print on demand (main revenue):** orders go through Found It; a print-on-demand partner prints and ships under our brand; we set the price and keep the margin. Candidates to check: Printful, Printify, Gelato (sticker and keychain support, API, shipping to Europe and Ghana).
+  1. **Print on demand (main revenue):** orders go through Tagkin; a print-on-demand partner prints and ships under our brand; we set the price and keep the margin. Candidates to check: Printful, Printify, Gelato (sticker and keychain support, API, shipping to Europe and Ghana).
   2. **Affiliate links (quick start):** link to a printer with a referral programme and earn a commission per order. Lower income, zero stock.
   3. **Wholesale NFC or QR tags later:** buy blank tags in bulk, sell activated tags when volume justifies it.
 - **Digital tags** (phone lock screen, digital card) are free and count towards the free limit of 3 tags. Premium (later): unlimited tags, SMS fallback, family sharing, extra contacts.
@@ -119,7 +119,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 
 ## 14. Open decisions
 
-- [ ] Final product name. Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
+- [x] Name: **Tagkin** (chosen 8 Nov). Trademark check (EUIPO, USPTO) still to do. Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
 - [ ] MVP scope (recommended: Item, Travel and Pet; Care tags in phase 2)
 - [ ] Print partner
 - [ ] Translation provider
@@ -155,3 +155,4 @@ Next: before the prototype test, note who the 7 were (age range, country, how th
 - 8 Nov 2026: Monetisation revised (print on demand first, affiliate as quick start, digital tags free within the limit). Validation recorded. Moved to its own repo.
 - 8 Nov 2026: Validation themes recorded. Repo moved to ~/Desktop/found-it. Name shortlist added.
 - 8 Nov 2026: Hellotag rejected (name in use). Tagkin recommended. Competitor list added.
+- 8 Nov 2026: Name chosen: Tagkin. Folder renamed to ~/Desktop/tagkin.

@@ -1,4 +1,4 @@
-# Found It
+# Tagkin
 
 A QR tag for your belongings, pets and loved ones. Found in seconds. Private by default.
 

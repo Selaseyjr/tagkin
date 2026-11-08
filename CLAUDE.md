@@ -10,7 +10,7 @@ Read docs/PRODUCT-BRIEF.md first. It is the single source of truth: add every de
 - Suggest better options and flag risks proactively; ask when a wording or decision is unclear.
 
 ## Where things are
-- GitHub: Selaseyjr/found-it (private while building). gh has two accounts; switch to Selaseyjr to push, then back to adensa-admin.
+- GitHub: Selaseyjr/tagkin (private while building). gh has two accounts; switch to Selaseyjr to push, then back to adensa-admin.
 - Figma: account selaseygbeddy@gmail.com, Starter plan (MCP tool-call limit was hit on 6 Nov; Chrome export works when signed in).
 - Portfolio: ~/Documents/career-workspace/portfolio/site (Vercel project selasey-gbeddy).
 
