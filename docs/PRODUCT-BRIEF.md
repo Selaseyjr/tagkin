@@ -154,9 +154,7 @@ Nov 2026: Selasey spoke with 3 people about losing and returning belongings. Com
 Participants (anonymous at their request; no names or identifying details kept):
 - Ages: two aged 20 to 26, one aged 33.
 - Countries: one German living in Germany, one Ghanaian living in Germany, one Ghanaian living in Ghana.
-- How they lost things: left something on a train; left a bag on a bench while waiting for a bus at a station. The third person's loss was not recorded.
-
-Next: the third person's loss, if they are happy to share it, before the prototype test.
+- How they lost things: left something on a train; left a bag on a bench while waiting for a bus at a station. The third person had no loss; they gave their view of the idea and recommendations.
 
 ## 16. Change log
 
@@ -173,3 +171,4 @@ Next: the third person's loss, if they are happy to share it, before the prototy
 - 8 Nov 2026: Lost mode and messages wireframes added (docs/wireframes/lost-mode-and-messages.html, 8 screens).
 - 8 Nov 2026: Finder flow rebuilt in HTML (docs/wireframes/finder-flow.html, 9 screens). All MVP wireframes now in docs/wireframes/; the Figma file is superseded until the UI phase.
 - 8 Nov 2026: Validation participants described anonymously. Wireframe wording corrected: static screens, not click-through.
+- 8 Nov 2026: Third participant clarified: no loss, gave views and recommendations.
