@@ -1,7 +1,7 @@
 # Tagkin: user flows (MVP)
 
 Phase 3, step 1. Scope: Item, Travel and Pet tags. Care tags are phase 2.
-Decisions marked **Proposed** are waiting for sign-off in the brief (section 14).
+All flow decisions signed off on 8 Nov 2026 (brief section 14).
 
 ## Return states
 
@@ -11,7 +11,7 @@ A tag is always in one state. These drive the lock rules in brief section 7.
 |---|---|---|---|
 | Normal | Registration | Type, ID | Owner taps Lost, or a finder reports it |
 | Lost | Owner taps Lost | + name, photo, description | Owner marks Found, or a finder reports it |
-| Return active | First finder report | + name, photo, description | Owner marks Returned, or 14 days pass with no messages (**Proposed**) |
+| Return active | First finder report | + name, photo, description | Owner marks Returned, or 14 days pass with no messages |
 | Retired | Owner retires the tag | Everything; ID dead forever | Never |
 
 ## Flow 1: Owner registration
@@ -19,7 +19,7 @@ A tag is always in one state. These drive the lock rules in brief section 7.
 ```mermaid
 flowchart TD
   A[Scan new tag or tap Create digital tag] --> B{Signed in?}
-  B -- No --> C[Email, then one-time code<br/>Proposed: no passwords]
+  B -- No --> C[Email, then one-time code<br/>no passwords]
   B -- Yes --> D
   C --> D[Choose type: Item, Travel, Pet<br/>Note: type cannot change later]
   D --> E[Name and optional photo]
@@ -59,7 +59,7 @@ flowchart TD
   H --> I{Phone or email in note?}
   I -- Yes --> J[This will share your number with the owner. Continue?]
   I -- No --> K
-  J --> K[Want a reply? Optional email, hidden. Otherwise anonymous]
+  J --> K[Want a reply? Optional email, hidden.<br/>Nudge: without it, replies show only on this page]
   K --> L[Thank you. Owner is alerted. State: Return active]
 ```
 
@@ -103,10 +103,10 @@ sequenceDiagram
 
 Safety: phone or email typed by either side triggers the share warning. Both sides can report abuse; the owner can block a finder thread.
 
-## Open questions for sign-off
+## Decisions (8 Nov 2026)
 
-1. **Sign-in:** email one-time code, no passwords (recommended: least friction, nothing to leak).
-2. **Return ends:** owner marks Returned, or auto after 14 days of silence.
-3. **Owner verification before handover** (brief 13): MVP or later? Recommended later; it needs the meeting flow first.
-4. **Anonymous finders:** reply only while the thank-you page is open. Acceptable, or nudge harder for an email?
-5. **Scan location:** approximate (city level) unless the finder shares exact location. Recommended, for finder privacy.
+1. Sign-in: email one-time code, no passwords.
+2. A return ends when the owner marks Returned, or after 14 days with no messages.
+3. Owner verification before handover: after the MVP.
+4. Anonymous finders see replies only while the thank-you page is open; a gentle nudge suggests leaving an email.
+5. Scan location: city level unless the finder shares exact location.
