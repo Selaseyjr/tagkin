@@ -15,4 +15,4 @@ Read docs/PRODUCT-BRIEF.md first. It is the single source of truth: add every de
 - Portfolio: ~/Documents/career-workspace/portfolio/site (Vercel project selasey-gbeddy).
 
 ## Phase status
-1 Define: done. 2 Validate: done (7 conversations). 3 Design: next, starting with user flows, then Figma.
+1 Define: done. 2 Validate: done (3 conversations). 3 Design: next, starting with user flows, then Figma.

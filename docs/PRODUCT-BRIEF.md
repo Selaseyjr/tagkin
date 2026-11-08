@@ -119,7 +119,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 
 ## 14. Open decisions
 
-- [x] Name: **Tagkin** (chosen 8 Nov). Trademark check (EUIPO, USPTO) still to do. Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
+- [x] Name: **Tagkin** (chosen 8 Nov). Trademark search on EUIPO and USPTO: no results (8 Nov). Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
 - [ ] MVP scope (recommended: Item, Travel and Pet; Care tags in phase 2)
 - [ ] Print partner
 - [ ] Translation provider
@@ -131,7 +131,7 @@ Similar QR lost-and-found tags already exist: Tile Lost and Found labels, PingTa
 
 ## 15. Validation
 
-Nov 2026: Selasey spoke with about 7 people about losing and returning belongings. Combined themes below, summarised by Selasey after the conversations; not verbatim quotes, and not split by person.
+Nov 2026: Selasey spoke with 3 people about losing and returning belongings. Combined themes below, summarised by Selasey after the conversations; not verbatim quotes, and not split by person.
 
 | Theme raised | What it changed |
 |---|---|
@@ -147,7 +147,7 @@ Nov 2026: Selasey spoke with about 7 people about losing and returning belonging
 | A photo helps the finder confirm the item | Optional photo on the finder page |
 | Used worldwide, in any language | Translation of pages and messages, 100+ languages |
 
-Next: before the prototype test, note who the 7 were (age range, country, how they lose things) in one line each.
+Next: before the prototype test, note who the 3 were (age range, country, how they lose things) in one line each.
 
 ## 16. Change log
 
@@ -156,3 +156,4 @@ Next: before the prototype test, note who the 7 were (age range, country, how th
 - 8 Nov 2026: Validation themes recorded. Repo moved to ~/Desktop/found-it. Name shortlist added.
 - 8 Nov 2026: Hellotag rejected (name in use). Tagkin recommended. Competitor list added.
 - 8 Nov 2026: Name chosen: Tagkin. Folder renamed to ~/Desktop/tagkin.
+- 8 Nov 2026: Validation corrected to 3 people. Trademark search clear on EUIPO and USPTO.
