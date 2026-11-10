@@ -287,6 +287,23 @@ figure .proto-l,figure .proto{display:none}
 .acct.tight~.grpl .li{padding:10px 2px}
 .invite{border:1px solid var(--tk-brand);background:var(--tk-brand-soft);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}.invite b{display:block}.invite span{font-size:13px;color:var(--tk-ink-2)}
 .legal{font-size:11px;color:var(--tk-ink-2);text-align:center;margin:0;flex:none;text-decoration:underline;text-underline-offset:2px}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none}
+.gcard{border:1px solid var(--tk-line);border-radius:var(--tk-radius-md);padding:10px;display:flex;flex-direction:column;gap:2px;cursor:pointer}
+.gcard:last-child{grid-column:span 2;flex-direction:row;align-items:center;gap:10px}.gcard:last-child .gobj{height:56px;width:70px}
+.gcard b{font-size:14px}.gcard small{font-size:11px;color:var(--tk-ink-2)}
+.gcard.on{border:2px solid var(--tk-brand);padding:9px;background:var(--tk-brand-soft)}
+.gobj{height:76px;border-radius:12px;background:var(--tk-sunken);display:grid;place-items:center;font-size:40px;position:relative;margin-bottom:6px}
+.gtag{position:absolute;right:16px;bottom:12px;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #0b1712;color:#0b1712;display:grid;place-items:center;font-style:normal}
+.gtag.kc{border-radius:6px;right:22px;bottom:8px}.gtag.pt{border-radius:50%;background:#e6ebe9;bottom:6px}.gtag.lb{border-radius:4px;width:18px;height:28px;right:12px}.gtag.ls{border-radius:4px;width:16px;height:22px;right:24px;bottom:16px}
+.livepv{display:flex;gap:10px;align-items:center;background:var(--tk-sunken);border-radius:var(--tk-radius-md);padding:8px 10px;flex:none}
+.lpt{width:42px;height:42px;border-radius:10px;background:#fff;border:1.5px solid #0b1712;color:#0b1712;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;flex:none}
+.lpt .qr{width:16px;height:16px;background-size:4px 4px;margin:0}
+.lpx{flex:1;min-width:0}.lpx b,.lpx small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lpx b{font-size:13px}.lpx small{font-size:11px;color:var(--tk-ink-2)}
+.lp-style{font-style:normal;font-size:11px;font-weight:600;color:var(--tk-brand-text);flex:none}
+.qty small{display:block;font-size:12px;color:var(--tk-ink-2)}
+.stat{margin:0;font-size:13px;font-weight:600;color:var(--tk-brand-text);flex:none}
+textarea.in{font:400 16px var(--tk-font-body);color:var(--tk-ink);border:0;width:100%;outline:none;resize:none;padding:14px 16px}
+textarea.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-brand)}
 .proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 
@@ -340,7 +357,7 @@ let tt;function toast(t){const e=$('.toast');e.textContent=t;e.classList.add('sh
 const V={
  item:{photo:'🎒<small>Photo updated 3 days ago</small>',title:'Found me? Thank you! Tap below to tell my owner where I am.',orig:'Gefunden? Danke! Tippe unten, um meinem Besitzer zu sagen, wo ich bin.',banner:'',extra:'',btn:'I found it'},
  lost:{photo:'🎒',title:'Black backpack',orig:'',banner:'<div class="urgent"><i>!</i>This item is missing</div>',extra:'<p class="m">The owner is looking for it. Please tell them where it is.</p>',btn:'I found it'},
- travel:{photo:'🧳',title:'Please hand me to airline or hotel staff, or message my owner.',orig:'Bitte gib mich dem Personal der Airline oder des Hotels oder schreib meinem Besitzer.',banner:'<div class="trip"><span>✈️</span><span><b>I’m travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div>',extra:'',btn:'I found it'},
+ travel:{photo:'🧳',title:'Please hand me to airline or hotel staff, or message my owner.',orig:'Bitte gib mich dem Personal der Airline oder des Hotels oder schreib meinem Besitzer.',banner:'<div class="trip"><span>✈️</span><span><b>I’m travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div><p class="stat">✓ Owner update: arrived in Accra</p>',extra:'',btn:'I found it'},
  pet:{photo:'🐕<small>Photo updated 1 week ago</small>',title:'Hi, I’m Milo. I’m friendly. Please message my owner. I may be scared.',orig:'Hallo, ich bin Milo. Ich bin freundlich. Bitte schreib meiner Familie. Ich habe vielleicht Angst.',banner:'',extra:'<div class="chips"><span class="chip">Friendly</span><span class="chip">Shy with dogs</span></div><div class="li" id="f-care"><span>Care notes</span><span>Show ›</span></div>',btn:'I found Milo'},
  test:{photo:'🎒<small>Photo updated 3 days ago</small>',title:'Found me? Thank you! Tap below to tell my owner where I am.',orig:'',banner:'<div class="testban">Test scan · The owner is testing this tag. Nothing you send here reaches anyone.</div>',extra:'',btn:'I found it'}};
 let cur='item',orig=false,shared=false,ch='email',timer;

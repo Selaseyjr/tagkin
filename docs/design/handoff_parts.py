@@ -23,6 +23,8 @@ NOTES = {
     "Finder U · Tag not set up yet": "Unclaimed shop or gift tag. Activate opens the app or the store.",
     "Finder X · Tag not active": "Retired tag. No owner data is shown.",
     "Finder R · Report this tag": "Goes to moderation. 112 note for emergencies.",
+    "Setup 5b · Pick your tag": "Each card preselects style and type: sticker, keychain and lock screen → item; luggage label → travel; pet tag → pet. A live preview card follows through details and message.",
+    "Manage 7 · Status update": "Opt-in note on the finder page. City only, no dates or times. Hides automatically after the trip or 7 days.",
     "Owner 2 · Enter code": "6-digit email code, valid 10 minutes, 5 attempts.",
     "Owner 3 · Tag type": "Type is locked after creation. Item → details, Travel → Type 1, Pet → Type 2.",
     "Owner 5 · Finder message": "Template or own text, 160 characters, live count. Warns on phone or email; blocks abusive words.",
