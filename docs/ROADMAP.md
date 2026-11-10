@@ -27,7 +27,8 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 Trigger: Stage A done. **Reached 11 Nov 2026.**
 
 - [x] Hand-off page complete: cover, flow map, screen notes, states, emails, desktop finder, website, marketing visuals
-- [ ] One import of docs/design/tagkin-screens.html with generate_figma_design (exempt from the MCP limit)
+- [x] Pre-import audit done: codes, legal footer, sign-in email, print artwork, exports, permission recovery, languages, accessibility, Android icon, showcase
+- [ ] Import two pages: docs/design/tagkin-screens.html (private hand-off file) and docs/design/tagkin-showcase.html (public Community file). One import each with generate_figma_design (exempt from the MCP limit)
 - [ ] Selasey adds prototype links by hand in Figma for the finder flow (about 9 screens); the cover links to the full prototypes
 - [ ] Selasey publishes to Figma Community
 - [ ] Optional: short "work in progress" portfolio post

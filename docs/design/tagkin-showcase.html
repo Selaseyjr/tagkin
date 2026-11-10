@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tagkin showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap">
+<style id="tokens">
+/* Generated from docs/brand/tokens.css by build_screens.py. Do not edit here. */
+/* Tagkin design tokens v1 (visual design pass A, 10 Nov 2026; Fresh mint palette 11 Nov).
+   Source of truth for colour, type, spacing, radius and motion.
+   Reused as-is when the app is built. */
+
+:root {
+  /* Colour: clean neutrals with a faint mint bias */
+  --tk-bg: #f6f8f7;          /* page */
+  --tk-surface: #ffffff;     /* cards, screens */
+  --tk-sunken: #edf1ef;      /* inputs, wells */
+  --tk-line: #dbe3df;        /* borders, dividers */
+  --tk-ink: #0b1712;         /* text, logo */
+  --tk-ink-2: #4f5e57;       /* secondary text */
+
+  /* Brand: Fresh mint (chosen 11 Nov 2026) */
+  --tk-brand: #00c48c;       /* fills: primary buttons, icon tiles, logo hole */
+  --tk-brand-press: #00ab7a;
+  --tk-on-brand: #03261a;    /* text on mint: always dark */
+  --tk-brand-soft: #d9f7ec;  /* selected states, Return active */
+  --tk-brand-text: #007a57;  /* mint as text or links on light surfaces */
+
+  /* Meaning (separate from brand) */
+  --tk-lost: #e02a17;        /* Lost mode, urgent */
+  --tk-lost-soft: #ffe5e1;
+  --tk-on-lost: #ffffff;
+  --tk-lost-text: #c62d1b;
+  --tk-warn: #8a5a00;        /* privacy and share warnings (text) */
+  --tk-warn-soft: #fdf1d6;
+  --tk-ok: #007a57;          /* returned, shared, done */
+
+  /* Type */
+  --tk-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --tk-font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tk-text-xs: 12px;
+  --tk-text-sm: 14px;
+  --tk-text-md: 16px;   /* body; never smaller for inputs (iOS zoom) */
+  --tk-text-lg: 20px;
+  --tk-text-xl: 26px;   /* screen titles */
+  --tk-text-2xl: 34px;  /* thank-you, hero */
+
+  /* Spacing: 4-point scale */
+  --tk-space-1: 4px;  --tk-space-2: 8px;  --tk-space-3: 12px;
+  --tk-space-4: 16px; --tk-space-5: 24px; --tk-space-6: 32px; --tk-space-7: 48px;
+
+  /* Radius */
+  --tk-radius-sm: 8px;  /* chips, badges */
+  --tk-radius-md: 14px; /* buttons, inputs, options */
+  --tk-radius-lg: 22px; /* cards, sheets, tags */
+
+  /* Elevation and motion */
+  --tk-shadow: 0 1px 2px rgb(20 32 28 / .06), 0 6px 20px rgb(20 32 28 / .06);
+  --tk-ease: cubic-bezier(.2, .8, .2, 1);
+  --tk-fast: 140ms;
+  --tk-slow: 280ms;
+
+  /* Sizes */
+  --tk-tap: 52px; /* minimum height for primary controls */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-bg: #07110d; --tk-surface: #0f1b16; --tk-sunken: #16251f; --tk-line: #24372f;
+    --tk-ink: #eefaf5; --tk-ink-2: #9db3aa;
+    --tk-brand: #1fe0a6; --tk-brand-press: #5cebc0; --tk-on-brand: #03261a; --tk-brand-soft: #0f3a2c; --tk-brand-text: #1fe0a6;
+    --tk-lost: #ff6b57; --tk-lost-soft: #3a1712; --tk-on-lost: #1f0703; --tk-lost-text: #ff8a7a;
+    --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #1fe0a6;
+    --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-bg: #07110d; --tk-surface: #0f1b16; --tk-sunken: #16251f; --tk-line: #24372f;
+  --tk-ink: #eefaf5; --tk-ink-2: #9db3aa;
+  --tk-brand: #1fe0a6; --tk-brand-press: #5cebc0; --tk-on-brand: #03261a; --tk-brand-soft: #0f3a2c; --tk-brand-text: #1fe0a6;
+  --tk-lost: #ff6b57; --tk-lost-soft: #3a1712; --tk-on-lost: #1f0703; --tk-lost-text: #ff8a7a;
+  --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #1fe0a6;
+  --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --tk-fast: 0ms; --tk-slow: 0ms; }
+}
+</style>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--tk-bg);color:var(--tk-ink);font:var(--tk-text-md)/1.5 var(--tk-font-body)}
+.page{max-width:1600px;margin:auto;padding:32px max(16px,env(safe-area-inset-left,0px)) 64px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand b{font:700 26px/1 var(--tk-font-display);letter-spacing:-.02em}
+.toggle{font:500 14px var(--tk-font-body);border:1px solid var(--tk-line);background:var(--tk-surface);color:var(--tk-ink);border-radius:99px;padding:8px 14px;cursor:pointer}
+.flow h2{font:700 22px/1.2 var(--tk-font-display);margin:48px 0 4px;letter-spacing:-.01em}
+.flow>p{margin:0 0 20px;color:var(--tk-ink-2);font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:28px}
+figure{margin:0;width:100%;max-width:360px}
+figcaption{font:600 12px var(--tk-font-body);color:var(--tk-ink-2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.scr{background:var(--tk-surface);border:1px solid var(--tk-line);border-radius:36px;height:760px;padding:22px 20px 22px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--tk-shadow);overflow:hidden}
+.sbar{display:flex;justify-content:space-between;font:600 12px var(--tk-font-body);color:var(--tk-ink);padding:0 6px 4px}
+.hdr{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--tk-ink-2);min-height:28px}
+.logo{display:flex;align-items:center;gap:6px;color:var(--tk-ink);font:700 16px var(--tk-font-display);letter-spacing:-.01em}
+.back{color:var(--tk-ink);font-weight:500}
+.steps{display:flex;gap:4px}.steps i{width:22px;height:4px;border-radius:2px;background:var(--tk-line)}.steps i.on{background:var(--tk-brand)}
+h1{font:700 var(--tk-text-xl)/1.2 var(--tk-font-display);letter-spacing:-.015em;margin:4px 0 0;text-wrap:balance}
+h1.big{font-size:var(--tk-text-2xl)}
+.m{color:var(--tk-ink-2);font-size:14px;margin:0}
+.xs{color:var(--tk-ink-2);font-size:12px;margin:0}
+.sp{flex:1}
+.btn{font:600 16px/1 var(--tk-font-body);min-height:var(--tk-tap);border-radius:var(--tk-radius-md);display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;flex:none}
+.pri{background:var(--tk-brand);color:var(--tk-on-brand)}
+.sec{background:var(--tk-surface);color:var(--tk-ink);border-color:var(--tk-line)}
+.lostb{background:var(--tk-lost);color:var(--tk-on-lost)}
+.ghost{color:var(--tk-ink-2);min-height:40px;font-weight:500}
+.off{opacity:.4}
+.in{background:var(--tk-sunken);border-radius:var(--tk-radius-md);min-height:var(--tk-tap);padding:0 16px;display:flex;align-items:center;color:var(--tk-ink-2);flex:none}
+.in.val{color:var(--tk-ink)}
+.in.focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-brand);color:var(--tk-ink)}
+.ta{min-height:120px;align-items:flex-start;padding-top:14px}
+.opt{border:1px solid var(--tk-line);border-radius:var(--tk-radius-md);min-height:60px;padding:0 16px;display:flex;align-items:center;gap:12px;font-weight:500;flex:none}
+.opt .r{width:20px;height:20px;border-radius:50%;border:2px solid var(--tk-line);flex:none;display:grid;place-items:center}
+.opt.on{border-color:var(--tk-brand);background:var(--tk-brand-soft);font-weight:600}
+.opt.on .r{border-color:var(--tk-brand)}.opt.on .r::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--tk-brand)}
+.opt .ic{width:40px;height:40px;border-radius:12px;background:var(--tk-sunken);display:grid;place-items:center;font-size:20px;flex:none}
+.opt.on .ic{background:var(--tk-surface)}
+.opt small{display:block;font-weight:400;color:var(--tk-ink-2);font-size:13px}
+.seg{display:flex;background:var(--tk-sunken);border-radius:var(--tk-radius-md);padding:4px;gap:4px;flex:none}
+.seg span{flex:1;text-align:center;padding:10px;border-radius:10px;font-weight:500;font-size:14px;color:var(--tk-ink-2)}
+.seg span.on{background:var(--tk-surface);color:var(--tk-ink);font-weight:600;box-shadow:var(--tk-shadow)}
+.sug{display:flex;gap:10px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--tk-line);font-size:15px}
+.sug b{font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--tk-font-body);padding:6px 10px;border-radius:99px;white-space:nowrap;flex:none}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.b-n{background:var(--tk-sunken);color:var(--tk-ink-2)}.b-l{background:var(--tk-lost);color:var(--tk-on-lost)}.b-r{background:var(--tk-brand-soft);color:var(--tk-brand-text)}
+.note{border-radius:var(--tk-radius-md);padding:12px 14px;font-size:14px;margin:0;flex:none}
+.warn{background:var(--tk-warn-soft);color:var(--tk-warn)}
+.info{background:var(--tk-sunken);color:var(--tk-ink-2)}
+.priv{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--tk-ink-2);margin:0;flex:none}
+.priv svg{flex:none;margin-top:1px}
+.urgent{background:var(--tk-lost);color:var(--tk-on-lost);border-radius:var(--tk-radius-md);padding:12px 14px;font-weight:600;display:flex;gap:10px;align-items:center;flex:none}
+.urgent i{width:22px;height:22px;border-radius:50%;background:var(--tk-on-lost);color:var(--tk-lost);display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:700}
+.photo{height:200px;border-radius:var(--tk-radius-lg);background:linear-gradient(140deg,var(--tk-brand-soft),var(--tk-sunken) 60%);display:grid;place-items:center;font-size:56px;flex:none;position:relative}
+.photo small{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--tk-ink-2);background:var(--tk-surface);padding:3px 8px;border-radius:99px}
+.add{height:120px;border-radius:var(--tk-radius-lg);border:2px dashed var(--tk-line);display:grid;place-items:center;color:var(--tk-ink-2);font-size:14px;flex:none}
+.link{color:var(--tk-brand-text);font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--tk-line);border-radius:var(--tk-radius-md);flex:none}
+.item .ic{width:42px;height:42px;border-radius:12px;background:var(--tk-sunken);display:grid;place-items:center;font-size:20px;flex:none}
+.item .tx{flex:1;min-width:0}.item .tx b{display:block}.item .tx span{font-size:12px;color:var(--tk-ink-2)}
+.li{display:flex;justify-content:space-between;align-items:center;padding:14px 2px;border-bottom:1px solid var(--tk-line);font-size:15px}
+.li span:last-child{color:var(--tk-ink-2);font-size:14px}
+.thread{display:flex;flex-direction:column;gap:10px}
+.bub{max-width:86%;padding:10px 14px;border-radius:18px;font-size:14px}
+.bub.in2{background:var(--tk-sunken);border-bottom-left-radius:6px}
+.bub.out{background:var(--tk-brand);color:var(--tk-on-brand);align-self:flex-end;border-bottom-right-radius:6px}
+.bub .meta{display:block;font-size:12px;color:var(--tk-brand-text);margin-top:4px;text-decoration:underline}
+.compose{display:flex;gap:8px;align-items:center;flex:none}
+.compose .in{flex:1}
+.send{width:52px;height:52px;border-radius:50%;background:var(--tk-brand);color:var(--tk-on-brand);display:grid;place-items:center;font-size:20px;flex:none}
+.notif{background:var(--tk-sunken);border-radius:20px;padding:14px;display:flex;gap:12px;flex:none}
+.notif .ic{width:38px;height:38px;border-radius:10px;background:var(--tk-brand);color:var(--tk-on-brand);display:grid;place-items:center;flex:none}
+.notif b{display:block;font-size:14px}.notif span{font-size:13px;color:var(--tk-ink-2)}
+.code{display:flex;gap:8px;flex:none}.code i{flex:1;height:56px;border-radius:12px;background:var(--tk-sunken);display:grid;place-items:center;font:600 22px var(--tk-font-body);font-style:normal}
+.code i.on{box-shadow:inset 0 0 0 2px var(--tk-brand);background:var(--tk-surface)}
+.count{text-align:right;font-size:12px;color:var(--tk-ink-2);margin:-8px 0 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;flex:none}
+.chip{border:1px solid var(--tk-line);border-radius:99px;padding:8px 12px;font-size:13px;font-weight:500}
+.chip.on{background:var(--tk-ink);color:var(--tk-surface);border-color:var(--tk-ink)}
+.tag{width:200px;margin:4px auto 0;background:#fff;color:#0b1712;border:2px solid #0b1712;border-radius:var(--tk-radius-lg);padding:16px;text-align:center;flex:none}
+.qr{width:120px;height:120px;margin:10px auto;background:repeating-conic-gradient(#0b1712 0 25%,#fff 0 50%) 0 0/15px 15px}
+.tag p{margin:0;font-weight:600;font-size:14px}.tag small{display:block;font-weight:600;font-size:11px;color:#4f5e57;margin-top:4px;white-space:nowrap}
+.done{width:84px;height:84px;border-radius:50%;background:var(--tk-brand-soft);color:var(--tk-brand-text);display:grid;place-items:center;font-size:40px;margin:0 auto;flex:none}
+.center{text-align:center}
+.lockrow{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--tk-ink-2)}
+.dots{display:flex;gap:6px;align-items:center;color:var(--tk-ink-2);font-size:13px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--tk-brand);animation:p 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes p{50%{opacity:.25}}
+.grp{display:flex;flex-direction:column;gap:10px;flex:none}
+.tag.mini{width:150px;padding:10px;margin-top:0}.tag.mini .qr{width:70px;height:70px;background-size:10px 10px;margin:6px auto}
+.qty{display:flex;justify-content:space-between;align-items:center;font-size:15px;flex:none}
+.step{display:flex;align-items:center;gap:14px;background:var(--tk-sunken);border-radius:99px;padding:4px}
+.step b{width:34px;height:34px;border-radius:50%;background:var(--tk-surface);display:grid;place-items:center;font-size:18px}
+.step i{font-style:normal;font-weight:600;min-width:12px;text-align:center}
+.li.total{font-weight:700}.li.total span:last-child{color:var(--tk-ink);font-size:16px}
+.tabs{display:flex;justify-content:space-around;border-top:1px solid var(--tk-line);margin:0 -20px -22px;padding:8px 8px 14px;background:var(--tk-surface);flex:none}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:500;color:var(--tk-ink-2);position:relative;min-width:64px;padding:4px 0}
+.tab.on{color:var(--tk-brand-text);font-weight:600}
+.dot2{position:absolute;top:2px;right:16px;width:8px;height:8px;border-radius:50%;background:var(--tk-lost)}
+.unread{min-width:22px;height:22px;border-radius:11px;background:var(--tk-brand);color:var(--tk-on-brand);font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+.item .tx b,.item .tx span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acct{display:flex;gap:12px;align-items:center;flex:none}.acct .av{width:48px;height:48px;border-radius:50%;background:var(--tk-brand);color:var(--tk-on-brand);display:grid;place-items:center;font:700 20px var(--tk-font-display)}
+.acct b{display:block}.acct span span{font-size:13px;color:var(--tk-ink-2)}
+.grpl .li:last-child{border-bottom:0}
+.hero{display:grid;place-items:center;color:var(--tk-ink);flex:none}
+.hero.lockh{width:110px;height:110px;margin:auto;border-radius:50%;background:var(--tk-brand-soft);color:var(--tk-brand-text)}
+.bell{width:110px;height:110px;border-radius:50%;background:var(--tk-brand-soft);display:grid;place-items:center;font-size:48px}
+.pager{display:flex;gap:6px;justify-content:center;flex:none}.pager i{width:8px;height:8px;border-radius:4px;background:var(--tk-line)}.pager i.on{width:22px;background:var(--tk-brand)}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;flex:none;cursor:pointer}
+.check i{width:22px;height:22px;border-radius:6px;border:2px solid var(--tk-line);flex:none;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:700;color:transparent}
+.check.on i{background:var(--tk-brand);border-color:var(--tk-brand);color:var(--tk-on-brand)}
+.cam{margin:0 -20px -22px;flex:1;display:flex;flex-direction:column;gap:14px;padding:22px 20px;background:linear-gradient(#1b2a24,#0a1410);color:#fff;border-radius:0 0 34px 34px}
+.cam-h,.cam-h .back{color:#fff}.cam-t{color:#d8e6e0}
+.frame{width:220px;height:220px;margin:auto;position:relative;flex:none}
+.frame i{position:absolute;width:44px;height:44px;border:4px solid var(--tk-brand)}
+.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-radius:14px 0 0 0}
+.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
+.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 14px}
+.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 14px 0}
+.cam .btn.sec{background:rgb(255 255 255 / .12);border-color:rgb(255 255 255 / .25);color:#fff}
+.warnc{background:var(--tk-warn-soft);color:var(--tk-warn);font-weight:700}
+.dangert{color:var(--tk-lost-text)}
+.errin{box-shadow:inset 0 0 0 2px var(--tk-lost)}
+.errt{color:var(--tk-lost-text);font-size:13px;margin:-6px 0 0}
+.errc{background:var(--tk-lost-soft);color:var(--tk-lost-text);font-weight:700}
+.offl{background:var(--tk-ink);color:var(--tk-surface)}
+.dim{opacity:.6}
+.bub.failed{opacity:.6}
+.failt{align-self:flex-end;font-size:12px;color:var(--tk-lost-text);font-weight:600;cursor:pointer}
+.lockedp{filter:grayscale(.6)}
+.savet{color:var(--tk-brand-text);font-weight:600}
+.label2{font:600 12px var(--tk-font-body);color:var(--tk-ink-2);letter-spacing:.04em;text-transform:uppercase;flex:none}
+.preview{border:1px dashed var(--tk-line);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}
+.preview b{display:block;font:700 16px/1.3 var(--tk-font-display)}.preview span{font-size:12px;color:var(--tk-ink-2)}
+.btn.proto-l{min-height:32px}
+.proto-l{text-decoration:underline dashed;color:var(--tk-ink-2)}
+.trip{display:flex;gap:12px;align-items:center;background:var(--tk-brand-soft);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}
+.trip>span:first-child{font-size:24px}.trip b{display:block}.trip small{color:var(--tk-ink-2);font-size:13px}
+.plan{border:1px solid var(--tk-line);border-radius:var(--tk-radius-lg);padding:14px 16px;flex:none}
+.plan b{font:700 18px var(--tk-font-display)}.plan span{display:block;font-size:13px;color:var(--tk-ink-2)}
+.plan ul{margin:8px 0 0;padding-left:18px;font-size:14px}.plan li{margin:2px 0}
+.plan.prem{background:var(--tk-brand-soft);border-color:var(--tk-brand)}
+.plan em{font:600 11px var(--tk-font-body);font-style:normal;background:var(--tk-brand);color:var(--tk-on-brand);border-radius:99px;padding:3px 8px;margin-left:6px;vertical-align:middle}
+.sw{width:46px;height:28px;border-radius:14px;background:var(--tk-line);position:relative;flex:none;cursor:pointer;transition:background var(--tk-fast)}
+.sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(0 0 0 / .2);transition:left var(--tk-fast) var(--tk-ease)}
+.sw.on{background:var(--tk-brand)}.sw.on i{left:21px}
+.li.on{font-weight:600}.li.on span:last-child{color:var(--tk-brand-text)}
+.splash{margin:0 -20px -22px;flex:1;background:var(--tk-brand);color:var(--tk-on-brand);display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px;border-radius:0 0 34px 34px}
+.splash b{font:700 40px var(--tk-font-display);letter-spacing:-.02em}
+.splash small{font-size:12px;opacity:.8}
+.icons{display:flex;gap:16px}
+.appicon{width:76px;height:76px;border-radius:18px;background:var(--tk-brand);color:#03261a;display:grid;place-items:center;box-shadow:0 0 0 2px rgb(3 38 26 / .25)}
+.appicon.dk{background:#0b1712;color:#1fe0a6}
+.photo.sm{height:130px;font-size:44px}.add.sm{height:72px}.ta.sm{min-height:76px}h1.md{font-size:22px}
+input.in{font:400 16px var(--tk-font-body);color:var(--tk-ink);border:0;width:100%;outline:none}
+input.in::placeholder{color:var(--tk-ink-2)}
+input.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-brand)}
+.two{display:flex;gap:10px;flex:none}.two>*{flex:1;min-width:0}.two input.in:first-child{flex:0 0 38%}
+.sel{justify-content:space-between}
+.addr{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border:1px solid var(--tk-line);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}
+.addr small{display:block;font-size:12px;color:var(--tk-ink-2)}.addr b{display:block}.addr .a-line{font-size:14px;color:var(--tk-ink-2)}
+.prod .opt{min-height:54px}
+#t-details .chip,figure[data-name="Type 1 · Travel details"] .chip{padding:6px 10px;font-size:12px}
+.themes{display:flex;gap:10px;flex:none}
+.th{flex:1;border:1px solid var(--tk-line);border-radius:var(--tk-radius-md);padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;text-align:center;cursor:pointer}
+.th.on{border:2px solid var(--tk-brand);background:var(--tk-brand-soft);padding:11px 7px}
+.thp{width:56px;height:72px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--tk-line)}
+.thp.light{background:#fff;color:#0b1712}.thp.dark{background:#0b1712;color:#1fe0a6}.thp.auto{background:linear-gradient(90deg,#fff 50%,#0b1712 50%);color:#00c48c}
+.qrb{width:36px;height:36px;border-radius:10px;border:1px solid var(--tk-line);display:grid;place-items:center;color:var(--tk-ink);flex:none;margin-left:-4px}
+.bigqr{align-self:center;background:#fff;border-radius:var(--tk-radius-lg);padding:18px;text-align:center;box-shadow:var(--tk-shadow);flex:none}
+.bigqr .qr{width:170px;height:170px;background-size:17px 17px;margin:0 auto 8px}
+.bigqr small{font-weight:600;font-size:13px;color:#4f5e57}
+.testbox{display:flex;gap:12px;align-items:flex-start;background:var(--tk-sunken);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}
+.testbox b{display:block}.testbox small{font-size:13px;color:var(--tk-ink-2)}
+.testban{background:var(--tk-warn-soft);color:var(--tk-warn);border-radius:var(--tk-radius-md);padding:10px 12px;font-size:13px;font-weight:600;flex:none}
+.emo{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:24px;color:var(--tk-ink-2);flex:none;cursor:pointer}
+.emo.on{background:var(--tk-brand-soft);color:var(--tk-brand-text)}
+.picker{background:var(--tk-sunken);border-radius:var(--tk-radius-lg);padding:10px;display:flex;flex-direction:column;gap:8px;flex:none}
+.picker[hidden]{display:none}
+.pk-s{min-height:40px;background:var(--tk-surface);font-size:14px}
+.pk-cats{display:flex;justify-content:space-between;padding:0 4px}.pk-cats span{font-size:18px;padding:4px 6px;border-radius:8px;opacity:.6}.pk-cats span.on{opacity:1;background:var(--tk-surface)}
+.pk-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:2px}.pk-grid span{font-size:24px;text-align:center;padding:4px 0;border-radius:8px;cursor:pointer}
+.pk-grid span:hover{background:var(--tk-surface)}
+.how{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;flex:none}.how li{display:flex;gap:14px;align-items:flex-start}.how b{width:32px;height:32px;border-radius:50%;background:var(--tk-brand-soft);color:var(--tk-brand-text);display:grid;place-items:center;font:700 16px var(--tk-font-display);flex:none}.how strong{display:block;font-weight:600}.how span{font-size:14px;color:var(--tk-ink-2)}.how strong{color:var(--tk-ink);font-size:16px}
+.steps3{display:flex;gap:8px;flex:none}.steps3 span{flex:1;background:var(--tk-sunken);border-radius:var(--tk-radius-md);padding:10px 8px;font-size:12px;text-align:center;color:var(--tk-ink-2)}.steps3 b{display:block;font:700 18px var(--tk-font-display);color:var(--tk-brand-text)}
+.link.center{text-align:center;display:block}
+.li.offer span{color:var(--tk-brand-text);font-weight:600}
+figure .proto-l,figure .proto{display:none}
+.acct.tight~.grpl .li{padding:10px 2px}
+.invite{border:1px solid var(--tk-brand);background:var(--tk-brand-soft);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}.invite b{display:block}.invite span{font-size:13px;color:var(--tk-ink-2)}
+.legal{font-size:11px;color:var(--tk-ink-2);text-align:center;margin:0;flex:none;text-decoration:underline;text-underline-offset:2px}
+.proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
+@media (prefers-reduced-motion:reduce){.dots i{animation:none}}
+
+.spec{margin-top:10px;font-size:12px;color:var(--tk-ink-2);background:var(--tk-sunken);border-radius:12px;padding:10px 12px}
+.spec p{margin:0 0 6px}.spec ul{margin:0;padding-left:16px}.spec li{margin:2px 0}
+.sgrid{display:flex;flex-direction:column;gap:10px}.lbl{font:600 11px var(--tk-font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--tk-ink-2);margin-top:6px}
+.pressed{background:var(--tk-brand-press);transform:scale(.98)}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;display:inline-block;animation:sp .8s linear infinite}
+.spin.big{width:44px;height:44px;border-width:4px;color:var(--tk-brand)}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+.toastx{align-self:center;background:var(--tk-ink);color:var(--tk-surface);border-radius:99px;padding:10px 16px;font-size:14px}
+.sk{background:linear-gradient(90deg,var(--tk-sunken),var(--tk-line),var(--tk-sunken));background-size:200% 100%;animation:sh 1.4s infinite;border-radius:8px;display:block}
+@keyframes sh{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}}
+.skl{height:14px;width:60%;margin-bottom:6px}.sks{height:10px;width:40%}.skb{width:64px;height:24px;border-radius:99px;flex:none}.skh{height:22px;width:90%}.skh2{height:22px;width:70%}
+.mail{background:var(--tk-surface);border:1px solid var(--tk-line);border-radius:16px;overflow:hidden;box-shadow:var(--tk-shadow)}
+.mhead{padding:14px 18px;border-bottom:1px solid var(--tk-line);display:flex;flex-direction:column;gap:2px}.mhead span{font-size:12px;color:var(--tk-ink-2)}
+.mbody{padding:24px;display:flex;flex-direction:column;gap:14px}.mlogo{display:flex;gap:6px;align-items:center;font:700 16px var(--tk-font-display)}
+.mbody h3{font:700 22px/1.25 var(--tk-font-display);margin:0}.mcard{background:var(--tk-sunken);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.mcard span,.mcard small{font-size:13px;color:var(--tk-ink-2)}.mcard p{margin:4px 0 0}.mbody .btn{align-self:flex-start;padding:0 24px}
+.mfoot{font-size:11px;color:var(--tk-ink-2);border-top:1px solid var(--tk-line);padding-top:12px;margin:0}
+.scr.lock{background:linear-gradient(160deg,#0f3a2c,#07110d);color:#fff}.scr.lock .sbar{color:#fff}
+.ltime{font:600 64px/1 var(--tk-font-display);text-align:center;margin:20px 0 0}.ldate{text-align:center;margin:0;opacity:.8}
+.pushl{display:flex;flex-direction:column;gap:8px;margin-top:20px}.push{display:flex;gap:10px;align-items:flex-start;background:rgb(255 255 255 / .14);backdrop-filter:blur(10px);border-radius:16px;padding:10px 12px;font-size:13px}
+.push b{display:block}.push small{opacity:.85}.push em{margin-left:auto;font-style:normal;font-size:11px;opacity:.7;flex:none}.pic{width:28px;height:28px;border-radius:7px;background:#00c48c;color:#03261a;display:grid;place-items:center;flex:none}
+figure.wide{width:100%}
+.desk{border:1px solid var(--tk-line);border-radius:14px;overflow:hidden;background:var(--tk-bg);box-shadow:var(--tk-shadow);display:flex;flex-direction:column}
+.dbar{display:flex;gap:6px;align-items:center;padding:10px 14px;background:var(--tk-sunken);border-bottom:1px solid var(--tk-line)}.dbar i{width:10px;height:10px;border-radius:50%;background:var(--tk-line)}.dbar span{margin-left:12px;font-size:12px;color:var(--tk-ink-2);background:var(--tk-surface);border-radius:8px;padding:4px 12px;flex:1;max-width:420px}
+.dbody{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.dnav{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;font-size:14px;color:var(--tk-ink-2)}
+.navl{display:flex;gap:20px;align-items:center}.navl a{color:var(--tk-ink)}.btn.sm{min-height:40px;padding:0 16px;font-size:14px}
+.dcard{margin:auto;width:min(860px,92%);background:var(--tk-surface);border-radius:24px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:28px;box-shadow:var(--tk-shadow)}
+.dcard.one{grid-template-columns:1fr;max-width:620px;gap:14px}.dcard .photo{height:100%;min-height:260px}.dcol{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.doc .li span:last-child{text-align:right}
+.whero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;padding:24px 64px;align-items:center}
+.eyebrow{font:600 12px var(--tk-font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--tk-brand-text);margin:0}
+.wh{font:700 56px/1.05 var(--tk-font-display);letter-spacing:-.03em;margin:8px 0 12px}
+.stores{max-width:360px;margin:16px 0 8px}
+.wphone{display:flex;justify-content:center}
+.scr.mini{width:240px;height:480px;padding:14px 14px;gap:10px;border-radius:30px;font-size:13px}.scr.mini .btn{min-height:42px;font-size:14px}.scr.mini .photo.sm{height:110px}
+.wsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:16px 64px 32px}.wsteps div{background:var(--tk-surface);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:4px}
+.wsteps b{width:30px;height:30px;border-radius:50%;background:var(--tk-brand-soft);color:var(--tk-brand-text);display:grid;place-items:center;font:700 15px var(--tk-font-display)}.wsteps span{font-size:14px;color:var(--tk-ink-2)}
+.map{display:flex;flex-direction:column;gap:12px;background:var(--tk-surface);border:1px solid var(--tk-line);border-radius:20px;padding:20px;overflow-x:auto}
+.fl{display:flex;flex-direction:column;gap:6px}.fl>b{font:700 15px var(--tk-font-display)}
+.flr{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.flr span{background:var(--tk-brand-soft);color:var(--tk-ink);border-radius:10px;padding:6px 10px;font-size:13px}.flr i{font-style:normal;color:var(--tk-ink-2)}
+.mk{border-radius:20px;overflow:hidden;position:relative;display:flex;flex-direction:column;gap:14px;padding:36px}
+.mk h1{font:700 40px/1.05 var(--tk-font-display);letter-spacing:-.02em;margin:0}.mk p{margin:0;font-size:16px}
+.mk.cover{min-height:480px;background:linear-gradient(120deg,#00c48c,#5cebc0);color:#03261a;flex-direction:row;align-items:center;justify-content:space-between}
+.mk.cover>div:first-child{display:flex;flex-direction:column;gap:12px;max-width:46%}.mk.cover small{opacity:.75}
+.mphones{display:flex;gap:16px}.mphones .scr.mini{width:200px;height:420px;color:var(--tk-ink);overflow:hidden}.mphones .scr.mini h1.md{font-size:18px}.mphones .scr.mini:last-child{margin-top:40px}
+.mk.sq{aspect-ratio:1/1;justify-content:space-between}
+.mk.dark{background:#0b1712;color:#eefaf5}.mk.dark .eyebrow{color:#1fe0a6}
+.mk.mint{background:#00c48c;color:#03261a}.mk.mint .eyebrow{color:#03261a}
+.mk.soft{background:#d9f7ec;color:#0b1712}
+.mtag{align-self:center;background:#fff;border:3px solid #0b1712;border-radius:22px;padding:14px;text-align:center}.mtag .qr{width:110px;height:110px;margin:8px auto}.mtag small{font-size:11px;font-weight:600;color:#4f5e57}
+.bubble2{align-self:flex-start;background:#fff;color:#0b1712;border-radius:22px 22px 22px 6px;padding:16px 18px;font-size:18px;max-width:85%;box-shadow:0 8px 24px rgb(0 0 0 / .12)}
+.pet{font-size:120px;text-align:center;line-height:1}
+.coverp .cov{background:var(--tk-surface);border:1px solid var(--tk-line);border-radius:24px;padding:32px;display:grid;grid-template-columns:1fr 1.3fr;gap:32px;margin-top:32px}
+.covgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.covgrid div{background:var(--tk-sunken);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--tk-ink-2);overflow-wrap:anywhere}.covgrid b{color:var(--tk-ink);font-size:14px}
+@media (max-width:900px){.coverp .cov,.whero,.dcard,.covgrid,.wsteps{grid-template-columns:1fr}.mk.cover{flex-direction:column;aspect-ratio:auto}.mk.cover>div:first-child{max-width:none}.desk{height:auto!important}.wh{font-size:40px}}
+
+.strip{gap:0!important}
+.strip figure{margin-right:12px}
+.st{width:300px;height:650px;border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;padding:34px 24px;gap:12px;
+ background-image:radial-gradient(circle at center,transparent 26px,rgb(255 255 255 / .09) 27px,rgb(255 255 255 / .09) 29px,transparent 30px);background-size:72px 72px}
+.st .sh{font:700 34px/1.02 var(--tk-font-display);letter-spacing:-.025em;margin:0;position:relative;z-index:1}
+.st .sp2{font-size:15px;line-height:1.4;margin:0;opacity:.9;position:relative;z-index:1}
+.s1{background-color:#00c48c;color:#03261a;justify-content:flex-end;align-items:center;text-align:center}
+.s2{background-color:#0b1712;color:#eefaf5}.s2 .sh{color:#1fe0a6}
+.s3{background-color:#00c48c;color:#03261a}
+.s4{background-color:#0f3a2c;color:#eefaf5}.s4 .sh{color:#5cebc0}
+.s5{background-color:#d9f7ec;color:#0b1712;background-image:radial-gradient(circle at center,transparent 26px,rgb(0 122 87 / .1) 27px,rgb(0 122 87 / .1) 29px,transparent 30px)}.s5 .sh{color:#007a57}.s5 .sgift{background:#0b1712;color:#fff}
+.bigtag{position:absolute;top:60px;left:50%;width:250px;height:250px;transform:translateX(-50%) rotate(-14deg);color:#03261a;filter:drop-shadow(0 30px 40px rgb(3 38 26 / .35))}
+.bigtag svg{width:100%;height:100%}
+.slogo{display:flex;align-items:center;gap:10px;font:700 48px/1 var(--tk-font-display);letter-spacing:-.03em}
+.ssub{font:600 18px/1.35 var(--tk-font-body);margin:0 0 30px}
+.tphone{position:absolute;left:44px;bottom:-60px;filter:drop-shadow(0 24px 36px rgb(0 0 0 / .35))}
+.tphone .scr.mini{width:230px;height:470px;color:var(--tk-ink);background:#fff;border:0}
+.s3 .tphone,.s5 .tphone{left:auto;right:-16px}
+.sicons{position:absolute;left:20px;bottom:24px;display:flex;flex-direction:column;gap:8px;z-index:2}
+.sicons span{width:44px;height:44px;border-radius:12px;background:#03261a;display:grid;place-items:center;font-size:20px}
+.sgift{position:absolute;left:20px;bottom:28px;background:#fff;color:#0b1712;border-radius:99px;padding:10px 16px;font-weight:700;z-index:2;box-shadow:0 8px 20px rgb(0 0 0 / .2)}
+
+.codebox b{font:700 34px/1 var(--tk-font-display);letter-spacing:.2em;text-align:center}
+.artbox{background:var(--tk-sunken);border-radius:16px;padding:20px;display:grid;place-items:center;height:330px}
+.bleed{background:#d9f7ec;padding:10px;display:grid;place-items:center}
+.trim{background:#fff;color:#0b1712;outline:2px dashed #7f8c87;outline-offset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:14px}
+.trim b{font-size:12px}.trim small{font-size:10px;font-weight:600;color:#4f5e57}
+.circ{border-radius:50%}.bleed.circ .trim{width:230px;height:230px}
+.rect .trim,.trim.rect{border-radius:18px}.bleed.rect{border-radius:24px}.bleed.rect .trim{width:170px;height:250px;position:relative}
+.bleed.rect .trim::before{content:"";position:absolute;top:10px;width:16px;height:16px;border-radius:50%;border:2px solid #7f8c87}
+.disc{border-radius:50%}.bleed.disc .trim{width:200px;height:200px;background:#e6ebe9}
+.lug{border-radius:20px}.bleed.lug .trim{width:180px;height:280px;border-radius:16px;position:relative;padding-top:34px}
+.bleed.lug .trim::before{content:"";position:absolute;top:10px;width:60px;height:12px;border-radius:6px;border:2px solid #7f8c87}
+.amk{color:#0b1712}
+.artspec{font-size:12px;color:var(--tk-ink-2);margin:8px 0 0}
+.lockimg{background:linear-gradient(170deg,#2b3b52,#0d1311 70%)}
+.lockcard{display:flex;gap:12px;align-items:center;background:#fff;color:#0b1712;border-radius:20px;padding:12px;margin-bottom:30px}
+.lockcard b{display:block;font-size:15px}.lockcard span{display:block;font-size:12px;color:#4f5e57}.lockcard small{display:block;font-size:10px;font-weight:600;margin-top:4px;color:#4f5e57}
+.a4{background:#fff;color:#0b1712;aspect-ratio:210/297;border:1px solid var(--tk-line);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--tk-shadow)}
+.a4h{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#4f5e57}.a4h .logo{color:#0b1712}
+.a4g{display:grid;grid-template-columns:repeat(2,1fr);gap:0;flex:1}
+.a4t{border:1.5px dashed #9aa6a1;margin:-0.75px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;text-align:center}
+.a4t small{font-size:9px;font-weight:600;color:#4f5e57}
+.a4f{font-size:11px;color:#4f5e57;margin:0}
+[dir="rtl"] .hdr,[dir="rtl"] .priv{direction:rtl}
+.rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.rules div{background:var(--tk-surface);border:1px solid var(--tk-line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.rules b{font:700 16px var(--tk-font-display)}.rules span{font-size:14px;color:var(--tk-ink-2)}
+.icrow{align-items:flex-start;gap:28px}
+.icx{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:150px;text-align:center}.icx small{font-size:12px;color:var(--tk-ink-2)}
+.appicon.ios{width:96px;height:96px;border-radius:22px}
+.layer{width:96px;height:96px;border:1px dashed var(--tk-line);display:grid;place-items:center;position:relative}
+.layer.bg{background:#00c48c}.layer.fg{background:repeating-conic-gradient(var(--tk-sunken) 0 25%,var(--tk-surface) 0 50%) 0 0/12px 12px;color:#03261a}
+.safe{position:absolute;inset:15px;border-radius:50%;border:1.5px dashed #e02a17}
+.appicon.circle{width:96px;height:96px;border-radius:50%}.appicon.squircle{width:96px;height:96px;border-radius:34%}
+.appicon.mono{width:96px;height:96px;border-radius:50%;background:#d9f7ec;color:#007a57}
+.legal.dleg{padding:12px 32px;text-align:left;margin-top:auto}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><circle cx="22" cy="32" r="5" fill="#000"/><path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000"/></mask>
+<symbol id="mark" viewBox="0 0 64 64"><g mask="url(#mk)"><path fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" d="M8 23 L23 9 H56 V55 H23 L8 41 Z"/></g></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 9 8 4h13v16H8l-5-5Z"/><circle cx="9" cy="12" r="1.6" fill="currentColor"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4Z"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5Z M3 7.5 12 12l9-4.5 M12 12v9"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></symbol>
+<symbol id="i-auto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17Z"/></symbol>
+<symbol id="i-qr" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h6v6H4ZM14 4h6v6h-6ZM4 14h6v6H4Z"/><path fill="currentColor" d="M14 14h3v3h-3ZM17 17h3v3h-3ZM14 19h2v1h-2ZM19 14h1v2h-1Z"/></symbol>
+<symbol id="lock" viewBox="0 0 16 16"><path fill="currentColor" d="M5 7V5a3 3 0 1 1 6 0v2h.5A1.5 1.5 0 0 1 13 8.5v5A1.5 1.5 0 0 1 11.5 15h-7A1.5 1.5 0 0 1 3 13.5v-5A1.5 1.5 0 0 1 4.5 7H5Zm1.5 0h3V5a1.5 1.5 0 1 0-3 0v2Z"/></symbol>
+</defs></svg>
+<div class="page">
+<header class="top"><div class="brand"><svg width="36" height="36"><use href="#mark"/></svg><b>tagkin</b></div></header>
+<section class="flow coverp"><div class="cov"><div><p class="eyebrow">Tagkin · app design</p><h1 class="wh">Protect what you value.</h1><p class="m">QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately. No app needed for finders.</p></div><div class="covgrid">
+<div><b>What’s inside</b><span>Finder web flow, owner app, Gift a tag, store screenshots, printed tags and marketing visuals.</span></div>
+<div><b>Design system</b><span>Fresh mint, Bricolage Grotesque and Inter, light and dark, WCAG AA contrast.</span></div>
+<div><b>Designed by</b><span>Selasey Gbeddy · Technical Product Owner</span></div>
+<div><b>Status</b><span>Design v1, November 2026. App in development.</span></div>
+</div></div></section><section class="flow"><h2>App Store and Google Play screenshots</h2><p>Concept set, 1290 × 2796 (shown at 300 × 650). The background pattern runs across panels like one strip. Re-shoot with the real app before submitting.</p><div class="row strip">
+<figure data-name="Store 1 · Brand" style="max-width:300px"><figcaption>Store 1 · Brand</figcaption><div class="st s1"><div class="bigtag"><svg viewBox="0 0 64 64"><use href="#mark"/></svg></div><div class="slogo"><svg width="40" height="40"><use href="#mark"/></svg>tagkin</div><p class="ssub">Protect what you value.<br>Help it find its way back.</p></div></figure>
+<figure data-name="Store 2 · Finder alerts you" style="max-width:300px"><figcaption>Store 2 · Finder alerts you</figcaption><div class="st s2"><h2 class="sh">Someone finds it. You get alerted.</h2><p class="sp2">Whoever finds it scans the tag. No app, no sign-up.</p><div class="tphone " style="transform:rotate(-7deg)"><div class="scr mini"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="urgent"><i>!</i>This item is missing</div><div class="photo sm">🎒</div><h1 class="md">Black backpack</h1><p class="m">The owner is looking for it.</p><div class="sp"></div><div class="btn pri">I found it</div></div></div></div></figure>
+<figure data-name="Store 3 · Private by default" style="max-width:300px"><figcaption>Store 3 · Private by default</figcaption><div class="st s3"><h2 class="sh">Private<br>by default.</h2><p class="sp2">Messages are relayed. Nobody sees your number or email.</p><div class="tphone " style="transform:rotate(6deg)"><div class="scr mini"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back">‹ Finder</span><span></span></div><div class="thread"><div class="bub in2"><b>With me</b> · Darmstadt Hbf<br>I left it at counter 2.<span class="meta">Translated from French</span></div><div class="bub out">Thank you so much 🙏</div></div><div class="sp"></div></div></div><div class="sicons"><span>🔒</span><span>💬</span><span>🌍</span><span>🛡️</span></div></div></figure>
+<figure data-name="Store 4 · Every belonging" style="max-width:300px"><figcaption>Store 4 · Every belonging</figcaption><div class="st s4"><h2 class="sh">Bags, keys, gear and pets.</h2><p class="sp2">Lost mode, scan alerts and a QR you can test anytime.</p><div class="tphone " style="transform:rotate(-6deg)"><div class="scr mini"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span></span></div><h1 class="md">My tags</h1><div class="item"><span class="tx"><b>Camera bag 📷</b><span>TK-7Q4M-9XRA</span></span><span class="badge b-n">Safe</span></div><div class="item"><span class="tx"><b>Milo 🐾</b><span>TK-M3PF-2KWD</span></span><span class="badge b-l">Lost</span></div><div class="item"><span class="tx"><b>Suitcase 🧳</b><span>TK-H8RC-4TNE</span></span><span class="badge b-r">Return</span></div><div class="sp"></div></div></div></div></figure>
+<figure data-name="Store 5 · Travel and languages" style="max-width:300px"><figcaption>Store 5 · Travel and languages</figcaption><div class="st s5"><h2 class="sh">Every trip. Many languages.</h2><p class="sp2">Travel tags show where it’s going, never when you’re away. Messages translate both ways.</p><div class="tphone " style="transform:rotate(7deg)"><div class="scr mini"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="trip"><span>✈️</span><span><b>Travelling to Accra</b><small>With Lufthansa</small></span></div><div class="photo sm">🧳</div><h1 class="md">Please hand me to airline staff.</h1><div class="sp"></div><div class="btn pri">I found it</div></div></div><div class="sgift">🎁 Gift a tag</div></div></figure>
+</div></section><section class="flow"><h2>Finder: no app needed</h2><p>Scan, report where it is, get a reply.</p><div class="row"><figure data-name="Finder 1 · Owner message"><figcaption>Finder 1 · Owner message</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="photo">🎒<small>Photo updated 3 days ago</small></div><h1>Found me? Thank you! Tap below to tell my owner where I am.</h1><span class="link">Translated from German · Show original</span><div class="sp"></div><div class="btn pri">I found it</div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your details stay private unless you choose to share them.</p><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 1b · Lost mode"><figcaption>Finder 1b · Lost mode</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="urgent"><i>!</i>This item is missing</div><div class="photo">🎒</div><h1>Black backpack</h1><p class="m">The owner is looking for it. Please tell them where it is.</p><div class="sp"></div><div class="btn pri">I found it</div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your details stay private unless you choose to share them.</p><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 2 · Where is it now?"><figcaption>Finder 2 · Where is it now?</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back">‹ Back</span><span><span class="steps" aria-label="Step 1 of 4"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></span></div><h1>Where is it now?</h1><div class="opt on"><span class="r"></span><span>With me</span></div><div class="opt"><span class="r"></span><span>Handed to staff</span></div><div class="opt"><span class="r"></span><span>Left where I found it</span></div><div class="sp"></div><div class="btn pri">Next</div><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 3 · Where exactly?"><figcaption>Finder 3 · Where exactly?</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back">‹ Back</span><span><span class="steps" aria-label="Step 2 of 4"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></div><h1>Where exactly?</h1><div class="in focus">hbf</div><div><div class="sug">📍<span><b>Darmstadt Hbf</b>, Lost &amp; Found desk</span></div><div class="sug">📍<span><b>Darmstadt Hbf</b>, Platform 4</span></div><div class="sug">📍<span><b>Darmstadt Hbf</b>, bus stop A</span></div></div><div class="btn sec">📍 Share item location</div><p class="xs">Only the city is shown unless you share the item location.</p><div class="sp"></div><div class="btn pri">Next</div><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 5 · Want a reply?"><figcaption>Finder 5 · Want a reply?</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back">‹ Back</span><span><span class="steps" aria-label="Step 4 of 4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></div><h1>Want a reply?</h1><div class="seg"><span class="on">Email</span><span>Phone</span></div><div class="in">Email (kept hidden)</div><p class="xs">The owner never sees it. Replies are passed on by Tagkin.</p><p class="note info">Without an email or phone number, keep this page open to receive replies.</p><div class="sp"></div><div class="btn pri">Send to owner</div><div class="btn sec">Send anonymously</div><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 6 · Thank you"><figcaption>Finder 6 · Thank you</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="sp"></div><div class="done">✓</div><h1 class="big center">Thank you.</h1><p class="m center">The owner has been told where it is. Keep this page open to see their reply.</p><div class="thread"><div class="bub in2"><b>Owner</b><br>Thank you so much! I'll pick it up tonight.</div></div><div class="sp"></div><div class="invite"><b>Protect your own things</b><span>Your first printed tag is €2 off.</span></div><span class="xs center">Report abuse</span><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 1t · Travel tag"><figcaption>Finder 1t · Travel tag</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="trip"><span>✈️</span><span><b>I'm travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div><div class="photo sm">🧳</div><h1 class="md">Please hand me to airline or hotel staff, or message my owner.</h1><span class="link">Translated from German · Show original</span><div class="sp"></div><div class="btn pri">I found it</div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your details stay private unless you choose to share them.</p><p class="legal">Impressum · Privacy · Terms</p></div></figure><figure data-name="Finder 1p · Pet tag"><figcaption>Finder 1p · Pet tag</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="photo sm">🐕<small>Photo updated 1 week ago</small></div><h1 class="md">Hi, I'm Milo. I'm friendly. Please message my owner. I may be scared.</h1><div class="chips"><span class="chip">Friendly</span><span class="chip">Shy with dogs</span></div><div class="li"><span>Care notes</span><span>Show ›</span></div><div class="sp"></div><div class="btn pri">I found Milo</div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your details stay private unless you choose to share them.</p><p class="legal">Impressum · Privacy · Terms</p></div></figure></div></section><section class="flow"><h2>Owner app</h2><p>Create, protect, get alerted.</p><div class="row"><figure data-name="Setup 1 · Welcome"><figcaption>Setup 1 · Welcome</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="sp"></div><div class="hero"><svg width="96" height="96"><use href="#mark"/></svg></div><h1 class="big center">Protect what you value.</h1><p class="m center">Tag your bags, keys, gear and pets. If one ever goes missing, whoever finds it can scan the tag and alert you, privately and in their own language.</p><div class="sp"></div><div class="pager"><i class="on"></i><i></i><i></i></div><div class="btn pri" data-go="launch2">Next</div><div class="btn ghost" data-go="signin">I have an account</div></div></figure><figure data-name="Setup 5 · Add a tag"><figcaption>Setup 5 · Add a tag</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span></span></div><h1>Add your first tag</h1><ol class="how"><li><b>1</b><span><strong>Create your tag</strong>Make a QR code and link it to a belonging.</span></li><li><b>2</b><span><strong>Get it printed</strong>Order it from us, or print it yourself, whenever you like.</span></li><li><b>3</b><span><strong>Stick it on</strong>It arrives ready to use, already linked.</span></li></ol><div class="btn pri" data-go="type">Create a tag</div><div class="sp"></div><p class="xs center">Got a ready-made Tagkin tag from a shop or a friend?</p><span class="link center" data-go="perm-camera">Activate it</span></div></figure><figure data-name="Owner 3 · Tag type"><figcaption>Owner 3 · Tag type</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="code">‹ Back</span><span>1 of 5</span></div><h1>What is it for?</h1><div class="grp"><div class="opt on"><span class="ic">🎒</span><span>Item<small>Keys, bag, laptop</small></span></div><div class="opt"><span class="ic">🧳</span><span>Travel<small>Luggage on a journey</small></span></div><div class="opt"><span class="ic">🐾</span><span>Pet<small>Collar tag</small></span></div></div><p class="note info">You can't change the type later.</p><div class="sp"></div><div class="btn pri" data-go="details">Next</div></div></figure><figure data-name="Owner 6 · Design"><figcaption>Owner 6 · Design</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="message">‹ Back</span><span>4 of 5</span></div><h1>Pick a style</h1><p class="m pick">Suggested for an item: <b>Sticker</b>. You can choose another.</p><div class="chips styles"><span class="chip on">Sticker</span><span class="chip">Keychain</span><span class="chip">Pet tag</span><span class="chip">Luggage label</span></div><div class="tag"><svg width="24" height="24" style="margin:auto;display:block;color:#0b1712"><use href="#mark"/></svg><div class="qr"></div><p class="tagline">Found me? Scan to return</p><small>tagkin.app · TK-7Q4M-9XRA</small></div><p class="xs center">Address and code are always printed.</p><div class="sp"></div><div class="btn pri" data-go="live">Next</div></div></figure><figure data-name="Owner 7 · Tag is live"><figcaption>Owner 7 · Tag is live</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="design">‹ Back</span><span>5 of 5</span></div><div class="sp"></div><div class="done">✓</div><h1 class="center">Your tag is live.</h1><p class="m center">Black backpack · TK-7Q4M-9XRA</p><div class="btn pri" data-go="order">Order printed tag</div><div class="btn sec" data-toast="Saved: tagkin-TK-7Q4M-9XRA.pdf">Download PNG or PDF</div><div class="btn sec" data-toast="Lock screen image saved to Photos">Save to phone lock screen</div><div class="btn ghost" data-go="tags">Go to my tags</div><div class="sp"></div><span class="link center" data-go="gift">🎁 Gift a tag to someone who values their things</span><p class="xs center">This is your free tag. Printed tags you buy are always free to use.</p></div></figure><figure data-name="Gift 1 · Gift a tag"><figcaption>Gift 1 · Gift a tag</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="orders">‹ Orders</span><span>1 of 3</span></div><div class="seg"><span data-go="order">For me</span><span class="on">Gift a tag</span></div><h1>Gift a tag</h1><p class="m">They activate it in the app and make it theirs: name, photo and message.</p><div class="grp prod"><div class="opt on"><span class="ic">🏷️</span><span>Sticker 3-pack<small>Waterproof vinyl · €12.90</small></span></div><div class="opt"><span class="ic">🔑</span><span>Keychain<small>Acrylic, 4 cm · €9.90</small></span></div><div class="opt"><span class="ic">🐾</span><span>Pet tag<small>Metal, engraved · €12.90</small></span></div></div><div class="in ta sm val">Happy birthday! For your new camera bag 📷 – Alex</div><div class="sp"></div><div class="btn pri" data-go="gift-delivery">Continue to delivery</div></div></figure><figure data-name="Owner 8 · My tags"><figcaption>Owner 8 · My tags</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span><span data-go="limit">+ New</span></span></div><h1>My tags</h1><div class="item" data-go="detail"><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>TK-7Q4M-9XRA</span></span><span class="qrb" data-go="qr" aria-label="Show QR code"><svg width="20" height="20"><use href="#i-qr"/></svg></span></div><div class="item" data-go="scans" data-title="Milo"><span class="ic">🐾</span><span class="tx"><b>Milo</b><span>TK-M3PF-2KWD</span></span><span class="badge b-l">Lost</span><span class="qrb" data-go="qr" aria-label="Show QR code"><svg width="20" height="20"><use href="#i-qr"/></svg></span></div><div class="item" data-go="locked"><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>TK-H8RC-4TNE · trip ends 20 Nov</span></span><span class="badge b-r">Return active</span><span class="qrb" data-go="qr" aria-label="Show QR code"><svg width="20" height="20"><use href="#i-qr"/></svg></span></div><p class="xs center">1 free tag in use · printed tags never count</p><div class="sp"></div><nav class="tabs" aria-label="Main"><span class="tab on" data-go="tags"><svg width="24" height="24"><use href="#i-tag"/></svg>My tags</span><span class="tab" data-go="inbox"><svg width="24" height="24"><use href="#i-chat"/></svg>Messages<b class=dot2></b></span><span class="tab" data-go="orders"><svg width="24" height="24"><use href="#i-box"/></svg>Orders</span><span class="tab" data-go="account"><svg width="24" height="24"><use href="#i-user"/></svg>Account</span></nav></div></figure><figure data-name="Owner 11 · Lost: scans"><figcaption>Owner 11 · Lost: scans</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="tags">‹ My tags</span><span><span class="badge b-l">Lost</span></span></div><h1 class="ttl">Milo</h1><p class="m">Scans since marked lost</p><div><div class="li"><span>Today 14:02</span><span>Darmstadt</span></div><div class="li"><span>Today 09:41</span><span>Darmstadt</span></div><div class="li"><span>Yesterday 18:20</span><span>Griesheim</span></div></div><p class="xs">City only, unless a finder shares the item location.</p><p class="lockrow">🔒 Name and photo locked while lost</p><div class="sp"></div><div class="btn sec proto" data-go="alert">Simulate: a finder reports it</div><div class="btn pri" data-go="tags">I found it myself</div></div></figure><figure data-name="Owner 13 · Message thread"><figcaption>Owner 13 · Message thread</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="tags">‹ My tags</span><span><span data-go="report-owner">Report · Block</span></span></div><div class="thread"><div class="bub in2"><b>With me</b> · Darmstadt Hbf, Lost &amp; Found desk<br>I left it with the staff at counter 2.<span class="meta">Translated from French · Show original</span></div><div class="bub out">Thank you so much! I'll pick it up tonight.</div></div><span class="proto-l xs center" data-go="err-send">Simulate: reply fails to send</span><p class="xs center">The finder left an email. Your reply reaches them translated.</p><div class="sp"></div><div class="btn sec" data-go="returned">Got it back? Mark as returned</div><div class="picker" hidden><div class="in pk-s">🔍 Search emoji</div><div class="pk-cats"><span class="on">😀</span><span>👍</span><span>❤️</span><span>🎒</span><span>🚆</span><span>🐾</span></div><div class="pk-grid"><span>😀</span><span>😊</span><span>🙏</span><span>🙌</span><span>👍</span><span>👋</span><span>🎉</span><span>😅</span><span>😍</span><span>🥹</span><span>🤝</span><span>💚</span><span>✅</span><span>📍</span><span>🕕</span><span>🚉</span><span>🎒</span><span>🧳</span><span>🔑</span><span>🐶</span><span>😺</span><span>☕</span><span>🌧️</span><span>🙂</span></div></div><div class="compose"><span class="emo" aria-label="Emoji">☺</span><input class="in" id="reply" placeholder="Write a reply" aria-label="Write a reply"><span class="send" id="sendbtn">↑</span></div></div></figure><figure data-name="Account 7 · Appearance"><figcaption>Account 7 · Appearance</figcaption><div class="scr"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="back" data-go="account">‹ Account</span><span></span></div><h1>Appearance</h1><p class="m">Choose how Tagkin looks.</p><div class="themes"><div class="th" data-theme-set="light"><span class="thp light"><svg width="28" height="28"><use href="#i-sun"/></svg></span><b>Light</b></div><div class="th" data-theme-set="dark"><span class="thp dark"><svg width="28" height="28"><use href="#i-moon"/></svg></span><b>Dark</b></div><div class="th on" data-theme-set="system"><span class="thp auto"><svg width="28" height="28"><use href="#i-auto"/></svg></span><b>Match system</b></div></div><p class="xs">Match system follows your phone's day and night setting.</p></div></figure></div></section><section class="flow"><h2>Printed tags</h2><p>Print artwork for the print partner. Dashed line = trim, outer area = 3 mm bleed. The QR stays black on white with a quiet zone of 4 modules, whatever the style.</p><div class="row">
+<figure data-name="Print · Sticker" style="max-width:300px"><figcaption>Print · Sticker</figcaption><div class="artbox"><div class="bleed circ"><div class="trim circ"><svg width="22" height="22" class="amk"><use href="#mark"/></svg><div class="qr" style="width:120px;height:120px;background-size:13px 13px"></div><b>Found me? Scan to return</b><small>tagkin.app · TK-7Q4M-9XRA</small></div></div></div><p class="artspec">Round sticker, 50 mm, waterproof vinyl. QR at least 22 mm.</p></figure>
+<figure data-name="Print · Keychain" style="max-width:300px"><figcaption>Print · Keychain</figcaption><div class="artbox"><div class="bleed rect"><div class="trim rect"><svg width="22" height="22" class="amk"><use href="#mark"/></svg><div class="qr" style="width:110px;height:110px;background-size:12px 12px"></div><small>tagkin.app<br>TK-7Q4M-9XRA</small></div></div></div><p class="artspec">Acrylic, 30 × 45 mm, 4 mm hole top centre. Print both sides: QR front, logo back.</p></figure>
+<figure data-name="Print · Pet tag" style="max-width:300px"><figcaption>Print · Pet tag</figcaption><div class="artbox"><div class="bleed disc"><div class="trim disc"><div class="qr" style="width:96px;height:96px;background-size:10px 10px"></div><small>TK-7Q4M-9XRA</small></div></div></div><p class="artspec">Metal disc, 32 mm, engraved or UV printed. Code engraved below the QR.</p></figure>
+<figure data-name="Print · Luggage label" style="max-width:300px"><figcaption>Print · Luggage label</figcaption><div class="artbox"><div class="bleed lug"><div class="trim lug"><svg width="22" height="22" class="amk"><use href="#mark"/></svg><div class="qr" style="width:130px;height:130px;background-size:14px 14px"></div><b>I’m travelling. Scan to return.</b><small>tagkin.app · TK-7Q4M-9XRA</small></div></div></div><p class="artspec">PVC label, 55 × 90 mm with strap slot. Destination is never printed.</p></figure>
+</div></section><section class="flow"><h2>Marketing visuals</h2><p>Figma Community cover (1920 × 960) and square social posts (1080 × 1080, shown at half size).</p><div class="row">
+<figure data-name="Community cover" class="wide" style="max-width:960px"><figcaption>Community cover</figcaption><div class="mk cover"><div><svg width="72" height="72"><use href="#mark"/></svg><h1>Protect what you value.</h1><p>Tagkin · QR tags for bags, keys, gear and pets. Scan, alert, return. Private by default.</p><small>78 screens · design system · prototypes</small></div><div class="mphones"><div class="scr mini"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span>EN ▾</span></div><div class="photo sm">🎒</div><h1 class="md">Found me? Thank you!</h1><div class="sp"></div><div class="btn pri">I found it</div></div><div class="scr mini"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="hdr"><span class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</span><span></span></div><h1 class="md">My tags</h1><div class="item"><span class="tx"><b>Milo 🐾</b><span>TK-M3PF-2KWD</span></span><span class="badge b-l">Lost</span></div><div class="item"><span class="tx"><b>Suitcase 🧳</b><span>TK-H8RC-4TNE</span></span><span class="badge b-r">Back</span></div></div></div></div></figure>
+<figure data-name="Social · For the careful" style="max-width:540px"><figcaption>Social · For the careful</figcaption><div class="mk sq dark"><p class="eyebrow">For the careful</p><h1>Your gear deserves a way home.</h1><div class="mtag"><svg width="28" height="28" style="color:#0b1712"><use href="#mark"/></svg><div class="qr"></div><small>tagkin.app · TK-7Q4M-9XRA</small></div><p>Private by default. No app needed to return it.</p></div></figure>
+<figure data-name="Social · For the forgetful" style="max-width:540px"><figcaption>Social · For the forgetful</figcaption><div class="mk sq mint"><p class="eyebrow">For the forgetful</p><h1>We all forget things on the train.</h1><div class="bubble2">“Found your backpack at Darmstadt Hbf. It’s at counter 2.”</div><p>The finder scans it. You get the message.</p></div></figure>
+<figure data-name="Social · Pets" style="max-width:540px"><figcaption>Social · Pets</figcaption><div class="mk sq soft"><p class="eyebrow">Pet tags</p><h1>Hi, I’m Milo. Please message my family.</h1><div class="pet">🐕</div><p>Care notes, translated messages, an alert for every scan.</p></div></figure>
+</div></section>
+</div>
+</body>
+</html>

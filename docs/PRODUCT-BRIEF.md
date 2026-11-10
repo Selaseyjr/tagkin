@@ -4,18 +4,18 @@ Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app 
 
 ## 1. The idea in one line
 
-A QR tag for your belongings, pets and loved ones. Anyone who finds them can reach you in seconds, and nobody's private details are shown.
+A QR tag for your belongings, pets and loved ones. Anyone who finds them can scan the tag and alert you, and nobody's private details are shown.
 
 ## 1b. Positioning and marketing (updated 11 Nov 2026)
 
-Two audiences, one promise: **protect what you value, get it back fast.**
+Two audiences, one promise: **protect what you value and help it find its way back.** Never promise speed: Tagkin cannot control how long a return takes. It connects finder and owner and shows where a tag was last scanned.
 - **Protectors:** people who value their belongings (gear, luggage, pets) and buy tags deliberately. Message: security, privacy, proof of ownership.
 - **Forgetters:** people who often misplace things. Message: relief and speed, with humour, never shame ("We all do it.").
 Lead with protection in brand copy; use the forgetful angle in playful campaigns, gifts and social posts. Never make the user feel careless.
 
 Marketing plan (business advisor recommendations):
 1. **Every return is an advert.** The finder thank-you page invites the finder to get their own tag (first tag offer). Finders are warm leads.
-2. **Return stories.** With both sides' consent, share anonymised "found in 12 minutes" stories; these are the best social proof.
+2. **Return stories.** With both sides' consent, share anonymised real return stories; these are the best social proof.
 3. **Moments of high risk:** target travel season, back to school, moving house, new pet, new phone or camera. Gift a tag at Christmas and birthdays.
 4. **Partners where things go missing:** train and bus operators, airports, hotels, gyms, universities, vets and pet shops. Offer free staff lookup at lost-and-found desks; partners can stock ready-made packs.
 5. **Pets first in ads:** a lost pet is the most emotional story and the clearest proof of value.
@@ -26,7 +26,7 @@ Marketing plan (business advisor recommendations):
 
 - **Private by default.** Neither owner nor finder sees the other's contact unless they choose to share it.
 - **Ten seconds for the finder.** No app, no sign-up, no stress.
-- **Universal.** Works in any country, any language, any phone.
+- **Universal.** Works in any country and on any phone, in as many languages as we can support. Core languages: English (UK, US and more), German, French, Dutch, Polish, Spanish, Italian; more added where tags sell.
 - **One tag, one thing.** A tag ID is permanent and never reused.
 - **Safe for people.** Care tags show the minimum, and every scan alerts the guardian.
 
@@ -95,13 +95,13 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 | Channel | Solves | Needs internet | Phase |
 |---|---|---|---|
 | QR scan | Normal case | Yes | MVP |
-| Website code (e.g. FND-4821) | Damaged QR, camera trouble | Yes | MVP |
+| Website code (e.g. TK-7Q4M-9XRA) | Damaged QR, camera trouble | Yes | MVP |
 | WhatsApp | People who prefer WhatsApp | Yes | Later |
 | SMS | No data at all | **No** | Later, starting in markets that need it |
 
 ## 10. Tag IDs and monetisation
 
-- Each tag ID is random, at least 8 characters, unguessable and **never reused**.
+- Each tag ID is random, at least 8 characters, unguessable and **never reused**. Format (11 Nov): TK- plus 8 random characters in two groups (TK-7Q4M-9XRA), from an alphabet without 0, O, 1, I and L so it can be read aloud and typed. Typing is case- and dash-insensitive. Code lookups are rate-limited to stop guessing.
 - A tag belongs to one item. If the item is gone, the owner **retires** the tag; the ID stays dead.
 - **No own printing company needed.** Recommended order:
   1. **Print on demand (main revenue):** orders go through Tagkin; a print-on-demand partner prints and ships under our brand; we set the price and keep the margin. Candidates to check: Printful, Printify, Gelato (sticker and keychain support, API, shipping to Europe and Ghana).
@@ -115,12 +115,12 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - A **live preview** step in registration: the QR code inside a frame with the chosen line underneath ("Found me? Scan to return", or custom).
 - 4 to 6 styles (rounded sticker, keychain, pet tag, luggage label), a few colour themes, the item's icon.
 - QR stays high contrast and scannable whatever the style.
-- **Every tag prints the address and code under the QR** (e.g. tagkin.app · FND-4821), whatever the style. It is the only way in when the QR will not scan or the finder's camera cannot read QR codes.
+- **Every tag prints the address and code under the QR** (e.g. tagkin.app · TK-7Q4M-9XRA), whatever the style. It is the only way in when the QR will not scan or the finder's camera cannot read QR codes.
 - Download as PNG or PDF, or **Order this tag** through a print partner (to be confirmed; check which services accept an uploaded design and offer partner links).
 
 ## 12. Translation
 
-- Pages appear in the phone's language; a picker covers 100+ languages.
+- Pages appear in the phone's language when supported. Core languages: English (UK, US and more), German, French, Dutch, Polish, Spanish, Italian. More languages are added where tags sell. Never claim "any language" in copy.
 - Messages are translated both ways, with "show original".
 - Service: Google Cloud Translation, DeepL or an AI model. Check current prices before choosing.
 
@@ -157,6 +157,8 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [ ] Proposed (11 Nov), awaiting decision: **first printed tag offer.** The free tag is digital or self-printed; a printed tag costs money. Offer the first printed tag at a lower price or with free shipping, shown at checkout. Use a clear discount line ("First tag offer −€2.00"), not a struck-through "usual price", because EU price rules require a struck-through price to be the lowest of the last 30 days.
 - [ ] Premium ideas (11 Nov), for after launch, to validate with Notify me sign-ups: **Ownership vault** (serial numbers, receipts, photos; one-tap police report and insurance claim PDF), **Stolen mode** (owner side only: police reference, every scan logged as evidence, police-ready report; the finder page never says "stolen", see below), **Verified handover** (one-time handover code so only the real owner can collect), **Return by courier** (finder taps Send it back, a courier collects, owner pays), **Household** (shared tags, escalation chain of contacts, SMS and WhatsApp alerts). Decide later which, if any, stay free for safety reasons (Stolen mode is a candidate).
 - [x] Stolen mode and finders (11 Nov): a finder who reads "stolen" may fear being dragged into a case, asked to be a witness, or wasting time, and may walk away. So the finder page always shows the helper framing ("This item is missing"), whatever the owner's mode. The stolen status, police reference and evidence log stay on the owner's side. Finders can always choose to hand the item to staff or police anonymously.
+- [x] Copy rule (11 Nov): never promise speed or "any language". Tagkin connects finder and owner and shows where a tag was last scanned; how long a return takes is outside our control. Say "many languages"; core languages are English (UK, US and more), German, French, Dutch, Polish, Spanish, Italian.
+- [x] Two Figma pages (11 Nov): the full hand-off (docs/design/tagkin-screens.html, kept private) and a public showcase for Community (docs/design/tagkin-showcase.html: cover, store panels, selected screens, printed tags, marketing). Community files can be copied by anyone, so spec notes, flow map, business rules and private links stay out of the showcase.
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -181,7 +183,7 @@ Nov 2026: Selasey spoke with 3 people about losing and returning belongings. Com
 | Owners want to choose what the finder reads | Templates per type plus custom text with preview |
 | Cutting out printed tags is messy | Order ready-made tags (print on demand) |
 | A photo helps the finder confirm the item | Optional photo on the finder page |
-| Used worldwide, in any language | Translation of pages and messages, 100+ languages |
+| Used worldwide, in many languages | Translation of pages and messages, starting with the core languages |
 
 Participants (anonymous at their request; no names or identifying details kept):
 - Ages: two aged 20 to 26, one aged 33.
@@ -239,4 +241,5 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Positioning widened to both protectors and forgetters; marketing plan added; Stolen mode never shown to finders.
 - 11 Nov 2026: Finder prototype rebuilt in the final design from build_screens.py (docs/design/finder-prototype.html) and republished to the same link (version 2): item, Lost mode, travel, pet, typed code, retired, not set up, owner test scan, report. Thank-you page now invites finders to protect their own things (first tag offer).
 - 11 Nov 2026: Hand-off completed for the one-time Figma import (docs/design/handoff_parts.py): cover with how to read the file, flow map with tag states, a spec note under 77 screens (rules plus button → destination), component states and loading screens, 4 email templates and push notifications, finder on desktop, tagkin.app website (home, privacy, support, required by the stores), Community cover and 3 social visuals for both audiences.
-- 11 Nov 2026: App Store and Google Play screenshot concepts (5 panels, 1290 × 2796): brand, Found in seconds, Private by default, every belonging, any trip and any language with Gift a tag. Red stays reserved for Lost mode. Final store screenshots are re-shot from the real app before submission.
+- 11 Nov 2026: App Store and Google Play screenshot concepts (5 panels, 1290 × 2796): brand, Finder alerts you, Private by default, every belonging, every trip and many languages with Gift a tag. Red stays reserved for Lost mode. Final store screenshots are re-shot from the real app before submission.
+- 11 Nov 2026: Pre-import fixes: copy no longer promises speed or any language; secure tag codes (TK-7Q4M-9XRA) everywhere; Impressum, privacy and terms footer on every finder and web page; sign-in code email; printed tag artwork (sticker, keychain, pet tag, luggage label with trim and bleed); lock-screen image and printable A4 sheet; camera and notification recovery screens; German long-text and Arabic right-to-left checks; accessibility rules; Android adaptive icon; public showcase page. Finder prototype republished (version 3).
