@@ -189,7 +189,7 @@ def body(st):
 
 
 def write_md():
-    out = ["# Tagkin: product backlog", "", "Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source.", "",
+    out = ["# Tagkin: product backlog", "", "Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).", "",
            f"{len(S)} stories in {len(EPICS)} epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).", "",
            "## Milestones", ""]
     for k, (n, d) in MILESTONES.items():
