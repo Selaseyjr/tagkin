@@ -1,6 +1,6 @@
 # Tagkin: product brief
 
-Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app before launch). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made.
+Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app before launch). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made. Open work and when it starts: docs/ROADMAP.md.
 
 ## 1. The idea in one line
 
@@ -199,3 +199,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Ordering screens added (order, checkout, order placed); 28 screens in total. Clickable owner prototype built from the same source; every path clicked through.
 - 11 Nov 2026: Tab bar and three screens added (Messages, Orders, Account); 31 screens in total.
 - 11 Nov 2026: Goal set: live app on App Store and Google Play. Store-readiness gap list drafted.
+- 11 Nov 2026: docs/ROADMAP.md created: every open item, staged A to G with a trigger for each.
