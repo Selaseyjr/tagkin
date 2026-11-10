@@ -1,29 +1,31 @@
-/* Tagkin design tokens v1 (visual design pass A, 10 Nov 2026).
+/* Tagkin design tokens v1 (visual design pass A, 10 Nov 2026; Fresh mint palette 11 Nov).
    Source of truth for colour, type, spacing, radius and motion.
    Reused as-is when the app is built. */
 
 :root {
-  /* Colour: neutrals carry a slight green bias toward the brand */
-  --tk-bg: #f5f7f5;          /* page */
+  /* Colour: clean neutrals with a faint mint bias */
+  --tk-bg: #f6f8f7;          /* page */
   --tk-surface: #ffffff;     /* cards, screens */
-  --tk-sunken: #eceff0;      /* inputs, wells */
-  --tk-line: #d5dbd8;        /* borders, dividers */
-  --tk-ink: #14201c;         /* text, logo */
-  --tk-ink-2: #56625d;       /* secondary text */
+  --tk-sunken: #edf1ef;      /* inputs, wells */
+  --tk-line: #dbe3df;        /* borders, dividers */
+  --tk-ink: #0b1712;         /* text, logo */
+  --tk-ink-2: #4f5e57;       /* secondary text */
 
-  /* Brand */
-  --tk-brand: #0f6b57;       /* Tagkin green: primary actions, links, logo hole */
-  --tk-brand-press: #0b5444;
-  --tk-on-brand: #ffffff;
-  --tk-brand-soft: #e1f0eb;  /* selected states, chips */
+  /* Brand: Fresh mint (chosen 11 Nov 2026) */
+  --tk-brand: #00c48c;       /* fills: primary buttons, icon tiles, logo hole */
+  --tk-brand-press: #00ab7a;
+  --tk-on-brand: #03261a;    /* text on mint: always dark */
+  --tk-brand-soft: #d9f7ec;  /* selected states, Return active */
+  --tk-brand-text: #007a57;  /* mint as text or links on light surfaces */
 
   /* Meaning (separate from brand) */
-  --tk-lost: #c63d26;        /* Lost mode, urgent */
-  --tk-lost-soft: #fbe6e1;
+  --tk-lost: #e02a17;        /* Lost mode, urgent */
+  --tk-lost-soft: #ffe5e1;
   --tk-on-lost: #ffffff;
+  --tk-lost-text: #c62d1b;
   --tk-warn: #8a5a00;        /* privacy and share warnings (text) */
   --tk-warn-soft: #fdf1d6;
-  --tk-ok: #0f6b57;          /* returned, shared, done */
+  --tk-ok: #007a57;          /* returned, shared, done */
 
   /* Type */
   --tk-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
@@ -56,21 +58,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --tk-bg: #0d1311; --tk-surface: #151d1a; --tk-sunken: #1d2723; --tk-line: #2c3833;
-    --tk-ink: #eef3f1; --tk-ink-2: #a3b0ab;
-    --tk-brand: #4cc4a2; --tk-brand-press: #6fd3b6; --tk-on-brand: #06231b; --tk-brand-soft: #173a31;
-    --tk-lost: #ff7a5f; --tk-lost-soft: #3d1f19; --tk-on-lost: #2a0c06;
-    --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #4cc4a2;
+    --tk-bg: #07110d; --tk-surface: #0f1b16; --tk-sunken: #16251f; --tk-line: #24372f;
+    --tk-ink: #eefaf5; --tk-ink-2: #9db3aa;
+    --tk-brand: #1fe0a6; --tk-brand-press: #5cebc0; --tk-on-brand: #03261a; --tk-brand-soft: #0f3a2c; --tk-brand-text: #1fe0a6;
+    --tk-lost: #ff6b57; --tk-lost-soft: #3a1712; --tk-on-lost: #1f0703; --tk-lost-text: #ff8a7a;
+    --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #1fe0a6;
     --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --tk-bg: #0d1311; --tk-surface: #151d1a; --tk-sunken: #1d2723; --tk-line: #2c3833;
-  --tk-ink: #eef3f1; --tk-ink-2: #a3b0ab;
-  --tk-brand: #4cc4a2; --tk-brand-press: #6fd3b6; --tk-on-brand: #06231b; --tk-brand-soft: #173a31;
-  --tk-lost: #ff7a5f; --tk-lost-soft: #3d1f19; --tk-on-lost: #2a0c06;
-  --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #4cc4a2;
+  --tk-bg: #07110d; --tk-surface: #0f1b16; --tk-sunken: #16251f; --tk-line: #24372f;
+  --tk-ink: #eefaf5; --tk-ink-2: #9db3aa;
+  --tk-brand: #1fe0a6; --tk-brand-press: #5cebc0; --tk-on-brand: #03261a; --tk-brand-soft: #0f3a2c; --tk-brand-text: #1fe0a6;
+  --tk-lost: #ff6b57; --tk-lost-soft: #3a1712; --tk-on-lost: #1f0703; --tk-lost-text: #ff8a7a;
+  --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #1fe0a6;
   --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
   color-scheme: dark;
 }
