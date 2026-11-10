@@ -125,7 +125,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [x] Flow decisions (8 Nov): sign-in by email one-time code, no passwords. A return ends when the owner marks Returned, or after 14 days with no messages. Owner verification before handover comes after the MVP. Anonymous finders see replies only while the thank-you page is open, with a gentle nudge to leave an email. Scan location is city level unless the finder shares exact location.
 - [x] Wireframe method (8 Nov): static HTML wireframes in docs/wireframes/ (screens side by side, not yet clickable); Figma for the final UI once the plan allows.
 - [ ] Budget: buy tagkin.app and consider Figma Professional around 14 Nov 2026, when funds allow.
-- [ ] Logo: v2 concepts in docs/brand/logo-concepts-v2.html (A2 solid tag, C2 wordmark with solid dot, D tag with k cut out, D2 the same with a lowercase k), redrawn after reviewing current branding on recent.design; v1 kept for reference. Choice pending.
+- [x] Logo (10 Nov): **D2**, a solid tag with the hole and a lowercase k cut out, next to the lowercase wordmark "tagkin". Master file docs/brand/tagkin-mark.svg. Colour, final type and a trademark image search still to do.
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -176,3 +176,4 @@ Participants (anonymous at their request; no names or identifying details kept):
 - 8 Nov 2026: Three logo concepts sketched (docs/brand/logo-concepts.html).
 - 10 Nov 2026: Logo concepts redrawn as solid marks (v2), tested as app icon, dark tile, 16 px and printed tag.
 - 10 Nov 2026: D2 added (tag with lowercase k).
+- 10 Nov 2026: Logo chosen: D2 (tag with lowercase k). Mark exported as SVG.
