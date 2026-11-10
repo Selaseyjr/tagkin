@@ -47,6 +47,12 @@ svg{display:block}
 <symbol id="tagD" viewBox="0 0 64 64"><g mask="url(#mk)"><path fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" d="M8 23 L23 9 H56 V55 H23 L8 41 Z"/></g></symbol>
 <!-- C2 icon: solid disc with hole -->
 <symbol id="ringC" viewBox="0 0 64 64"><path fill="currentColor" fill-rule="evenodd" d="M32 12 a20 20 0 1 0 0.01 0 Z M32 24 a8 8 0 1 0 0.01 0 Z"/></symbol>
+<mask id="mk2" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+<rect width="64" height="64" fill="#fff"/>
+<circle cx="22" cy="32" r="5" fill="#000"/>
+<path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000"/>
+</mask>
+<symbol id="tagD2" viewBox="0 0 64 64"><g mask="url(#mk2)"><path fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" d="M8 23 L23 9 H56 V55 H23 L8 41 Z"/></g></symbol>
 </defs>
 </svg>
 <div class="wrap">
@@ -90,6 +96,18 @@ svg{display:block}
 </div>
 </section>
 
+
+<section class="c">
+<h2>D2 · Merged: tag + small k</h2>
+<div class="hero"><svg width="60" height="60"><use href="#tagD2"/></svg><span class="word">tagkin</span></div>
+<p class="idea"><b>Idea:</b> D with a lowercase "k", matching the lowercase wordmark. Softer and friendlier.</p>
+<div class="uses">
+<div class="u"><div class="app"><svg width="34" height="34"><use href="#tagD2"/></svg></div><span>App icon</span></div>
+<div class="u"><div class="dark"><svg width="34" height="34"><use href="#tagD2"/></svg></div><span>Dark</span></div>
+<div class="u"><svg width="16" height="16"><use href="#tagD2"/></svg><span>16 px</span></div>
+<div class="u"><div class="tag"><svg width="18" height="18" style="margin:auto"><use href="#tagD2"/></svg><div class="qr"></div><small>tagkin.app · FND-4821</small></div><span>Printed tag</span></div>
+</div>
+</section>
 </div>
 </div>
 </body>
