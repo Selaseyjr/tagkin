@@ -37,7 +37,7 @@ Trigger: right after Stage B, before any app code.
 
 - [ ] Tech stack. Recommended: React Native with Expo (one codebase for iPhone and Android), a backend (brief suggests Cloudflare Workers, D1, R2), and the finder website
 - [ ] Authentication provider for email one-time codes
-- [ ] Payments split: printed tags through Stripe or the print partner; Premium subscription through Apple and Google in-app purchase (they take 15 to 30 percent)
+- [ ] Payments: printed tags through Stripe or the print partner. No Premium at launch; when it comes, it goes through Apple and Google in-app purchase (15 percent in their small business programmes)
 - [ ] Print partner (Printful, Printify or Gelato: stickers, keychains, pet tags, shipping to Europe and Ghana)
 - [ ] Translation provider (Google, DeepL or an AI model; check prices)
 - [ ] SMS provider for phone replies, and in which markets
@@ -94,5 +94,7 @@ Trigger: live in both stores.
 - [ ] Phase 2: Care tags (children, older relatives), with extra safety and legal review
 - [ ] Later channels: WhatsApp, SMS-only finders, NFC tags, family sharing
 - [ ] Gift a tag (adopted): For me / Gift a tag in ordering, gift note, delivery to recipient, link on Tag is live, finder page for an unclaimed tag. Design before the Figma import.
-- [ ] Decide the free allowance (1 active tag proposed) and price ready-made packs against single in-app tags
+- [ ] Price ready-made packs against single in-app tags (same price per tag in every channel)
+- [ ] Invite a friend: share link, free
+- [ ] First printed tag offer at checkout (decide amount)
 - [ ] Ready-made tags for shops and gift packs (pre-printed blank codes, activated by scan; the screens already exist)
