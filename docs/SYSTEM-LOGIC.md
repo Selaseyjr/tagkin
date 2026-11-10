@@ -129,6 +129,25 @@ Push falls back to email when push is off or the token is invalid. Every email h
 - Consent before location sharing (finder) and before notifications (owner).
 - Account deletion and data export in the app.
 
-## 10. Still to decide (Stage C)
+## 10. Non-functional requirements
+
+Targets the build must meet. Numbers are starting targets, confirmed in step 6.
+
+| Area | Requirement |
+|---|---|
+| **Finder page speed** | Usable on a slow mobile connection: first content within 2.5 s on a mid-range phone over 4G; page weight under 300 KB before the photo. |
+| **Availability** | Finder pages and the relay are the core promise: 99.5% monthly uptime target; a status page later. |
+| **Data location** | Personal data stored and processed in the EU (GDPR). Providers outside the EU only with standard contractual clauses. |
+| **Security** | HTTPS everywhere; finder contacts, recovery phone and messages encrypted at rest; PINs and handover codes hashed; secrets never in the app bundle; dependency and security scans in CI. |
+| **Privacy** | Collect only what SYSTEM-LOGIC.md lists; no tracking cookies on the website (no cookie banner needed); analytics without personal profiles. |
+| **Abuse resistance** | Rate limits on code lookups, reports, messages, PIN and code attempts; spam filtering on relayed messages. |
+| **Accessibility** | WCAG 2.2 AA for web; platform accessibility APIs in the app; tested with VoiceOver and TalkBack. |
+| **Languages** | All text externalised from day one; core languages at launch; right-to-left supported. |
+| **Devices** | iOS and Android versions from the last ~4 years; finder pages work in any current mobile browser without an app. |
+| **Backups and recovery** | Daily database backups kept 30 days; restore tested before launch. |
+| **Monitoring** | Error tracking (app and server), uptime checks on finder pages, alerts to Selasey for failed payments, partner failures and job errors. |
+| **Cost control** | Translations cached; SMS only for recovery at launch; image sizes limited. |
+
+## 11. Still to decide (Stage C)
 
 Provider choices above; message retention period; no-reply wait time; final prices and shipping threshold; print partner product list; SMS markets.

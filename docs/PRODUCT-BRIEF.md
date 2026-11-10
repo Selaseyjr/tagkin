@@ -135,6 +135,23 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - Accessibility: large text, high contrast, works with screen readers.
 - Data retention: messages deleted after a set period; retired tags keep no personal data.
 
+## 13b. Success measures (hypotheses for the MVP)
+
+How Tagkin will know the MVP works. Targets are first guesses to test, reviewed after launch (step 10).
+
+| Measure | What it shows | First target |
+|---|---|---|
+| **Activation** | New accounts that make the free phone tag live | 60% |
+| **Test scan** | New owners who try a test scan with another phone | 30% |
+| **Conversion** | Owners who order a printed tag within 30 days | 15% |
+| **Finder completion** | Finders who open a tag page and send a report | 50% |
+| **Owner response** | Reports answered by the owner within 24 hours | 80% |
+| **Returns** | Returns marked returned out of reports | Tracked from launch |
+| **Premium interest** | Owners who tap Notify me | Decides whether to build Premium |
+| **Finder to owner** | Finders who create an account | Tracked from launch |
+
+These are internal targets, never public claims.
+
 ## 14. Open decisions
 
 - [x] Name: **Tagkin** (chosen 8 Nov). Trademark search on EUIPO and USPTO: no results (8 Nov). Earlier shortlist: Shortlist (8 Nov, .com all taken; .app looked unregistered in a quick DNS check, not confirmed): Tagkin, Kindtag, Hellotag, Homingtag, Findmeback, Lostless, Tagback. Check trademarks and app stores before choosing. 8 Nov: Hellotag rejected (HelloTag app by Hellotag Corporation, France, already on the App Store). Tagkin: no app or product found in a web search; trademark search still to do.
@@ -266,3 +283,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Step 5 done: GitHub project board "Tagkin backlog" (users/Selaseyjr/projects/2) linked to the repo, all 57 stories in Stage = Backlog. Next: step 6, technical design.
 - 11 Nov 2026: Board uses one Status field (Backlog, Ready, In progress, Review, Done); Stage field removed; 5 automations need re-enabling in the GitHub UI. System audit: README and outdated brief sections updated (free tag, customise, finder flow, Lost mode, Care = phase 2), USER-FLOWS.md marked superseded, rules numbering fixed, two Must stories added (TK-97 states, TK-98 store listings; 59 stories), build warning fixed, finder link republished.
 - 11 Nov 2026: All 6 board automations on with the new Status options (item added → Backlog, PR linked → In progress, item closed and PR merged → Done, Done closes the issue, sub-issues auto-added). Step 5 complete.
+- 11 Nov 2026: Final check before step 6: every screen maps to a story; added non-functional requirements (SYSTEM-LOGIC.md section 10), MVP success measures (brief 13b) and TK-99 Notify me (60 stories). Ready for step 6.

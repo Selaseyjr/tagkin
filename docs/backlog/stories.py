@@ -172,6 +172,9 @@ story("TK-97", "E9", "Empty, loading, offline and error states", "user", "clear 
 story("TK-98", "E8", "Store listings and privacy labels", "Tagkin", "complete App Store and Google Play listings", "the app passes review",
       ["Name, subtitle, description, keywords, screenshots re-shot from the real app, support and privacy URLs", "Apple privacy labels and Google Data safety match what the app collects", "Age rating questionnaires; review notes and a test account"], "Must", "M", "M5")
 
+story("TK-99", "E9", "Premium interest: Notify me", "product owner", "owners to register interest in Premium", "I build Premium only if there is demand",
+      ["Plan screen shows Free and Premium (later) with Notify me", "Count of Notify me taps visible in analytics; confirmation message to the owner"], "Should", "S", "M5")
+
 WONT = [
     "Premium subscription (later; Notify me measures demand)",
     "Shop packs with scratch panels (later; PIN flow is ready)",

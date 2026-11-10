@@ -2,7 +2,7 @@
 
 Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).
 
-59 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
+60 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
 
 ## Milestones
 
@@ -10,14 +10,14 @@ Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stori
 - **M2 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (28 stories)
 - **M3 Ordering and payment**: Printed tags can be ordered, paid and tracked. (6 stories)
 - **M4 Gifting and activation**: Blank tags can be gifted and activated with a PIN. (3 stories)
-- **M5 Launch readiness**: Website, legal, accessibility, languages, operations and store submission. (10 stories)
+- **M5 Launch readiness**: Website, legal, accessibility, languages, operations and store submission. (11 stories)
 
 ## Summary
 
 | Priority | Stories |
 |---|---|
 | Must | 42 |
-| Should | 15 |
+| Should | 16 |
 | Could | 2 |
 | Won't (this release) | 5 items, listed below |
 
@@ -618,6 +618,15 @@ As a user, I want clear screens when there's nothing yet, while loading, offline
 
 - Designs: empty tags, messages and orders; loading skeletons; offline banner; payment failed; message not sent; code not found
 - Permission turned off: camera and notifications recovery screens
+
+### TK-99 · Premium interest: Notify me
+
+*Should · S · M5 Launch readiness*
+
+As a product owner, I want owners to register interest in Premium, so that I build Premium only if there is demand.
+
+- Plan screen shows Free and Premium (later) with Notify me
+- Count of Notify me taps visible in analytics; confirmation message to the owner
 
 ## Won't have in this release
 
