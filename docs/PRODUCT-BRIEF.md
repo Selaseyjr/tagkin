@@ -6,6 +6,10 @@ Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app 
 
 A QR tag for your belongings, pets and loved ones. Anyone who finds them can reach you in seconds, and nobody's private details are shown.
 
+## 1b. Positioning (11 Nov 2026)
+
+Tagkin is for people who value their belongings and choose to protect them, not only for people who often lose things. Lead with protection and security in all copy and marketing ("Protect what you value."); "found in seconds" is the benefit, not the identity. Avoid copy that frames the user as careless.
+
 ## 2. Principles
 
 - **Private by default.** Neither owner nor finder sees the other's contact unless they choose to share it.
@@ -139,6 +143,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [x] Decided (11 Nov): **launch without Premium.** Income at launch is tag sales only; no subscriptions or in-app purchase at first. The Plan screen keeps Premium as "Later" with Notify me, so sign-ups measure real demand before building it.
 - [x] Recipients of gifted or shop tags need an account to activate: they become the owner and must receive alerts and messages. Sign-in stays light (email code). Shop and gifted tags can be personalised digitally at activation (type, name, photo, finder message); the printed design is fixed.
 - [ ] Proposed (11 Nov), awaiting decision: **first printed tag offer.** The free tag is digital or self-printed; a printed tag costs money. Offer the first printed tag at a lower price or with free shipping, shown at checkout. Use a clear discount line ("First tag offer −€2.00"), not a struck-through "usual price", because EU price rules require a struck-through price to be the lowest of the last 30 days.
+- [ ] Premium ideas (11 Nov), for after launch, to validate with Notify me sign-ups: **Ownership vault** (serial numbers, receipts, photos; one-tap police report and insurance claim PDF), **Stolen mode** (finder page says it is reported stolen, shows a police reference, alerts owner and police-ready log), **Verified handover** (one-time handover code so only the real owner can collect), **Return by courier** (finder taps Send it back, a courier collects, owner pays), **Household** (shared tags, escalation chain of contacts, SMS and WhatsApp alerts). Decide later which, if any, stay free for safety reasons (Stolen mode is a candidate).
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -217,3 +222,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Bought tags free for life and Gift a tag adopted. Free tags not giftable. Free allowance of 1 active tag proposed.
 - 11 Nov 2026: One free active tag; launch without Premium; Activate another tag added after activation; recipients need an account; first-tag offer proposed.
 - 11 Nov 2026: Gift a tag designed (choose with gift note, who it's for with hidden prices, review, on its way), reachable from ordering (For me / Gift a tag), Tag is live and Orders. First tag offer shown as a sample −€2.00 line at checkout (amount still to decide). Invite a friend in Account. Finder page for a tag that isn't set up yet. 78 screens.
+- 11 Nov 2026: Positioning changed to protecting what you value; welcome, empty state and gift copy rewritten. Activation path shows its own step count (of 3). Premium ideas recorded.

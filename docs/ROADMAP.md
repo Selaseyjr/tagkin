@@ -91,6 +91,7 @@ Trigger: live in both stores.
 - [ ] Measure: tags registered, scans, items returned, registration drop-off
 - [ ] Polished case study with real results
 - [ ] Figma v2 import if the design changed (the import tool is exempt)
+- [ ] Premium: pick from the ideas in the brief (vault, Stolen mode, verified handover, courier return, household) based on Notify me demand
 - [ ] Phase 2: Care tags (children, older relatives), with extra safety and legal review
 - [ ] Later channels: WhatsApp, SMS-only finders, NFC tags, family sharing
 - [x] Gift a tag designed: For me / Gift a tag in ordering, gift note, delivery to recipient, link on Tag is live, finder page for an unclaimed tag
