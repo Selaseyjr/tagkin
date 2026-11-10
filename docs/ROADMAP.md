@@ -14,7 +14,7 @@ One defined sequence, each step with its artefact. The stages below (A to G) sit
 | 2 | **Validate** | Do real people have this problem and understand the solution? | 3 interviews; finder prototype tested by 5 people | Done |
 | 3 | **Design** | What will people see and do? | User flows, wireframes, prototypes, design system, 87 screens | Done (Stage A) |
 | 4 | **Specify** | What must be true, and how does it behave? | BUSINESS-RULES.md, SYSTEM-LOGIC.md (functional spec), audit | Done |
-| 5 | **Plan the backlog** | What exactly gets built, in what order, and when is it done? | Epics and user stories with acceptance criteria in GitHub; MVP scope (MoSCoW); Definition of Ready and Done; milestones | **Next** |
+| 5 | **Plan the backlog** | What exactly gets built, in what order, and when is it done? | docs/BACKLOG.md and 57 GitHub issues (9 epics, 5 milestones, MoSCoW, sizes, acceptance criteria); Definition of Ready and Done | **In progress**: project board pending a GitHub permission |
 | 6 | **Technical design** | How will it be built? | Architecture and decision records (stack, hosting, providers), API outline | After 5 (Stage C) |
 | 7 | **Build** | Sprints against the backlog | Working increments, demos | Stage D |
 | 8 | **Test and comply** | Does it work, and is it allowed? | Test plan, beta, legal texts, store reviews | Stages D to F |
