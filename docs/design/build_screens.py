@@ -107,6 +107,15 @@ h1.big{font-size:var(--tk-text-2xl)}
 .step b{width:34px;height:34px;border-radius:50%;background:var(--tk-surface);display:grid;place-items:center;font-size:18px}
 .step i{font-style:normal;font-weight:600;min-width:12px;text-align:center}
 .li.total{font-weight:700}.li.total span:last-child{color:var(--tk-ink);font-size:16px}
+.tabs{display:flex;justify-content:space-around;border-top:1px solid var(--tk-line);margin:0 -20px -22px;padding:8px 8px 14px;background:var(--tk-surface);flex:none}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:500;color:var(--tk-ink-2);position:relative;min-width:64px;padding:4px 0}
+.tab.on{color:var(--tk-brand-text);font-weight:600}
+.dot2{position:absolute;top:2px;right:16px;width:8px;height:8px;border-radius:50%;background:var(--tk-lost)}
+.unread{min-width:22px;height:22px;border-radius:11px;background:var(--tk-brand);color:var(--tk-on-brand);font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+.item .tx b,.item .tx span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acct{display:flex;gap:12px;align-items:center;flex:none}.acct .av{width:48px;height:48px;border-radius:50%;background:var(--tk-brand);color:var(--tk-on-brand);display:grid;place-items:center;font:700 20px var(--tk-font-display)}
+.acct b{display:block}.acct span span{font-size:13px;color:var(--tk-ink-2)}
+.grpl .li:last-child{border-bottom:0}
 .proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
@@ -114,6 +123,10 @@ h1.big{font-size:var(--tk-text-2xl)}
 SVG = """<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><circle cx="22" cy="32" r="5" fill="#000"/><path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000"/></mask>
 <symbol id="mark" viewBox="0 0 64 64"><g mask="url(#mk)"><path fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" d="M8 23 L23 9 H56 V55 H23 L8 41 Z"/></g></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 9 8 4h13v16H8l-5-5Z"/><circle cx="9" cy="12" r="1.6" fill="currentColor"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v11H9l-5 4Z"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5Z M3 7.5 12 12l9-4.5 M12 12v9"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
 <symbol id="lock" viewBox="0 0 16 16"><path fill="currentColor" d="M5 7V5a3 3 0 1 1 6 0v2h.5A1.5 1.5 0 0 1 13 8.5v5A1.5 1.5 0 0 1 11.5 15h-7A1.5 1.5 0 0 1 3 13.5v-5A1.5 1.5 0 0 1 4.5 7H5Zm1.5 0h3V5a1.5 1.5 0 1 0-3 0v2Z"/></symbol>
 </defs></svg>"""
 
@@ -166,6 +179,14 @@ def backto(key, label="Back"):
     return f'<span class="back"{go(key)}>‹ {label}</span>'
 
 
+def tabbar(active):
+    tabs = [("tags", "i-tag", "My tags"), ("inbox", "i-chat", "Messages"), ("orders", "i-box", "Orders"), ("account", "i-user", "Account")]
+    items = "".join(
+        f'<span class="tab{" on" if k == active else ""}"{go(k)}><svg width="24" height="24"><use href="#{ic}"/></svg>{label}{"<b class=dot2></b>" if k == "inbox" and active != "inbox" else ""}</span>'
+        for k, ic, label in tabs)
+    return f'<nav class="tabs" aria-label="Main">{items}</nav>'
+
+
 # (key, name, body). Keys are the prototype's screen ids.
 OWNER = [
     ("signin", "Owner 1 · Sign in", hdr() + '<div class="sp"></div><h1 class="big">Make your first tag</h1><p class="m">No password. We send you a code.</p><div class="in val">selasey@example.com</div><div class="btn pri"' + go("code") + '>Send code</div><div class="sp"></div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your contact is never shown. Finders message you through Tagkin.</p>'),
@@ -182,13 +203,16 @@ OWNER = [
 ]
 
 LOST = [
-    ("tags", "Owner 8 · My tags", hdr(LOGO, '<span' + go("limit") + '>+ New</span>') + '<h1>My tags</h1><div class="item"' + go("detail") + '><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>FND-4821</span></span><span class="badge b-n">Normal</span></div><div class="item"' + go("scans") + ' data-title="Milo"><span class="ic">🐾</span><span class="tx"><b>Milo</b><span>FND-7730</span></span><span class="badge b-l">Lost</span></div><div class="item"' + go("thread") + '><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>FND-2196 · trip ends 20 Nov</span></span><span class="badge b-r">Return active</span></div><div class="sp"></div><p class="xs center">3 of 3 free tags used</p>'),
+    ("tags", "Owner 8 · My tags", hdr(LOGO, '<span' + go("limit") + '>+ New</span>') + '<h1>My tags</h1><div class="item"' + go("detail") + '><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>FND-4821</span></span><span class="badge b-n">Normal</span></div><div class="item"' + go("scans") + ' data-title="Milo"><span class="ic">🐾</span><span class="tx"><b>Milo</b><span>FND-7730</span></span><span class="badge b-l">Lost</span></div><div class="item"' + go("thread") + '><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>FND-2196 · trip ends 20 Nov</span></span><span class="badge b-r">Return active</span></div><p class="xs center">3 of 3 free tags used</p><div class="sp"></div>' + tabbar("tags")),
     ("detail", "Owner 9 · Tag detail", hdr(backto("tags", "My tags"), '<span class="badge b-n">Normal</span>') + '<div class="photo">🎒</div><h1>Black backpack</h1><div><div class="li"><span>Finder message</span><span>Edit ›</span></div><div class="li"><span>Contacts</span><span>Edit ›</span></div><div class="li"' + go("order") + '><span>Order printed tags</span><span>›</span></div></div><div class="sp"></div><div class="btn lostb"' + go("confirm") + '>Mark as lost</div><div class="btn ghost">Retire tag</div>'),
     ("confirm", "Owner 10 · Confirm Lost", hdr(backto("detail")) + '<h1>Mark Black backpack as lost?</h1><p class="m">Finders see an urgent page. You get an alert with the city every time it is scanned.</p><p class="note info">🔒 Name, photo and description lock until it is found. Contacts and message stay editable.</p><p class="note info">No reward amount is shown. You can thank the finder privately later.</p><div class="sp"></div><div class="btn lostb"' + go("scans") + ' data-title="Black backpack">Mark as lost</div><div class="btn sec"' + go("detail") + '>Cancel</div>'),
     ("scans", "Owner 11 · Lost: scans", hdr(backto("tags", "My tags"), '<span class="badge b-l">Lost</span>') + '<h1 class="ttl">Milo</h1><p class="m">Scans since marked lost</p><div><div class="li"><span>Today 14:02</span><span>Darmstadt</span></div><div class="li"><span>Today 09:41</span><span>Darmstadt</span></div><div class="li"><span>Yesterday 18:20</span><span>Griesheim</span></div></div><p class="xs">City only, unless a finder shares the item location.</p><p class="lockrow">🔒 Name and photo locked while lost</p><div class="sp"></div><div class="btn sec proto"' + go("alert") + '>Simulate: a finder reports it</div><div class="btn pri"' + go("tags") + '>I found it myself</div>'),
     ("alert", "Owner 12 · Finder report alert", '<div class="hdr"><span></span><span>now</span></div><div class="notif"' + go("thread") + '><span class="ic"><svg width="22" height="22"><use href="#mark"/></svg></span><span><b>Someone found Black backpack</b><span>With me · Darmstadt Hbf, Lost &amp; Found desk</span></span></div><div class="sp"></div><p class="m center">The tag is now in Return active. Name, photo and description are locked.</p><div class="btn pri"' + go("thread") + '>Open message</div>'),
     ("thread", "Owner 13 · Message thread", hdr(backto("tags", "My tags"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>With me</b> · Darmstadt Hbf, Lost &amp; Found desk<br>I left it with the staff at counter 2.<span class="meta">Translated from French · Show original</span></div><div class="bub out">Thank you so much! I\'ll pick it up tonight.</div></div><p class="xs center">The finder left an email. Your reply reaches them translated.</p><div class="sp"></div><div class="btn sec"' + go("returned") + '>Got it back? Mark as returned</div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
     ("anon", "Owner 13b · Anonymous finder", hdr(backto("tags", "My tags"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>Left where I found it</b> · Luisenplatz, bench by the fountain</div></div><p class="note info">This finder is anonymous. They see your reply only while their page is open.</p><div class="sp"></div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
+    ("inbox", "Owner 15 · Messages", hdr(LOGO, "") + '<h1>Messages</h1><div class="item"' + go("thread") + '><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>Finder: "I left it with the staff at counter 2."</span></span><span class="unread">1</span></div><div class="item"' + go("anon") + '><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>Anonymous finder · Luisenplatz</span></span><span class="xs">2 d</span></div><p class="xs center">Messages are deleted 90 days after a return.</p><div class="sp"></div>' + tabbar("inbox")),
+    ("orders", "Owner 16 · Orders", hdr(LOGO, "") + '<h1>Orders</h1><div class="item"><span class="ic">🏷️</span><span class="tx"><b>2 × sticker</b><span>TK-10482 · ordered today</span></span><span class="badge b-r">On the way</span></div><div class="item"><span class="ic">🔑</span><span class="tx"><b>1 × keychain</b><span>TK-10311 · 2 Nov</span></span><span class="badge b-n">Delivered</span></div><div class="btn sec"' + go("order") + '>Order more tags</div><div class="sp"></div>' + tabbar("orders")),
+    ("account", "Owner 17 · Account", hdr(LOGO, "") + '<h1>Account</h1><div class="acct"><span class="av">S</span><span class="tx"><b>Selasey G.</b><span>s•••@example.com</span></span></div><div class="grpl"><div class="li"><span>Plan</span><span>Free · 3 of 3 tags ›</span></div><div class="li"><span>Contacts and backup contact</span><span>›</span></div><div class="li"><span>Notifications</span><span>Push, email ›</span></div><div class="li"><span>Language</span><span>English ›</span></div><div class="li"><span>Privacy and data</span><span>›</span></div><div class="li"><span>Help</span><span>›</span></div></div><div class="btn ghost" data-toast="Signed out"' + go("signin") + '>Sign out</div><div class="sp"></div>' + tabbar("account")),
     ("returned", "Owner 14 · Mark returned", hdr(backto("thread"), '<span class="badge b-r">Return active</span>') + '<h1>Got it back?</h1><p class="m">Locks lift and the tag goes back to Normal. The return closes on its own after 14 days with no messages.</p><div class="in ta">Private thank-you (optional)</div><div class="sp"></div><div class="btn pri"' + go("tags") + ' data-toast="Marked as returned">Mark as returned</div>'),
 ]
 
@@ -295,7 +319,7 @@ proto = f"""<!doctype html>
 <div class="ctl" aria-label="Prototype controls"><span>Prototype:</span>
 <button type="button" data-start="signin">Register a tag</button>
 <button type="button" data-start="tags">My tags</button>
-<button type="button" data-start="anon">Anonymous finder</button>
+<button type="button" data-start="account">Account</button>
 </div>
 <main class="stage">{"".join(proto_screen(t[0], t[2]) for t in OWNER + LOST)}</main>
 <div class="toast" role="status" aria-live="polite"></div>
