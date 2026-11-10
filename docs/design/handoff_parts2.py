@@ -171,3 +171,96 @@ PARTS2_CSS += """
 .item.sel{border-color:var(--tk-brand);background:var(--tk-brand-soft)}
 @media (max-width:900px){.dash,.tablet{grid-template-columns:1fr;height:auto}.drow{grid-template-columns:44px 1fr}}
 """
+
+
+# ---------- Real-life scenes (11 Nov 2026) ----------
+# CSS-drawn settings (station, café, airport, park, home desk) behind phones and visuals,
+# plus floating notification banners, so presentations look like real use, not blank frames.
+def notif(title, body, when="now"):
+    return f'<div class="fnotif"><span class="pic"><svg width="16" height="16"><use href="#mark"/></svg></span><span><b>{title}</b><small>{body}</small></span><em>{when}</em></div>'
+
+
+def scene(kind):
+    props = {
+        "station": '<i class="sky"></i><i class="train"></i><i class="platform"></i><i class="edge"></i><span class="prop p1">🎒</span><span class="sign">Gleis 4</span>',
+        "cafe": '<i class="wall"></i><i class="table"></i><span class="prop p1">☕</span><span class="prop p2">🎒</span><span class="prop p3">🪴</span>',
+        "airport": '<i class="hall"></i><i class="belt"></i><span class="prop p1">🧳</span><span class="prop p2">🧳</span><span class="sign">Baggage 7 · FRA</span>',
+        "park": '<i class="skyd"></i><i class="trees"></i><i class="grass"></i><span class="prop p1">🐕</span><span class="prop p2">🌳</span>',
+        "home": '<i class="wall2"></i><i class="desktop"></i><span class="prop p1">💻</span><span class="prop p2">🔑</span><span class="prop p3">📷</span>',
+    }[kind]
+    return f'<div class="scene {kind}" aria-hidden="true">{props}</div>'
+
+
+# Store panels: scene behind the phone + a live notification
+_SC = {"s2": ("station", notif("Someone found your backpack", "With me · Darmstadt Hbf, platform 4")),
+       "s3": ("cafe", notif("New message about your backpack", "“Left it with the barista, Mia.”", "2m")),
+       "s4": ("park", notif("Milo’s tag was scanned", "Lost mode · near Herrngarten", "now")),
+       "s5": ("airport", notif("Your suitcase was found", "Handed to staff · Baggage 7, FRA", "5m"))}
+for k, (kind, n) in _SC.items():
+    STORE = STORE.replace(f'<div class="st {k}">', f'<div class="st {k}">{scene(kind)}{n}', 1)
+STORE = STORE.replace('<div class="st s1">', '<div class="st s1">' + scene("home"), 1)
+
+# Marketing visuals
+MKT = MKT.replace('<div class="mk cover">', '<div class="mk cover">' + scene("station") + notif("Someone found your backpack", "With me · Darmstadt Hbf, platform 4"), 1)
+MKT = MKT.replace('<div class="mk sq dark">', '<div class="mk sq dark">' + scene("home"), 1)
+MKT = MKT.replace('<div class="mk sq mint">', '<div class="mk sq mint">' + scene("station"), 1)
+MKT = MKT.replace('<div class="mk sq soft">', '<div class="mk sq soft">' + scene("park"), 1)
+
+# Lock screens get a wallpaper photo-like scene
+EMAILS = EMAILS.replace('<div class="scr lock"', '<div class="scr lock wall-photo"', 1)
+EXPORTS = EXPORTS.replace('<div class="scr lock lockimg"', '<div class="scr lock lockimg wall-photo"', 1)
+
+# Website hero: phone in a café with a notification
+WEB = WEB.replace('<div class="wphone">', '<div class="wphone">' + scene("cafe") + notif("New message about your backpack", "“Left it with the barista, Mia.”", "2m"), 1)
+
+PARTS2_CSS += """
+.scene{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.scene i{position:absolute;display:block}
+.scene .prop{position:absolute;font-size:56px;filter:drop-shadow(0 6px 8px rgb(0 0 0 / .25))}
+.scene .sign{position:absolute;top:16%;right:10%;background:#0b3d91;color:#fff;font:700 12px var(--tk-font-body);padding:6px 10px;border-radius:4px;box-shadow:0 2px 0 rgb(0 0 0 / .2)}
+.station .sky{inset:0 0 45% 0;background:linear-gradient(#bcd6e8,#e8eef0)}
+.station .train{left:-10%;right:-10%;top:30%;height:22%;background:linear-gradient(#e9eef1 0 18%,#c41e2a 18% 24%,#e9eef1 24% 70%,#9aa6a1 70%);border-radius:18px}
+.station .platform{inset:55% 0 0 0;background:linear-gradient(#a8aca9,#7f8582)}
+.station .edge{left:0;right:0;top:55%;height:10px;background:repeating-linear-gradient(90deg,#f2c400 0 22px,#2b2b2b 22px 44px)}
+.station .p1{left:10%;bottom:12%}
+.cafe .wall{inset:0;background:linear-gradient(160deg,#6b4a35,#3a271b)}
+.cafe .table{left:-10%;right:-10%;bottom:-8%;height:42%;background:linear-gradient(#b07a4f,#8a5a36);border-radius:50% 50% 0 0/20% 20% 0 0}
+.cafe .p1{right:12%;bottom:20%}.cafe .p2{left:8%;bottom:16%}.cafe .p3{left:14%;top:12%;font-size:44px}
+.airport .hall{inset:0;background:linear-gradient(#dfe6ea,#c7d0d4)}
+.airport .belt{left:-10%;right:-10%;bottom:6%;height:24%;background:repeating-linear-gradient(90deg,#4d5558 0 26px,#3c4346 26px 52px);border-top:8px solid #9aa6a1}
+.airport .p1{left:8%;bottom:16%}.airport .p2{right:10%;bottom:20%;font-size:46px}
+.park .skyd{inset:0 0 40% 0;background:linear-gradient(#9fd3f0,#dff1e4)}
+.park .trees{left:-10%;right:-10%;top:42%;height:22%;background:radial-gradient(circle at 15% 60%,#3f8f5a 0 18%,transparent 19%),radial-gradient(circle at 45% 50%,#2f7a4a 0 22%,transparent 23%),radial-gradient(circle at 80% 60%,#3f8f5a 0 20%,transparent 21%)}
+.park .grass{inset:60% 0 0 0;background:linear-gradient(#7cc47f,#4f9c56)}
+.park .p1{left:10%;bottom:10%}.park .p2{right:8%;top:30%;font-size:64px;filter:none;opacity:.9}
+.home .wall2{inset:0;background:linear-gradient(160deg,#f3eee6,#e2d8c8)}
+.home .desktop{left:-10%;right:-10%;bottom:-6%;height:38%;background:linear-gradient(#d9c3a2,#c2a57d)}
+.home .p1{left:10%;bottom:16%}.home .p2{right:14%;bottom:12%;font-size:40px}.home .p3{right:10%;top:16%;font-size:44px}
+.st>*:not(.scene),.mk>*:not(.scene){position:relative;z-index:1}
+.st .tphone{position:absolute;z-index:2}
+.st .fnotif,.mk .fnotif,.wphone .fnotif{position:absolute;z-index:4}
+.st .sgift,.st .sicons,.st .bigtag{position:absolute;z-index:3}
+.mk.cover .mphones{z-index:2}
+.mk.cover .scene{opacity:.4}
+.mk.sq.soft .eyebrow{color:#0b1712}
+.mk.sq.dark .mtag .qr{width:88px;height:88px;background-size:11px 11px}.mk.sq h1{font-size:36px}
+.st .fnotif{top:auto;bottom:250px;left:12px;right:12px}
+.st.s1 .slogo,.st.s1 .ssub{background:rgb(255 255 255 / .85);border-radius:14px;padding:4px 10px}
+.st .sh,.st .sp2{text-shadow:0 1px 12px rgb(0 0 0 / .25)}
+.st.s2 .sh,.st.s2 .sp2{color:#fff}.st.s3 .sh,.st.s3 .sp2,.st.s5 .sh,.st.s5 .sp2{color:#fff}.st.s4 .sh,.st.s4 .sp2{color:#fff}
+.st.s2::after,.st.s3::after,.st.s4::after,.st.s5::after,.mk.sq::after{content:"";position:absolute;inset:0 0 55% 0;background:linear-gradient(rgb(7 17 13 / .65),transparent);z-index:0}
+.st .scene{opacity:.95}
+.fnotif{position:absolute;z-index:3;left:14px;right:14px;top:46%;display:flex;gap:10px;align-items:flex-start;background:rgb(255 255 255 / .92);backdrop-filter:blur(14px);color:#0b1712;border-radius:18px;padding:10px 12px;box-shadow:0 12px 30px rgb(0 0 0 / .28);font-size:12px;text-align:left}
+.fnotif b{display:block;font-size:13px}.fnotif small{color:#4f5e57}.fnotif em{margin-left:auto;font-style:normal;font-size:11px;color:#4f5e57;flex:none}
+.fnotif .pic{width:26px;height:26px;border-radius:7px;background:#00c48c;color:#03261a;display:grid;place-items:center;flex:none}
+.st.s1 .fnotif{display:none}
+.mk.cover .fnotif{left:auto;right:28px;top:22px;width:300px}
+.mk.cover::after{content:"";position:absolute;inset:0 45% 0 0;background:linear-gradient(90deg,rgb(0 196 140 / .95),rgb(0 196 140 / .75) 70%,transparent);z-index:0}
+.mk.sq.dark .scene{opacity:.35}.mk.sq.mint .scene{opacity:.55}.mk.sq.soft .scene{opacity:.6}
+.mk.sq .mtag,.mk.sq .bubble2{z-index:2}
+.wall-photo{background:linear-gradient(rgb(0 0 0 / .15),rgb(0 0 0 / .35)),radial-gradient(circle at 70% 25%,#ffd9a0 0 8%,transparent 9%),linear-gradient(#f4a261 0%,#e76f51 28%,#2a3d66 62%,#0d1b2a 100%)!important}
+.wall-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(transparent,rgb(13 27 42 / .9)),repeating-linear-gradient(90deg,#14243a 0 30px,#1b2f4a 30px 46px,#14243a 46px 70px);opacity:.8;z-index:0}
+.scr.lock{position:relative}.scr.lock>*{position:relative;z-index:1}
+.wphone{position:relative;border-radius:28px;overflow:hidden;padding:40px 30px;min-height:520px;display:flex;align-items:center;justify-content:center}
+.wphone .scr.mini{position:relative;z-index:2}.wphone .fnotif{top:auto;bottom:24px;left:auto;right:12px;width:260px}
+"""
