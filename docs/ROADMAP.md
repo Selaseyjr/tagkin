@@ -93,3 +93,4 @@ Trigger: live in both stores.
 - [ ] Figma v2 import if the design changed (the import tool is exempt)
 - [ ] Phase 2: Care tags (children, older relatives), with extra safety and legal review
 - [ ] Later channels: WhatsApp, SMS-only finders, NFC tags, family sharing
+- [ ] Ready-made tags for shops and gift packs (pre-printed blank codes, activated by scan; the screens already exist)
