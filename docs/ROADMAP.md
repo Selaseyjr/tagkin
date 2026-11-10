@@ -93,6 +93,6 @@ Trigger: live in both stores.
 - [ ] Figma v2 import if the design changed (the import tool is exempt)
 - [ ] Phase 2: Care tags (children, older relatives), with extra safety and legal review
 - [ ] Later channels: WhatsApp, SMS-only finders, NFC tags, family sharing
-- [ ] Decide: bought tags free for life, Premium for extras only (see brief)
-- [ ] Gift a tag: unlinked order, gift note, recipient delivery, finder page for an unclaimed tag
+- [ ] Gift a tag (adopted): For me / Gift a tag in ordering, gift note, delivery to recipient, link on Tag is live, finder page for an unclaimed tag. Design before the Figma import.
+- [ ] Decide the free allowance (1 active tag proposed) and price ready-made packs against single in-app tags
 - [ ] Ready-made tags for shops and gift packs (pre-printed blank codes, activated by scan; the screens already exist)
