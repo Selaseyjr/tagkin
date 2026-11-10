@@ -126,6 +126,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [x] Wireframe method (8 Nov): static HTML wireframes in docs/wireframes/ (screens side by side, not yet clickable); Figma for the final UI once the plan allows.
 - [ ] Budget: buy tagkin.app and consider Figma Professional around 14 Nov 2026, when funds allow.
 - [x] Logo (10 Nov): **D2**, a solid tag with the hole and a lowercase k cut out, next to the lowercase wordmark "tagkin". Master file docs/brand/tagkin-mark.svg. Colour, final type and a trademark image search still to do.
+- [x] Design-to-Figma plan (10 Nov): all design is finished in HTML first (tokens, components, every screen, clickable prototype, tested). Then one combined page is imported into Figma in a single session (about 2 tool calls). Prototype links, Community publishing and tidy-up are done by hand in Figma, which needs no tool calls. The HTML tokens and components become the starting code for the app.
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -177,3 +178,4 @@ Participants (anonymous at their request; no names or identifying details kept):
 - 10 Nov 2026: Logo concepts redrawn as solid marks (v2), tested as app icon, dark tile, 16 px and printed tag.
 - 10 Nov 2026: D2 added (tag with lowercase k).
 - 10 Nov 2026: Logo chosen: D2 (tag with lowercase k). Mark exported as SVG.
+- 10 Nov 2026: Plan set: finish design in HTML, one-time import into Figma, then build.
