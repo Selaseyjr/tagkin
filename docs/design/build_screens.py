@@ -245,7 +245,8 @@ def opt(label, on=False, ic=None, sub=None):
 
 
 def screen(name, body):
-    return f'<figure data-name="{name}"><figcaption>{name}</figcaption><div class="scr">{SBAR}{body}</div></figure>'
+    note = note_html(name, body) if "note_html" in globals() else ""
+    return f'<figure data-name="{name}"><figcaption>{name}</figcaption><div class="scr">{SBAR}{body}</div>{note}</figure>'
 
 
 FINDER = [
@@ -371,6 +372,8 @@ def flow(title, desc, screens):
     return f'<section class="flow"><h2>{title}</h2><p>{desc}</p><div class="row">{figs}</div></section>'
 
 
+exec((Path(__file__).parent / "handoff_parts.py").read_text())
+
 html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -383,12 +386,14 @@ html = f"""<!doctype html>
 <style id="tokens">
 /* Generated from docs/brand/tokens.css by build_screens.py. Do not edit here. */
 {TOKENS}</style>
-<style>{CSS}</style>
+<style>{CSS}{HANDOFF_CSS}</style>
 </head>
 <body>
 {SVG}
 <div class="page">
 <header class="top"><div class="brand"><svg width="36" height="36"><use href="#mark"/></svg><b>tagkin</b></div><button class="toggle" type="button" id="theme"><svg width="16" height="16" style="vertical-align:-3px"><use href="#i-moon"/></svg> <span>Switch to dark</span></button></header>
+{COVER}
+{FLOWMAP}
 {flow("Finder flow", "No app, no sign-up. Tested with 5 people, no concerns.", FINDER)}
 {flow("First launch, activation and account", "Welcome, terms, permission explainers, linking a printed tag, data and account deletion.", SETUP)}
 {flow("Owner registration and ordering", "Email code sign-in, five steps to a live tag, then order it printed.", OWNER)}
@@ -396,6 +401,11 @@ html = f"""<!doctype html>
 {flow("Lost mode and messages", "Urgent finder page, scan alerts, relayed messages.", LOST)}
 {flow("Travel, Pet, safety and settings", "Tag-type details, report and block, plan, notifications, language, splash and app icon.", EXTRA)}
 {flow("States and tag management", "Empty and error states, locked fields during a return, editing, history and retiring.", STATES)}
+{STATES_UI}
+{EMAILS}
+{DESK_FINDER}
+{WEB}
+{MKT}
 </div>
 <script>
 const b=document.getElementById('theme'),r=document.documentElement;
