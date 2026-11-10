@@ -43,9 +43,9 @@ Type is chosen at registration and **locked** afterwards.
 1. Scan the QR (or type the short code on the website).
 2. See the owner's message and optional photo.
 3. **Where is it now?** With me · Handed to staff · Left where I found it.
-4. **Where exactly?** One field with suggestions, plus a Share my location button.
-5. **Anything else?** Optional note.
-6. **Want a reply?** Optional email, kept hidden. Otherwise anonymous.
+4. **Where exactly?** One field ("Input location here") with place suggestions as the finder types, plus a **Share item location** button.
+5. **Anything else?** Optional note, prompted with examples (who the item was left with, exact landmark).
+6. **Want a reply?** Optional email or phone number, kept hidden and relayed. Otherwise anonymous: "Without an email or phone number, keep this page open to receive replies."
 7. Thank-you screen.
 
 ## 6. Privacy in the interface
@@ -180,3 +180,4 @@ Participants (anonymous at their request; no names or identifying details kept):
 - 10 Nov 2026: Logo chosen: D2 (tag with lowercase k). Mark exported as SVG.
 - 10 Nov 2026: Plan set: finish design in HTML, one-time import into Figma, then build.
 - 10 Nov 2026: Clickable finder prototype built (docs/wireframes/finder-prototype.html): QR, Lost mode and typed-code paths, contact warning, anonymous and email replies, retired tag. Every path clicked through.
+- 10 Nov 2026: Finder flow refined after prototype review: live place suggestions, "Share item location", note examples, reply by email or phone. Replies by phone need an SMS relay (cost, provider to choose).

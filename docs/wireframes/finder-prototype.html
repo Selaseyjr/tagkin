@@ -29,6 +29,7 @@ textarea{min-height:110px;resize:vertical}
 .btn:disabled{opacity:.4;cursor:default}
 .opt{font:inherit;color:var(--ink);text-align:left;border:1px solid var(--line);background:var(--ph);border-radius:12px;padding:16px;cursor:pointer;width:100%}
 .opt[aria-pressed="true"]{border:2px solid var(--ink);padding:15px;font-weight:600}
+.sug.act{font-weight:600}
 .sug{font:inherit;color:var(--ink);text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:10px 2px;cursor:pointer;width:100%}
 .photo{background:var(--box);border-radius:16px;height:190px;display:grid;place-items:center;color:var(--mute);font-size:13px}
 .warn{background:var(--box);border-radius:10px;padding:10px 12px;font-size:13px;margin:0}
@@ -93,13 +94,10 @@ textarea{min-height:110px;resize:vertical}
 <section class="screen" id="place">
 <div class="bar"><button class="back" type="button" data-go="where">‹ Back</button><span>2 of 4</span></div>
 <h1>Where exactly?</h1>
-<input id="placeIn" placeholder="Search a place" autocomplete="off" aria-label="Place">
-<div id="sugs">
-<button class="sug" type="button">Darmstadt Hbf, Lost &amp; Found desk</button>
-<button class="sug" type="button">Luisenplatz, Darmstadt</button>
-</div>
-<button class="btn" type="button" id="locBtn">📍 Share my location</button>
-<p class="s" id="locNote">Only the city is shown unless you share your location.</p>
+<input id="placeIn" placeholder="Input location here" autocomplete="off" aria-label="Location" role="combobox" aria-controls="sugs" aria-autocomplete="list">
+<div id="sugs" role="listbox"></div>
+<button class="btn" type="button" id="locBtn">📍 Share item location</button>
+<p class="s" id="locNote">Only the city is shown unless you share the item location.</p>
 <div class="sp"></div>
 <button class="btn pri" type="button" id="placeNext" disabled data-go="note">Next</button>
 </section>
@@ -108,7 +106,7 @@ textarea{min-height:110px;resize:vertical}
 <section class="screen" id="note">
 <div class="bar"><button class="back" type="button" data-go="place">‹ Back</button><span>3 of 4</span></div>
 <h1>Anything else?</h1>
-<textarea id="noteIn" placeholder="Optional note" aria-label="Note"></textarea>
+<textarea id="noteIn" placeholder="Optional note, e.g. name of who you are leaving the item with, exact landmark" aria-label="Note"></textarea>
 <p class="s">Only add your number or email if you want the owner to contact you directly.</p>
 <p class="warn hidden" id="shareWarn">⚠ This will share your contact with the owner. <label style="display:inline-flex;gap:6px;align-items:center"><input type="checkbox" id="shareOk" style="width:auto"> Continue</label></p>
 <div class="sp"></div>
@@ -120,8 +118,13 @@ textarea{min-height:110px;resize:vertical}
 <section class="screen" id="reply">
 <div class="bar"><button class="back" type="button" data-go="note">‹ Back</button><span>4 of 4</span></div>
 <h1>Want a reply?</h1>
-<input id="mailIn" type="email" placeholder="Email (optional, kept hidden)" aria-label="Email">
-<p class="warn">Without an email, replies show only on this page while it is open.</p>
+<div role="group" aria-label="Reply by" style="display:flex;gap:8px">
+<button class="opt" type="button" aria-pressed="true" data-ch="email">Email</button>
+<button class="opt" type="button" aria-pressed="false" data-ch="phone">Phone</button>
+</div>
+<input id="mailIn" type="email" placeholder="Email (kept hidden)" aria-label="Email or phone">
+<p class="s">The owner never sees it. Replies are passed on by Tagkin.</p>
+<p class="warn">Without an email or phone number, keep this page open to receive replies.</p>
 <div class="sp"></div>
 <button class="btn pri" type="button" id="send">Send to owner</button>
 <button class="btn" type="button" id="anon">Send anonymously</button>
@@ -159,8 +162,9 @@ function reset(lost){
   $('lostBanner').classList.toggle('hidden',!lost);
   $('ownerMsg').textContent=lost?'Black backpack. The owner is looking for it. Please tell them where it is.':'Found me? Thank you! Tap below to tell my owner where I am.';
   document.querySelectorAll('#whereOpts .opt').forEach(b=>b.setAttribute('aria-pressed','false'));
-  $('whereNext').disabled=true;$('placeIn').value='';$('placeNext').disabled=true;
-  $('locNote').textContent='Only the city is shown unless you share your location.';
+  $('whereNext').disabled=true;$('placeIn').value='';$('placeNext').disabled=true;$('sugs').innerHTML='';
+  shared=false;$('locBtn').textContent='📍 Share item location';$('locNote').textContent='Only the city is shown unless you share the item location.';
+  ch='email';document.querySelectorAll('[data-ch]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.ch==='email'));$('mailIn').type='email';$('mailIn').placeholder='Email (kept hidden)';
   $('noteIn').value='';$('shareWarn').classList.add('hidden');$('shareOk').checked=false;$('noteNext').disabled=false;
   $('mailIn').value='';$('codeIn').value='';$('codeErr').classList.add('hidden');
 }
@@ -174,20 +178,28 @@ $('orig').onclick=()=>{showOrig=!showOrig;if(!$('lostBanner').classList.contains
   $('ownerMsg').textContent=showOrig?'Gefunden? Danke! Tippe unten, um meinem Besitzer zu sagen, wo ich bin.':'Found me? Thank you! Tap below to tell my owner where I am.';
   $('orig').textContent=showOrig?'Original in German · Show translation':'Translated from German · Show original';};
 document.querySelectorAll('#whereOpts .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#whereOpts .opt').forEach(x=>x.setAttribute('aria-pressed',x===b));$('whereNext').disabled=false;});
-const placeOk=()=>{$('placeNext').disabled=!$('placeIn').value.trim();};
-$('placeIn').oninput=placeOk;
-document.querySelectorAll('.sug').forEach(b=>b.onclick=()=>{$('placeIn').value=b.textContent;placeOk();});
-$('locBtn').onclick=()=>{$('placeIn').value='My location (shared)';$('locNote').textContent='Exact location will be shared with the owner.';placeOk();};
+const PLACES=['Darmstadt Hbf, Lost & Found desk','Darmstadt Hbf, Platform 4','Darmstadt Hbf, bus stop A','Luisenplatz, Darmstadt','Luisencenter, Darmstadt','Herrngarten, Darmstadt','Frankfurt (Main) Hbf, Lost & Found','Frankfurt Airport, Terminal 1'];
+let shared=false;
+const placeOk=()=>{$('placeNext').disabled=!($('placeIn').value.trim()||shared);};
+function showSugs(){const q=$('placeIn').value.trim().toLowerCase();const box=$('sugs');box.innerHTML='';
+  if(q.length<2)return;
+  PLACES.filter(p=>p.toLowerCase().includes(q)).slice(0,5).forEach(p=>{const b=document.createElement('button');b.type='button';b.className='sug';b.setAttribute('role','option');b.textContent='📍 '+p;
+    b.onclick=()=>{$('placeIn').value=p;box.innerHTML='';placeOk();};box.appendChild(b);});}
+$('placeIn').oninput=()=>{showSugs();placeOk();};
+$('locBtn').onclick=()=>{shared=true;$('locBtn').textContent='✓ Item location shared';$('locNote').textContent='The owner will see the exact spot where the item is.';placeOk();};
+let ch='email';
+document.querySelectorAll('[data-ch]').forEach(b=>b.onclick=()=>{ch=b.dataset.ch;document.querySelectorAll('[data-ch]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const i=$('mailIn');i.value='';i.type=ch==='email'?'email':'tel';i.placeholder=ch==='email'?'Email (kept hidden)':'Phone number (kept hidden)';i.focus();});
 const contactRe=/(\+?\d[\d\s\-()]{6,}\d)|([^\s@]+@[^\s@]+\.[^\s@]+)/;
 $('noteIn').oninput=()=>{const hit=contactRe.test($('noteIn').value);$('shareWarn').classList.toggle('hidden',!hit);$('noteNext').disabled=hit&&!$('shareOk').checked;};
 $('shareOk').onchange=()=>{$('noteNext').disabled=!$('shareOk').checked;};
 $('skip').addEventListener('click',()=>{$('noteIn').value='';$('shareWarn').classList.add('hidden');});
 let timer;
 function finish(anon){go('thanks');clearTimeout(timer);
-  $('thanksSub').textContent=anon?'The owner has been told where it is. Keep this page open to see their reply.':'The owner has been told where it is. Their reply will come to your email.';
+  $('thanksSub').textContent=anon?'The owner has been told where it is. Keep this page open to see their reply.':(ch==='email'?'The owner has been told where it is. Their reply will come to your email.':'The owner has been told where it is. Their reply will come by text message.');
   $('replyBox').textContent="Waiting for the owner's reply…";
   timer=setTimeout(()=>{$('replyBox').innerHTML='<b>Owner:</b> Thank you so much! I\'ll pick it up tonight.';},3000);}
-$('send').onclick=()=>{const v=$('mailIn').value.trim();if(v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('mailIn').focus();return;}finish(!v);};
+$('send').onclick=()=>{const v=$('mailIn').value.trim();const ok=ch==='email'?/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v):/^\+?[\d\s\-()]{7,}$/.test(v);if(v&&!ok){$('mailIn').focus();return;}finish(!v);};
 $('anon').onclick=()=>{$('mailIn').value='';finish(true);};
 reset(false);go('msg');
 </script>

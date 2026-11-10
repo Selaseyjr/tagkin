@@ -54,12 +54,12 @@ flowchart TD
   C -- Lost --> E[Urgent: This item is missing]
   D --> F[Where is it now? With me, Handed to staff, Left where I found it]
   E --> F
-  F --> G[Where exactly? Suggestions + Share my location]
+  F --> G[Where exactly? Live suggestions + Share item location]
   G --> H[Anything else? Optional note]
   H --> I{Phone or email in note?}
   I -- Yes --> J[This will share your number with the owner. Continue?]
   I -- No --> K
-  J --> K[Want a reply? Optional email, hidden.<br/>Nudge: without it, replies show only on this page]
+  J --> K[Want a reply? Optional email or phone, hidden.<br/>Nudge: without it, keep this page open for replies]
   K --> L[Thank you. Owner is alerted. State: Return active]
 ```
 
