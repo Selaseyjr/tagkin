@@ -200,3 +200,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Tab bar and three screens added (Messages, Orders, Account); 31 screens in total.
 - 11 Nov 2026: Goal set: live app on App Store and Google Play. Store-readiness gap list drafted.
 - 11 Nov 2026: docs/ROADMAP.md created: every open item, staged A to G with a trigger for each.
+- 11 Nov 2026: Stage A batch 1: welcome and terms, notification and camera explainers, add a tag (scan, digital, code), tag found and tag already linked, privacy and data, delete account. A linked tag code can never move to another account. 44 screens.

@@ -116,6 +116,24 @@ h1.big{font-size:var(--tk-text-2xl)}
 .acct{display:flex;gap:12px;align-items:center;flex:none}.acct .av{width:48px;height:48px;border-radius:50%;background:var(--tk-brand);color:var(--tk-on-brand);display:grid;place-items:center;font:700 20px var(--tk-font-display)}
 .acct b{display:block}.acct span span{font-size:13px;color:var(--tk-ink-2)}
 .grpl .li:last-child{border-bottom:0}
+.hero{display:grid;place-items:center;color:var(--tk-ink);flex:none}
+.hero.lockh{width:110px;height:110px;margin:auto;border-radius:50%;background:var(--tk-brand-soft);color:var(--tk-brand-text)}
+.bell{width:110px;height:110px;border-radius:50%;background:var(--tk-brand-soft);display:grid;place-items:center;font-size:48px}
+.pager{display:flex;gap:6px;justify-content:center;flex:none}.pager i{width:8px;height:8px;border-radius:4px;background:var(--tk-line)}.pager i.on{width:22px;background:var(--tk-brand)}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;flex:none;cursor:pointer}
+.check i{width:22px;height:22px;border-radius:6px;border:2px solid var(--tk-line);flex:none;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:700;color:transparent}
+.check.on i{background:var(--tk-brand);border-color:var(--tk-brand);color:var(--tk-on-brand)}
+.cam{margin:0 -20px -22px;flex:1;display:flex;flex-direction:column;gap:14px;padding:22px 20px;background:linear-gradient(#1b2a24,#0a1410);color:#fff;border-radius:0 0 34px 34px}
+.cam-h,.cam-h .back{color:#fff}.cam-t{color:#d8e6e0}
+.frame{width:220px;height:220px;margin:auto;position:relative;flex:none}
+.frame i{position:absolute;width:44px;height:44px;border:4px solid var(--tk-brand)}
+.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-radius:14px 0 0 0}
+.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
+.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 14px}
+.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 14px 0}
+.cam .btn.sec{background:rgb(255 255 255 / .12);border-color:rgb(255 255 255 / .25);color:#fff}
+.warnc{background:var(--tk-warn-soft);color:var(--tk-warn);font-weight:700}
+.dangert{color:var(--tk-lost-text)}
 .proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
@@ -190,7 +208,7 @@ def tabbar(active):
 # (key, name, body). Keys are the prototype's screen ids.
 OWNER = [
     ("signin", "Owner 1 · Sign in", hdr() + '<div class="sp"></div><h1 class="big">Make your first tag</h1><p class="m">No password. We send you a code.</p><div class="in val">selasey@example.com</div><div class="btn pri"' + go("code") + '>Send code</div><div class="sp"></div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your contact is never shown. Finders message you through Tagkin.</p>'),
-    ("code", "Owner 2 · Enter code", hdr(backto("signin")) + '<h1>Check your email</h1><p class="m">We sent a 6-digit code to s•••@example.com</p><div class="code"><i>4</i><i>8</i><i>2</i><i>9</i><i>1</i><i class="on">7</i></div><div class="btn pri"' + go("type") + '>Continue</div><p class="xs">Resend code in 30 s</p>'),
+    ("code", "Owner 2 · Enter code", hdr(backto("signin")) + '<h1>Check your email</h1><p class="m">We sent a 6-digit code to s•••@example.com</p><div class="code"><i>4</i><i>8</i><i>2</i><i>9</i><i>1</i><i class="on">7</i></div><div class="btn pri"' + go("perm-notif") + '>Continue</div><p class="xs">Resend code in 30 s</p>'),
     ("type", "Owner 3 · Tag type", hdr(backto("code"), "1 of 5") + '<h1>What is it for?</h1><div class="grp">' + opt("Item", True, "🎒", "Keys, bag, laptop") + opt("Travel", False, "🧳", "Luggage on a journey") + opt("Pet", False, "🐾", "Collar tag") + '</div><p class="note info">You can\'t change the type later.</p><div class="sp"></div><div class="btn pri"' + go("details") + '>Next</div>'),
     ("details", "Owner 4 · Details", hdr(backto("type"), "2 of 5") + '<h1>Tell us about it</h1><div class="in val">Black backpack</div><div class="add">+ Add photo (optional)</div><div class="in">Description (optional)</div><div class="sp"></div><div class="btn pri"' + go("message") + '>Next</div>'),
     ("message", "Owner 5 · Finder message", hdr(backto("details"), "3 of 5") + '<h1>What should a finder read?</h1><div class="seg"><span class="on">Template</span><span>Write my own</span></div><div class="in ta val">Found me? Thank you! Tap below to tell my owner where I am.</div><p class="count">58 / 160</p><p class="note warn">If you add a phone number here, it will be public to anyone who scans.</p><p class="xs">Finders see it in their own language.</p><div class="sp"></div><div class="btn pri"' + go("design") + '>Next</div>'),
@@ -212,8 +230,24 @@ LOST = [
     ("anon", "Owner 13b · Anonymous finder", hdr(backto("tags", "My tags"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>Left where I found it</b> · Luisenplatz, bench by the fountain</div></div><p class="note info">This finder is anonymous. They see your reply only while their page is open.</p><div class="sp"></div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
     ("inbox", "Owner 15 · Messages", hdr(LOGO, "") + '<h1>Messages</h1><div class="item"' + go("thread") + '><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>Finder: "I left it with the staff at counter 2."</span></span><span class="unread">1</span></div><div class="item"' + go("anon") + '><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>Anonymous finder · Luisenplatz</span></span><span class="xs">2 d</span></div><p class="xs center">Messages are deleted 90 days after a return.</p><div class="sp"></div>' + tabbar("inbox")),
     ("orders", "Owner 16 · Orders", hdr(LOGO, "") + '<h1>Orders</h1><div class="item"><span class="ic">🏷️</span><span class="tx"><b>2 × sticker</b><span>TK-10482 · ordered today</span></span><span class="badge b-r">On the way</span></div><div class="item"><span class="ic">🔑</span><span class="tx"><b>1 × keychain</b><span>TK-10311 · 2 Nov</span></span><span class="badge b-n">Delivered</span></div><div class="btn sec"' + go("order") + '>Order more tags</div><div class="sp"></div>' + tabbar("orders")),
-    ("account", "Owner 17 · Account", hdr(LOGO, "") + '<h1>Account</h1><div class="acct"><span class="av">S</span><span class="tx"><b>Selasey G.</b><span>s•••@example.com</span></span></div><div class="grpl"><div class="li"><span>Plan</span><span>Free · 3 of 3 tags ›</span></div><div class="li"><span>Contacts and backup contact</span><span>›</span></div><div class="li"><span>Notifications</span><span>Push, email ›</span></div><div class="li"><span>Language</span><span>English ›</span></div><div class="li"><span>Privacy and data</span><span>›</span></div><div class="li"><span>Help</span><span>›</span></div></div><div class="btn ghost" data-toast="Signed out"' + go("signin") + '>Sign out</div><div class="sp"></div>' + tabbar("account")),
+    ("account", "Owner 17 · Account", hdr(LOGO, "") + '<h1>Account</h1><div class="acct"><span class="av">S</span><span class="tx"><b>Selasey G.</b><span>s•••@example.com</span></span></div><div class="grpl"><div class="li"' + go("limit") + '><span>Plan</span><span>Free · 3 of 3 tags ›</span></div><div class="li"><span>Contacts and backup contact</span><span>›</span></div><div class="li"><span>Notifications</span><span>Push, email ›</span></div><div class="li"><span>Language</span><span>English ›</span></div><div class="li"' + go("privacy") + '><span>Privacy and data</span><span>›</span></div><div class="li"><span>Help</span><span>›</span></div></div><div class="btn ghost" data-toast="Signed out"' + go("signin") + '>Sign out</div><div class="sp"></div>' + tabbar("account")),
     ("returned", "Owner 14 · Mark returned", hdr(backto("thread"), '<span class="badge b-r">Return active</span>') + '<h1>Got it back?</h1><p class="m">Locks lift and the tag goes back to Normal. The return closes on its own after 14 days with no messages.</p><div class="in ta">Private thank-you (optional)</div><div class="sp"></div><div class="btn pri"' + go("tags") + ' data-toast="Marked as returned">Mark as returned</div>'),
+]
+
+SETUP = [
+    ("launch1", "Setup 1 · Welcome", '<div class="sp"></div><div class="hero"><svg width="96" height="96"><use href="#mark"/></svg></div><h1 class="big center">Found in seconds.</h1><p class="m center">Put a Tagkin tag on what matters. Anyone who finds it can reach you, from any phone, in any language.</p><div class="sp"></div><div class="pager"><i class="on"></i><i></i><i></i></div><div class="btn pri"' + go("launch2") + '>Next</div><div class="btn ghost"' + go("signin") + '>I have an account</div>'),
+    ("launch2", "Setup 2 · Private by default", '<div class="sp"></div><div class="hero lockh"><svg width="64" height="64"><use href="#lock"/></svg></div><h1 class="big center">Private by default.</h1><p class="m center">Finders message you through Tagkin. Nobody sees your number or email unless you choose to share it.</p><div class="sp"></div><div class="pager"><i></i><i class="on"></i><i></i></div><div class="btn pri"' + go("launch3") + '>Next</div>'),
+    ("launch3", "Setup 3 · Terms", '<div class="sp"></div><h1 class="big">Before you start</h1><p class="m">Tagkin relays messages between owners and finders. We never sell or share your data.</p><label class="check on"><i>✓</i><span>I agree to the <u>Terms of use</u> and have read the <u>Privacy policy</u>.</span></label><label class="check"><i></i><span>Send me product news (optional)</span></label><div class="sp"></div><div class="pager"><i></i><i></i><i class="on"></i></div><div class="btn pri"' + go("signin") + '>Get started</div>'),
+    ("perm-notif", "Setup 4 · Notifications", '<div class="sp"></div><div class="hero"><span class="bell">🔔</span></div><h1 class="center">Know the moment it\'s found</h1><p class="m center">We\'ll tell you when someone scans your tag or sends a message. Nothing else.</p><div class="sp"></div><div class="btn pri"' + go("start") + ' data-toast="Notifications on">Turn on notifications</div><div class="btn ghost"' + go("start") + '>Not now</div>'),
+    ("start", "Setup 5 · Add a tag", hdr(LOGO, "") + '<h1>Add your first tag</h1>' + '<div class="grp">' + '<div class="opt"' + go("perm-camera") + '><span class="ic">📷</span><span>Scan a printed tag<small>Link a sticker, keychain or pet tag</small></span></div>' + '<div class="opt"' + go("type") + '><span class="ic">📱</span><span>Create a digital tag<small>Lock screen or printable file, free</small></span></div>' + '<div class="opt"' + go("enter-tag") + '><span class="ic">⌨️</span><span>Enter a tag code<small>If the QR is hard to scan</small></span></div>' + '</div><div class="sp"></div><p class="xs center">Don\'t have a printed tag yet? Create a digital one and order it later.</p>'),
+    ("perm-camera", "Setup 6 · Camera", hdr(backto("start"), "") + '<div class="sp"></div><div class="hero"><span class="bell">📷</span></div><h1 class="center">Scan your tag</h1><p class="m center">Tagkin uses the camera only to read the QR on your tag. No photos are saved.</p><div class="sp"></div><div class="btn pri"' + go("scan") + '>Allow camera</div><div class="btn ghost"' + go("enter-tag") + '>Enter code instead</div>'),
+    ("scan", "Setup 7 · Scanning", '<div class="cam"><div class="hdr cam-h"><span class="back"' + go("start") + '>‹ Back</span><span>🔦</span></div><div class="sp"></div><div class="frame"><i></i><i></i><i></i><i></i></div><p class="center cam-t">Point at the QR on your tag</p><div class="sp"></div><div class="btn sec"' + go("found-new") + '>Simulate: tag scanned</div><div class="btn ghost cam-t"' + go("enter-tag") + '>Enter code instead</div></div>'),
+    ("enter-tag", "Setup 8 · Enter tag code", hdr(backto("start"), "") + '<h1>Enter the tag code</h1><p class="m">It\'s printed under the QR, after tagkin.app.</p><div class="in focus">FND-5530</div><div class="btn pri"' + go("found-new") + '>Find tag</div><div class="btn ghost"' + go("taken") + '>Try a tag that\'s already linked</div>'),
+    ("found-new", "Setup 9 · New tag found", hdr(backto("start"), "") + '<div class="sp"></div><div class="done">✓</div><h1 class="center">New tag found</h1><p class="m center">Sticker · FND-5530 · not linked yet</p><p class="note info">Once linked, this code belongs to you for good. It can\'t be moved to another account.</p><div class="sp"></div><div class="btn pri"' + go("type") + '>Link to my account</div>'),
+    ("taken", "Setup 10 · Tag already linked", hdr(backto("start"), "") + '<div class="sp"></div><div class="done warnc">!</div><h1 class="center">This tag belongs to someone else</h1><p class="m center">If you found it, you can tell the owner where it is. Your details stay private.</p><div class="sp"></div><div class="btn pri" data-toast="Opens the finder page">Tell the owner I found it</div><div class="btn ghost"' + go("start") + '>Scan a different tag</div>'),
+    ("privacy", "Account 1 · Privacy and data", hdr(backto("account", "Account"), "") + '<h1>Privacy and data</h1><div class="grpl"><div class="li" data-toast="We\'ll email you a download link within 24 h"><span>Download my data</span><span>›</span></div><div class="li"><span>Privacy policy</span><span>↗</span></div><div class="li"><span>Terms of use</span><span>↗</span></div><div class="li"><span>Location sharing</span><span>Only when finders choose</span></div></div><p class="xs">Messages are deleted after a set period once a return ends. Retired tags keep no personal data.</p><div class="sp"></div><div class="btn ghost dangert"' + go("delete") + '>Delete account</div>'),
+    ("delete", "Account 2 · Delete account", hdr(backto("privacy"), "") + '<h1>Delete your account?</h1><p class="m">This can\'t be undone.</p><div class="grpl"><div class="li"><span>Your 3 tags</span><span>Retired for good</span></div><div class="li"><span>Messages and scans</span><span>Deleted</span></div><div class="li"><span>Contacts and photos</span><span>Deleted</span></div><div class="li"><span>Order invoices</span><span>Kept as the law requires</span></div></div><label class="check on"><i>✓</i><span>I understand my tags will stop working.</span></label><div class="sp"></div><div class="btn lostb"' + go("deleted") + '>Delete account</div><div class="btn sec"' + go("privacy") + '>Keep my account</div>'),
+    ("deleted", "Account 3 · Account deleted", '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your account is deleted.</h1><p class="m center">Your tags no longer show any of your details. Thank you for using Tagkin.</p><div class="sp"></div><div class="btn sec"' + go("launch1") + '>Back to start</div>'),
 ]
 
 
@@ -241,6 +275,7 @@ html = f"""<!doctype html>
 <div class="page">
 <header class="top"><div class="brand"><svg width="36" height="36"><use href="#mark"/></svg><b>tagkin</b></div><button class="toggle" type="button" id="theme">Switch to dark</button></header>
 {flow("Finder flow", "No app, no sign-up. Tested with 5 people, no concerns.", FINDER)}
+{flow("First launch, activation and account", "Welcome, terms, permission explainers, linking a printed tag, data and account deletion.", SETUP)}
 {flow("Owner registration and ordering", "Email code sign-in, five steps to a live tag, then order it printed.", OWNER)}
 {flow("Lost mode and messages", "Urgent finder page, scan alerts, relayed messages.", LOST)}
 </div>
@@ -254,7 +289,7 @@ b.onclick=()=>{{const d=r.getAttribute('data-theme')!=='dark';r.setAttribute('da
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html)
-print(f"wrote {OUT.relative_to(ROOT)}: {len(FINDER) + len(OWNER) + len(LOST)} screens")
+print(f"wrote {OUT.relative_to(ROOT)}: {len(FINDER) + len(SETUP) + len(OWNER) + len(LOST)} screens")
 
 # ---------- Clickable owner prototype (same screens, one at a time) ----------
 PROTO_OUT = ROOT / "docs/design/owner-prototype.html"
@@ -278,6 +313,7 @@ let tt;function toast(t){const e=$('.toast');e.textContent=t;e.classList.add('sh
 document.addEventListener('click',e=>{
   const o=e.target.closest('.grp .opt');if(o){o.parentElement.querySelectorAll('.opt').forEach(x=>x.classList.toggle('on',x===o));
     const price=o.querySelector('small')&&o.querySelector('small').textContent.match(/€([\\d.]+)/);if(price)updateTotal(parseFloat(price[1]));}
+  const ck=e.target.closest('.check');if(ck){ck.classList.toggle('on');}
   const c=e.target.closest('.chip');if(c){c.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));}
   const g=e.target.closest('.seg span');if(g){g.parentElement.querySelectorAll('span').forEach(x=>x.classList.toggle('on',x===g));}
   const st=e.target.closest('.step b');if(st){const q=st.parentElement.querySelector('i');let n=+q.textContent+(st.textContent==='+'?1:-1);q.textContent=Math.max(1,Math.min(20,n));updateTotal();}
@@ -292,7 +328,7 @@ function updateTotal(u){if(u)unit=u;const q=+$('#order .step i').textContent;con
   const rows=$('#checkout').querySelectorAll('.li');rows[0].innerHTML='<span>'+name+' × '+q+'</span><span>€'+sub+'</span>';rows[2].innerHTML='<span>Total</span><span>€'+tot+'</span>';
   $('#ordered .xs').textContent='Order TK-10482 · '+q+' × '+name.toLowerCase();}
 all('[data-start]').forEach(b=>b.onclick=()=>show(b.dataset.start));
-updateTotal();show('signin');
+updateTotal();show('launch1');
 """
 
 
@@ -317,15 +353,16 @@ proto = f"""<!doctype html>
 <body>
 {SVG}
 <div class="ctl" aria-label="Prototype controls"><span>Prototype:</span>
-<button type="button" data-start="signin">Register a tag</button>
+<button type="button" data-start="launch1">First launch</button>
+<button type="button" data-start="start">Add a tag</button>
 <button type="button" data-start="tags">My tags</button>
 <button type="button" data-start="account">Account</button>
 </div>
-<main class="stage">{"".join(proto_screen(t[0], t[2]) for t in OWNER + LOST)}</main>
+<main class="stage">{"".join(proto_screen(t[0], t[2]) for t in SETUP + OWNER + LOST)}</main>
 <div class="toast" role="status" aria-live="polite"></div>
 <script>{PROTO_JS}</script>
 </body>
 </html>
 """
 PROTO_OUT.write_text(proto)
-print(f"wrote {PROTO_OUT.relative_to(ROOT)}: {len(OWNER) + len(LOST)} screens")
+print(f"wrote {PROTO_OUT.relative_to(ROOT)}: {len(SETUP) + len(OWNER) + len(LOST)} screens")
