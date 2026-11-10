@@ -80,7 +80,7 @@ Trigger: Stages D and E done, app tested on real devices.
 
 - [ ] Buy tagkin.app (planned around 14 Nov 2026; needed before printing real tags)
 - [ ] Apple Developer account ($99 a year) and Google Play Console ($25 once)
-- [ ] Store listings: name, subtitle, description, keywords, screenshots, preview video
+- [ ] Store listings: name, subtitle, description, keywords, preview video; re-shoot the 5 screenshot concepts (docs/design) with the real app
 - [ ] TestFlight and Google internal testing with the earlier testers
 - [ ] Review account and notes for Apple and Google reviewers
 - [ ] Submit, fix review feedback, release

@@ -386,7 +386,7 @@ html = f"""<!doctype html>
 <style id="tokens">
 /* Generated from docs/brand/tokens.css by build_screens.py. Do not edit here. */
 {TOKENS}</style>
-<style>{CSS}{HANDOFF_CSS}</style>
+<style>{CSS}{HANDOFF_CSS}{STORE_CSS}</style>
 </head>
 <body>
 {SVG}
@@ -405,6 +405,7 @@ html = f"""<!doctype html>
 {EMAILS}
 {DESK_FINDER}
 {WEB}
+{STORE}
 {MKT}
 </div>
 <script>

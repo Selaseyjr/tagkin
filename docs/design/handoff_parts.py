@@ -213,3 +213,53 @@ figure.wide{width:100%}
 .covgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.covgrid div{background:var(--tk-sunken);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--tk-ink-2);overflow-wrap:anywhere}.covgrid b{color:var(--tk-ink);font-size:14px}
 @media (max-width:900px){.coverp .cov,.whero,.dcard,.covgrid,.wsteps{grid-template-columns:1fr}.mk.cover{flex-direction:column;aspect-ratio:auto}.mk.cover>div:first-child{max-width:none}.desk{height:auto!important}.wh{font-size:40px}}
 """
+
+
+# ---------- App Store and Google Play screenshot panels ----------
+# Store size 1290 x 2796 (iPhone 6.9"), shown at 300 x 650. Concept panels: final store
+# screenshots must use the real app UI, so these get re-shot from the build before launch.
+def tilt_phone(inner, deg=-8, cls=""):
+    return f'<div class="tphone {cls}" style="transform:rotate({deg}deg)"><div class="scr mini">{SBAR}{inner}</div></div>'
+
+
+_P_FINDER = hdr() + '<div class="urgent"><i>!</i>This item is missing</div><div class="photo sm">🎒</div><h1 class="md">Black backpack</h1><p class="m">The owner is looking for it.</p><div class="sp"></div><div class="btn pri">I found it</div>'
+_P_THREAD = hdr(back("Finder"), "") + '<div class="thread"><div class="bub in2"><b>With me</b> · Darmstadt Hbf<br>I left it at counter 2.<span class="meta">Translated from French</span></div><div class="bub out">Thank you so much 🙏</div></div><div class="sp"></div>'
+_P_TAGS = hdr(LOGO, "") + '<h1 class="md">My tags</h1><div class="item"><span class="tx"><b>Camera bag 📷</b><span>FND-4821</span></span><span class="badge b-n">Safe</span></div><div class="item"><span class="tx"><b>Milo 🐾</b><span>FND-7730</span></span><span class="badge b-l">Lost</span></div><div class="item"><span class="tx"><b>Suitcase 🧳</b><span>FND-2196</span></span><span class="badge b-r">Return</span></div><div class="sp"></div>'
+_P_TRAVEL = hdr() + '<div class="trip"><span>✈️</span><span><b>Travelling to Accra</b><small>With Lufthansa</small></span></div><div class="photo sm">🧳</div><h1 class="md">Please hand me to airline staff.</h1><div class="sp"></div><div class="btn pri">I found it</div>'
+
+
+def store(name, cls, body):
+    return f'<figure data-name="{name}" style="max-width:300px"><figcaption>{name}</figcaption><div class="st {cls}">{body}</div></figure>'
+
+
+STORE = f"""<section class="flow"><h2>App Store and Google Play screenshots</h2><p>Concept set, 1290 × 2796 (shown at 300 × 650). The background pattern runs across panels like one strip. Re-shoot with the real app before submitting.</p><div class="row strip">
+{store("Store 1 · Brand", "s1", '<div class="bigtag"><svg viewBox="0 0 64 64"><use href="#mark"/></svg></div><div class="slogo"><svg width="40" height="40"><use href="#mark"/></svg>tagkin</div><p class="ssub">Protect what you value.<br>Get it back fast.</p>')}
+{store("Store 2 · Found in seconds", "s2", '<h2 class="sh">Found in seconds.</h2><p class="sp2">Whoever finds it scans the tag. No app, no sign-up.</p>' + tilt_phone(_P_FINDER, -7))}
+{store("Store 3 · Private by default", "s3", '<h2 class="sh">Private<br>by default.</h2><p class="sp2">Messages are relayed. Nobody sees your number or email.</p>' + tilt_phone(_P_THREAD, 6) + '<div class="sicons"><span>🔒</span><span>💬</span><span>🌍</span><span>🛡️</span></div>')}
+{store("Store 4 · Every belonging", "s4", '<h2 class="sh">Bags, keys, gear and pets.</h2><p class="sp2">Lost mode, scan alerts and a QR you can test anytime.</p>' + tilt_phone(_P_TAGS, -6))}
+{store("Store 5 · Travel and any language", "s5", '<h2 class="sh">Any trip. Any language.</h2><p class="sp2">Travel tags show where it’s going, never when you’re away. Messages translate both ways.</p>' + tilt_phone(_P_TRAVEL, 7) + '<div class="sgift">🎁 Gift a tag</div>')}
+</div></section>"""
+
+STORE_CSS = """
+.strip{gap:0!important}
+.strip figure{margin-right:12px}
+.st{width:300px;height:650px;border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;padding:34px 24px;gap:12px;
+ background-image:radial-gradient(circle at center,transparent 26px,rgb(255 255 255 / .09) 27px,rgb(255 255 255 / .09) 29px,transparent 30px);background-size:72px 72px}
+.st .sh{font:700 34px/1.02 var(--tk-font-display);letter-spacing:-.025em;margin:0;position:relative;z-index:1}
+.st .sp2{font-size:15px;line-height:1.4;margin:0;opacity:.9;position:relative;z-index:1}
+.s1{background-color:#00c48c;color:#03261a;justify-content:flex-end;align-items:center;text-align:center}
+.s2{background-color:#0b1712;color:#eefaf5}.s2 .sh{color:#1fe0a6}
+.s3{background-color:#00c48c;color:#03261a}
+.s4{background-color:#0f3a2c;color:#eefaf5}.s4 .sh{color:#5cebc0}
+.s5{background-color:#d9f7ec;color:#0b1712;background-image:radial-gradient(circle at center,transparent 26px,rgb(0 122 87 / .1) 27px,rgb(0 122 87 / .1) 29px,transparent 30px)}.s5 .sh{color:#007a57}.s5 .sgift{background:#0b1712;color:#fff}
+.bigtag{position:absolute;top:60px;left:50%;width:250px;height:250px;transform:translateX(-50%) rotate(-14deg);color:#03261a;filter:drop-shadow(0 30px 40px rgb(3 38 26 / .35))}
+.bigtag svg{width:100%;height:100%}
+.slogo{display:flex;align-items:center;gap:10px;font:700 48px/1 var(--tk-font-display);letter-spacing:-.03em}
+.ssub{font:600 18px/1.35 var(--tk-font-body);margin:0 0 30px}
+.tphone{position:absolute;left:44px;bottom:-60px;filter:drop-shadow(0 24px 36px rgb(0 0 0 / .35))}
+.tphone .scr.mini{width:230px;height:470px;color:var(--tk-ink);background:#fff;border:0}
+.s3 .tphone,.s5 .tphone{left:auto;right:-16px}
+.sicons{position:absolute;left:20px;bottom:24px;display:flex;flex-direction:column;gap:8px;z-index:2}
+.sicons span{width:44px;height:44px;border-radius:12px;background:#03261a;display:grid;place-items:center;font-size:20px}
+.sgift{position:absolute;left:20px;bottom:28px;background:#fff;color:#0b1712;border-radius:99px;padding:10px 16px;font-weight:700;z-index:2;box-shadow:0 8px 20px rgb(0 0 0 / .2)}
+"""
