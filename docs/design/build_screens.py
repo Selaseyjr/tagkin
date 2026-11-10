@@ -201,6 +201,7 @@ input.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-
 .li.offer span{color:var(--tk-brand-text);font-weight:600}
 figure .proto-l,figure .proto{display:none}
 .acct.tight~.grpl .li{padding:10px 2px}
+.invite{border:1px solid var(--tk-brand);background:var(--tk-brand-soft);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}.invite b{display:block}.invite span{font-size:13px;color:var(--tk-ink-2)}
 .proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
@@ -256,7 +257,7 @@ FINDER = [
     ("Finder 3 · Where exactly?", hdr(back(), steps(2)) + '<h1>Where exactly?</h1><div class="in focus">hbf</div><div><div class="sug">📍<span><b>Darmstadt Hbf</b>, Lost &amp; Found desk</span></div><div class="sug">📍<span><b>Darmstadt Hbf</b>, Platform 4</span></div><div class="sug">📍<span><b>Darmstadt Hbf</b>, bus stop A</span></div></div><div class="btn sec">📍 Share item location</div><p class="xs">Only the city is shown unless you share the item location.</p><div class="sp"></div><div class="btn pri">Next</div>'),
     ("Finder 4 · Anything else?", hdr(back(), steps(3)) + '<h1>Anything else?</h1><div class="in ta val">Left it with the staff at counter 2. Call me on +49 151 2345678</div><p class="xs">Only add your number or email if you want the owner to contact you directly.</p><p class="note warn">This will share your number with the owner. Continue?</p><div class="sp"></div><div class="btn pri">Next</div><div class="btn ghost">Skip</div>'),
     ("Finder 5 · Want a reply?", hdr(back(), steps(4)) + '<h1>Want a reply?</h1><div class="seg"><span class="on">Email</span><span>Phone</span></div><div class="in">Email (kept hidden)</div><p class="xs">The owner never sees it. Replies are passed on by Tagkin.</p><p class="note info">Without an email or phone number, keep this page open to receive replies.</p><div class="sp"></div><div class="btn pri">Send to owner</div><div class="btn sec">Send anonymously</div>'),
-    ("Finder 6 · Thank you", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="big center">Thank you.</h1><p class="m center">The owner has been told where it is. Keep this page open to see their reply.</p><div class="thread"><div class="bub in2"><b>Owner</b><br>Thank you so much! I\'ll pick it up tonight.</div></div><div class="sp"></div><span class="xs center">Report abuse</span>'),
+    ("Finder 6 · Thank you", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="big center">Thank you.</h1><p class="m center">The owner has been told where it is. Keep this page open to see their reply.</p><div class="thread"><div class="bub in2"><b>Owner</b><br>Thank you so much! I\'ll pick it up tonight.</div></div><div class="sp"></div><div class="invite"><b>Protect your own things</b><span>Your first printed tag is €2 off.</span></div><span class="xs center">Report abuse</span>'),
     ("Finder 1t · Travel tag", hdr() + '<div class="trip"><span>✈️</span><span><b>I\'m travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div><div class="photo sm">🧳</div><h1 class="md">Please hand me to airline or hotel staff, or message my owner.</h1><span class="link">Translated from German · Show original</span><div class="sp"></div><div class="btn pri">I found it</div>' + PRIV),
     ("Finder 1p · Pet tag", hdr() + '<div class="photo sm">🐕<small>Photo updated 1 week ago</small></div><h1 class="md">Hi, I\'m Milo. I\'m friendly. Please message my owner. I may be scared.</h1><div class="chips"><span class="chip">Friendly</span><span class="chip">Shy with dogs</span></div><div class="li"><span>Care notes</span><span>Show ›</span></div><div class="sp"></div><div class="btn pri">I found Milo</div>' + PRIV),
     ("Finder R · Report this tag", hdr(back(), "") + '<h1>Report this tag</h1><p class="m">Tell us what\'s wrong. Your report is private.</p>' + '<div class="grp">' + opt("The message is abusive or spam") + opt("It looks fake or misleading", True) + opt("Something else") + '</div><p class="note warn">If someone is in danger, call 112 now.</p><div class="sp"></div><div class="btn pri">Send report</div>'),
@@ -517,3 +518,108 @@ proto = f"""<!doctype html>
 """
 PROTO_OUT.write_text(proto)
 print(f"wrote {PROTO_OUT.relative_to(ROOT)}: {len(SETUP) + len(OWNER) + len(GIFT) + len(LOST) + len(STATES) + len(EXTRA)} screens")
+
+
+# ---------- Clickable finder prototype (web, no app) ----------
+FINDER_OUT = ROOT / "docs/design/finder-prototype.html"
+FP = PRIV
+F_SCREENS = [
+    ("f-code", hdr() + '<h1>Found something with a Tagkin tag?</h1><p class="m">Type the code printed under the QR.</p><input class="in" id="f-codein" placeholder="FND-4821" autocomplete="off" aria-label="Tag code"><p class="errt" id="f-codeerr" hidden>No tag with that code. Check the letters and numbers and try again.</p><div class="btn pri" id="f-codego">Find tag</div><p class="xs">Try FND-4821, OLD-0001 (retired) or NEW-0001 (not set up yet).</p><div class="sp"></div>' + FP),
+    ("f-msg", hdr() + '<div id="f-banner"></div><div class="photo" id="f-photo">🎒<small>Photo updated 3 days ago</small></div><h1 id="f-title">Found me? Thank you! Tap below to tell my owner where I am.</h1><span class="link" id="f-orig">Translated from German · Show original</span><div id="f-extra"></div><div class="sp"></div><div class="btn pri"' + go("f-where") + ' id="f-found">I found it</div>' + FP),
+    ("f-where", hdr(backto("f-msg"), steps(1)) + '<h1>Where is it now?</h1><div class="grp" id="f-whereopts">' + opt("With me") + opt("Handed to staff") + opt("Left where I found it") + '</div><div class="sp"></div><div class="btn pri off" id="f-wherenext">Next</div>'),
+    ("f-place", hdr(backto("f-where"), steps(2)) + '<h1>Where exactly?</h1><input class="in" id="f-placein" placeholder="Input location here" autocomplete="off" aria-label="Location"><div id="f-sugs"></div><div class="btn sec" id="f-loc">📍 Share item location</div><p class="xs" id="f-locnote">Only the city is shown unless you share the item location.</p><div class="sp"></div><div class="btn pri off" id="f-placenext">Next</div>'),
+    ("f-note", hdr(backto("f-place"), steps(3)) + '<h1>Anything else?</h1><textarea class="in ta" id="f-notein" placeholder="Optional note, e.g. name of who you are leaving the item with, exact landmark" aria-label="Note"></textarea><p class="xs">Only add your number or email if you want the owner to contact you directly.</p><label class="check" id="f-share" hidden><i>✓</i><span>This will share your contact with the owner. Continue?</span></label><div class="sp"></div><div class="btn pri" id="f-notenext">Next</div><div class="btn ghost"' + go("f-reply") + '>Skip</div>'),
+    ("f-reply", hdr(backto("f-note"), steps(4)) + '<h1>Want a reply?</h1><div class="seg" id="f-ch"><span class="on" data-ch="email">Email</span><span data-ch="phone">Phone</span></div><input class="in" id="f-mail" type="email" placeholder="Email (kept hidden)" aria-label="Email or phone"><p class="xs">The owner never sees it. Replies are passed on by Tagkin.</p><p class="note info">Without an email or phone number, keep this page open to receive replies.</p><div class="sp"></div><div class="btn pri" id="f-send">Send to owner</div><div class="btn sec" id="f-anon">Send anonymously</div>'),
+    ("f-thanks", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="big center">Thank you.</h1><p class="m center" id="f-thanksub">The owner has been told where it is.</p><div class="thread"><div class="bub in2" id="f-replybox"><span class="dots"><i></i><i></i><i></i> Waiting for the owner\'s reply</span></div></div><div class="sp"></div><div class="invite"><b>Protect your own things</b><span>Your first printed tag is €2 off.</span></div><span class="link center"' + go("f-report") + '>Report abuse</span>'),
+    ("f-report", hdr(backto("f-msg"), "") + '<h1>Report this tag</h1><p class="m">Tell us what\'s wrong. Your report is private.</p><div class="grp">' + opt("The message is abusive or spam") + opt("It looks fake or misleading") + opt("Something else") + '</div><p class="note warn">If someone is in danger, call 112 now.</p><div class="sp"></div><div class="btn pri" data-toast="Report sent. Thank you."' + go("f-msg") + '>Send report</div>'),
+    ("f-retired", hdr() + '<div class="sp"></div><h1 class="center">This tag is no longer active.</h1><p class="m center">Please hand the item to staff or a lost-and-found desk.</p><div class="sp"></div><div class="btn sec"' + go("f-code") + '>Enter another code</div>'),
+    ("f-new", hdr() + '<div class="sp"></div><div class="hero"><span class="bell"><svg width="52" height="52"><use href="#mark"/></svg></span></div><h1 class="center">This tag isn\'t set up yet.</h1><p class="m center">If you found it on something, please hand it to staff or a lost-and-found desk.</p><div class="sp"></div><p class="xs center">Is this your tag?</p><div class="btn pri" data-toast="Opens the Tagkin app">Activate it in the Tagkin app</div>'),
+]
+F_JS = """
+const $=s=>document.querySelector(s),all=s=>document.querySelectorAll(s);
+function show(id){all('.stage .scr').forEach(x=>x.classList.toggle('on',x.id===id));window.scrollTo(0,0);}
+let tt;function toast(t){const e=$('.toast');e.textContent=t;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),1800);}
+const V={
+ item:{photo:'🎒<small>Photo updated 3 days ago</small>',title:'Found me? Thank you! Tap below to tell my owner where I am.',orig:'Gefunden? Danke! Tippe unten, um meinem Besitzer zu sagen, wo ich bin.',banner:'',extra:'',btn:'I found it'},
+ lost:{photo:'🎒',title:'Black backpack',orig:'',banner:'<div class="urgent"><i>!</i>This item is missing</div>',extra:'<p class="m">The owner is looking for it. Please tell them where it is.</p>',btn:'I found it'},
+ travel:{photo:'🧳',title:'Please hand me to airline or hotel staff, or message my owner.',orig:'Bitte gib mich dem Personal der Airline oder des Hotels oder schreib meinem Besitzer.',banner:'<div class="trip"><span>✈️</span><span><b>I’m travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div>',extra:'',btn:'I found it'},
+ pet:{photo:'🐕<small>Photo updated 1 week ago</small>',title:'Hi, I’m Milo. I’m friendly. Please message my owner. I may be scared.',orig:'Hallo, ich bin Milo. Ich bin freundlich. Bitte schreib meiner Familie. Ich habe vielleicht Angst.',banner:'',extra:'<div class="chips"><span class="chip">Friendly</span><span class="chip">Shy with dogs</span></div><div class="li" id="f-care"><span>Care notes</span><span>Show ›</span></div>',btn:'I found Milo'},
+ test:{photo:'🎒<small>Photo updated 3 days ago</small>',title:'Found me? Thank you! Tap below to tell my owner where I am.',orig:'',banner:'<div class="testban">Test scan · The owner is testing this tag. Nothing you send here reaches anyone.</div>',extra:'',btn:'I found it'}};
+let cur='item',orig=false,shared=false,ch='email',timer;
+function reset(){all('#f-whereopts .opt').forEach(o=>o.classList.remove('on'));$('#f-wherenext').classList.add('off');
+ $('#f-placein').value='';$('#f-sugs').innerHTML='';shared=false;$('#f-loc').textContent='📍 Share item location';$('#f-locnote').textContent='Only the city is shown unless you share the item location.';$('#f-placenext').classList.add('off');
+ $('#f-notein').value='';$('#f-share').hidden=true;$('#f-share').classList.remove('on');$('#f-notenext').classList.remove('off');
+ $('#f-mail').value='';setCh('email');$('#f-codein').value='';$('#f-codeerr').hidden=true;}
+function scan(v){cur=v;orig=false;reset();const d=V[v];$('#f-photo').innerHTML=d.photo;$('#f-title').textContent=d.title;$('#f-banner').innerHTML=d.banner;$('#f-extra').innerHTML=d.extra;$('#f-found').textContent=d.btn;
+ $('#f-orig').hidden=!d.orig;$('#f-orig').textContent='Translated from German · Show original';show('f-msg');}
+function setCh(c){ch=c;all('#f-ch span').forEach(x=>x.classList.toggle('on',x.dataset.ch===c));const i=$('#f-mail');i.value='';i.type=c==='email'?'email':'tel';i.placeholder=c==='email'?'Email (kept hidden)':'Phone number (kept hidden)';}
+const PLACES=['Darmstadt Hbf, Lost & Found desk','Darmstadt Hbf, Platform 4','Darmstadt Hbf, bus stop A','Luisenplatz, Darmstadt','Luisencenter, Darmstadt','Herrngarten, Darmstadt','Frankfurt (Main) Hbf, Lost & Found','Frankfurt Airport, Terminal 1'];
+const placeOk=()=>$('#f-placenext').classList.toggle('off',!($('#f-placein').value.trim()||shared));
+$('#f-placein').addEventListener('input',()=>{const q=$('#f-placein').value.trim().toLowerCase(),b=$('#f-sugs');b.innerHTML='';
+ if(q.length>=2)PLACES.filter(p=>p.toLowerCase().includes(q)).slice(0,5).forEach(p=>{const d=document.createElement('div');d.className='sug';d.textContent='📍 '+p;d.onclick=()=>{$('#f-placein').value=p;b.innerHTML='';placeOk();};b.appendChild(d);});placeOk();});
+const contactRe=/(\\+?\\d[\\d\\s\\-()]{6,}\\d)|([^\\s@]+@[^\\s@]+\\.[^\\s@]+)/;
+$('#f-notein').addEventListener('input',()=>{const hit=contactRe.test($('#f-notein').value);$('#f-share').hidden=!hit;if(!hit)$('#f-share').classList.remove('on');$('#f-notenext').classList.toggle('off',hit&&!$('#f-share').classList.contains('on'));});
+function finish(anon){show('f-thanks');clearTimeout(timer);
+ $('#f-thanksub').textContent=cur==='test'?'Test scan: nothing was sent.':anon?'The owner has been told where it is. Keep this page open to see their reply.':(ch==='email'?'The owner has been told where it is. Their reply will come to your email.':'The owner has been told where it is. Their reply will come by text message.');
+ $('#f-replybox').innerHTML='<span class="dots"><i></i><i></i><i></i> Waiting for the owner\\'s reply</span>';
+ if(cur!=='test')timer=setTimeout(()=>{$('#f-replybox').innerHTML='<b>Owner</b><br>Thank you so much! I\\'ll pick it up tonight.';},3000);else $('#f-replybox').textContent='No reply in a test.';}
+document.addEventListener('click',e=>{
+ const st=e.target.closest('[data-scan]');if(st){scan(st.dataset.scan);return;}
+ if(e.target.closest('[data-start=f-code]')){reset();show('f-code');return;}
+ if(e.target.closest('#f-codego')){const v=$('#f-codein').value.trim().toUpperCase().replace(/\\s/g,'');
+   if(v==='FND-4821'||v==='FND4821')scan('item');else if(v==='OLD-0001'||v==='OLD0001')show('f-retired');else if(v==='NEW-0001'||v==='NEW0001')show('f-new');else $('#f-codeerr').hidden=false;}
+ if(e.target.closest('#f-orig')){const d=V[cur];orig=!orig;$('#f-title').textContent=orig?d.orig:d.title;$('#f-orig').textContent=orig?'Original in German · Show translation':'Translated from German · Show original';}
+ if(e.target.closest('#f-care')){$('#f-care').outerHTML='<p class="note info">Needs daily medication at 8 pm. Allergic to chicken.</p>';}
+ const o=e.target.closest('.grp .opt');if(o){o.parentElement.querySelectorAll('.opt').forEach(x=>x.classList.toggle('on',x===o));if(o.closest('#f-whereopts'))$('#f-wherenext').classList.remove('off');}
+ if(e.target.closest('#f-wherenext')&&!$('#f-wherenext').classList.contains('off'))show('f-place');
+ if(e.target.closest('#f-loc')){shared=true;$('#f-loc').textContent='✓ Item location shared';$('#f-locnote').textContent='The owner will see the exact spot where the item is.';placeOk();}
+ if(e.target.closest('#f-placenext')&&!$('#f-placenext').classList.contains('off'))show('f-note');
+ const ck=e.target.closest('#f-share');if(ck){ck.classList.toggle('on');$('#f-notenext').classList.toggle('off',!ck.classList.contains('on'));}
+ if(e.target.closest('#f-notenext')&&!$('#f-notenext').classList.contains('off'))show('f-reply');
+ const c=e.target.closest('#f-ch span');if(c)setCh(c.dataset.ch);
+ if(e.target.closest('#f-send')){const v=$('#f-mail').value.trim();const ok=ch==='email'?/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v):/^\\+?[\\d\\s\\-()]{7,}$/.test(v);if(v&&!ok){$('#f-mail').focus();toast(ch==='email'?'Check the email address':'Check the phone number');return;}finish(!v);}
+ if(e.target.closest('#f-anon'))finish(true);
+ const m=e.target.closest('[data-toast]');if(m)toast(m.dataset.toast);
+ const l=e.target.closest('[data-go]');if(l)show(l.dataset.go);
+});
+const r=document.documentElement;
+scan('item');
+"""
+finder_proto = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tagkin finder prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap">
+<style id="tokens">
+/* Generated from docs/brand/tokens.css by build_screens.py. Do not edit here. */
+{TOKENS}</style>
+<style>{CSS}{PROTO_CSS}
+.off{{opacity:.4;pointer-events:auto}}
+textarea.in{{font:400 16px var(--tk-font-body);color:var(--tk-ink);border:0;width:100%;outline:none;resize:vertical;padding:14px 16px}}
+textarea.in:focus{{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-brand)}}
+.check[hidden],.errt[hidden],.link[hidden]{{display:none}}
+.sug{{cursor:pointer}}
+</style>
+</head>
+<body>
+{SVG}
+<div class="ctl" aria-label="Prototype controls"><span>Prototype:</span>
+<button type="button" data-scan="item">Scan QR</button>
+<button type="button" data-scan="lost">Lost mode</button>
+<button type="button" data-scan="travel">Travel</button>
+<button type="button" data-scan="pet">Pet</button>
+<button type="button" data-start="f-code">Typed tagkin.app</button>
+<button type="button" data-scan="test">Owner test scan</button>
+</div>
+<main class="stage">{"".join(proto_screen(k, b) for k, b in F_SCREENS)}</main>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>{F_JS}</script>
+</body>
+</html>
+"""
+FINDER_OUT.write_text(finder_proto)
+print(f"wrote {FINDER_OUT.relative_to(ROOT)}: {len(F_SCREENS)} screens")
