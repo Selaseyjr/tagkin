@@ -25,5 +25,8 @@ docs/BUSINESS-RULES.md lists the rules Tagkin runs by. Check new features agains
 ## Roadmap
 docs/ROADMAP.md lists every open item by stage with its trigger. At the start of each task, check which stage is active and tell Selasey when a stage's trigger is reached.
 
+## Product owner flow
+Follow the 10-step flow in docs/ROADMAP.md (discover, validate, design, specify, backlog, technical design, build, test, launch, measure). Name the current step when proposing work.
+
 ## Phase status
 1 Define: done. 2 Validate: done (3 conversations). 3 Design: flows, wireframes, prototypes, logo and visual design done; Stage A (store-ready screens) next. Target: App Store and Google Play.

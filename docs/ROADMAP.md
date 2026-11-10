@@ -4,6 +4,25 @@ Every open item, grouped by the stage where it belongs. Each item says **when** 
 
 Target: a fully working live app on the App Store and Google Play. Owners use the app; finders use the web (no install).
 
+## Product owner flow (how Tagkin is run)
+
+One defined sequence, each step with its artefact. The stages below (A to G) sit inside it.
+
+| # | Step | Question it answers | Artefact | Status |
+|---|---|---|---|---|
+| 1 | **Discover and define** | What problem, for whom, why now? | PRODUCT-BRIEF.md (problem, principles, competitors, positioning) | Done |
+| 2 | **Validate** | Do real people have this problem and understand the solution? | 3 interviews; finder prototype tested by 5 people | Done |
+| 3 | **Design** | What will people see and do? | User flows, wireframes, prototypes, design system, 87 screens | Done (Stage A) |
+| 4 | **Specify** | What must be true, and how does it behave? | BUSINESS-RULES.md, SYSTEM-LOGIC.md (functional spec), audit | Done |
+| 5 | **Plan the backlog** | What exactly gets built, in what order, and when is it done? | Epics and user stories with acceptance criteria in GitHub; MVP scope (MoSCoW); Definition of Ready and Done; milestones | **Next** |
+| 6 | **Technical design** | How will it be built? | Architecture and decision records (stack, hosting, providers), API outline | After 5 (Stage C) |
+| 7 | **Build** | Sprints against the backlog | Working increments, demos | Stage D |
+| 8 | **Test and comply** | Does it work, and is it allowed? | Test plan, beta, legal texts, store reviews | Stages D to F |
+| 9 | **Launch** | Release | Store listings, website live | Stage F |
+| 10 | **Measure and learn** | Did it work? What next? | Metrics, case study, next backlog | Stage G |
+
+Running alongside: buy the domain (by 15 Nov), Figma import and Community publish (Stage B, after the domain), order print samples (before step 6 decisions).
+
 ## Stage A · Design completion (done 11 Nov 2026)
 
 Trigger: start now. The Figma import and Community publish wait until this stage is done.
