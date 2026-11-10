@@ -28,7 +28,7 @@ NOTES = {
     "Owner 2 · Enter code": "6-digit email code, valid 10 minutes, 5 attempts.",
     "Owner 3 · Tag type": "Type is locked after creation. Item → details, Travel → Type 1, Pet → Type 2.",
     "Owner 5 · Finder message": "Template or own text, 160 characters, live count. Warns on phone or email; blocks abusive words.",
-    "Owner 6 · Design": "Preselected from type: item → sticker, travel → luggage label, pet → pet tag. Address and code always printed.",
+    "Owner 6 · Customise": "Preselected from type: item → sticker, travel → luggage label, pet → pet tag. Address and code always printed.",
     "Owner 7c · Order your tag": "For me / Gift a tag switch. Prices are samples until the print partner is chosen.",
     "Owner 7e · Review and pay": "First tag offer as a discount line (not a struck-through price, EU rule). Payment by Stripe or the print partner.",
     "Owner 10 · Confirm Lost": "Locks name, photo, description until found or returned.",

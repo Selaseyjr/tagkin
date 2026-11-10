@@ -14,6 +14,9 @@ Read docs/PRODUCT-BRIEF.md first. It is the single source of truth: add every de
 - Figma: account selaseygbeddy@gmail.com, Starter plan (MCP tool-call limit was hit on 6 Nov; Chrome export works when signed in).
 - Portfolio: ~/Documents/career-workspace/portfolio/site (Vercel project selasey-gbeddy).
 
+## Business rules
+docs/BUSINESS-RULES.md lists the rules Tagkin runs by. Check new features against it, and update it in the same turn as any rule change.
+
 ## Roadmap
 docs/ROADMAP.md lists every open item by stage with its trigger. At the start of each task, check which stage is active and tell Selasey when a stage's trigger is reached.
 

@@ -165,7 +165,7 @@ h1.big{font-size:var(--tk-text-2xl)}
 .icons{display:flex;gap:16px}
 .appicon{width:76px;height:76px;border-radius:18px;background:var(--tk-brand);color:#03261a;display:grid;place-items:center;box-shadow:0 0 0 2px rgb(3 38 26 / .25)}
 .appicon.dk{background:#0b1712;color:#1fe0a6}
-.photo.sm{height:130px;font-size:44px}.add.sm{height:72px}.ta.sm{min-height:76px}h1.md{font-size:22px}
+.photo.sm{height:130px;font-size:44px}.photo.xs{height:88px;font-size:34px}.add.sm{height:72px}.ta.sm{min-height:76px}h1.md{font-size:22px}
 input.in{font:400 16px var(--tk-font-body);color:var(--tk-ink);border:0;width:100%;outline:none}
 input.in::placeholder{color:var(--tk-ink-2)}
 input.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-brand)}
@@ -182,7 +182,7 @@ input.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-
 .thp.light{background:#fff;color:#0b1712}.thp.dark{background:#0b1712;color:#1fe0a6}.thp.auto{background:linear-gradient(90deg,#fff 50%,#0b1712 50%);color:#00c48c}
 .qrb{width:36px;height:36px;border-radius:10px;border:1px solid var(--tk-line);display:grid;place-items:center;color:var(--tk-ink);flex:none;margin-left:-4px}
 .bigqr{align-self:center;background:#fff;border-radius:var(--tk-radius-lg);padding:18px;text-align:center;box-shadow:var(--tk-shadow);flex:none}
-.bigqr .qr{width:170px;height:170px;background-size:17px 17px;margin:0 auto 8px}
+.bigqr .qr{width:160px;height:160px;background-size:16px 16px;margin:0 auto 8px}
 .bigqr small{font-weight:600;font-size:13px;color:#4f5e57}
 .testbox{display:flex;gap:12px;align-items:flex-start;background:var(--tk-sunken);border-radius:var(--tk-radius-md);padding:12px 14px;flex:none}
 .testbox b{display:block}.testbox small{font-size:13px;color:var(--tk-ink-2)}
@@ -220,6 +220,29 @@ figure .proto-l,figure .proto{display:none}
 .stat{margin:0;font-size:13px;font-weight:600;color:var(--tk-brand-text);flex:none}
 textarea.in{font:400 16px var(--tk-font-body);color:var(--tk-ink);border:0;width:100%;outline:none;resize:none;padding:14px 16px}
 textarea.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--tk-brand)}
+.pm-wrap{display:grid;place-items:center;min-height:204px;background:var(--tk-sunken);border-radius:var(--tk-radius-lg);flex:none}
+.pm-wrap.sm{min-height:0;width:96px;height:120px;border-radius:14px;flex:none;overflow:hidden}
+.pm{--c:#00c48c;display:grid;place-items:center;position:relative;transition:all var(--tk-slow) var(--tk-ease)}
+.pmb{background:#fff;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border-radius:12px;color:#0b1712}
+.pmb .qr{width:64px;height:64px;background-size:8px 8px;margin:0}.pmb small{font-size:8px;font-weight:700;color:#4f5e57}
+.pm.sticker{width:180px;height:180px;border-radius:50%;background:var(--c);box-shadow:0 10px 24px rgb(0 0 0 / .15),inset 0 0 0 1px rgb(0 0 0 / .08)}
+.pm.sticker .pmb{border-radius:50%;width:130px;height:130px;justify-content:center}
+.pm.keychain{width:124px;height:186px;border-radius:22px;background:var(--c);box-shadow:0 10px 24px rgb(0 0 0 / .15),inset 0 0 0 1px rgb(0 0 0 / .08);padding-top:22px}
+.pm.keychain::before{content:"";position:absolute;top:-26px;width:44px;height:44px;border-radius:50%;border:5px solid #9aa6a1}
+.pm.keychain::after{content:"";position:absolute;top:10px;width:14px;height:14px;border-radius:50%;background:var(--tk-sunken);box-shadow:inset 0 0 0 1px rgb(0 0 0 / .15)}
+.pm.pet{width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgb(255 255 255 / .55),transparent 45%),var(--c);box-shadow:0 10px 24px rgb(0 0 0 / .2)}
+.pm.pet::before{content:"";position:absolute;top:-18px;width:26px;height:26px;border-radius:50%;border:4px solid #9aa6a1}
+.pm.pet .pmb{border-radius:50%;width:112px;height:112px;justify-content:center}.pm.pet .pmk{display:none}
+.pm.luggage{width:118px;height:200px;border-radius:16px;background:var(--c);box-shadow:0 10px 24px rgb(0 0 0 / .15),inset 0 0 0 1px rgb(0 0 0 / .08);padding-top:28px}
+.pm.luggage::before{content:"";position:absolute;top:10px;width:46px;height:10px;border-radius:5px;background:var(--tk-sunken)}
+.pm.lock{width:112px;height:210px;border-radius:22px;background:linear-gradient(170deg,#2b3b52,#0d1311);border:4px solid #0b1712;align-items:end;padding:10px}
+.pm.lock .pmb{flex-direction:row;padding:6px;gap:6px;border-radius:10px;box-shadow:inset 0 0 0 3px var(--c)}.pm.lock .pmb .qr{width:34px;height:34px;background-size:4px 4px}.pm.lock .pmk{display:none}
+.pm.mini{transform:scale(.5)}
+.swatches{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;flex:none}
+.swc{flex:none;width:30px;height:30px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgb(0 0 0 / .15);cursor:pointer}
+.swc.on{outline:3px solid var(--tk-brand);outline-offset:3px}
+.ordrow{display:flex;gap:14px;align-items:center;flex:none}.ordinfo{display:flex;flex-direction:column;gap:2px;min-width:0}.ordinfo small{font-size:13px;color:var(--tk-ink-2)}
+.lockn[hidden]{display:none}
 .proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
@@ -282,10 +305,10 @@ FINDER = [
     ("Finder 4 · Anything else?", hdr(back(), steps(3)) + '<h1>Anything else?</h1><div class="in ta val">Left it with the staff at counter 2. Call me on +49 151 2345678</div><p class="xs">Only add your number or email if you want the owner to contact you directly.</p><p class="note warn">This will share your number with the owner. Continue?</p><div class="sp"></div><div class="btn pri">Next</div><div class="btn ghost">Skip</div>'),
     ("Finder 5 · Want a reply?", hdr(back(), steps(4)) + '<h1>Want a reply?</h1><div class="seg"><span class="on">Email</span><span>Phone</span></div><div class="in">Email (kept hidden)</div><p class="xs">The owner never sees it. Replies are passed on by Tagkin.</p><p class="note info">Without an email or phone number, keep this page open to receive replies.</p><div class="sp"></div><div class="btn pri">Send to owner</div><div class="btn sec">Send anonymously</div>'),
     ("Finder 6 · Thank you", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="big center">Thank you.</h1><p class="m center">The owner has been told where it is. Keep this page open to see their reply.</p><div class="thread"><div class="bub in2"><b>Owner</b><br>Thank you so much! I\'ll pick it up tonight.</div></div><div class="sp"></div><div class="invite"><b>Protect your own things</b><span>Your first printed tag is €2 off.</span></div><span class="xs center">Report abuse</span>'),
-    ("Finder 1t · Travel tag", hdr() + '<div class="trip"><span>✈️</span><span><b>I\'m travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div><p class="stat">✓ Owner update: arrived in Accra</p><div class="photo sm">🧳</div><h1 class="md">Please hand me to airline or hotel staff, or message my owner.</h1><span class="link">Translated from German · Show original</span><div class="sp"></div><div class="btn pri">I found it</div>' + PRIV),
+    ("Finder 1t · Travel tag", hdr() + '<div class="trip"><span>✈️</span><span><b>I\'m travelling to Accra</b><small>With Lufthansa · from Frankfurt</small></span></div><p class="stat">✓ Owner update: arrived in Accra</p><div class="photo xs">🧳</div><h1 class="md">Please hand me to airline or hotel staff, or message my owner.</h1><span class="link">Translated from German · Show original</span><div class="sp"></div><div class="btn pri">I found it</div>' + PRIV),
     ("Finder 1p · Pet tag", hdr() + '<div class="photo sm">🐕<small>Photo updated 1 week ago</small></div><h1 class="md">Hi, I\'m Milo. I\'m friendly. Please message my owner. I may be scared.</h1><div class="chips"><span class="chip">Friendly</span><span class="chip">Shy with dogs</span></div><div class="li"><span>Care notes</span><span>Show ›</span></div><div class="sp"></div><div class="btn pri">I found Milo</div>' + PRIV),
     ("Finder R · Report this tag", hdr(back(), "") + '<h1>Report this tag</h1><p class="m">Tell us what\'s wrong. Your report is private.</p>' + '<div class="grp">' + opt("The message is abusive or spam") + opt("It looks fake or misleading", True) + opt("Something else") + '</div><p class="note warn">If someone is in danger, call 112 now.</p><div class="sp"></div><div class="btn pri">Send report</div>'),
-    ("Finder T · Owner test scan", hdr() + '<div class="testban">Test scan · The owner is testing this tag. Nothing you send here reaches anyone.</div><div class="photo">🎒<small>Photo updated 3 days ago</small></div><h1>Found me? Thank you! Tap below to tell my owner where I am.</h1><div class="sp"></div><div class="btn pri">I found it</div>' + PRIV),
+    ("Finder T · Owner test scan", hdr() + '<div class="testban">Test scan · The owner is testing this tag. Nothing you send here reaches anyone.</div><div class="photo sm">🎒<small>Photo updated 3 days ago</small></div><h1>Found me? Thank you! Tap below to tell my owner where I am.</h1><div class="sp"></div><div class="btn pri">I found it</div>' + PRIV),
     ("Finder U · Tag not set up yet", hdr() + '<div class="sp"></div><div class="hero"><span class="bell"><svg width="52" height="52"><use href="#mark"/></svg></span></div><h1 class="center">This tag isn\'t set up yet.</h1><p class="m center">If you found it on something, please hand it to staff or a lost-and-found desk.</p><div class="sp"></div><p class="xs center">Is this your tag?</p><div class="btn pri">Activate it in the Tagkin app</div>'),
     ("Finder X · Tag not active", hdr() + '<div class="sp"></div><h1 class="center">This tag is no longer active.</h1><p class="m center">Please hand the item to staff or a lost-and-found desk.</p><div class="sp"></div><div class="btn sec">Enter another code</div>'),
 ]
@@ -315,13 +338,13 @@ def tabbar(active):
 OWNER = [
     ("signin", "Owner 1 · Sign in", hdr() + '<div class="sp"></div><h1 class="big">Make your first tag</h1><p class="m">No password. We send you a code.</p><div class="in val">alex@example.com</div><div class="btn pri"' + go("code") + '>Send code</div><div class="sp"></div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your contact is never shown. Finders message you through Tagkin.</p>'),
     ("code", "Owner 2 · Enter code", hdr(backto("signin")) + '<h1>Check your email</h1><p class="m">We sent a 6-digit code to a•••@example.com</p><div class="code"><i>4</i><i>8</i><i>2</i><i>9</i><i>1</i><i class="on">7</i></div><div class="btn pri"' + go("perm-notif") + '>Continue</div><p class="xs">Resend code in 30 s</p>'),
-    ("pick", "Setup 5b · Pick your tag", hdr(backto("start"), "") + '<h1>Pick your tag</h1><p class="m">See how it will look. You can change it later.</p><div class="gal">' + ''.join(f'<div class="gcard" data-style="{st}" data-type="{ty}"' + go("type") + f'><span class="gobj">{ob}<i class="gtag {cl}"><svg width="12" height="12"><use href="#mark"/></svg></i></span><b>{st}</b><small>{sub}</small></div>' for st, ty, ob, cl, sub in [("Sticker", 0, "🎒", "", "Bags, laptops, cases"), ("Keychain", 0, "🔑", "kc", "Keys and fobs"), ("Pet tag", 2, "🐕", "pt", "Collars"), ("Luggage label", 1, "🧳", "lb", "Suitcases"), ("Lock screen", 0, "📱", "ls", "Your phone, free")]) + '</div>'),
+    ("pick", "Setup 5b · Choose your type of tag", hdr(backto("start"), "") + '<h1>Choose your type of tag</h1><p class="m">Next you’ll name it, write the finder message and pick a colour.</p><div class="gal">' + ''.join(f'<div class="gcard" data-style="{st}" data-type="{ty}"' + go("type") + f'><span class="gobj">{ob}<i class="gtag {cl}"><svg width="12" height="12"><use href="#mark"/></svg></i></span><b>{st}</b><small>{sub}</small></div>' for st, ty, ob, cl, sub in [("Sticker", 0, "🎒", "", "Bags, laptops, cases"), ("Keychain", 0, "🔑", "kc", "Keys and fobs"), ("Pet tag", 2, "🐕", "pt", "Collars"), ("Luggage label", 1, "🧳", "lb", "Suitcases"), ("Lock screen", 0, "📱", "ls", "Your phone, free")]) + '</div>'),
     ("type", "Owner 3 · Tag type", hdr(backto("code"), "1 of 5") + '<h1>What is it for?</h1><div class="grp">' + opt("Item", True, "🎒", "Keys, bag, laptop") + opt("Travel", False, "🧳", "Luggage on a journey") + opt("Pet", False, "🐾", "Collar tag") + '</div><p class="note info">You can\'t change the type later.</p><div class="sp"></div><div class="btn pri"' + go("details") + '>Next</div>'),
     ("details", "Owner 4 · Details", hdr(backto("type"), "2 of 5") + livepv() + '<h1>Tell us about it</h1><input class="in" id="it-name" value="Black backpack" aria-label="Name"><div class="add">+ Add photo (optional)</div><input class="in" placeholder="Description (optional)" aria-label="Description"><div class="sp"></div><div class="btn pri"' + go("message") + '>Next</div>'),
     ("message", "Owner 5 · Finder message", hdr(backto("details"), "3 of 5") + livepv() + '<h1>What should a finder read?</h1><div class="seg"><span class="on">Template</span><span>Write my own</span></div><textarea class="in ta sm" id="it-msg" maxlength="160" aria-label="Finder message">Found me? Thank you! Tap below to tell my owner where I am.</textarea><p class="count" id="it-count">58 / 160</p><p class="note warn">If you add a phone number here, it will be public to anyone who scans.</p><p class="xs">Finders see it in their own language.</p><div class="sp"></div><div class="btn pri"' + go("design") + '>Next</div>'),
-    ("design", "Owner 6 · Design", hdr(backto("message"), "4 of 5") + '<h1>Pick a style</h1><p class="m pick">Suggested for an item: <b>Sticker</b>. You can choose another.</p><div class="chips styles"><span class="chip on">Sticker</span><span class="chip">Keychain</span><span class="chip">Pet tag</span><span class="chip">Luggage label</span><span class="chip">Lock screen</span></div><div class="tag"><svg width="24" height="24" style="margin:auto;display:block;color:#0b1712"><use href="#mark"/></svg><div class="qr"></div><p class="tagline">Found me? Scan to return</p><small>tagkin.app · TK-7Q4M-9XRA</small></div><p class="xs center">Address and code are always printed.</p><div class="sp"></div><div class="btn pri"' + go("live") + '>Next</div>'),
-    ("live", "Owner 7 · Tag is live", hdr(backto("design"), "5 of 5") + '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your tag is live.</h1><p class="m center">Black backpack · TK-7Q4M-9XRA</p><div class="btn pri"' + go("order") + '>Order printed tag</div><div class="btn sec" data-toast="Saved: tagkin-TK-7Q4M-9XRA.pdf">Download PNG or PDF</div><div class="btn sec" data-toast="Lock screen image saved to Photos">Save to phone lock screen</div><div class="btn ghost"' + go("tags") + '>Go to my tags</div><div class="sp"></div><span class="link center"' + go("gift") + '>🎁 Gift a tag to someone who values their things</span><p class="xs center">This is your free tag. Printed tags you buy are always free to use.</p>'),
-    ("order", "Owner 7c · Order your tag", hdr(backto("live"), "1 of 3") + '<div class="seg"><span class="on">For me</span><span' + go("gift") + '>Gift a tag</span></div><h1>Order your tag</h1><p class="m ordfor">Sticker style · TK-7Q4M-9XRA</p><div class="grp prod">' + opt("Sticker", True, "🏷️", "Waterproof vinyl · €4.90") + opt("Keychain", False, "🔑", "Acrylic, 4 cm · €9.90") + opt("Pet tag", False, "🐾", "Metal, engraved · €12.90") + opt("Luggage label", False, "🧳", "Strap and tag · €11.90") + '</div><div class="qty"><span>Copies of this tag<small>Same code on each, e.g. phone and case</small></span><span class="step"><b>−</b><i>2</i><b>+</b></span></div><div class="sp"></div><div class="btn pri"' + go("delivery") + '>Continue to delivery</div><p class="xs center">🎁 First printed tag: €2 off at checkout · sample prices</p>'),
+    ("design", "Owner 6 · Customise", hdr(backto("message"), "4 of 5") + '<h1>Customise your tag</h1><div class="chips styles"><span class="chip on">Sticker</span><span class="chip">Keychain</span><span class="chip">Pet tag</span><span class="chip">Luggage label</span><span class="chip">Lock screen</span></div><div class="pm-wrap"><div class="pm sticker" style="--c:#00c48c"><span class="pmb"><svg width="18" height="18" class="pmk"><use href="#mark"/></svg><i class="qr"></i><small>TK-7Q4M-9XRA</small></span></div></div><div class="swatches"><span class="swc on" data-c="#00c48c" style="--c:#00c48c" title="Mint" aria-label="Mint"></span><span class="swc" data-c="#0b1712" style="--c:#0b1712" title="Ink" aria-label="Ink"></span><span class="swc" data-c="#ffffff" style="--c:#ffffff" title="White" aria-label="White"></span><span class="swc" data-c="#e9dcc3" style="--c:#e9dcc3" title="Sand" aria-label="Sand"></span><span class="swc" data-c="#ffd23f" style="--c:#ffd23f" title="Sunny" aria-label="Sunny"></span><span class="swc" data-c="#b9a6ff" style="--c:#b9a6ff" title="Lilac" aria-label="Lilac"></span></div><p class="m pm-spec center">Sticker · 50 mm round · waterproof vinyl · €4.90</p><p class="xs center">QR always prints black on white.</p><div class="sp"></div><div class="btn pri"' + go("live") + '>Next</div>'),
+    ("live", "Owner 7 · Tag is live", hdr(backto("design"), "5 of 5") + '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your tag is live.</h1><p class="m center">Black backpack · TK-7Q4M-9XRA</p><div class="btn pri"' + go("order") + '>Order your tag</div><div class="btn sec" data-toast="Saved: tagkin-TK-7Q4M-9XRA.pdf">Print at home (free tag)</div><div class="btn sec" data-toast="Lock screen image saved to Photos">Save to phone lock screen</div><div class="btn ghost"' + go("tags") + '>Go to my tags</div><div class="sp"></div><span class="link center"' + go("gift") + '>🎁 Gift a tag to someone who values their things</span><p class="xs center">This is your free tag, so you can also print it at home. Printed tags you buy are always free to use.</p>'),
+    ("order", "Owner 7c · Order your tag", hdr(backto("live"), "1 of 3") + '<h1>Order your tag</h1><div class="ordrow"><div class="pm-wrap sm"><div class="pm sticker mini" style="--c:#00c48c"><span class="pmb"><svg width="18" height="18" class="pmk"><use href="#mark"/></svg><i class="qr"></i><small>TK-7Q4M-9XRA</small></span></div></div><div class="ordinfo"><b class="ord-name">Sticker · Mint</b><small class="ord-spec">50 mm round · waterproof vinyl · €4.90 each</small><span class="link"' + go("design") + '>Change design</span></div></div><p class="note info lockn" hidden>Lock screen tags are digital. We’ve picked a sticker in the same colour to print.</p><div class="qty"><span>Copies of this tag<small>Same code on each, e.g. phone and case</small></span><span class="step"><b>−</b><i>2</i><b>+</b></span></div><div class="sp"></div><div class="btn pri"' + go("delivery") + '>Continue to delivery</div><p class="xs center">🎁 First printed tag: €2 off at checkout · sample prices</p>'),
     ("delivery", "Owner 7d · Delivery details", hdr(backto("order"), "2 of 3") + '<h1>Where should we send it?</h1><input class="in" id="d-name" value="Alex Mensah" aria-label="Full name"><input class="in" id="d-street" value="Musterstraße 1" aria-label="Street and number"><div class="two"><input class="in" id="d-zip" value="64283" aria-label="Postcode"><input class="in" id="d-city" value="Darmstadt" aria-label="City"></div><div class="in val sel">Germany <span>▾</span></div><input class="in" id="d-phone" placeholder="Phone for the courier (optional)" aria-label="Phone for the courier"><p class="xs">Tracking goes to a•••@example.com. Your address is shared only with the print partner, to deliver this order.</p><div class="sp"></div><div class="btn pri"' + go("checkout") + '>Continue to payment</div>'),
     ("checkout", "Owner 7e · Review and pay", hdr(backto("delivery"), "3 of 3") + '<h1>Review and pay</h1><div><div class="li"><span>Sticker × 2</span><span>€9.80</span></div><div class="li"><span>Shipping to Germany</span><span>€2.50</span></div><div class="li offer"><span>First tag offer</span><span>−€2.00</span></div><div class="li total"><span>Total</span><span>€10.30</span></div></div><div class="addr"' + go("delivery") + '><span><small>Deliver to</small><b class="a-name">Alex Mensah</b><span class="a-line">Musterstraße 1, 64283 Darmstadt, Germany</span></span><span class="link">Change</span></div><p class="xs">🔒 Card, Apple Pay, Google Pay or PayPal, handled by our print partner. Tagkin never sees card details.</p><div class="sp"></div><div class="btn pri paybtn"' + go("ordered") + '>Pay €10.30</div><div class="btn ghost proto-l"' + go("err-pay") + '>Simulate: payment fails</div>'),
     ("ordered", "Owner 7f · Order placed", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your tags are on the way.</h1><p class="m center">Arrives in 3 to 5 working days. Tracking comes by email.</p><p class="xs center">Order TK-10482 · 2 stickers</p><div class="sp"></div><div class="btn pri"' + go("tags") + '>Go to my tags</div>'),
@@ -389,7 +412,7 @@ EXTRA = [
 ]
 
 GIFT = [
-    ("gift", "Gift 1 · Gift a tag", hdr(backto("orders", "Orders"), "1 of 3") + '<div class="seg"><span' + go("order") + '>For me</span><span class="on">Gift a tag</span></div><h1>Gift a tag</h1><p class="m">They activate it in the app and make it theirs: name, photo and message.</p><div class="grp prod">' + opt("Sticker 3-pack", True, "🏷️", "Waterproof vinyl · €12.90") + opt("Keychain", False, "🔑", "Acrylic, 4 cm · €9.90") + opt("Pet tag", False, "🐾", "Metal, engraved · €12.90") + '</div><div class="in ta sm val">Happy birthday! For your new camera bag 📷 – Alex</div><div class="sp"></div><div class="btn pri"' + go("gift-delivery") + '>Continue to delivery</div>'),
+    ("gift", "Gift 1 · Gift a tag", hdr(backto("orders", "Orders"), "1 of 3") + '<h1>Gift a tag</h1><p class="m">Blank tags, ready for them to activate in the app and make their own. You won’t see their alerts or messages.</p><div class="grp prod">' + opt("Sticker 3-pack", True, "🏷️", "Waterproof vinyl · €12.90") + opt("Keychain", False, "🔑", "Acrylic, 4 cm · €9.90") + opt("Pet tag", False, "🐾", "Metal, engraved · €12.90") + '</div><div class="in ta sm val">Happy birthday! For your new camera bag 📷 – Alex</div><div class="sp"></div><div class="btn pri"' + go("gift-delivery") + '>Continue to delivery</div>'),
     ("gift-delivery", "Gift 2 · Who is it for?", hdr(backto("gift"), "2 of 3") + '<h1>Who is it for?</h1><div class="seg"><span class="on">Send to them</span><span>Send to me</span></div><input class="in" value="Kofi Boateng" aria-label="Recipient name"><input class="in" value="Am Markt 5" aria-label="Street and number"><div class="two"><input class="in" value="60311" aria-label="Postcode"><input class="in" value="Frankfurt" aria-label="City"></div><div class="in val sel">Germany <span>▾</span></div><label class="check on"><i>✓</i><span>Hide prices on the packing slip</span></label><p class="xs">The address is shared only with the print partner, to deliver this gift.</p><div class="sp"></div><div class="btn pri"' + go("gift-review") + '>Continue to payment</div>'),
     ("gift-review", "Gift 3 · Review and pay", hdr(backto("gift-delivery"), "3 of 3") + '<h1>Review your gift</h1><div><div class="li"><span>Sticker 3-pack</span><span>€12.90</span></div><div class="li"><span>Shipping to Germany</span><span>€2.50</span></div><div class="li total"><span>Total</span><span>€15.40</span></div></div><div class="addr"' + go("gift-delivery") + '><span><small>Gift for</small><b>Kofi Boateng</b><span class="a-line">Am Markt 5, 60311 Frankfurt</span></span><span class="link">Change</span></div><div class="preview"><b>“Happy birthday! For your new camera bag…”</b><span>Printed on a card in the box · prices hidden</span></div><div class="sp"></div><div class="btn pri"' + go("gift-sent") + '>Pay €15.40</div>'),
     ("gift-sent", "Gift 4 · Gift on its way", hdr() + '<div class="sp"></div><div class="done">🎁</div><h1 class="center">Your gift is on its way.</h1><p class="m center">It reaches Kofi in 3 to 5 working days. The tags stay unclaimed until Kofi activates them, so only Kofi can link them.</p><p class="xs center">Order TK-10517 · tracking comes to you by email</p><div class="sp"></div><div class="btn pri"' + go("orders") + '>Done</div>'),
@@ -479,7 +502,7 @@ let tt;function toast(t){const e=$('.toast');e.textContent=t;e.classList.add('sh
 document.addEventListener('click',e=>{
   const o=e.target.closest('.grp .opt');if(o){o.parentElement.querySelectorAll('.opt').forEach(x=>x.classList.toggle('on',x===o));
     if(o.closest('#type')){const i=[...o.parentElement.children].indexOf(o);$('#type .btn.pri').dataset.go=['details','t-details','p-details'][i];setType(i);}
-    const price=o.closest('#order')&&o.querySelector('small').textContent.match(/€([\\d.]+)/);if(price)updateTotal(parseFloat(price[1]));}
+    }
   const sw=e.target.closest('.sw');if(sw){sw.classList.toggle('on');}
   const ck=e.target.closest('.check');if(ck){ck.classList.toggle('on');}
   const c=e.target.closest('.chip');if(c){c.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));}
@@ -490,7 +513,7 @@ document.addEventListener('click',e=>{
   const l=e.target.closest('[data-go]');if(l)show(l.dataset.go);
 });
 let unit=4.90;
-function updateTotal(u){if(u)unit=u;const q=+$('#order .step i').textContent;const name=$('#order .prod .opt.on span:last-child').firstChild.textContent;
+function updateTotal(u){if(u)unit=u;const q=+$('#order .step i').textContent;const name=ordName+' ('+COLS[dCol].toLowerCase()+')';
   const sub=(unit*q).toFixed(2),tot=(unit*q+2.5-2).toFixed(2);
   const rows=$('#checkout').querySelectorAll('.li');rows[0].innerHTML='<span>'+name+' × '+q+'</span><span>€'+sub+'</span>';rows[3].innerHTML='<span>Total</span><span>€'+tot+'</span>';$('#checkout .paybtn').textContent='Pay €'+tot;
   $('#ordered .xs').textContent='Order TK-10482 · '+q+' × '+name.toLowerCase();}
@@ -502,12 +525,20 @@ const MODES={plane:['Airline, e.g. Lufthansa, Ryanair','Flight number, e.g. LH 5
  taxi:['Service, e.g. taxi, Uber, Bolt, FREENOW','Driver or car (optional)','Drop-off city','Date of the ride'],
  hotel:['Hotel name','City, e.g. Accra','Room number (optional, never shown to finders)','Check-in and check-out dates']};
 const TYPE_STYLE={0:['Sticker','an item','Found me? Scan to return'],1:['Luggage label','travel','I’m travelling. Scan to return'],2:['Pet tag','a pet','Hi! Scan to reach my family']};
-function setType(i){const [st,lab,line]=TYPE_STYLE[i];
-  $('#design .styles').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.textContent===st));
-  $('#design .pick').innerHTML='Suggested for '+lab+': <b>'+st+'</b>. You can choose another.';$('#design .tagline').textContent=line;
-  $('#order .ordfor').textContent=st+' style · TK-7Q4M-9XRA';
-  const ps=[...$('#order .prod').children];ps.forEach(o=>o.classList.toggle('on',o.querySelector('span:last-child').firstChild.textContent===st));
-  const pr=ps.find(o=>o.classList.contains('on')).querySelector('small').textContent.match(/€([\d.]+)/);updateTotal(parseFloat(pr[1]));}
+function setType(i){setDesign(TYPE_STYLE[i][0]);}
+const SHAPES={'Sticker':['sticker','50 mm round · waterproof vinyl',4.90],'Keychain':['keychain','30 × 45 mm · acrylic',9.90],'Pet tag':['pet','32 mm disc · metal',12.90],'Luggage label':['luggage','55 × 90 mm · PVC with strap',11.90],'Lock screen':['lock','phone lock screen · digital, free',0]};
+const COLS={'#00c48c':'Mint','#0b1712':'Ink','#ffffff':'White','#e9dcc3':'Sand','#ffd23f':'Sunny','#b9a6ff':'Lilac'};
+let dStyle='Sticker',dCol='#00c48c',ordName='Sticker';
+function setDesign(st,col){if(st)dStyle=st;if(col)dCol=col;const [sh,spec,pr]=SHAPES[dStyle];
+  $('#design .styles').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.textContent===dStyle));
+  const dm=$('#design .pm');dm.className='pm '+sh;dm.style.setProperty('--c',dCol);
+  all('#design .swc').forEach(x=>x.classList.toggle('on',x.dataset.c===dCol));
+  $('#design .pm-spec').textContent=dStyle+' · '+spec+(pr?' · €'+pr.toFixed(2):'');
+  ordName=dStyle==='Lock screen'?'Sticker':dStyle;const [osh,ospec,opr]=SHAPES[ordName];
+  const om=$('#order .pm');om.className='pm mini '+osh;om.style.setProperty('--c',dCol);
+  $('#order .ord-name').textContent=ordName+' · '+COLS[dCol];$('#order .ord-spec').textContent=ospec+' · €'+opr.toFixed(2)+' each';
+  $('#order .lockn').hidden=dStyle!=='Lock screen';
+  all('.lp-style').forEach(x=>x.textContent=dStyle);updateTotal(opr);}
 document.addEventListener('click',e=>{
   const md=e.target.closest('.modes .chip');if(md){const f=MODES[md.dataset.mode];['t-a','t-b','t-c','t-d'].forEach((id,i)=>{const x=document.getElementById(id);x.value='';x.placeholder=f[i];x.setAttribute('aria-label',f[i].split(',')[0]);});}
   const th=e.target.closest('[data-theme-set]');if(th){th.parentElement.querySelectorAll('.th').forEach(x=>x.classList.toggle('on',x===th));const v=th.dataset.themeSet;if(v==='system')r.removeAttribute('data-theme');else r.setAttribute('data-theme',v);$('#account [data-go=appearance] span:last-child').textContent=({light:'Light',dark:'Dark',system:'Match system'})[v]+' ›';}
@@ -518,14 +549,12 @@ document.addEventListener('click',e=>{
 });
 const r=document.documentElement;
 let picked=null;
-function applyStyle(st){if(!st)return;
-  $('#design .styles').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.textContent===st));
-  $('#design .pick').innerHTML='Your pick: <b>'+st+'</b>. You can choose another.';
-  all('.lp-style').forEach(x=>x.textContent=st);}
+function applyStyle(st){if(st)setDesign(st);}
 document.addEventListener('click',e=>{
   const g=e.target.closest('.gcard');if(g){all('.gcard').forEach(x=>x.classList.toggle('on',x===g));picked=g.dataset.style;const i=+g.dataset.type;
     const opts=$('#type .grp').children;[...opts].forEach((o,k)=>o.classList.toggle('on',k===i));$('#type .btn.pri').dataset.go=['details','t-details','p-details'][i];setType(i);applyStyle(picked);}
-  const dc=e.target.closest('#design .styles .chip');if(dc){all('.lp-style').forEach(x=>x.textContent=dc.textContent);}
+  const dc=e.target.closest('#design .styles .chip');if(dc){setDesign(dc.textContent);}
+  const swc=e.target.closest('.swc');if(swc){swc.parentElement.querySelectorAll('.swc').forEach(x=>x.classList.toggle('on',x===swc));setDesign(null,swc.dataset.c);}
 },true);
 document.addEventListener('input',e=>{
   if(e.target.id==='it-name')all('.lp-name').forEach(x=>x.textContent=e.target.value||'Your item');
@@ -538,7 +567,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('.act-go')||e.target.closest('#start .btn.pri')){const act=!!e.target.closest('.act-go');[['#type',1],['#details',2],['#t-details',2],['#p-details',2],['#message',3]].forEach(([id,n])=>{const sp=document.querySelector(id+' .hdr>span:last-child');if(sp)sp.textContent=n+(act?' of 3':' of 5');});}
   const n=e.target.closest('#message .btn.pri');if(n){n.dataset.go=activating?'act-live':'design';}
 },true);
-updateTotal();show('launch1');
+setDesign('Sticker');show('launch1');
 """
 
 

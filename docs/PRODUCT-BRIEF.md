@@ -1,6 +1,6 @@
 # Tagkin: product brief
 
-Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app before launch). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made. Open work and when it starts: docs/ROADMAP.md.
+Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app before launch). Owner: Selasey Gbeddy. Started 8 Nov 2026. This file is the single source of truth: every decision goes here as it is made. Open work and when it starts: docs/ROADMAP.md. The rules Tagkin runs by: docs/BUSINESS-RULES.md (update it whenever a rule here changes).
 
 ## 1. The idea in one line
 
@@ -163,6 +163,10 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [x] Adopted (11 Nov): **Status updates by the owner.** Owners can post a short update the finder page shows, for example a trip leg ("On the way to Dubai" → "Arrived in Dubai") or a hint in Lost mode. Opt-in, city level only, no dates, expires automatically.
 - [x] Adopted (11 Nov): **Self-printing.** At launch, extra tags come only as printed tags (from €4.90; no extra digital or self-printed tags for sale). Reason: selling digital tags inside the iOS and Android apps must go through Apple and Google payments (15 to 30% fee) and adds review work, while physical tags can use normal payments. Revisit paid extra digital tags with Premium.
 - [x] Copies of one tag (11 Nov): one code can be ordered as several copies (e.g. phone and phone case, suitcase outside and inside). Use copies for one belonging; give separate belongings separate tags, so the owner knows which item was found and can put each in Lost mode on its own.
+- [x] Business rules document (11 Nov): docs/BUSINESS-RULES.md holds every operating rule (model, free tag, printed tags, codes and ownership, gifting, finders, privacy, copy).
+- [x] Download only for the free tag (11 Nov): "Print at home" exists only for the free tag, as a plain version; ordered tags are never downloadable. Colours and shapes are for ordered tags.
+- [x] Gift a tag is always blank tags (11 Nov): set-up tags can't be gifted or moved; the owner account gets all alerts and controls Lost mode; gift buyers never see the recipient's alerts. The For me / Gift a tag switch was removed from ordering a set-up tag.
+- [x] Customise your tag (11 Nov): type, six colours (Mint, Ink, White, Sand, Sunny, Lilac) and size shown on a realistic preview; the order screen shows the same tag. Gallery renamed "Choose your type of tag". QR always black on white.
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -249,3 +253,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Pre-import fixes: copy no longer promises speed or any language; secure tag codes (TK-7Q4M-9XRA) everywhere; Impressum, privacy and terms footer on every finder and web page; sign-in code email; printed tag artwork (sticker, keychain, pet tag, luggage label with trim and bleed); lock-screen image and printable A4 sheet; camera and notification recovery screens; German long-text and Arabic right-to-left checks; accessibility rules; Android adaptive icon; public showcase page. Finder prototype republished (version 3).
 - 11 Nov 2026: Proposals recorded: visual tag picker with live preview, owner status updates, self-printing pricing.
 - 11 Nov 2026: Pick your tag gallery, live preview card, owner status updates (shown on the finder page), and copies of one tag designed. 80 screens.
+- 11 Nov 2026: Business rules document; free-tag-only download; customise screen with colours and sizes; gifting limited to blank tags.
