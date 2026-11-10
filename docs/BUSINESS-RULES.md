@@ -12,11 +12,11 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 
 ## 2. Free tag
 
-1. Every account gets **1 free active tag**: digital (lock screen) or printed at home.
-2. Only the free tag can be **downloaded** (PNG or PDF) to print at home. Tags that are ordered are never downloadable; they arrive printed.
-3. The home-print download is a plain version (no colour or shape options). Colours, shapes and materials are for ordered tags.
-4. Retiring the free tag frees the slot. The old code never comes back.
-5. Extra digital or home-printed tags are not sold at launch (in-app digital sales would need Apple and Google payments).
+1. Every account gets **1 free tag: the phone lock-screen tag**. It protects the phone and lets owners test a real find with another phone before buying printed tags.
+2. Tags are never downloadable for home printing. Every printed tag is ordered, so every printed tag meets our quality.
+3. Retiring the free phone tag frees the slot (for example for a new phone). The old code never comes back.
+4. Extra digital tags are not sold at launch (in-app digital sales would need Apple and Google payments).
+5. A new printed tag goes live the moment it is ordered; the code works before the tag arrives.
 
 ## 3. Printed tags
 
@@ -26,6 +26,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 4. The same price per tag applies in the app, on the website and in shops. Shop packs use a standard design; the app offers colours and personal messages.
 5. Prices shown before checkout are final, including shipping. Discounts appear as a separate line (EU price rules), never as a struck-through price.
 6. Delivery details are asked before any payment button.
+7. Packs lead the range; shipping is free over €15 (sample threshold, set with the print partner).
 
 ## 3b. Lock-screen tag
 
@@ -38,7 +39,9 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 2. A tag belongs to **one account** (its owner) and **one belonging**. The owner receives every alert and message and controls Lost mode.
 3. A tag code cannot move to another account. (A later feature may allow a transfer the new owner must accept, e.g. when selling a bike.)
 4. Tag type is locked after set-up. Name, photo and description lock during Lost mode or a return. Contacts, finder message and status updates are always editable.
-5. Unclaimed tags (shop packs, gifts) have no owner until someone activates them. A finder who scans one sees "This tag isn't set up yet".
+5. Unclaimed tags (shop packs, gifts) have no owner until someone activates them with the **activation PIN**, which is never printed on the tag: it is on the gift card or under a scratch panel on the pack. A finder who scans an unclaimed tag sees "This tag isn't set up yet".
+6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). A recovery phone or backup email is recommended and prompted after the first tag.
+7. **Handover code (free for everyone):** before handing an item over, finders or desk staff can check the owner's 6-digit handover code.
 
 ## 5. Gift a tag
 
@@ -53,6 +56,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 
 1. Finders never need an app or an account.
 2. Neither side sees the other's contact details unless they choose to share them. Messages are relayed and translated.
+5. If the owner doesn't reply within a set time, the backup contact is alerted and the finder is offered to hand the item to staff or a lost-and-found desk.
 3. The finder page always uses helper wording ("This item is missing"). It never says "stolen".
 4. No public reward amount. Owners can thank finders privately after a return.
 
@@ -61,11 +65,11 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 1. Scan locations are stored at city level unless the finder shares the item location.
 2. Travel tags show destination and operator only, never dates or the home address. Owner status updates are city level only, with no dates or times, and hide automatically.
 3. Messages are deleted after a set retention period once a return ends. Retired tags keep no personal data.
-4. Owners and finders can report and block. Reports are reviewed within 24 hours.
+4. Owners and finders can report and block. Every report is reviewed (no fixed response time is promised).
 5. Owners can download and delete their data and delete their account in the app.
 
 ## 8. How we talk about Tagkin
 
-1. Never promise speed ("in seconds", "fast") or "any language". Say what Tagkin does: finders scan the tag and alert the owner privately; owners see where it was last scanned.
+1. Never promise speed ("in seconds", "fast"), "any language", fixed support or review times, or anti-theft protection. Say what Tagkin does: finders scan the tag and alert the owner privately; owners see where it was last scanned. Tags help honest finders return things; they do not stop theft.
 2. Two audiences: people who protect what they value, and people who often misplace things. Never make users feel careless.
 3. Core languages: English (UK, US and more), German, French, Dutch, Polish, Spanish, Italian. More are added where tags sell.

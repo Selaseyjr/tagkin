@@ -35,10 +35,14 @@ NOTES = {
     "Owner 13 · Message thread": "Relayed and translated both ways. Report · Block in the header.",
     "Owner 14 · Mark returned": "Return also closes after 14 days with no messages.",
     "Manage 1 · Tag during a return": "Locked fields shown greyed with a lock. Message and contacts stay editable.",
-    "Manage 5 · Retire tag": "Irreversible. Code never reused. Frees the free-tag slot.",
+    "Manage 5 · Retire tag": "Irreversible. Code never reused. Retiring the free phone tag frees its slot.",
+    "Setup 9a · Activation PIN": "Unclaimed tags (gifts, shop packs) need the PIN from the gift card or scratch panel. 5 attempts, then wait. Lost PIN: support with order or receipt.",
+    "Manage 8 · Handover code": "Free for everyone. Finder or desk staff check the code before handing over.",
+    "Account 8 · Sign-in and recovery": "Email is required (sign-in). Recovery phone or backup email recommended; prompted after the first tag.",
+    "Finder N · No reply yet": "Shown when the owner hasn’t replied after a set time. Backup contact is alerted at the same time.",
     "Manage 6 · QR code and test": "Test mode lasts 10 minutes: Test banner on the finder page, no alerts.",
     "Account 2 · Delete account": "Required by Apple and Google. Tags retired, data deleted, invoices kept as the law requires.",
-    "Safety 1 · Report or block": "Blocked finder can't message about this tag. Reports reviewed within 24 h.",
+    "Safety 1 · Report or block": "Blocked finder can't message about this tag. Every report is reviewed.",
     "Account 4 · Plan": "No Premium at launch. Notify me measures demand.",
     "Account 7 · Appearance": "Light, dark or match system. Default: match system.",
 }
@@ -113,8 +117,9 @@ DESK_FINDER = f"""<section class="flow"><h2>Finder on a computer</h2><p>Same ste
 # ---------- Website ----------
 WEB = f"""<section class="flow"><h2>tagkin.app website</h2><p>Home, privacy and support. Apple and Google require privacy and support links before approval.</p><div class="row">
 {desk("Web · Home", '<div class="dnav">' + LOGO + '<span class="navl"><a>How it works</a><a>Shop tags</a><a>Gift a tag</a><a>Support</a><b class="btn pri sm">Get the app</b></span></div><div class="whero"><div><p class="eyebrow">QR tags for bags, keys, gear and pets</p><h1 class="wh">Protect what you value.</h1><p class="m">Whoever finds it scans the tag and alerts you privately, and you see where it was last scanned. No app needed for finders.</p><div class="two stores"><div class="btn pri">App Store</div><div class="btn sec">Google Play</div></div><p class="xs">For the careful and the forgetful. We all misplace things.</p></div><div class="wphone"><div class="scr mini">' + SBAR + hdr() + '<div class="urgent"><i>!</i>This item is missing</div><div class="photo sm">🎒</div><h1 class="md">Black backpack</h1><div class="sp"></div><div class="btn pri">I found it</div></div></div></div><div class="wsteps"><div><b>1</b><strong>Create your tag</strong><span>Link a QR code to a belonging.</span></div><div><b>2</b><strong>Get it printed</strong><span>Order it, or print it yourself.</span></div><div><b>3</b><strong>Stick it on</strong><span>It arrives ready, already linked.</span></div></div>', 900, "tagkin.app")}
+{desk("Web · Owner sign-in", '<div class="dnav">' + LOGO + '<span class="navl"><a>Help</a></span></div><div class="dcard one doc"><h1>Sign in to manage your tags</h1><p class="m">Lost your phone? Sign in here on any device to turn on Lost mode and reply to finders.</p><div class="in val">alex@example.com</div><div class="btn pri">Email me a sign-in code</div><p class="xs">No access to that email? Use your recovery phone instead.</p></div>', 760, "tagkin.app/signin")}
 {desk("Web · Privacy", '<div class="dnav">' + LOGO + '<span class="navl"><a>Home</a><a>Support</a></span></div><div class="dcard one doc"><h1>Privacy, in plain words</h1><p class="m">Last updated 11 Nov 2026. Full policy below.</p><div class="li"><span>Your contact details</span><span>Never shown to finders</span></div><div class="li"><span>Finder details</span><span>Hidden unless they share them</span></div><div class="li"><span>Location</span><span>City only, unless a finder shares the item location</span></div><div class="li"><span>Messages</span><span>Relayed, deleted after a set period</span></div><div class="li"><span>Selling data</span><span>Never</span></div><div class="li"><span>Your rights</span><span>Download or delete your data in the app</span></div><p class="xs">Full privacy policy · Terms of use · Impressum</p></div>', 760, "tagkin.app/privacy")}
-{desk("Web · Support", '<div class="dnav">' + LOGO + '<span class="navl"><a>Home</a><a>Privacy</a></span></div><div class="dcard one doc"><h1>How can we help?</h1><div class="in">🔍 Search help</div><div class="li"><span>I found an item with a Tagkin tag</span><span>›</span></div><div class="li"><span>How do I activate a tag from a shop?</span><span>›</span></div><div class="li"><span>Where is my order?</span><span>›</span></div><div class="li"><span>How do I delete my account?</span><span>›</span></div><div class="li"><span>Report a tag or message</span><span>›</span></div><p class="m">Still stuck? Email <b>support@tagkin.app</b>. We reply within one working day.</p></div>', 760, "tagkin.app/support")}
+{desk("Web · Support", '<div class="dnav">' + LOGO + '<span class="navl"><a>Home</a><a>Privacy</a></span></div><div class="dcard one doc"><h1>How can we help?</h1><div class="in">🔍 Search help</div><div class="li"><span>I found an item with a Tagkin tag</span><span>›</span></div><div class="li"><span>How do I activate a tag from a shop?</span><span>›</span></div><div class="li"><span>Where is my order?</span><span>›</span></div><div class="li"><span>How do I delete my account?</span><span>›</span></div><div class="li"><span>Report a tag or message</span><span>›</span></div><p class="m">Still stuck? Email <b>support@tagkin.app</b>. We aim to reply within two working days.</p></div>', 760, "tagkin.app/support")}
 </div></section>"""
 
 
@@ -125,11 +130,12 @@ def fl(title, steps):
 
 FLOWMAP = f"""<section class="flow"><h2>Flow map</h2><p>Every journey at a glance. Screen names below match the frames.</p><div class="map">
 {fl("Finder (web)", ["Scan QR or type code", "Owner message", "Where is it now?", "Where exactly?", "Anything else?", "Want a reply?", "Thank you + reply"])}
-{fl("First launch", ["Welcome", "Private by default", "Terms", "Sign in", "Email code", "Notifications", "Add your first tag"])}
-{fl("Create a tag", ["Create a tag", "Type", "Details (item, travel, pet)", "Finder message", "Style", "Tag is live", "Order or gift"])}
-{fl("Activate a ready-made tag", ["Activate it", "Camera", "Scan or code", "New tag found", "Type, details, message", "Tag is live", "Activate another"])}
-{fl("Order", ["For me / Gift a tag", "Product and quantity", "Delivery details", "Review and pay", "Order placed"])}
-{fl("Lost and return", ["Mark as lost", "Scan alerts", "Finder report", "Messages", "Mark returned"])}
+{fl("First launch", ["Welcome", "Private by default", "Terms", "Sign in (email required)", "Email code", "Create a tag: for myself or gift"])}
+{fl("Free phone tag", ["Choose type: lock screen", "Details", "Finder message", "Customise", "Phone tag is live", "Try it with another phone", "Notifications"])}
+{fl("Printed tag", ["Choose type", "Details", "Finder message", "Customise colour", "Order", "Delivery", "Pay", "Live and on its way"])}
+{fl("Activate a gift or shop tag", ["Activate it", "Camera", "Scan or code", "New tag found", "Activation PIN", "Type, details, message", "Tag is live", "Activate another"])}
+{fl("Gift a tag", ["Create a tag → Gift a tag", "Product and colour", "Gift note", "Recipient address", "Pay", "Gift card with PIN shipped"])}
+{fl("Lost and return", ["Mark as lost (app or tagkin.app)", "Scan alerts", "Finder report", "Messages", "Handover code", "Mark returned"])}
 {fl("Manage", ["My tags", "Tag detail", "Edit message, contacts", "QR and test scan", "Retire"])}
 {fl("Account", ["Plan", "Notifications", "Language", "Appearance", "Privacy and data", "Delete account"])}
 <p class="xs">Tag states: Unclaimed → Normal ⇄ Lost → Return active → Normal · any state → Retired (permanent).</p>

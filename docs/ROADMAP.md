@@ -22,12 +22,28 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 - [x] App icon (1024 px) from the D2 mark, and splash screen
 - [x] Re-run contrast and overflow checks on all new screens
 
-## Audit fixes (before Stage B)
+## Audit fixes (done 11 Nov 2026)
 
-Trigger: now. From docs/AUDIT-2026-11-11.md; decisions needed are marked there.
+- [x] Free tag = phone lock-screen tag; home printing removed (A1)
+- [x] Activation PIN for unclaimed tags (B1)
+- [x] Owner sign-in at tagkin.app on any device; email required (B2)
+- [x] Account recovery: recovery phone, backup email, signed-in devices (B3)
+- [x] No anti-theft, speed or fixed-time promises (B4, E1)
+- [x] Free handover code (B6)
+- [x] Owner never replies: backup contact alerted, finder offered staff handover (C1)
+- [x] Second-tag path ends in ordering; tag live from order (D1, D3)
+- [x] Notifications asked after the first tag (D7)
+- [x] Packs and free shipping over €15 (A2)
 
-- [ ] Critical: activation PIN for unclaimed tags (B1); web sign-in for owners (B2); second-tag path (D1); buy tagkin.app before Community (E4)
-- [ ] High: free tag = lock screen only (A1); confirm printable products (A3); account recovery (B3); no anti-theft claims (B4); owner never replies (C1); soften support and report promises (E1); file trademark (E5)
+## Reminders (Claude raises these at the trigger)
+
+| When | Reminder |
+|---|---|
+| **This weekend (by 15 Nov 2026), before Community publish** | Buy tagkin.app (E4). Do not publish the showcase until the domain is owned. |
+| **Stage C, before choosing prices** | Confirm every product with print partners: sticker, keychain, pet tag, luggage label, gift card, scratch-panel packs; sizes, colours, costs, shipping (A3). |
+| **Stage C** | Decide message retention (suggest 90 days after a return), the no-reply wait time, and the free shipping threshold. |
+| **Stage E, before going live** | File the EU trademark for Tagkin and do the logo image search (E5). |
+| **Stage F, before submitting** | Re-shoot store screenshots with the real app; recheck all copy against the copy rules. |
 
 ## Stage B · Figma import and Community publish
 

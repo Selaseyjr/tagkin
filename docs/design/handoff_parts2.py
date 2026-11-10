@@ -32,7 +32,8 @@ LOCKIMG = f"""<figure data-name="Export · Lock screen image" style="max-width:3
 
 PDF = '<figure data-name="Export · Printable PDF (A4)" style="max-width:520px"><figcaption>Export · Printable PDF (A4)</figcaption><div class="a4"><div class="a4h">' + LOGO + '<span>Black backpack · ' + CODE + '</span></div><div class="a4g">' + ''.join('<div class="a4t">' + _MK + qrblock(70) + '<small>tagkin.app<br>' + CODE + '</small></div>' for _ in range(6)) + '</div><p class="a4f">Cut along the dashed lines. Cover with clear tape to keep it dry. Printed tags from the shop last longer.</p></div></figure>'
 
-EXPORTS = f'<section class="flow"><h2>Downloads and lock screen</h2><p>What “Save to phone lock screen” and “Print at home (free tag)” produce. Only the free tag can be downloaded.</p><div class="row">{LOCKIMG}{PDF}</div></section>'
+GIFTCARD = '<figure data-name="Print · Gift card with PIN" style="max-width:360px"><figcaption>Print · Gift card with PIN</figcaption><div class="gcardp"><div class="logo"><svg width="20" height="20"><use href="#mark"/></svg>tagkin</div><p class="gnote">“Happy birthday! For your new camera bag 📷 – Alex”</p><div class="gpin"><span>Activation PIN</span><b>528 146</b></div><p class="xs">Open the Tagkin app, tap Activate it, scan a tag and enter this PIN. Keep it private: whoever has the PIN can claim the tags.</p></div><p class="artspec">A6 card in the box. The PIN is never printed on the tags.</p></figure>'
+EXPORTS = f'<section class="flow"><h2>Phone tag and gift card</h2><p>The free phone tag image, and the card that carries a gift’s activation PIN.</p><div class="row">{LOCKIMG}{GIFTCARD}</div></section>'
 
 
 # ---------- Permission recovery, languages ----------
@@ -109,6 +110,7 @@ PARTS2_CSS = """
 .safe{position:absolute;inset:15px;border-radius:50%;border:1.5px dashed #e02a17}
 .appicon.circle{width:96px;height:96px;border-radius:50%}.appicon.squircle{width:96px;height:96px;border-radius:34%}
 .appicon.mono{width:96px;height:96px;border-radius:50%;background:#d9f7ec;color:#007a57}
+.gcardp{background:#fff;color:#0b1712;border:1px solid var(--tk-line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;aspect-ratio:105/148;box-shadow:var(--tk-shadow)}.gnote{font:600 18px/1.3 var(--tk-font-display);margin:0}.gpin{background:#d9f7ec;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px}.gpin span{font-size:11px;color:#4f5e57;text-transform:uppercase;letter-spacing:.05em}.gpin b{font:700 22px var(--tk-font-display);letter-spacing:.08em}
 .legal.dleg{padding:12px 32px;text-align:left;margin-top:auto}
 """
 
@@ -118,8 +120,8 @@ def build_showcase():
     global SHOW_NOTES
     SHOW_NOTES = False
     pick = lambda lst, names: [t for t in lst if t[-2] in names]
-    finder_pick = pick(FINDER, ["Finder 1 · Owner message", "Finder 1b · Lost mode", "Finder 2 · Where is it now?", "Finder 3 · Where exactly?", "Finder 5 · Want a reply?", "Finder 6 · Thank you", "Finder 1t · Travel tag", "Finder 1p · Pet tag"])
-    owner_pick = pick(SETUP + OWNER + GIFT + LOST + EXTRA, ["Setup 1 · Welcome", "Setup 5 · Create a tag", "Owner 3 · Tag type", "Owner 6 · Customise", "Owner 7 · Tag is live", "Gift 1 · Gift a tag", "Owner 8 · My tags", "Owner 11 · Lost: scans", "Owner 13 · Message thread", "Manage 6 · QR code and test", "Account 7 · Appearance"])
+    finder_pick = pick(FINDER, ["Finder 1 · Owner message", "Finder 1b · Lost mode", "Finder 2 · Where is it now?", "Finder 3 · Where exactly?", "Finder 5 · Want a reply?", "Finder 6 · Thank you", "Finder H · Before you hand it over", "Finder 1t · Travel tag", "Finder 1p · Pet tag"])
+    owner_pick = pick(SETUP + OWNER + GIFT + LOST + EXTRA, ["Setup 1 · Welcome", "Setup 5 · Create a tag", "Owner 3 · Tag type", "Owner 6 · Customise", "Owner 7 · Phone tag is live", "Gift 1 · Gift a tag", "Owner 8 · My tags", "Owner 11 · Lost: scans", "Owner 13 · Message thread", "Manage 6 · QR code and test", "Account 7 · Appearance"])
     cover = """<section class="flow coverp"><div class="cov"><div><p class="eyebrow">Tagkin · app design</p><h1 class="wh">Protect what you value.</h1><p class="m">QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately. No app needed for finders.</p></div><div class="covgrid">
 <div><b>What’s inside</b><span>Finder web flow, owner app, Gift a tag, store screenshots, printed tags and marketing visuals.</span></div>
 <div><b>Design system</b><span>Fresh mint, Bricolage Grotesque and Inter, light and dark, WCAG AA contrast.</span></div>
