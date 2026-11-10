@@ -254,3 +254,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Proposals recorded: visual tag picker with live preview, owner status updates, self-printing pricing.
 - 11 Nov 2026: Pick your tag gallery, live preview card, owner status updates (shown on the finder page), and copies of one tag designed. 80 screens.
 - 11 Nov 2026: Business rules document; free-tag-only download; customise screen with colours and sizes; gifting limited to blank tags.
+- 11 Nov 2026: Colour fills the whole tag (QR keeps a white quiet zone). Lock screen treated as its own digital product (no sticker swap; "Set as lock screen"). Create a tag offers For myself / Gift a tag; gift buyer picks product and colour, recipient picks the belonging. Full audit written: docs/AUDIT-2026-11-11.md (5 critical, 9 high findings).

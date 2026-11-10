@@ -119,7 +119,7 @@ def build_showcase():
     SHOW_NOTES = False
     pick = lambda lst, names: [t for t in lst if t[-2] in names]
     finder_pick = pick(FINDER, ["Finder 1 · Owner message", "Finder 1b · Lost mode", "Finder 2 · Where is it now?", "Finder 3 · Where exactly?", "Finder 5 · Want a reply?", "Finder 6 · Thank you", "Finder 1t · Travel tag", "Finder 1p · Pet tag"])
-    owner_pick = pick(SETUP + OWNER + GIFT + LOST + EXTRA, ["Setup 1 · Welcome", "Setup 5 · Add a tag", "Owner 3 · Tag type", "Owner 6 · Customise", "Owner 7 · Tag is live", "Gift 1 · Gift a tag", "Owner 8 · My tags", "Owner 11 · Lost: scans", "Owner 13 · Message thread", "Manage 6 · QR code and test", "Account 7 · Appearance"])
+    owner_pick = pick(SETUP + OWNER + GIFT + LOST + EXTRA, ["Setup 1 · Welcome", "Setup 5 · Create a tag", "Owner 3 · Tag type", "Owner 6 · Customise", "Owner 7 · Tag is live", "Gift 1 · Gift a tag", "Owner 8 · My tags", "Owner 11 · Lost: scans", "Owner 13 · Message thread", "Manage 6 · QR code and test", "Account 7 · Appearance"])
     cover = """<section class="flow coverp"><div class="cov"><div><p class="eyebrow">Tagkin · app design</p><h1 class="wh">Protect what you value.</h1><p class="m">QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately. No app needed for finders.</p></div><div class="covgrid">
 <div><b>What’s inside</b><span>Finder web flow, owner app, Gift a tag, store screenshots, printed tags and marketing visuals.</span></div>
 <div><b>Design system</b><span>Fresh mint, Bricolage Grotesque and Inter, light and dark, WCAG AA contrast.</span></div>

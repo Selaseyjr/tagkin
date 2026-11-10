@@ -22,6 +22,13 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 - [x] App icon (1024 px) from the D2 mark, and splash screen
 - [x] Re-run contrast and overflow checks on all new screens
 
+## Audit fixes (before Stage B)
+
+Trigger: now. From docs/AUDIT-2026-11-11.md; decisions needed are marked there.
+
+- [ ] Critical: activation PIN for unclaimed tags (B1); web sign-in for owners (B2); second-tag path (D1); buy tagkin.app before Community (E4)
+- [ ] High: free tag = lock screen only (A1); confirm printable products (A3); account recovery (B3); no anti-theft claims (B4); owner never replies (C1); soften support and report promises (E1); file trademark (E5)
+
 ## Stage B · Figma import and Community publish
 
 Trigger: Stage A done. **Reached 11 Nov 2026.**

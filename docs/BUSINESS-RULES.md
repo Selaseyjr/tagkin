@@ -2,7 +2,7 @@
 
 The rules Tagkin runs by. Product, design, build, support and marketing follow this document. Decisions and their reasons are logged in PRODUCT-BRIEF.md; when a rule changes, update it here and add a change-log line there.
 
-Last updated: 11 Nov 2026.
+Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT-2026-11-11.md.
 
 ## 1. Business model
 
@@ -27,6 +27,11 @@ Last updated: 11 Nov 2026.
 5. Prices shown before checkout are final, including shipping. Discounts appear as a separate line (EU price rules), never as a struck-through price.
 6. Delivery details are asked before any payment button.
 
+## 3b. Lock-screen tag
+
+1. The lock-screen tag is a digital product for the phone itself. It is set up like any tag (type, details, finder message, colour) and works the same way for finders.
+2. It is never printed or shipped, and never swapped for a physical product.
+
 ## 4. Codes and ownership
 
 1. Every tag has a random code (TK-7Q4M-9XRA format), at least 8 characters, never reused.
@@ -37,11 +42,12 @@ Last updated: 11 Nov 2026.
 
 ## 5. Gift a tag
 
-1. **Gifts are always blank, unclaimed tags.** The buyer chooses type, colour, quantity, a gift note and delivery; the recipient activates the tags and becomes the owner.
+1. **Gifts are always blank, unclaimed tags.** Gift a tag is a choice on Create a tag (For myself / Gift a tag). The buyer chooses the product (sticker, keychain, pet tag, luggage label), colour, quantity, a gift note and delivery. The recipient chooses which belonging each tag protects, activates it and becomes the owner.
 2. A tag that is already set up cannot be gifted. To protect someone else's things, gift blank tags.
 3. The buyer never receives alerts or messages for gifted tags and has no access to them after delivery.
 4. Free tags cannot be gifted. Invite a friend is the free way to share Tagkin.
-5. Gift a tag starts from Orders, from "Your tag is live", and later from the website. It is not a switch inside ordering a set-up tag.
+5. Gift a tag starts from Create a tag, Orders, "Your tag is live", and later the website. It is never a switch inside ordering a set-up tag.
+6. The product shape suggests a tag type, but the recipient sets the type at set-up; after that it is locked.
 
 ## 6. Finders
 
