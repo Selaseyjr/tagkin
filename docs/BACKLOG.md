@@ -2,21 +2,21 @@
 
 Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).
 
-57 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
+59 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
 
 ## Milestones
 
 - **M1 Finder web and accounts**: A finder can report a tag; an owner can sign in and receive it. (12 stories)
-- **M2 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (27 stories)
+- **M2 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (28 stories)
 - **M3 Ordering and payment**: Printed tags can be ordered, paid and tracked. (6 stories)
 - **M4 Gifting and activation**: Blank tags can be gifted and activated with a PIN. (3 stories)
-- **M5 Launch readiness**: Website, legal, accessibility, languages, operations and store submission. (9 stories)
+- **M5 Launch readiness**: Website, legal, accessibility, languages, operations and store submission. (10 stories)
 
 ## Summary
 
 | Priority | Stories |
 |---|---|
-| Must | 40 |
+| Must | 42 |
 | Should | 15 |
 | Could | 2 |
 | Won't (this release) | 5 items, listed below |
@@ -539,6 +539,16 @@ As a owner, I want to see my tags, messages and orders on the web, so that I can
 
 - My tags with Mark as lost; messages; account
 
+### TK-98 · Store listings and privacy labels
+
+*Must · M · M5 Launch readiness*
+
+As a Tagkin, I want complete App Store and Google Play listings, so that the app passes review.
+
+- Name, subtitle, description, keywords, screenshots re-shot from the real app, support and privacy URLs
+- Apple privacy labels and Google Data safety match what the app collects
+- Age rating questionnaires; review notes and a test account
+
 
 ## E9 · Platform and operations
 
@@ -599,6 +609,15 @@ As a owner, I want to share an invite link, so that friends can protect their th
 As a owner on a tablet, I want list and detail side by side, so that the app uses the screen well.
 
 - Layout from the tablet frame; phone layout otherwise
+
+### TK-97 · Empty, loading, offline and error states
+
+*Must · M · M2 Owner app core*
+
+As a user, I want clear screens when there's nothing yet, while loading, offline or when something fails, so that I always know what's happening and what to do.
+
+- Designs: empty tags, messages and orders; loading skeletons; offline banner; payment failed; message not sent; code not found
+- Permission turned off: camera and notifications recovery screens
 
 ## Won't have in this release
 

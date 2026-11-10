@@ -1,5 +1,9 @@
 # Tagkin
 
-A QR tag for your belongings, pets and loved ones. Found in seconds. Private by default.
+QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately. No app needed for finders.
 
-Status: defining and designing. See [docs/PRODUCT-BRIEF.md](docs/PRODUCT-BRIEF.md).
+**Status:** design and specification complete; backlog planned. Next: technical design.
+
+- [Product brief](docs/PRODUCT-BRIEF.md) · [Business rules](docs/BUSINESS-RULES.md) · [System logic](docs/SYSTEM-LOGIC.md)
+- [Roadmap and product owner flow](docs/ROADMAP.md) · [Backlog](docs/BACKLOG.md)
+- Design: `docs/design/tagkin-screens.html` (hand-off), `tagkin-showcase.html`, prototypes

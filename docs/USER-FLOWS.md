@@ -1,3 +1,5 @@
+> **Superseded (11 Nov 2026).** This is the first draft of 8 Nov. Current flows: the flow map in docs/design/tagkin-screens.html, the prototypes, BUSINESS-RULES.md and SYSTEM-LOGIC.md.
+
 # Tagkin: user flows (MVP)
 
 Phase 3, step 1. Scope: Item, Travel and Pet tags. Care tags are phase 2.

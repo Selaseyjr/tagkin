@@ -167,6 +167,11 @@ story("TK-95", "E9", "Invite a friend", "owner", "to share an invite link", "fri
 story("TK-96", "E9", "Tablet layout", "owner on a tablet", "list and detail side by side", "the app uses the screen well",
       ["Layout from the tablet frame; phone layout otherwise"], "Could", "S", "M5")
 
+story("TK-97", "E9", "Empty, loading, offline and error states", "user", "clear screens when there's nothing yet, while loading, offline or when something fails", "I always know what's happening and what to do",
+      ["Designs: empty tags, messages and orders; loading skeletons; offline banner; payment failed; message not sent; code not found", "Permission turned off: camera and notifications recovery screens"], "Must", "M", "M2")
+story("TK-98", "E8", "Store listings and privacy labels", "Tagkin", "complete App Store and Google Play listings", "the app passes review",
+      ["Name, subtitle, description, keywords, screenshots re-shot from the real app, support and privacy URLs", "Apple privacy labels and Google Data safety match what the app collects", "Age rating questionnaires; review notes and a test account"], "Must", "M", "M5")
+
 WONT = [
     "Premium subscription (later; Notify me measures demand)",
     "Shop packs with scratch panels (later; PIN flow is ready)",

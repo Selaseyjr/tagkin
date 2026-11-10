@@ -733,7 +733,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('click',e=>{
  if(e.target.closest('#f-sendbtn')){const i=$('#f-rmsg');if(i.value.trim()){const d=document.createElement('div');d.className='bub out';d.textContent=i.value;$('#f-thread').appendChild(d);i.value='';const pk=i.closest('.compose').nextElementSibling;if(pk&&pk.classList.contains('gpicker'))pk.hidden=true;}}
- if(e.target.closest('#f-hcheck')){const ok=$('#f-hcode').value.replace(/\s/g,'')==='739204';$('#f-hok').hidden=!ok;$('#f-hbad').hidden=ok;}
+ if(e.target.closest('#f-hcheck')){const ok=$('#f-hcode').value.replace(/\\s/g,'')==='739204';$('#f-hok').hidden=!ok;$('#f-hbad').hidden=ok;}
 });
 document.addEventListener('change',ev=>{if(ev.target.id==='f-photoin'&&ev.target.files[0])$('#f-phtxt').textContent='✓ Photo added: '+ev.target.files[0].name;});
 const r=document.documentElement;

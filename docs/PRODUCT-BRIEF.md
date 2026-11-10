@@ -4,7 +4,7 @@ Name: Tagkin (chosen 8 Nov 2026; EUIPO and USPTO searches clear; buy tagkin.app 
 
 ## 1. The idea in one line
 
-A QR tag for your belongings, pets and loved ones. Anyone who finds them can scan the tag and alert you, and nobody's private details are shown.
+A QR tag for your belongings and pets (loved ones in phase 2, with Care tags). Anyone who finds them can scan the tag and alert you, and nobody's private details are shown.
 
 ## 1b. Positioning and marketing (updated 11 Nov 2026)
 
@@ -39,7 +39,7 @@ Type is chosen at registration and **locked** afterwards.
 | **Item** | Return | "Please help me get back to my owner" |
 | **Travel** | Return during a journey (plane, train, bus, ferry, taxi or ride, hotel) | Destination or hotel, operator, "hand to staff or message the owner". Trip details expire after the travel dates |
 | **Pet** | Help and return | Name, temperament, care notes, "please call my owner" |
-| **Care (child or older relative)** | Help, not return | "I may need help. Please contact my guardian." Minimal info; emergency details behind a tap; every view logged and alerts the guardian |
+| **Care (child or older relative), phase 2** | Help, not return | "I may need help. Please contact my guardian." Minimal info; emergency details behind a tap; every view logged and alerts the guardian |
 
 **Out of scope:** professional identification of students, patients or clients by teachers, doctors, vets or carers. That is a different, regulated product (medical and child-safety law), and a public tag with full identity details is a safety risk.
 
@@ -58,11 +58,11 @@ Type is chosen at registration and **locked** afterwards.
 
 1. Scan the QR (or type the short code on the website).
 2. See the owner's message and optional photo.
-3. **Where is it now?** With me · Handed to staff · Left where I found it.
+3. **Where is it now?** With me · Handed to staff · Left it in a safe place (then a photo, note and address).
 4. **Where exactly?** One field ("Input location here") with place suggestions as the finder types, plus a **Share item location** button.
 5. **Anything else?** Optional note, prompted with examples (who the item was left with, exact landmark).
 6. **Want a reply?** Optional email or phone number, kept hidden and relayed. Otherwise anonymous: "Without an email or phone number, keep this page open to receive replies."
-7. Thank-you screen.
+7. Thank-you screen: live owner reply, finder can reply, check the owner's handover code, and see the first-tag offer. If the owner doesn't reply in time, the backup contact is alerted and the finder is offered a staff handover.
 
 ## 6. Privacy in the interface
 
@@ -88,7 +88,7 @@ Phone detection: **libphonenumber-js** (open-source port of Google's libphonenum
 
 ## 8. Lost mode
 
-Owner taps **Lost**. The finder page turns urgent: "This item is missing", with photo and a clear call to action. Scans show time and place. **No public reward amount** (it could invite theft); the owner can thank or reward privately after the return.
+Owner taps **Lost**. The finder page turns urgent: "This item is missing", with photo and a clear call to action. Each scan alerts the owner with the time and city (exact place only if a finder shares it). The finder page never says "stolen". **No public reward amount** (it could invite theft); the owner can thank or reward privately after the return.
 
 ## 9. Short code and channels
 
@@ -107,7 +107,8 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
   1. **Print on demand (main revenue):** orders go through Tagkin; a print-on-demand partner prints and ships under our brand; we set the price and keep the margin. Candidates to check: Printful, Printify, Gelato (sticker and keychain support, API, shipping to Europe and Ghana).
   2. **Affiliate links (quick start):** link to a printer with a referral programme and earn a commission per order. Lower income, zero stock.
   3. **Wholesale NFC or QR tags later:** buy blank tags in bulk, sell activated tags when volume justifies it.
-- **Digital tags** (phone lock screen, digital card) are free and count towards the free limit of 3 tags. Premium (later): unlimited tags, SMS fallback, family sharing, extra contacts.
+- **Free tag (11 Nov):** one free phone lock-screen tag per account; every printed tag is bought and free to use for life; no home printing; no subscription at launch. Details in BUSINESS-RULES.md.
+- Affiliate links and wholesale (points 2 and 3) are later options, not part of launch.
 - Never sell or share user data. Privacy is the product.
 
 ## 11. Tag design and preview
@@ -116,7 +117,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - 4 to 6 styles (rounded sticker, keychain, pet tag, luggage label), a few colour themes, the item's icon.
 - QR stays high contrast and scannable whatever the style.
 - **Every tag prints the address and code under the QR** (e.g. tagkin.app · TK-7Q4M-9XRA), whatever the style. It is the only way in when the QR will not scan or the finder's camera cannot read QR codes.
-- Download as PNG or PDF, or **Order this tag** through a print partner (to be confirmed; check which services accept an uploaded design and offer partner links).
+- **Customise:** shape (sticker, keychain, pet tag, luggage label, lock screen), six colours filling the tag, size and price shown; the QR stays black on white. No downloads for home printing; tags are ordered. Print partner to be confirmed (Stage C).
 
 ## 12. Translation
 
@@ -126,8 +127,8 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 
 ## 13. More additions agreed in principle
 
-- Owner verification before handover (a question only the real owner can answer).
-- Safe meeting point suggestions (staff desks, shops, police).
+- Owner verification before handover: done as a free 6-digit handover code.
+- Safe meeting point suggestions (staff desks, shops, police): later.
 - Backup contact if the owner does not reply within a set time.
 - Report abuse on any message or tag.
 - Scan alerts and a simple scan history per tag.
@@ -263,3 +264,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Product owner flow defined in ROADMAP.md (10 steps). Steps 1 to 4 done; next is step 5, the backlog (epics, stories, acceptance criteria, MVP scope), then step 6, technical design.
 - 11 Nov 2026: Step 5 started: backlog of 57 user stories (40 Must = MVP, 15 Should, 2 Could; Won't listed) in 9 epics and 5 milestones, with Definition of Ready and Done. Source docs/backlog/stories.py generates docs/BACKLOG.md; all 57 stories created as GitHub issues with labels and milestones.
 - 11 Nov 2026: Step 5 done: GitHub project board "Tagkin backlog" (users/Selaseyjr/projects/2) linked to the repo, all 57 stories in Stage = Backlog. Next: step 6, technical design.
+- 11 Nov 2026: Board uses one Status field (Backlog, Ready, In progress, Review, Done); Stage field removed; 5 automations need re-enabling in the GitHub UI. System audit: README and outdated brief sections updated (free tag, customise, finder flow, Lost mode, Care = phase 2), USER-FLOWS.md marked superseded, rules numbering fixed, two Must stories added (TK-97 states, TK-98 store listings; 59 stories), build warning fixed, finder link republished.
