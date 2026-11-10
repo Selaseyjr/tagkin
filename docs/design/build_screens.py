@@ -100,6 +100,14 @@ h1.big{font-size:var(--tk-text-2xl)}
 .dots i{width:7px;height:7px;border-radius:50%;background:var(--tk-brand);animation:p 1.2s infinite}
 .dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
 @keyframes p{50%{opacity:.25}}
+.grp{display:flex;flex-direction:column;gap:10px;flex:none}
+.tag.mini{width:150px;padding:10px;margin-top:0}.tag.mini .qr{width:70px;height:70px;background-size:10px 10px;margin:6px auto}
+.qty{display:flex;justify-content:space-between;align-items:center;font-size:15px;flex:none}
+.step{display:flex;align-items:center;gap:14px;background:var(--tk-sunken);border-radius:99px;padding:4px}
+.step b{width:34px;height:34px;border-radius:50%;background:var(--tk-surface);display:grid;place-items:center;font-size:18px}
+.step i{font-style:normal;font-weight:600;min-width:12px;text-align:center}
+.li.total{font-weight:700}.li.total span:last-child{color:var(--tk-ink);font-size:16px}
+.proto{border-style:dashed;color:var(--tk-ink-2);font-weight:500;font-size:14px}
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
 
@@ -149,31 +157,44 @@ FINDER = [
     ("Finder X · Tag not active", hdr() + '<div class="sp"></div><h1 class="center">This tag is no longer active.</h1><p class="m center">Please hand the item to staff or a lost-and-found desk.</p><div class="sp"></div><div class="btn sec">Enter another code</div>'),
 ]
 
+def go(key):
+    """Prototype link: harmless on the static page, used by the clickable prototype."""
+    return f' data-go="{key}"'
+
+
+def backto(key, label="Back"):
+    return f'<span class="back"{go(key)}>‹ {label}</span>'
+
+
+# (key, name, body). Keys are the prototype's screen ids.
 OWNER = [
-    ("Owner 1 · Sign in", hdr() + '<div class="sp"></div><h1 class="big">Make your first tag</h1><p class="m">No password. We send you a code.</p><div class="in">Email</div><div class="btn pri">Send code</div><div class="sp"></div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your contact is never shown. Finders message you through Tagkin.</p>'),
-    ("Owner 2 · Enter code", hdr(back()) + '<h1>Check your email</h1><p class="m">We sent a 6-digit code to s•••@gmail.com</p><div class="code"><i>4</i><i>8</i><i class="on">2</i><i></i><i></i><i></i></div><div class="btn pri off">Continue</div><p class="xs">Resend code in 30 s</p>'),
-    ("Owner 3 · Tag type", hdr(back(), "1 of 5") + '<h1>What is it for?</h1>' + opt("Item", True, "🎒", "Keys, bag, laptop") + opt("Travel", False, "🧳", "Luggage on a journey") + opt("Pet", False, "🐾", "Collar tag") + '<p class="note info">You can\'t change the type later.</p><div class="sp"></div><div class="btn pri">Next</div>'),
-    ("Owner 4 · Details", hdr(back(), "2 of 5") + '<h1>Tell us about it</h1><div class="in val">Black backpack</div><div class="add">+ Add photo (optional)</div><div class="in">Description (optional)</div><div class="sp"></div><div class="btn pri">Next</div>'),
-    ("Owner 5 · Finder message", hdr(back(), "3 of 5") + '<h1>What should a finder read?</h1><div class="seg"><span class="on">Template</span><span>Write my own</span></div><div class="in ta val">Found me? Thank you! Tap below to tell my owner where I am.</div><p class="count">58 / 160</p><p class="note warn">This contains a phone number. It will be public to anyone who scans.</p><p class="xs">Finders see it in their own language.</p><div class="sp"></div><div class="btn pri">Next</div>'),
-    ("Owner 6 · Design", hdr(back(), "4 of 5") + '<h1>Pick a style</h1><div class="chips"><span class="chip on">Sticker</span><span class="chip">Keychain</span><span class="chip">Pet tag</span><span class="chip">Luggage</span></div><div class="tag"><svg width="24" height="24" style="margin:auto;display:block;color:#0b1712"><use href="#mark"/></svg><div class="qr"></div><p>Found me? Scan to return</p><small>tagkin.app · FND-4821</small></div><p class="xs center">Address and code are always printed.</p><div class="sp"></div><div class="btn pri">Next</div>'),
-    ("Owner 7 · Tag is live", hdr(back(), "5 of 5") + '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your tag is live.</h1><p class="m center">Black backpack · FND-4821</p><div class="btn pri">Order printed tag</div><div class="btn sec">Download PNG or PDF</div><div class="btn sec">Save to phone lock screen</div><div class="sp"></div><p class="xs center">1 of 3 free tags used</p>'),
-    ("Owner 7b · Free limit reached", hdr(back()) + '<div class="sp"></div><h1 class="center">You\'ve used your 3 free tags.</h1><p class="m center">Retire a tag you no longer need, or wait for Premium.</p><div class="btn pri">Manage my tags</div><div class="btn sec">Notify me about Premium</div><div class="sp"></div>'),
+    ("signin", "Owner 1 · Sign in", hdr() + '<div class="sp"></div><h1 class="big">Make your first tag</h1><p class="m">No password. We send you a code.</p><div class="in val">selasey@example.com</div><div class="btn pri"' + go("code") + '>Send code</div><div class="sp"></div><p class="priv"><svg width="14" height="14"><use href="#lock"/></svg>Your contact is never shown. Finders message you through Tagkin.</p>'),
+    ("code", "Owner 2 · Enter code", hdr(backto("signin")) + '<h1>Check your email</h1><p class="m">We sent a 6-digit code to s•••@example.com</p><div class="code"><i>4</i><i>8</i><i>2</i><i>9</i><i>1</i><i class="on">7</i></div><div class="btn pri"' + go("type") + '>Continue</div><p class="xs">Resend code in 30 s</p>'),
+    ("type", "Owner 3 · Tag type", hdr(backto("code"), "1 of 5") + '<h1>What is it for?</h1><div class="grp">' + opt("Item", True, "🎒", "Keys, bag, laptop") + opt("Travel", False, "🧳", "Luggage on a journey") + opt("Pet", False, "🐾", "Collar tag") + '</div><p class="note info">You can\'t change the type later.</p><div class="sp"></div><div class="btn pri"' + go("details") + '>Next</div>'),
+    ("details", "Owner 4 · Details", hdr(backto("type"), "2 of 5") + '<h1>Tell us about it</h1><div class="in val">Black backpack</div><div class="add">+ Add photo (optional)</div><div class="in">Description (optional)</div><div class="sp"></div><div class="btn pri"' + go("message") + '>Next</div>'),
+    ("message", "Owner 5 · Finder message", hdr(backto("details"), "3 of 5") + '<h1>What should a finder read?</h1><div class="seg"><span class="on">Template</span><span>Write my own</span></div><div class="in ta val">Found me? Thank you! Tap below to tell my owner where I am.</div><p class="count">58 / 160</p><p class="note warn">If you add a phone number here, it will be public to anyone who scans.</p><p class="xs">Finders see it in their own language.</p><div class="sp"></div><div class="btn pri"' + go("design") + '>Next</div>'),
+    ("design", "Owner 6 · Design", hdr(backto("message"), "4 of 5") + '<h1>Pick a style</h1><div class="chips"><span class="chip on">Sticker</span><span class="chip">Keychain</span><span class="chip">Pet tag</span><span class="chip">Luggage</span></div><div class="tag"><svg width="24" height="24" style="margin:auto;display:block;color:#0b1712"><use href="#mark"/></svg><div class="qr"></div><p>Found me? Scan to return</p><small>tagkin.app · FND-4821</small></div><p class="xs center">Address and code are always printed.</p><div class="sp"></div><div class="btn pri"' + go("live") + '>Next</div>'),
+    ("live", "Owner 7 · Tag is live", hdr(backto("design"), "5 of 5") + '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your tag is live.</h1><p class="m center">Black backpack · FND-4821</p><div class="btn pri"' + go("order") + '>Order printed tag</div><div class="btn sec" data-toast="Saved: tagkin-FND-4821.pdf">Download PNG or PDF</div><div class="btn sec" data-toast="Lock screen image saved to Photos">Save to phone lock screen</div><div class="btn ghost"' + go("tags") + '>Go to my tags</div><div class="sp"></div><p class="xs center">1 of 3 free tags used</p>'),
+    ("order", "Owner 7c · Order your tag", hdr(backto("live"), "Order") + '<h1>Order your tag</h1><div class="tag mini"><svg width="18" height="18" style="margin:auto;display:block;color:#0b1712"><use href="#mark"/></svg><div class="qr"></div><small>tagkin.app · FND-4821</small></div><div class="grp">' + opt("Sticker", True, "🏷️", "Waterproof vinyl · €4.90") + opt("Keychain", False, "🔑", "Acrylic, 4 cm · €9.90") + opt("Pet tag", False, "🐾", "Metal, engraved · €12.90") + '</div><div class="qty"><span>Quantity</span><span class="step"><b>−</b><i>2</i><b>+</b></span></div><div class="sp"></div><div class="btn pri"' + go("checkout") + '>Continue · €9.80</div><p class="xs center">Sample prices until the print partner is chosen.</p>'),
+    ("checkout", "Owner 7d · Checkout", hdr(backto("order"), "Order") + '<h1>Check and pay</h1><div><div class="li"><span>Sticker × 2</span><span>€9.80</span></div><div class="li"><span>Shipping to Germany</span><span>€2.50</span></div><div class="li total"><span>Total</span><span>€12.30</span></div></div><div class="in val">Selasey G., Musterstraße 1, 64283 Darmstadt</div><p class="note info">🔒 Payment is handled by our print partner. Tagkin never sees or stores card details.</p><div class="sp"></div><div class="btn pri"' + go("ordered") + '>Pay securely</div>'),
+    ("ordered", "Owner 7e · Order placed", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="center">Your tags are on the way.</h1><p class="m center">Arrives in 3 to 5 working days. Tracking comes by email.</p><p class="xs center">Order TK-10482 · 2 stickers</p><div class="sp"></div><div class="btn pri"' + go("tags") + '>Go to my tags</div>'),
+    ("limit", "Owner 7b · Free limit reached", hdr(backto("tags")) + '<div class="sp"></div><h1 class="center">You\'ve used your 3 free tags.</h1><p class="m center">Retire a tag you no longer need, or wait for Premium.</p><div class="btn pri"' + go("tags") + '>Manage my tags</div><div class="btn sec" data-toast="We\'ll email you when Premium launches">Notify me about Premium</div><div class="sp"></div>'),
 ]
 
 LOST = [
-    ("Owner 8 · My tags", hdr(LOGO, "+ New") + '<h1>My tags</h1><div class="item"><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>FND-4821</span></span><span class="badge b-n">Normal</span></div><div class="item"><span class="ic">🐾</span><span class="tx"><b>Milo</b><span>FND-7730</span></span><span class="badge b-l">Lost</span></div><div class="item"><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>FND-2196 · trip ends 20 Nov</span></span><span class="badge b-r">Return active</span></div><div class="sp"></div><p class="xs center">3 of 3 free tags used</p>'),
-    ("Owner 9 · Tag detail", hdr(back("My tags"), '<span class="badge b-n">Normal</span>') + '<div class="photo">🎒</div><h1>Black backpack</h1><div><div class="li"><span>Finder message</span><span>Edit ›</span></div><div class="li"><span>Contacts</span><span>Edit ›</span></div><div class="li"><span>Scan history</span><span>2 scans ›</span></div></div><div class="sp"></div><div class="btn lostb">Mark as lost</div><div class="btn ghost">Retire tag</div>'),
-    ("Owner 10 · Confirm Lost", hdr(back()) + '<h1>Mark Black backpack as lost?</h1><p class="m">Finders see an urgent page. You get an alert with the city every time it is scanned.</p><p class="note info">🔒 Name, photo and description lock until it is found. Contacts and message stay editable.</p><p class="note info">No reward amount is shown. You can thank the finder privately later.</p><div class="sp"></div><div class="btn lostb">Mark as lost</div><div class="btn sec">Cancel</div>'),
-    ("Owner 11 · Lost: scans", hdr(back("My tags"), '<span class="badge b-l">Lost</span>') + '<h1>Milo</h1><p class="m">Scans since marked lost</p><div><div class="li"><span>Today 14:02</span><span>Darmstadt</span></div><div class="li"><span>Today 09:41</span><span>Darmstadt</span></div><div class="li"><span>Yesterday 18:20</span><span>Griesheim</span></div></div><p class="xs">City only, unless a finder shares the item location.</p><p class="lockrow">🔒 Name and photo locked while lost</p><div class="sp"></div><div class="btn pri">I found it myself</div>'),
-    ("Owner 12 · Finder report alert", '<div class="hdr"><span></span><span>now</span></div><div class="notif"><span class="ic"><svg width="22" height="22"><use href="#mark"/></svg></span><span><b>Someone found Black backpack</b><span>With me · Darmstadt Hbf, Lost &amp; Found desk</span></span></div><div class="sp"></div><p class="m center">The tag is now in Return active. Name, photo and description are locked.</p><div class="btn pri">Open message</div>'),
-    ("Owner 13 · Message thread", hdr(back("Finder"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>With me</b> · Darmstadt Hbf, Lost &amp; Found desk<br>I left it with the staff at counter 2.<span class="meta">Translated from French · Show original</span></div><div class="bub out">Thank you so much! I\'ll pick it up tonight.</div></div><p class="xs center">The finder left an email. Your reply reaches them translated.</p><div class="sp"></div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
-    ("Owner 13b · Anonymous finder", hdr(back("Finder"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>Left where I found it</b> · Luisenplatz, bench by the fountain</div></div><p class="note info">This finder is anonymous. They see your reply only while their page is open.</p><div class="sp"></div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
-    ("Owner 14 · Mark returned", hdr(back(), '<span class="badge b-r">Return active</span>') + '<h1>Got it back?</h1><p class="m">Locks lift and the tag goes back to Normal. The return closes on its own after 14 days with no messages.</p><div class="in ta">Private thank-you (optional)</div><div class="sp"></div><div class="btn pri">Mark as returned</div>'),
+    ("tags", "Owner 8 · My tags", hdr(LOGO, '<span' + go("limit") + '>+ New</span>') + '<h1>My tags</h1><div class="item"' + go("detail") + '><span class="ic">🎒</span><span class="tx"><b>Black backpack</b><span>FND-4821</span></span><span class="badge b-n">Normal</span></div><div class="item"' + go("scans") + ' data-title="Milo"><span class="ic">🐾</span><span class="tx"><b>Milo</b><span>FND-7730</span></span><span class="badge b-l">Lost</span></div><div class="item"' + go("thread") + '><span class="ic">🧳</span><span class="tx"><b>Blue suitcase</b><span>FND-2196 · trip ends 20 Nov</span></span><span class="badge b-r">Return active</span></div><div class="sp"></div><p class="xs center">3 of 3 free tags used</p>'),
+    ("detail", "Owner 9 · Tag detail", hdr(backto("tags", "My tags"), '<span class="badge b-n">Normal</span>') + '<div class="photo">🎒</div><h1>Black backpack</h1><div><div class="li"><span>Finder message</span><span>Edit ›</span></div><div class="li"><span>Contacts</span><span>Edit ›</span></div><div class="li"' + go("order") + '><span>Order printed tags</span><span>›</span></div></div><div class="sp"></div><div class="btn lostb"' + go("confirm") + '>Mark as lost</div><div class="btn ghost">Retire tag</div>'),
+    ("confirm", "Owner 10 · Confirm Lost", hdr(backto("detail")) + '<h1>Mark Black backpack as lost?</h1><p class="m">Finders see an urgent page. You get an alert with the city every time it is scanned.</p><p class="note info">🔒 Name, photo and description lock until it is found. Contacts and message stay editable.</p><p class="note info">No reward amount is shown. You can thank the finder privately later.</p><div class="sp"></div><div class="btn lostb"' + go("scans") + ' data-title="Black backpack">Mark as lost</div><div class="btn sec"' + go("detail") + '>Cancel</div>'),
+    ("scans", "Owner 11 · Lost: scans", hdr(backto("tags", "My tags"), '<span class="badge b-l">Lost</span>') + '<h1 class="ttl">Milo</h1><p class="m">Scans since marked lost</p><div><div class="li"><span>Today 14:02</span><span>Darmstadt</span></div><div class="li"><span>Today 09:41</span><span>Darmstadt</span></div><div class="li"><span>Yesterday 18:20</span><span>Griesheim</span></div></div><p class="xs">City only, unless a finder shares the item location.</p><p class="lockrow">🔒 Name and photo locked while lost</p><div class="sp"></div><div class="btn sec proto"' + go("alert") + '>Simulate: a finder reports it</div><div class="btn pri"' + go("tags") + '>I found it myself</div>'),
+    ("alert", "Owner 12 · Finder report alert", '<div class="hdr"><span></span><span>now</span></div><div class="notif"' + go("thread") + '><span class="ic"><svg width="22" height="22"><use href="#mark"/></svg></span><span><b>Someone found Black backpack</b><span>With me · Darmstadt Hbf, Lost &amp; Found desk</span></span></div><div class="sp"></div><p class="m center">The tag is now in Return active. Name, photo and description are locked.</p><div class="btn pri"' + go("thread") + '>Open message</div>'),
+    ("thread", "Owner 13 · Message thread", hdr(backto("tags", "My tags"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>With me</b> · Darmstadt Hbf, Lost &amp; Found desk<br>I left it with the staff at counter 2.<span class="meta">Translated from French · Show original</span></div><div class="bub out">Thank you so much! I\'ll pick it up tonight.</div></div><p class="xs center">The finder left an email. Your reply reaches them translated.</p><div class="sp"></div><div class="btn sec"' + go("returned") + '>Got it back? Mark as returned</div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
+    ("anon", "Owner 13b · Anonymous finder", hdr(backto("tags", "My tags"), "Report · Block") + '<div class="thread"><div class="bub in2"><b>Left where I found it</b> · Luisenplatz, bench by the fountain</div></div><p class="note info">This finder is anonymous. They see your reply only while their page is open.</p><div class="sp"></div><div class="compose"><div class="in">Write a reply</div><span class="send">↑</span></div>'),
+    ("returned", "Owner 14 · Mark returned", hdr(backto("thread"), '<span class="badge b-r">Return active</span>') + '<h1>Got it back?</h1><p class="m">Locks lift and the tag goes back to Normal. The return closes on its own after 14 days with no messages.</p><div class="in ta">Private thank-you (optional)</div><div class="sp"></div><div class="btn pri"' + go("tags") + ' data-toast="Marked as returned">Mark as returned</div>'),
 ]
 
 
 def flow(title, desc, screens):
-    figs = "".join(screen(n, b) for n, b in screens)
+    figs = "".join(screen(t[-2], t[-1]) for t in screens)
     return f'<section class="flow"><h2>{title}</h2><p>{desc}</p><div class="row">{figs}</div></section>'
 
 
@@ -196,7 +217,7 @@ html = f"""<!doctype html>
 <div class="page">
 <header class="top"><div class="brand"><svg width="36" height="36"><use href="#mark"/></svg><b>tagkin</b></div><button class="toggle" type="button" id="theme">Switch to dark</button></header>
 {flow("Finder flow", "No app, no sign-up. Tested with 5 people, no concerns.", FINDER)}
-{flow("Owner registration", "Email code sign-in, five steps to a live tag.", OWNER)}
+{flow("Owner registration and ordering", "Email code sign-in, five steps to a live tag, then order it printed.", OWNER)}
 {flow("Lost mode and messages", "Urgent finder page, scan alerts, relayed messages.", LOST)}
 </div>
 <script>
@@ -210,3 +231,77 @@ b.onclick=()=>{{const d=r.getAttribute('data-theme')!=='dark';r.setAttribute('da
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(html)
 print(f"wrote {OUT.relative_to(ROOT)}: {len(FINDER) + len(OWNER) + len(LOST)} screens")
+
+# ---------- Clickable owner prototype (same screens, one at a time) ----------
+PROTO_OUT = ROOT / "docs/design/owner-prototype.html"
+PROTO_CSS = """
+body{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:0 max(16px,env(safe-area-inset-left,0px))}
+.ctl{width:100%;max-width:420px;display:flex;flex-wrap:wrap;gap:8px;padding:12px 0;font-size:12px;color:var(--tk-ink-2);align-items:center}
+.ctl button{font:500 12px var(--tk-font-body);border:1px solid var(--tk-line);background:var(--tk-surface);color:var(--tk-ink);border-radius:99px;padding:6px 10px;cursor:pointer}
+.stage{width:100%;max-width:420px;position:relative}
+.stage .scr{display:none;height:auto;min-height:760px;box-shadow:none}
+.stage .scr.on{display:flex}
+@media (max-width:500px){.stage .scr{min-height:calc(100vh - 60px);border-radius:24px}}
+[data-go],[data-toast],.grp .opt,.chip,.seg span{cursor:pointer}
+.btn[data-go]:active,.btn[data-toast]:active{transform:scale(.98)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tk-ink);color:var(--tk-surface);padding:10px 16px;border-radius:99px;font-size:14px;opacity:0;transition:opacity var(--tk-slow);pointer-events:none}
+.toast.show{opacity:1}
+"""
+PROTO_JS = """
+const $=s=>document.querySelector(s),all=s=>document.querySelectorAll(s);
+function show(id){all('.stage .scr').forEach(x=>x.classList.toggle('on',x.id===id));window.scrollTo(0,0);}
+let tt;function toast(t){const e=$('.toast');e.textContent=t;e.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('show'),1800);}
+document.addEventListener('click',e=>{
+  const o=e.target.closest('.grp .opt');if(o){o.parentElement.querySelectorAll('.opt').forEach(x=>x.classList.toggle('on',x===o));
+    const price=o.querySelector('small')&&o.querySelector('small').textContent.match(/€([\\d.]+)/);if(price)updateTotal(parseFloat(price[1]));}
+  const c=e.target.closest('.chip');if(c){c.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));}
+  const g=e.target.closest('.seg span');if(g){g.parentElement.querySelectorAll('span').forEach(x=>x.classList.toggle('on',x===g));}
+  const st=e.target.closest('.step b');if(st){const q=st.parentElement.querySelector('i');let n=+q.textContent+(st.textContent==='+'?1:-1);q.textContent=Math.max(1,Math.min(20,n));updateTotal();}
+  const t=e.target.closest('[data-title]');if(t){$('#scans .ttl').textContent=t.dataset.title;}
+  const m=e.target.closest('[data-toast]');if(m)toast(m.dataset.toast);
+  const l=e.target.closest('[data-go]');if(l)show(l.dataset.go);
+});
+let unit=4.90;
+function updateTotal(u){if(u)unit=u;const q=+$('#order .step i').textContent;const name=$('#order .grp .opt.on span:last-child').firstChild.textContent;
+  const sub=(unit*q).toFixed(2),tot=(unit*q+2.5).toFixed(2);
+  $('#order .btn.pri').textContent='Continue · €'+sub;
+  const rows=$('#checkout').querySelectorAll('.li');rows[0].innerHTML='<span>'+name+' × '+q+'</span><span>€'+sub+'</span>';rows[2].innerHTML='<span>Total</span><span>€'+tot+'</span>';
+  $('#ordered .xs').textContent='Order TK-10482 · '+q+' × '+name.toLowerCase();}
+all('[data-start]').forEach(b=>b.onclick=()=>show(b.dataset.start));
+updateTotal();show('signin');
+"""
+
+
+def proto_screen(key, body):
+    return f'<section class="scr" id="{key}">{SBAR}{body}</section>'
+
+
+proto = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tagkin owner prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap">
+<style id="tokens">
+/* Generated from docs/brand/tokens.css by build_screens.py. Do not edit here. */
+{TOKENS}</style>
+<style>{CSS}{PROTO_CSS}</style>
+</head>
+<body>
+{SVG}
+<div class="ctl" aria-label="Prototype controls"><span>Prototype:</span>
+<button type="button" data-start="signin">Register a tag</button>
+<button type="button" data-start="tags">My tags</button>
+<button type="button" data-start="anon">Anonymous finder</button>
+</div>
+<main class="stage">{"".join(proto_screen(t[0], t[2]) for t in OWNER + LOST)}</main>
+<div class="toast" role="status" aria-live="polite"></div>
+<script>{PROTO_JS}</script>
+</body>
+</html>
+"""
+PROTO_OUT.write_text(proto)
+print(f"wrote {PROTO_OUT.relative_to(ROOT)}: {len(OWNER) + len(LOST)} screens")
