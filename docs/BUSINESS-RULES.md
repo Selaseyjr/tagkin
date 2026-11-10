@@ -27,6 +27,8 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 5. Prices shown before checkout are final, including shipping. Discounts appear as a separate line (EU price rules), never as a struck-through price.
 6. Delivery details are asked before any payment button.
 7. Packs lead the range; shipping is free over €15 (sample threshold, set with the print partner).
+8. **Payment:** Tagkin is the seller. Customers choose how to pay on the review screen: Apple Pay (iPhone) or Google Pay (Android), card, PayPal or Klarna, processed by Stripe. Tagkin never sees card details. The print partner only prints and ships, and bills Tagkin.
+9. The first-tag offer applies to an account's first printed order only.
 
 ## 3b. Lock-screen tag
 

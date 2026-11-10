@@ -243,6 +243,12 @@ PARTS2_CSS += """
 .mk.cover .mphones{z-index:2}
 .mk.cover .scene{opacity:.4}
 .mk.sq.soft .eyebrow{color:#0b1712}
+.mk.sq .scene{top:48%}
+@media (max-width:600px){.mk.sq{aspect-ratio:auto;min-height:420px}.mk.sq h1{font-size:28px}}
+.mk.sq.mint::after,.mk.sq.soft::after{display:none}
+.mk.sq.dark .scene{top:0}
+.st.s1 .home .p1{display:none}.st.s1 .home .p3{left:10%;right:auto;top:6%;font-size:36px}.st.s1 .home .p2{bottom:30%}
+.st.s1 .bigtag{top:80px;width:210px;height:210px}
 .mk.sq.dark .mtag .qr{width:88px;height:88px;background-size:11px 11px}.mk.sq h1{font-size:36px}
 .st .fnotif{top:auto;bottom:250px;left:12px;right:12px}
 .st.s1 .slogo,.st.s1 .ssub{background:rgb(255 255 255 / .85);border-radius:14px;padding:4px 10px}
