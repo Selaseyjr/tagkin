@@ -158,6 +158,10 @@ Participants (anonymous at their request; no names or identifying details kept):
 - Countries: one German living in Germany, one Ghanaian living in Germany, one Ghanaian living in Ghana.
 - How they lost things: left something on a train; left a bag on a bench while waiting for a bus at a station. The third person had no loss; they gave their view of the idea and recommendations.
 
+## 15b. Prototype test
+
+Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 other people. No concerns or corrections raised. For the build phase: more modern transitions, animations and components (motion is a build-stage concern, not a wireframe one).
+
 ## 16. Change log
 
 - 8 Nov 2026: Brief created from discussion: privacy messaging, universal use, travel mode, care tags, editing rules, short code correction, translator, owner-written finder message, permanent tag IDs and monetisation, tag preview.
@@ -183,3 +187,4 @@ Participants (anonymous at their request; no names or identifying details kept):
 - 10 Nov 2026: Finder flow refined after prototype review: live place suggestions, "Share item location", note examples, reply by email or phone. Replies by phone need an SMS relay (cost, provider to choose).
 - 10 Nov 2026: Figma limit confirmed from Figma's docs: 20 counted calls a month for a View seat; generate_figma_design, create_new_file and whoami are listed as exempt.
 - 10 Nov 2026: Finder prototype published as a private link for testers: https://claude.ai/artifact/HyxUDEDyaY5EMghCdDWC6C (share it from the page's Share menu).
+- 10 Nov 2026: Finder prototype tested by 4 people plus Selasey; no concerns. Modern motion noted for the build phase.
