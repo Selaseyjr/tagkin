@@ -127,6 +127,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - [ ] Budget: buy tagkin.app and consider Figma Professional around 14 Nov 2026, when funds allow.
 - [x] Logo (10 Nov): **D2**, a solid tag with the hole and a lowercase k cut out, next to the lowercase wordmark "tagkin". Master file docs/brand/tagkin-mark.svg. Colour, final type and a trademark image search still to do.
 - [x] Design-to-Figma plan (10 Nov): all design is finished in HTML first (tokens, components, every screen, clickable prototype, tested). Then one combined page is imported into Figma with generate_figma_design, which Figma lists as exempt from the MCP limit (Starter View seat: 20 counted calls a month; reset date not published). Prototype links, Community publishing and tidy-up are done by hand in Figma, which needs no tool calls. The HTML tokens and components become the starting code for the app.
+- [x] Visual design pass A (10 Nov): tokens in docs/brand/tokens.css, previewed in docs/brand/design-system.html. Brand green #0F6B57 (dark mode #4CC4A2); red #C63D26 only for Lost mode; amber only for privacy warnings; neutrals with a slight green bias. Type: Bricolage Grotesque for titles, Inter for body; inputs at least 16 px. 4-point spacing; radius 8 / 14 / 22; controls at least 52 px tall. All text and colour pairs pass WCAG AA (4.5:1) in light and dark. Components: buttons, input, choice, status badges, notes, privacy line, Lost banner, message bubbles, tag list item, printed tag.
 - [ ] Print partner
 - [ ] Translation provider
 - [ ] Tech stack (recommended: Cloudflare Pages, Workers, D1, R2 for photos)
@@ -188,3 +189,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 10 Nov 2026: Figma limit confirmed from Figma's docs: 20 counted calls a month for a View seat; generate_figma_design, create_new_file and whoami are listed as exempt.
 - 10 Nov 2026: Finder prototype published as a private link for testers: https://claude.ai/artifact/HyxUDEDyaY5EMghCdDWC6C (share it from the page's Share menu).
 - 10 Nov 2026: Finder prototype tested by 4 people plus Selasey; no concerns. Modern motion noted for the build phase.
+- 10 Nov 2026: Visual design pass A done: colour, type, spacing and components, light and dark, contrast checked.

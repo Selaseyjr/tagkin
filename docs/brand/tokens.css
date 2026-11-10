@@ -1,0 +1,80 @@
+/* Tagkin design tokens v1 (visual design pass A, 10 Nov 2026).
+   Source of truth for colour, type, spacing, radius and motion.
+   Reused as-is when the app is built. */
+
+:root {
+  /* Colour: neutrals carry a slight green bias toward the brand */
+  --tk-bg: #f5f7f5;          /* page */
+  --tk-surface: #ffffff;     /* cards, screens */
+  --tk-sunken: #eceff0;      /* inputs, wells */
+  --tk-line: #d5dbd8;        /* borders, dividers */
+  --tk-ink: #14201c;         /* text, logo */
+  --tk-ink-2: #56625d;       /* secondary text */
+
+  /* Brand */
+  --tk-brand: #0f6b57;       /* Tagkin green: primary actions, links, logo hole */
+  --tk-brand-press: #0b5444;
+  --tk-on-brand: #ffffff;
+  --tk-brand-soft: #e1f0eb;  /* selected states, chips */
+
+  /* Meaning (separate from brand) */
+  --tk-lost: #c63d26;        /* Lost mode, urgent */
+  --tk-lost-soft: #fbe6e1;
+  --tk-on-lost: #ffffff;
+  --tk-warn: #8a5a00;        /* privacy and share warnings (text) */
+  --tk-warn-soft: #fdf1d6;
+  --tk-ok: #0f6b57;          /* returned, shared, done */
+
+  /* Type */
+  --tk-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --tk-font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tk-text-xs: 12px;
+  --tk-text-sm: 14px;
+  --tk-text-md: 16px;   /* body; never smaller for inputs (iOS zoom) */
+  --tk-text-lg: 20px;
+  --tk-text-xl: 26px;   /* screen titles */
+  --tk-text-2xl: 34px;  /* thank-you, hero */
+
+  /* Spacing: 4-point scale */
+  --tk-space-1: 4px;  --tk-space-2: 8px;  --tk-space-3: 12px;
+  --tk-space-4: 16px; --tk-space-5: 24px; --tk-space-6: 32px; --tk-space-7: 48px;
+
+  /* Radius */
+  --tk-radius-sm: 8px;  /* chips, badges */
+  --tk-radius-md: 14px; /* buttons, inputs, options */
+  --tk-radius-lg: 22px; /* cards, sheets, tags */
+
+  /* Elevation and motion */
+  --tk-shadow: 0 1px 2px rgb(20 32 28 / .06), 0 6px 20px rgb(20 32 28 / .06);
+  --tk-ease: cubic-bezier(.2, .8, .2, 1);
+  --tk-fast: 140ms;
+  --tk-slow: 280ms;
+
+  /* Sizes */
+  --tk-tap: 52px; /* minimum height for primary controls */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-bg: #0d1311; --tk-surface: #151d1a; --tk-sunken: #1d2723; --tk-line: #2c3833;
+    --tk-ink: #eef3f1; --tk-ink-2: #a3b0ab;
+    --tk-brand: #4cc4a2; --tk-brand-press: #6fd3b6; --tk-on-brand: #06231b; --tk-brand-soft: #173a31;
+    --tk-lost: #ff7a5f; --tk-lost-soft: #3d1f19; --tk-on-lost: #2a0c06;
+    --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #4cc4a2;
+    --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-bg: #0d1311; --tk-surface: #151d1a; --tk-sunken: #1d2723; --tk-line: #2c3833;
+  --tk-ink: #eef3f1; --tk-ink-2: #a3b0ab;
+  --tk-brand: #4cc4a2; --tk-brand-press: #6fd3b6; --tk-on-brand: #06231b; --tk-brand-soft: #173a31;
+  --tk-lost: #ff7a5f; --tk-lost-soft: #3d1f19; --tk-on-lost: #2a0c06;
+  --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #4cc4a2;
+  --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --tk-fast: 0ms; --tk-slow: 0ms; }
+}
