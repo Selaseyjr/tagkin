@@ -12,9 +12,9 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 - [x] Delete account inside the app (Apple and Google requirement)
 - [x] Permission explainers before camera and notifications (photos use the system picker, which needs no permission; location is asked on the finder web page)
 - [x] First launch: 2 to 3 intro screens and terms acceptance
-- [ ] Empty states: no tags, no messages, no orders
-- [ ] Error states: offline, failed payment, failed send, tag code not found
-- [ ] Tag management: edit finder message, edit contacts, scan history, retire tag with confirmation, locked fields during Lost mode or a return
+- [x] Empty states: no tags, no messages, no orders
+- [x] Error states: offline, failed payment, failed send, tag code not found
+- [x] Tag management: edit finder message, edit contacts, scan history, retire tag with confirmation, locked fields during Lost mode or a return
 - [ ] Travel tag: trip fields (destination or hotel, operator, dates) and its finder page; trip details expire
 - [ ] Pet tag: temperament and care notes, and its finder page
 - [ ] Report and block flow with moderation, for both owner and finder (Apple guideline on user content)
