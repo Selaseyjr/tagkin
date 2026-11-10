@@ -179,3 +179,4 @@ Participants (anonymous at their request; no names or identifying details kept):
 - 10 Nov 2026: D2 added (tag with lowercase k).
 - 10 Nov 2026: Logo chosen: D2 (tag with lowercase k). Mark exported as SVG.
 - 10 Nov 2026: Plan set: finish design in HTML, one-time import into Figma, then build.
+- 10 Nov 2026: Clickable finder prototype built (docs/wireframes/finder-prototype.html): QR, Lost mode and typed-code paths, contact warning, anonymous and email replies, retired tag. Every path clicked through.
