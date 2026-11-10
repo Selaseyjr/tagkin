@@ -182,3 +182,4 @@ Participants (anonymous at their request; no names or identifying details kept):
 - 10 Nov 2026: Clickable finder prototype built (docs/wireframes/finder-prototype.html): QR, Lost mode and typed-code paths, contact warning, anonymous and email replies, retired tag. Every path clicked through.
 - 10 Nov 2026: Finder flow refined after prototype review: live place suggestions, "Share item location", note examples, reply by email or phone. Replies by phone need an SMS relay (cost, provider to choose).
 - 10 Nov 2026: Figma limit confirmed from Figma's docs: 20 counted calls a month for a View seat; generate_figma_design, create_new_file and whoami are listed as exempt.
+- 10 Nov 2026: Finder prototype published as a private link for testers: https://claude.ai/artifact/HyxUDEDyaY5EMghCdDWC6C (share it from the page's Share menu).
