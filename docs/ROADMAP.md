@@ -4,7 +4,7 @@ Every open item, grouped by the stage where it belongs. Each item says **when** 
 
 Target: a fully working live app on the App Store and Google Play. Owners use the app; finders use the web (no install).
 
-## Stage A · Design completion (now, before the Figma import)
+## Stage A · Design completion (done 11 Nov 2026)
 
 Trigger: start now. The Figma import and Community publish wait until this stage is done.
 
@@ -15,16 +15,16 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 - [x] Empty states: no tags, no messages, no orders
 - [x] Error states: offline, failed payment, failed send, tag code not found
 - [x] Tag management: edit finder message, edit contacts, scan history, retire tag with confirmation, locked fields during Lost mode or a return
-- [ ] Travel tag: trip fields (destination or hotel, operator, dates) and its finder page; trip details expire
-- [ ] Pet tag: temperament and care notes, and its finder page
-- [ ] Report and block flow with moderation, for both owner and finder (Apple guideline on user content)
-- [ ] Account sub-screens: plan, contacts and backup contact, notifications, language, privacy and data (export, delete)
-- [ ] App icon (1024 px) from the D2 mark, and splash screen
-- [ ] Re-run contrast and overflow checks on all new screens
+- [x] Travel tag: trip fields (destination or hotel, operator, dates) and its finder page; trip details expire
+- [x] Pet tag: temperament and care notes, and its finder page
+- [x] Report and block flow with moderation, for both owner and finder (Apple guideline on user content)
+- [x] Account sub-screens: plan, contacts and backup contact, notifications, language, privacy and data (export, delete)
+- [x] App icon (1024 px) from the D2 mark, and splash screen
+- [x] Re-run contrast and overflow checks on all new screens
 
 ## Stage B · Figma import and Community publish
 
-Trigger: Stage A done.
+Trigger: Stage A done. **Reached 11 Nov 2026.**
 
 - [ ] One import of docs/design/tagkin-screens.html with generate_figma_design (exempt from the MCP limit)
 - [ ] Selasey adds prototype links by hand in Figma

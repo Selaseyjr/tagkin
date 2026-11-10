@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <title>Tagkin app icon</title>
+  <!-- Full-bleed square: Apple and Google apply their own corner masks. Mark sits inside the 66% safe zone. -->
+  <rect width="1024" height="1024" fill="#00C48C"/>
+  <g transform="translate(192 192) scale(10)">
+    <path fill="#03261A" fill-rule="evenodd" d="M23 9 H56 V55 H23 L8 41 V23 Z M22 27 a5 5 0 1 0 0.01 0 Z M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z"/>
+  </g>
+</svg>
