@@ -58,6 +58,8 @@ Trigger: Stage A done. **Reached 11 Nov 2026.**
 
 ## Stage C · Decisions before building
 
+Input: docs/SYSTEM-LOGIC.md section 10 lists the open decisions.
+
 Trigger: right after Stage B, before any app code.
 
 - [ ] Tech stack. Recommended: React Native with Expo (one codebase for iPhone and Android), a backend (brief suggests Cloudflare Workers, D1, R2), and the finder website

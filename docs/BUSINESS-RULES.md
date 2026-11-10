@@ -29,6 +29,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 7. Packs lead the range; shipping is free over €15 (sample threshold, set with the print partner).
 8. **Payment:** Tagkin is the seller. Customers choose how to pay on the review screen: Apple Pay (iPhone) or Google Pay (Android), card, PayPal or Klarna, processed by Stripe. Tagkin never sees card details. The print partner only prints and ships, and bills Tagkin.
 9. The first-tag offer applies to an account's first printed order only.
+10. Tags are made to order with the customer's code, so the EU 14-day return right does not apply; checkout says so before payment. Faulty or damaged tags are replaced free.
 
 ## 3b. Lock-screen tag
 
@@ -42,7 +43,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 3. A tag code cannot move to another account. (A later feature may allow a transfer the new owner must accept, e.g. when selling a bike.)
 4. Tag type is locked after set-up. Name, photo and description lock during Lost mode or a return. Contacts, finder message and status updates are always editable.
 5. Unclaimed tags (shop packs, gifts) have no owner until someone activates them with the **activation PIN**, which is never printed on the tag: it is on the gift card or under a scratch panel on the pack. A finder who scans an unclaimed tag sees "This tag isn't set up yet".
-6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). A recovery phone or backup email is recommended and prompted after the first tag.
+6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). A recovery phone or backup email is recommended and prompted after the first tag. At launch, SMS is used only for recovery codes.
 7. **Handover code (free for everyone):** before handing an item over, finders or desk staff can check the owner's 6-digit handover code.
 
 ## 5. Gift a tag

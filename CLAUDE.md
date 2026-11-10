@@ -17,6 +17,11 @@ Read docs/PRODUCT-BRIEF.md first. It is the single source of truth: add every de
 ## Business rules
 docs/BUSINESS-RULES.md lists the rules Tagkin runs by. Check new features against it, and update it in the same turn as any rule change.
 
+## How to check work
+- Walk every journey as the user, including the moments a provider handles (payment, email, maps, translation, push), before calling a design or build done.
+- Whenever a rule changes, search all screens and documents for text that contradicts it.
+- docs/SYSTEM-LOGIC.md is the engineering view (data, states, events, providers); keep it in step with the screens and rules.
+
 ## Roadmap
 docs/ROADMAP.md lists every open item by stage with its trigger. At the start of each task, check which stage is active and tell Selasey when a stage's trigger is reached.
 

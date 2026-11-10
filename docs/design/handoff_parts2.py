@@ -9,6 +9,8 @@ CODE = "TK-7Q4M-9XRA"
 EMAILS = EMAILS.replace('</div></section>', email("Email 0 · Sign-in code", "Your Tagkin sign-in code", '<h3>Your sign-in code</h3><div class="mcard codebox"><b>482 917</b></div><p class="m">Enter this code in the app. It works for 10 minutes. If you didn’t ask for it, you can ignore this email; nobody can sign in without the code.</p>') + '</div></section>', 1)
 
 
+EMAILS = EMAILS.replace('</div></section>', email("Email 5 · Order shipped", "Your Tagkin tags have shipped", '<h3>Your tags are on their way.</h3><div class="mcard"><b>2 × sticker, mint</b><span>DHL · tracking 00340434 1234 5678 · arrives Friday</span></div><div class="btn pri">Track parcel</div><p class="m">Your tag already works. Stick it on as soon as it arrives, then try a test scan with another phone.</p>') + '</div></section>', 1)
+
 # ---------- Printed tag artwork ----------
 def qrblock(size):
     return f'<div class="qr" style="width:{size}px;height:{size}px;background-size:{size // 9}px {size // 9}px"></div>'
