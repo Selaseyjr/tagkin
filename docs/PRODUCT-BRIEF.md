@@ -216,3 +216,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Add your first tag rewritten as three steps (create, get it printed, stick it on). Ready-made tag pricing and gift tags proposed.
 - 11 Nov 2026: Bought tags free for life and Gift a tag adopted. Free tags not giftable. Free allowance of 1 active tag proposed.
 - 11 Nov 2026: One free active tag; launch without Premium; Activate another tag added after activation; recipients need an account; first-tag offer proposed.
+- 11 Nov 2026: Gift a tag designed (choose with gift note, who it's for with hidden prices, review, on its way), reachable from ordering (For me / Gift a tag), Tag is live and Orders. First tag offer shown as a sample −€2.00 line at checkout (amount still to decide). Invite a friend in Account. Finder page for a tag that isn't set up yet. 78 screens.
