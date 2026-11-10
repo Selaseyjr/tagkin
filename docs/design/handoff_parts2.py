@@ -135,3 +135,39 @@ def build_showcase():
     out.write_text(page)
     SHOW_NOTES = True
     print(f"wrote {out.relative_to(ROOT)}: {len(finder_pick) + len(owner_pick)} screens, no spec notes")
+
+
+# ---------- Owner web dashboard and tablet ----------
+_ROWS = ''.join(f'<div class="drow"><span class="ic">{ic}</span><span class="tx"><b>{n}</b><span>{c}</span></span><span class="badge {b}">{st}</span><span class="dact">{a}</span></div>' for ic, n, c, b, st, a in [
+    ("🎒", "Black backpack", "TK-7Q4M-9XRA · last scan Luisenplatz, today 16:20", "b-r", "Return active", "Open"),
+    ("📱", "Phone tag", "TK-W6QB-8MZT · lock screen", "b-n", "Normal", "<b class=\"btn lostb sm\">Mark as lost</b>"),
+    ("🐾", "Milo", "TK-M3PF-2KWD · 3 scans since lost", "b-l", "Lost", "Open"),
+    ("🧳", "Blue suitcase", "TK-H8RC-4TNE · trip ends 20 Nov", "b-n", "Normal", "Open")])
+
+DASH = desk("Web · Owner dashboard", '<div class="dash"><aside>' + LOGO + '<a class="on">My tags</a><a>Messages <i class="unread">1</i></a><a>Orders</a><a>Account</a><small>Signed in as a•••@example.com</small></aside><main><div class="dhead"><h1>My tags</h1><b class="btn pri sm">Create a tag</b></div>' + _ROWS + '<div class="dmsg"><b>New: Black backpack was left in a safe place</b><span>Café Extrablatt, Luisenplatz 4 · photo and map in Messages</span></div></main></div>', 760, "tagkin.app/my-tags")
+
+WEB = WEB.replace('</div></section>', DASH + '</div></section>', 1)
+
+TABLET = f"""<section class="flow"><h2>Tablet</h2><p>On tablets the app shows the list and the detail side by side. The finder web page uses the centred desktop card.</p><div class="row">
+<figure data-name="Tablet · My tags and messages" class="wide" style="max-width:1000px"><figcaption>Tablet · My tags and messages</figcaption><div class="tablet"><div class="tl">{SBAR}{hdr(LOGO, '<span>+ New</span>')}<h1 class="md">My tags</h1>{''.join(f'<div class="item{" sel" if i == 0 else ""}"><span class="ic">{ic}</span><span class="tx"><b>{n}</b><span>{c}</span></span><span class="badge {b}">{st}</span></div>' for i, (ic, n, c, b, st) in enumerate([("🎒", "Black backpack", "TK-7Q4M-9XRA", "b-r", "Return"), ("📱", "Phone tag", "TK-W6QB-8MZT", "b-n", "Normal"), ("🐾", "Milo", "TK-M3PF-2KWD", "b-l", "Lost"), ("🧳", "Blue suitcase", "TK-H8RC-4TNE", "b-n", "Normal")]))}<div class="sp"></div>{tabbar("tags")}</div><div class="tr"><div class="hdr"><b>Black backpack</b><span class="badge b-r">Return active</span></div><div class="thread"><div class="bub in2 wide2"><b>Left in a safe place</b><div class="minimap"><i class="pin"></i><span>Café Extrablatt, Luisenplatz 4, Darmstadt</span></div><span>“Gave it to the barista, Mia. Ask at the counter.”</span></div></div><div class="hcode"><span>🔑 Your handover code</span><b>739 204</b></div><div class="sp"></div><div class="two"><div class="btn sec">Open in Maps</div><div class="btn pri">I picked it up</div></div></div></div></figure>
+</div></section>"""
+
+PARTS2 = PARTS2 + TABLET
+PARTS2_CSS += """
+.dash{display:grid;grid-template-columns:220px 1fr;height:100%}
+.dash aside{background:var(--tk-surface);border-right:1px solid var(--tk-line);padding:20px;display:flex;flex-direction:column;gap:8px}
+.dash aside a{padding:10px 12px;border-radius:10px;color:var(--tk-ink);display:flex;justify-content:space-between;align-items:center}.dash aside a.on{background:var(--tk-brand-soft);font-weight:600}
+.dash aside small{margin-top:auto;font-size:12px;color:var(--tk-ink-2)}.dash aside .unread{font-style:normal}
+.dash main{padding:24px 32px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.dhead{display:flex;justify-content:space-between;align-items:center}.dhead h1{margin:0}
+.drow{display:grid;grid-template-columns:44px 1fr 120px 140px;gap:12px;align-items:center;background:var(--tk-surface);border:1px solid var(--tk-line);border-radius:14px;padding:12px 14px}
+.drow .ic{width:40px;height:40px;border-radius:12px;background:var(--tk-sunken);display:grid;place-items:center;font-size:20px}.drow .tx b{display:block}.drow .tx span{font-size:12px;color:var(--tk-ink-2)}
+.dact{text-align:right;font-size:14px;color:var(--tk-brand-text);font-weight:600}.dact .btn{display:inline-flex;width:auto}
+.dmsg{background:var(--tk-brand-soft);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}.dmsg span{font-size:13px;color:var(--tk-ink-2)}
+.tablet{display:grid;grid-template-columns:360px 1fr;height:700px;border:1px solid var(--tk-line);border-radius:28px;overflow:hidden;background:var(--tk-surface);box-shadow:var(--tk-shadow)}
+.tablet .tl{border-right:1px solid var(--tk-line);padding:22px 20px;display:flex;flex-direction:column;gap:12px}
+.tablet .tl .tabs{margin:0 -20px -22px}
+.tablet .tr{padding:56px 28px 24px;display:flex;flex-direction:column;gap:14px;background:var(--tk-bg)}
+.item.sel{border-color:var(--tk-brand);background:var(--tk-brand-soft)}
+@media (max-width:900px){.dash,.tablet{grid-template-columns:1fr;height:auto}.drow{grid-template-columns:44px 1fr}}
+"""

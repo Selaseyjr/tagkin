@@ -17,6 +17,8 @@ NOTES = {
     "Finder T · Owner test scan": "Owner turned on test mode (10 min). Nothing is sent, no alerts.",
     "Finder 2 · Where is it now?": "One choice required. Next is disabled until chosen.",
     "Finder 3 · Where exactly?": "Suggestions after 2 letters (places API). Share item location uses browser location; otherwise only the city is stored.",
+    "Finder 3b · Show where you left it": "Only after Left it in a safe place. Photo from the camera or library; location data (EXIF) is removed before sending. Address comes from the shared item location (reverse geocoding) or what the finder typed.",
+    "Owner 13e · Left in a safe place": "Photo, map pin and address. Exact pin only if the finder shared the item location; otherwise the typed place or city.",
     "Finder 4 · Anything else?": "Optional. Phone or email in the text (libphonenumber-js) shows the share warning; Next needs Continue.",
     "Finder 5 · Want a reply?": "Email or phone, hidden from the owner and relayed. Send anonymously skips it.",
     "Finder 6 · Thank you": "Owner reply appears live while the page is open. Invite card: first tag offer for the finder.",

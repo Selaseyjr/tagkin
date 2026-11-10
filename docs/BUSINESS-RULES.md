@@ -59,6 +59,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 5. If the owner doesn't reply within a set time, the backup contact is alerted and the finder is offered to hand the item to staff or a lost-and-found desk.
 3. The finder page always uses helper wording ("This item is missing"). It never says "stolen".
 4. No public reward amount. Owners can thank finders privately after a return.
+6. **Left in a safe place:** when a finder can't keep the item or hand it to staff, they can leave it somewhere safe, add a photo, a short note and the address. Photos have their location data removed. The owner sees an exact map pin only if the finder shared the item location; otherwise the place the finder typed.
 
 ## 7. Privacy and safety
 
