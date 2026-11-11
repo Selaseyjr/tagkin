@@ -27,7 +27,7 @@ NOTES = {
     "Finder R · Report this tag": "Goes to moderation. 112 note for emergencies.",
     "Setup 5b · Pick your tag": "Each card preselects style and type: sticker, keychain and lock screen → item; luggage label → travel; pet tag → pet. A live preview card follows through details and message.",
     "Manage 7 · Status update": "Opt-in note on the finder page. City only, no dates or times. Hides automatically after the trip or 7 days.",
-    "Setup 3 · Save your tag (sign up when needed)": "Shown only when needed: at Make it live, Continue to delivery, or before the activation PIN. Terms accepted here. Drafts made as a guest are attached to the new account. Gift checkout never needs it.",
+    "Setup 3 · Save your tag (sign up when needed)": "Shown only when needed: at Make it live, Continue to payment, or before the activation PIN. Terms accepted here. Drafts made as a guest are attached to the new account. Gift checkout never needs it.",
     "Owner 2 · Enter code": "6-digit email code, valid 10 minutes, 5 attempts.",
     "Owner 3 · Tag type": "Type is locked after creation. Item → details, Travel → Type 1, Pet → Type 2.",
     "Owner 5 · Finder message": "Template or own text, 160 characters, live count. Warns on phone or email; blocks abusive words.",
@@ -133,7 +133,7 @@ def fl(title, steps):
 
 FLOWMAP = f"""<section class="flow"><h2>Flow map</h2><p>Every journey at a glance. Screen names below match the frames.</p><div class="map">
 {fl("Finder (web)", ["Scan QR or type code", "Owner message", "Where is it now?", "Where exactly?", "Anything else?", "Want a reply?", "Thank you + reply"])}
-{fl("First launch (guest)", ["Welcome", "Private by default", "Create a tag: for myself or gift", "Explore and customise without an account", "Save your tag: email, terms, code (at Make it live, Continue to delivery or activation)"])}
+{fl("First launch (guest)", ["Welcome", "Private by default", "Create a tag: for myself or gift", "Explore and customise without an account", "Save your tag: email, terms, code (at Make it live, Continue to payment or activation)"])}
 {fl("Returning owner", ["Welcome back", "Email code", "My tags"])}
 {fl("Free phone tag", ["Choose type: lock screen", "Details", "Finder message", "Customise", "Phone tag is live", "Try it with another phone", "Notifications"])}
 {fl("Printed tag", ["Choose type", "Details", "Finder message", "Customise colour", "Order", "Delivery", "Pay", "Live and on its way"])}

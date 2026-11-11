@@ -13,7 +13,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 ## 1b. Accounts, guests and markets
 
 1. **Explore without an account.** Anyone can browse, choose a tag type, fill in details and the finder message, and customise a tag before signing up. Drafts are kept on the device.
-2. **Sign up at the moment it's needed**, with email and a 6-digit code: when a tag goes live ("Make it live"), before delivery details for an order ("Continue to delivery"), and before the PIN when activating a gift or shop tag. Drafts are attached to the new account.
+2. **Sign up at the moment it's needed**, with email and a 6-digit code: when a tag goes live ("Make it live"), before payment for an order ("Continue to payment" on Order details, where copies and delivery details share one page), and before the PIN when activating a gift or shop tag. Drafts are attached to the new account.
 3. **Gift a tag works as a guest checkout**: only an email for the receipt and tracking; no account, because the buyer never owns the tags.
 4. **Launch markets (pilot):** only countries where Stripe can take payment and the print partner delivers (Germany and the EU), prices in euro. Other countries are listed as future markets; checkout shows only supported delivery countries. Ghana follows later with a local payment provider (such as Paystack and mobile money) and local prices.
 5. **Launch sequence:** a web beta first (finder pages and the owner web at tagkin.app: create, customise, order and pay, Lost mode, messages), then the iOS and Android app after store review.
@@ -29,11 +29,14 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 ## 3. Printed tags
 
 1. A bought tag is **free to use for life**: no subscription, no activation fee, and it never counts toward the free tag.
-2. Owners choose the type (sticker, keychain, pet tag, luggage label), colour and number of copies before ordering, and see the result before paying.
+2. Owners choose the type (sticker, keychain, pet tag, luggage label), size (where the product has sizes), colour, finish (matte, gloss, holo, glow or reflective, by product) and an optional label of up to 12 characters (a name or initials), plus the number of copies, and see the result before paying.
+   - The QR always prints black on white with its margin, and the code and tagkin.app always print. Colour and finish never touch the QR.
+   - Labels never carry a phone number, email or address; the app blocks them.
+   - Options per product follow what the print partner can make; extra finishes cost extra and show in the price before checkout.
 3. **Copies:** one code can be printed several times for **one belonging** (phone and case, suitcase outside and inside). Separate belongings get separate tags.
 4. The same price per tag applies in the app, on the website and in shops. Shop packs use a standard design; the app offers colours and personal messages.
 5. Prices shown before checkout are final, including shipping. Discounts appear as a separate line (EU price rules), never as a struck-through price.
-6. Delivery details are asked before any payment button.
+6. Delivery details are asked before any payment button, on the same page as the copies (Order details).
 7. Packs lead the range; shipping is free over €15 (sample threshold, set with the print partner).
 8. **Payment:** Tagkin is the seller. Customers choose how to pay on the review screen: Apple Pay (iPhone) or Google Pay (Android), card, PayPal or Klarna, processed by Stripe. Tagkin never sees card details. The print partner only prints and ships, and bills Tagkin.
 9. The first-tag offer applies to an account's first printed order only.
@@ -71,6 +74,8 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 4. The finder page always uses helper wording ("This item is missing"). It never says "stolen".
 5. No public reward amount. Owners can thank finders privately after a return.
 6. **Left in a safe place:** when a finder can't keep the item or hand it to staff, they can leave it somewhere safe, add a photo, a short note and the address. Photos have their location data removed. The owner sees an exact map pin only if the finder shared the item location; otherwise the place the finder typed.
+7. **Handover check:** while a return is open, anyone holding the item (the finder or desk staff) can scan the tag and check the owner's handover code. No session or account is needed; attempts are limited (5, then a 15-minute wait). After a match, the finder confirms the handover and the conversation closes.
+8. **Coming back later:** finders reopen their report from the link in every email or text, or by scanning the tag again on the same device. Anonymous finders get a link to save; without it they can still check the handover code from the tag.
 
 ## 7. Privacy and safety
 

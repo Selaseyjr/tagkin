@@ -49,7 +49,7 @@ Owners can create an account, sign in on any device, recover access and control 
 
 As a new owner, I want to sign up with my email and a one-time code only when it's needed, so that I don't need a password or an account just to look around.
 
-- Sign-up is asked only at Make it live, Continue to delivery or before an activation PIN; returning owners use Welcome back
+- Sign-up is asked only at Make it live, Continue to payment or before an activation PIN; returning owners use Welcome back
 - Email is required and verified with a 6-digit code valid for 10 minutes
 - After 5 wrong attempts the user waits before trying again
 - Resend is possible after 30 seconds; the screen suggests checking spam or using another email
@@ -249,6 +249,7 @@ As a finder, I want to see and answer the owner's reply, so that we can arrange 
 
 - Owner reply appears live; finder can reply with emoji
 - Link to the handover check
+- Report link to copy; the same link is in every email or text; the same device is remembered
 - Invite card: protect your own things, first tag offer
 
 **Ready**
@@ -263,8 +264,10 @@ As a finder, I want to see and answer the owner's reply, so that we can arrange 
 
 As a finder or desk staff, I want to check the owner's handover code before handing over, so that only the real owner gets it.
 
-- 6-digit code checked against the return; clear match or no-match message
-- Attempts are rate-limited
+- Anyone holding the item can check it from the tag page while a return is open ('Check a handover code'); no session needed
+- 6-digit code checked against the open return; clear match or no-match message with tries left
+- 5 attempts, then a 15-minute wait
+- After a match, 'I've handed it over' closes the conversation and shows a thank-you page with the protect-your-things offer
 
 ### TK-18 · No reply yet
 
@@ -280,7 +283,9 @@ As a finder, I want to know what to do if the owner doesn't answer, so that I'm 
 
 As a finder, I want to report abuse, so that the platform stays safe.
 
-- Reasons list; 112 note for emergencies; report goes to moderation
+- Reasons list; choosing one opens a details box (required for 'Something else') with a Report button under it
+- After sending, a confirmation sheet: thanks, we review it, the owner won't know who reported; Done returns to the previous page
+- 112 note for emergencies; report goes to moderation
 
 **Ready**
 - Screens: Finder R · Report this tag
@@ -321,10 +326,11 @@ As a owner, I want to create a tag for a belonging, so that finders know what to
 
 *Must · M · M3 Owner app core*
 
-As a owner, I want to choose shape and colour and see the result, so that I know what I'll receive.
+As a owner, I want to choose shape, size, colour, finish and a short label and see the result, so that my tag feels like mine and I know what I'll receive.
 
-- Six colours fill the tag; QR stays black on white
-- Size, material and price shown
+- Shape, size (where offered), 8 colours and 2 gradients, finish by product (matte, gloss, holo, glow, reflective) and an optional label of up to 12 characters
+- Live preview; QR stays black on white; label blocks phone numbers and emails
+- Size, material, finish and price shown; extra finishes priced before checkout
 - Lock screen leads to 'Make it live'; printed types lead to ordering
 
 ### TK-32 · Free phone tag and lock screen image
@@ -495,8 +501,9 @@ As a owner, I want to order my customised tag in copies, so that I get a durable
 
 *Must · S · M2 Web beta: create, order and pay*
 
-As a owner, I want to enter my address before any pay button, so that I know where it goes.
+As a owner, I want to enter my address on the same page as my order, so that ordering is quick and I know where it goes.
 
+- Order details holds copies and delivery details on one page, before any pay button
 - Name, street, postcode, city, country, optional courier phone
 - Address shared only with the print partner
 
@@ -686,7 +693,7 @@ As a Tagkin, I want complete App Store and Google Play listings, so that the app
 As a visitor on tagkin.app, I want to create, customise and order a tag in the browser, so that the web beta can sell tags before the apps launch.
 
 - tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay
-- Sign-up at Continue to delivery; tags live from order
+- Sign-up at Continue to payment; tags live from order
 - Works on phone and desktop browsers
 
 

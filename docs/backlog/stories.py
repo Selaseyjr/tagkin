@@ -37,7 +37,7 @@ def story(id, epic, title, who, want, so, ac, pri, size, ms):
 
 # ---------- E1 Accounts and sign-in ----------
 story("TK-1", "E1", "Sign up and sign in with an email code", "new owner", "to sign up with my email and a one-time code only when it's needed", "I don't need a password or an account just to look around",
-      ["Sign-up is asked only at Make it live, Continue to delivery or before an activation PIN; returning owners use Welcome back", "Email is required and verified with a 6-digit code valid for 10 minutes", "After 5 wrong attempts the user waits before trying again", "Resend is possible after 30 seconds; the screen suggests checking spam or using another email", "Terms must be accepted before the account is created; guest drafts are attached to the new account"], "Must", "M", "M1")
+      ["Sign-up is asked only at Make it live, Continue to payment or before an activation PIN; returning owners use Welcome back", "Email is required and verified with a 6-digit code valid for 10 minutes", "After 5 wrong attempts the user waits before trying again", "Resend is possible after 30 seconds; the screen suggests checking spam or using another email", "Terms must be accepted before the account is created; guest drafts are attached to the new account"], "Must", "M", "M1")
 story("TK-2", "E1", "First launch intro", "new owner", "to understand Tagkin in two screens", "I know what I'm signing up for",
       ["Welcome and 'Private by default' screens, then terms", "'I have an account' skips to sign-in"], "Should", "S", "M3")
 story("TK-3", "E1", "Sign in on the web", "owner whose phone is lost", "to sign in at tagkin.app on any device", "I can still use Lost mode and reply",
@@ -67,21 +67,21 @@ story("TK-14", "E2", "Add a note safely", "finder", "to add an optional note", "
 story("TK-15", "E2", "Choose how to get replies", "finder", "to get replies by email, phone or stay anonymous", "my details stay private",
       ["Email or phone is hidden from the owner and relayed", "Anonymous finders see replies only while the page is open"], "Must", "M", "M1")
 story("TK-16", "E2", "Thank-you page with live reply", "finder", "to see and answer the owner's reply", "we can arrange the return",
-      ["Owner reply appears live; finder can reply with emoji", "Link to the handover check", "Invite card: protect your own things, first tag offer"], "Must", "M", "M1")
+      ["Owner reply appears live; finder can reply with emoji", "Link to the handover check", "Report link to copy; the same link is in every email or text; the same device is remembered", "Invite card: protect your own things, first tag offer"], "Must", "M", "M1")
 story("TK-17", "E2", "Check the handover code", "finder or desk staff", "to check the owner's handover code before handing over", "only the real owner gets it",
-      ["6-digit code checked against the return; clear match or no-match message", "Attempts are rate-limited"], "Should", "S", "M3")
+      ["Anyone holding the item can check it from the tag page while a return is open ('Check a handover code'); no session needed", "6-digit code checked against the open return; clear match or no-match message with tries left", "5 attempts, then a 15-minute wait", "After a match, 'I've handed it over' closes the conversation and shows a thank-you page with the protect-your-things offer"], "Should", "S", "M3")
 story("TK-18", "E2", "No reply yet", "finder", "to know what to do if the owner doesn't answer", "I'm not left waiting",
       ["After the wait time the page explains the backup contact was alerted and offers 'I handed it to staff'"], "Should", "S", "M3")
 story("TK-19", "E2", "Report a tag or message", "finder", "to report abuse", "the platform stays safe",
-      ["Reasons list; 112 note for emergencies; report goes to moderation"], "Must", "S", "M1")
+      ["Reasons list; choosing one opens a details box (required for 'Something else') with a Report button under it", "After sending, a confirmation sheet: thanks, we review it, the owner won't know who reported; Done returns to the previous page", "112 note for emergencies; report goes to moderation"], "Must", "S", "M1")
 story("TK-20", "E2", "Legal footer on finder pages", "finder", "to reach Impressum, privacy and terms", "Tagkin meets German law",
       ["Footer on every finder page"], "Must", "S", "M1")
 
 # ---------- E3 Tags ----------
 story("TK-30", "E3", "Create a tag: type, details, message", "owner", "to create a tag for a belonging", "finders know what to do",
       ["Choose type of tag (sticker, keychain, pet tag, luggage label, lock screen); tag type item, travel or pet is locked after creation", "Details per type: name and photo; travel fields change with transport mode; pet temperament and care notes", "Finder message: template or own text, 160 characters, warning on contact details, emoji picker, live preview"], "Must", "L", "M3")
-story("TK-31", "E3", "Customise the tag", "owner", "to choose shape and colour and see the result", "I know what I'll receive",
-      ["Six colours fill the tag; QR stays black on white", "Size, material and price shown", "Lock screen leads to 'Make it live'; printed types lead to ordering"], "Must", "M", "M3")
+story("TK-31", "E3", "Customise the tag", "owner", "to choose shape, size, colour, finish and a short label and see the result", "my tag feels like mine and I know what I'll receive",
+      ["Shape, size (where offered), 8 colours and 2 gradients, finish by product (matte, gloss, holo, glow, reflective) and an optional label of up to 12 characters", "Live preview; QR stays black on white; label blocks phone numbers and emails", "Size, material, finish and price shown; extra finishes priced before checkout", "Lock screen leads to 'Make it live'; printed types lead to ordering"], "Must", "M", "M3")
 story("TK-32", "E3", "Free phone tag and lock screen image", "new owner", "a free lock-screen tag", "I can try Tagkin before buying",
       ["One free tag per account: the phone lock-screen tag", "Set as lock screen saves the image", "Retiring it frees the slot; codes never return"], "Must", "M", "M3")
 story("TK-33", "E3", "My tags list", "owner", "to see all my tags and their state", "I know what's protected",
@@ -116,8 +116,8 @@ story("TK-45", "E4", "Report or block a finder", "owner", "to block or report a 
 # ---------- E5 Ordering and payment ----------
 story("TK-50", "E5", "Order a printed tag", "owner", "to order my customised tag in copies", "I get a durable tag",
       ["Shows my design, colour and size; copies of the same code", "Free shipping over €15; first-tag offer once per account as a discount line"], "Must", "M", "M2")
-story("TK-51", "E5", "Delivery details before payment", "owner", "to enter my address before any pay button", "I know where it goes",
-      ["Name, street, postcode, city, country, optional courier phone", "Address shared only with the print partner"], "Must", "S", "M2")
+story("TK-51", "E5", "Delivery details before payment", "owner", "to enter my address on the same page as my order", "ordering is quick and I know where it goes",
+      ["Order details holds copies and delivery details on one page, before any pay button", "Name, street, postcode, city, country, optional courier phone", "Address shared only with the print partner"], "Must", "S", "M2")
 story("TK-52", "E5", "Choose how to pay", "owner", "to pay with Apple Pay or Google Pay, card, PayPal or Klarna", "I can use what I trust",
       ["Stripe payment sheet; button names amount and method", "Personalised goods notice (no 14-day return; faulty replaced) and Terms before paying", "Declined payment shows a clear error; card not charged"], "Must", "L", "M2")
 story("TK-53", "E5", "Send paid orders to the print partner", "Tagkin", "paid orders sent to the print partner automatically", "tags are printed without manual work",
@@ -184,7 +184,7 @@ story("TK-100", "E1", "Explore and create without an account", "visitor", "to ex
 story("TK-101", "E6", "Guest gift checkout", "gift buyer without an account", "to buy a gift with only my email", "I don't need an account for tags I won't own",
       ["Email for receipt and tracking; order status page by link", "Same payment step and personalised-goods notice as other orders"], "Should", "M", "M4")
 story("TK-102", "E8", "Create, customise and order on the web", "visitor on tagkin.app", "to create, customise and order a tag in the browser", "the web beta can sell tags before the apps launch",
-      ["tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay", "Sign-up at Continue to delivery; tags live from order", "Works on phone and desktop browsers"], "Must", "L", "M2")
+      ["tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay", "Sign-up at Continue to payment; tags live from order", "Works on phone and desktop browsers"], "Must", "L", "M2")
 
 # Definition of Ready evidence per story (step 7 refinement). Stories listed here are Ready.
 READY = {

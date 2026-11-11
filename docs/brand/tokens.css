@@ -28,8 +28,9 @@
   --tk-ok: #007a57;          /* returned, shared, done */
 
   /* Type */
-  --tk-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
-  --tk-font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tk-font-brand: "Bricolage Grotesque", system-ui, sans-serif; /* wordmark only */
+  --tk-font-display: "Geist", system-ui, -apple-system, sans-serif; /* headings (modern pass 11 Nov) */
+  --tk-font-body: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --tk-text-xs: 12px;
   --tk-text-sm: 14px;
   --tk-text-md: 16px;   /* body; never smaller for inputs (iOS zoom) */

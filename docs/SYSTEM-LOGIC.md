@@ -57,7 +57,7 @@ any ──owner: retire | account deleted──▶ retired (final)
 
 **Order**: `pending_payment` → `paid` → `sent_to_partner` → `in_production` → `shipped` → `delivered`. Branches: `payment_failed` (retry), `partner_failed` (admin; refund), `cancelled` (before production only), `refunded`. Own-order tags go live at `paid`.
 
-**Guest to owner**: guests explore, create drafts and customise without an account. Sign-up (email code, terms) is required at: Make it live, Continue to delivery, and before the activation PIN. On sign-up, drafts become tags in one transaction. Gift checkout never requires an account (guest email only).
+**Guest to owner**: guests explore, create drafts and customise without an account. Sign-up (email code, terms) is required at: Make it live, Continue to payment (Order details), and before the activation PIN. On sign-up, drafts become tags in one transaction. Gift checkout never requires an account (guest email only).
 
 **Activation (unclaimed tag)**: scan or code → tag found and unclaimed → (sign up if guest) → PIN (5 attempts, then 15-minute wait) → owner chooses type, details, message → `normal`. Wrong PIN never reveals whether a code exists beyond "unclaimed".
 
@@ -125,8 +125,10 @@ Push falls back to email when push is off or the token is invalid. Every email h
 ## 8. URLs and deep links
 
 - `tagkin.app/TK-XXXX-XXXX` (printed in the QR): finder page; if the tag is unclaimed, "Not set up yet" with a deep link that opens the app (or the store) with the code prefilled for activation.
-- `tagkin.app/TK-…/handover`: handover check for finders and desk staff.
-- `tagkin.app/r/{token}`: finder reply link from email (no account).
+- `tagkin.app/TK-…/handover`: handover check for finders and desk staff, open to anyone while the tag has an open return (no session; 5 attempts, then 15 minutes). The tag page shows "Check a handover code" during a return.
+- `tagkin.app/r/{token}`: finder report link (no account), sent in every email or text and shown on the thank-you page to save. The same device is remembered, so scanning the tag again offers "Continue my report".
+
+**Back navigation (app and web):** back returns to the previous screen. After a completed step that can't be undone (payment, activation, tag live, account deletion, report sent, block, handover confirmed, return closed, tag retired) the history is cleared: back leads to the home screen (My tags, or the tag page for finders) and the finished form can't be reopened or sent twice. Sign-in screens are removed from history after sign-in. Tabs start a fresh history.
 - `tagkin.app/signin`, `/my-tags`: owner web.
 - `tagkin.app/create`, `/gift`: create and gift on the web without an account (web beta).
 - `tagkin.app/o/{token}`: guest order status.

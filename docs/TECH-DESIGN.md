@@ -87,7 +87,8 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 | POST `/api/reports/{token}/photo` | Upload safe-place photo | TK-13 |
 | GET `/api/reports/{token}/messages` (+ Realtime channel) | Live owner replies | TK-16 |
 | POST `/api/reports/{token}/messages` | Finder reply | TK-16 |
-| POST `/api/returns/{token}/handover-check` | Check handover code (rate-limited) | TK-17 |
+| POST `/api/tags/{code}/handover-check` | Check handover code against the open return; no token needed (5 attempts, then 15 min) | TK-17 |
+| POST `/api/returns/{token}/handed-over` | Finder confirms the handover; return moves to `handed_over` | TK-17 |
 | POST `/api/abuse` | Report a tag or message | TK-19 |
 | POST `/api/places/suggest`, `/api/places/reverse` | Proxy to Places and geocoding (keys stay on the server) | TK-12 |
 
