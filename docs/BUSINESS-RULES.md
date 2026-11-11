@@ -15,7 +15,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 1. **Explore without an account.** Anyone can browse, choose a tag type, fill in details and the finder message, and customise a tag before signing up. Drafts are kept on the device.
 2. **Sign up at the moment it's needed**, with email and a 6-digit code: when a tag goes live ("Make it live"), before delivery details for an order ("Continue to delivery"), and before the PIN when activating a gift or shop tag. Drafts are attached to the new account.
 3. **Gift a tag works as a guest checkout**: only an email for the receipt and tracking; no account, because the buyer never owns the tags.
-4. **Launch markets:** Germany and the EU, prices in euro, Stripe for payment. Ghana follows later with a local payment provider (such as Paystack and mobile money) and local prices.
+4. **Launch markets (pilot):** only countries where Stripe can take payment and the print partner delivers (Germany and the EU), prices in euro. Other countries are listed as future markets; checkout shows only supported delivery countries. Ghana follows later with a local payment provider (such as Paystack and mobile money) and local prices.
 5. **Launch sequence:** a web beta first (finder pages and the owner web at tagkin.app: create, customise, order and pay, Lost mode, messages), then the iOS and Android app after store review.
 
 ## 2. Free tag
