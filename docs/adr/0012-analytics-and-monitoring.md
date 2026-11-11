@@ -1,6 +1,6 @@
 # ADR 0012: Analytics and error tracking: PostHog EU and Sentry EU
 
-**Status:** Recommended, awaiting approval · **Date:** 11 Nov 2026
+**Status:** Accepted (approved by Selasey, 11 Nov 2026) · **Date:** 11 Nov 2026
 
 ## Context
 Tagkin must measure its success measures (activation, test scans, conversion, finder completion, owner response, returns, Notify me) across the app and the web, and catch errors in the app, finder pages and server, without profiling people or needing a cookie banner. Research 11 Nov 2026: PostHog Cloud EU runs in Frankfurt (AWS eu-central-1) as a separate instance, with about 1 million free events a month and a React Native SDK. Sentry offers storage in Frankfurt on every plan, including the free Developer plan; some account metadata stays in the US. Plausible is web-only. Both PostHog and Sentry are US-incorporated companies with EU data storage.
@@ -15,7 +15,7 @@ Tagkin must measure its success measures (activation, test scans, conversion, fi
 | Bugsink or GlitchTip, self-hosted in the EU | Fully EU | We run and maintain it |
 
 ## Decision
-Recommend **PostHog Cloud EU** for product analytics and **Sentry (EU data storage, Frankfurt)** for error tracking. Rules:
+Use **PostHog Cloud EU** for product analytics and **Sentry (EU data storage, Frankfurt)** for error tracking. Rules:
 - Events only for the success measures and key steps, named in a tracking plan; no names, emails, phone numbers, codes, addresses or message text in events.
 - Finder pages: anonymous, cookieless events (in-memory persistence), no session recording, no autocapture of text inputs.
 - Owner app: pseudonymous account ID only after sign-in; session recording off at launch.

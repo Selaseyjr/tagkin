@@ -142,4 +142,5 @@ Matches the milestones in BACKLOG.md:
 - ADR 0006 Bird and ADR 0008 Google Places: create accounts at Sprint 0; set billing alerts and quotas.
 - ADR 0010 print partner: order samples (Selasey).
 - Domain tagkin.app (by 15 Nov).
+- Analytics and errors: PostHog Cloud EU and Sentry (Frankfurt storage) with the privacy rules in ADR 0012; write a tracking plan for the success measures in Sprint 0.
 - Accounts needed: Supabase (paid plan before launch), Vercel, Expo, Stripe, Apple Developer (before TestFlight), Google Play Console (before internal testing).

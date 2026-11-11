@@ -1,6 +1,6 @@
 # Architecture decision records
 
-Short records of key technical choices: the context, the options compared, the decision and its consequences. Status: Accepted, or Proposed (needs a check before sign-up). Step 6 of the product owner flow.
+Short records of key technical choices: the context, the options compared, the decision and its consequences. Status: Accepted, or Proposed (decided after a practical check). Step 6 of the product owner flow.
 
 | ADR | Decision | Status |
 |---|---|---|
@@ -15,4 +15,4 @@ Short records of key technical choices: the context, the options compared, the d
 | [0009](0009-push-notifications.md) | Push notifications: Expo push service | Accepted |
 | [0010](0010-print-partner.md) | Print partner: decide after samples | Proposed |
 | [0011](0011-repository-and-delivery-setup.md) | Repository and delivery setup | Accepted |
-| [0012](0012-analytics-and-monitoring.md) | Analytics and error tracking: PostHog EU and Sentry EU | Recommended, awaiting approval |
+| [0012](0012-analytics-and-monitoring.md) | Analytics and error tracking: PostHog EU and Sentry EU | Accepted |

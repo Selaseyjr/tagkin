@@ -15,7 +15,7 @@ One defined sequence, each step with its artefact. The stages below (A to G) sit
 | 3 | **Design** | What will people see and do? | User flows, wireframes, prototypes, design system, 87 screens | Done (Stage A) |
 | 4 | **Specify** | What must be true, and how does it behave? | BUSINESS-RULES.md, SYSTEM-LOGIC.md (functional spec), audit | Done |
 | 5 | **Plan the backlog** | What exactly gets built, in what order, and when is it done? | docs/BACKLOG.md and 60 GitHub issues (9 epics, 5 milestones, MoSCoW, sizes, acceptance criteria); Definition of Ready and Done | Done: board at github.com/users/Selaseyjr/projects/2 |
-| 6 | **Technical design** | How will it be built? | docs/TECH-DESIGN.md (architecture, repo, security, API outline, environments, build order) and 12 decision records in docs/adr | **In progress**: 11 decided; open: analytics (0012) and print partner (0010, after samples); Brevo test after the domain |
+| 6 | **Technical design** | How will it be built? | docs/TECH-DESIGN.md (architecture, repo, security, API outline, environments, build order) and 12 decision records in docs/adr | **In progress**: 11 of 12 decided; open: print partner (0010, after samples); Brevo test after the domain |
 | 7 | **Build** | Sprints against the backlog | Working increments, demos | Stage D |
 | 8 | **Test and comply** | Does it work, and is it allowed? | Test plan, beta, legal texts, store reviews | Stages D to F |
 | 9 | **Launch** | Release | Store listings, website live | Stage F |
