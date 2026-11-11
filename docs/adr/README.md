@@ -1,0 +1,18 @@
+# Architecture decision records
+
+Short records of key technical choices: the context, the options compared, the decision and its consequences. Status: Accepted, or Proposed (needs a check before sign-up). Step 6 of the product owner flow.
+
+| ADR | Decision | Status |
+|---|---|---|
+| [0001](0001-mobile-app.md) | Mobile app: React Native with Expo | Accepted |
+| [0002](0002-web.md) | Web: Next.js on Vercel (Frankfurt) | Accepted |
+| [0003](0003-backend-database-auth-and-storage.md) | Backend, database, auth and storage: Supabase in Frankfurt | Accepted |
+| [0004](0004-payments.md) | Payments: Stripe | Accepted |
+| [0005](0005-transactional-email.md) | Transactional email: EU-based provider | Proposed (verify at sign-up) |
+| [0006](0006-sms-for-account-recovery.md) | SMS for account recovery | Proposed |
+| [0007](0007-translation.md) | Translation: DeepL, with a fallback | Accepted |
+| [0008](0008-places-and-maps.md) | Places and maps | Proposed |
+| [0009](0009-push-notifications.md) | Push notifications: Expo push service | Accepted |
+| [0010](0010-print-partner.md) | Print partner: decide after samples | Proposed |
+| [0011](0011-repository-and-delivery-setup.md) | Repository and delivery setup | Accepted |
+| [0012](0012-analytics-and-monitoring.md) | Analytics and monitoring: EU-hosted | Proposed |
