@@ -2,13 +2,13 @@
 
 Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).
 
-67 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
+70 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
 
 ## Milestones
 
 - **M1 Finder web and accounts**: A finder can report a tag; an owner can sign in and receive it. (14 stories)
 - **M2 Web beta: create, order and pay**: Guests create and customise on the web, sign up when needed, order and pay. Web beta release. (9 stories)
-- **M3 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (29 stories)
+- **M3 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (32 stories)
 - **M4 Gifting and activation**: Blank tags can be gifted (guest checkout) and activated with a PIN. (4 stories)
 - **M5 Launch readiness**: Website, legal, accessibility, languages, operations and store submission. (11 stories)
 
@@ -17,8 +17,8 @@ Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stori
 | Priority | Stories |
 |---|---|
 | Must | 47 |
-| Should | 18 |
-| Could | 2 |
+| Should | 20 |
+| Could | 3 |
 | Won't (this release) | 7 items, listed below |
 
 ## Definition of Ready
@@ -323,7 +323,7 @@ As a owner, I want to create a tag for a belonging, so that finders know what to
 - Photos: JPEG, PNG, WebP or HEIC up to 10 MB; resized to 1600 px and location data removed; the chosen photo fills its box, opens full screen to check, with Use, Replace and Remove
 - Draft rules: back keeps what was entered; choosing a different type or tag style clears the item details; leaving the flow with unsaved input asks Discard or Keep editing; a new flow starts blank
 - Customise preview opens full screen and returns to the same choices
-- Finder message: template or own text, 160 characters, warning on contact details, emoji picker, live preview
+- Finder message: suggested text per type, accepted with one tap (Use this message), or own text, 160 characters, warning on contact details, emoji picker, live preview
 
 ### TK-31 · Customise the tag
 
@@ -417,6 +417,7 @@ As a owner, I want to order a tag before I have the item, so that it's ready whe
 - Order and pay as usual; the tag is mine from payment and shows 'Set up' in My tags
 - Set up later: type, name, photo, message; no PIN
 - Until set up, finders see 'not set up yet' and I get a scan alert
+- After setting one up, 'Set up next blank tag (n left)' continues straight to the next
 
 ### TK-106 · Edit item name, photo and description later
 
@@ -428,6 +429,26 @@ As a owner, I want to update my item details after creating the tag, so that I c
 - Name required (2 to 40), description optional (120)
 - Locked during Lost mode or a return
 - Tags without a photo show 'add a photo' in My tags
+- My tags shows one nudge card at a time (photo, then backup contact, then recovery phone); each can be dismissed
+
+### TK-107 · Undo instead of confirm for reversible actions
+
+*Should · S · M3 Owner app core*
+
+As a owner, I want to undo a quick action for a few seconds, so that I move fast without fear of mistakes.
+
+- I found it myself and Mark as returned apply at once with a 5-second Undo bar
+- Mark as lost, retire and delete keep a confirmation
+- Undo restores the previous state exactly
+
+### TK-108 · Quick actions from My tags and notifications
+
+*Should · M · M3 Owner app core*
+
+As a owner, I want to act on a tag without opening it, so that urgent things take one tap.
+
+- ⋯ on each tag: Mark as lost or I found it myself, Show QR, Edit name and photo
+- Reply to a finder from the notification; the reply is relayed and translated
 
 
 ## E4 · Lost mode and returns
@@ -508,6 +529,16 @@ As a owner, I want to reply to a finder from tagkin.app, so that we can arrange 
 - Logic: SYSTEM-LOGIC.md sections 2, 4, 5, 6
 - Depends on: TK-82; TK-15; Brevo inbound parsing (ADR 0005); DeepL (ADR 0007)
 
+### TK-109 · Suggested replies in the conversation
+
+*Could · S · M3 Owner app core*
+
+As a owner, I want to answer a finder with one tap, so that I reply quickly on the move.
+
+- Chips above the composer: Thank you so much!, I'll pick it up today, Please hand it to staff, Where exactly is it?
+- A chip fills the reply box; I can edit before sending
+- Chips are translated for the finder like any message
+
 
 ## E5 · Ordering and payment
 
@@ -529,6 +560,7 @@ As a owner, I want to order my customised tag in copies, so that I get a durable
 As a owner, I want to enter my address on the same page as my order, so that ordering is quick and I know where it goes.
 
 - Order details holds copies and delivery details on one page, before any pay button
+- Signed-in owners see their saved address as a card with Change; guests see the form
 - Name, street, postcode, city, country, optional courier phone
 - Address shared only with the print partner
 
@@ -568,7 +600,7 @@ As a owner, I want my new tag to work as soon as I order, so that I'm protected 
 As a owner, I want to follow my orders, so that I know when tags arrive.
 
 - A paid order appears at the top of Orders straight away (own, blank and gift orders)
-- States: paid, in production, shipped, delivered
+- States: paid, in production, shipped, delivered; tapping an order shows a timeline and Track parcel once shipped
 - Order a tag and Gift a tag start a fresh journey with empty fields
 - Emails: order confirmed, shipped with tracking
 
