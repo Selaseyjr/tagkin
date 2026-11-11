@@ -1,6 +1,6 @@
-# ADR 0006: SMS for account recovery
+# ADR 0006: SMS for account recovery: Bird via Supabase
 
-**Status:** Recommended, awaiting approval · **Date:** 11 Nov 2026
+**Status:** Accepted (approved by Selasey, 11 Nov 2026) · **Date:** 11 Nov 2026
 
 ## Context
 At launch SMS sends account recovery codes only, so volume is tiny (estimate: a few per month). Supabase Auth has built-in phone sign-in providers, including Twilio, Twilio Verify, MessageBird and Vonage (to confirm when setting up). Research 11 Nov 2026: Twilio Verify charges about $0.05 per successful verification plus the SMS to Germany (sources range from about $0.025 to $0.11), so roughly $0.08 to $0.16 each; Bird Verify has no verification fee and charges only the SMS at the destination's rate; Bird is a Dutch (EU) company.

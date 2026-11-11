@@ -36,12 +36,12 @@ flowchart LR
   S -- webhooks --> N
   N --> P[Print partner API]
   P -- status webhooks --> N
-  EF --> E[EU email provider<br/>sign-in, alerts, relay]
+  EF --> E[Brevo email<br/>sign-in, alerts, relay]
   E -- inbound replies --> N
   EF --> X[Expo push<br/>APNs and FCM]
   N --> T[DeepL<br/>Google fallback]
-  F --> G[Google Places<br/>and geocoding]
-  EF --> V[SMS verification<br/>recovery only]
+  N --> G[Google Places<br/>and geocoding]
+  EF --> V[Bird SMS<br/>recovery only]
 ```
 
 - **Finder web** is server-rendered by Next.js for speed. It never needs an account; it uses short-lived, per-report tokens to receive live replies.
@@ -138,8 +138,8 @@ Matches the milestones in BACKLOG.md:
 
 ## 7. Open items before Sprint 0
 
-- ADR 0005 email provider: deliverability test of the EU shortlist.
-- ADR 0006 SMS and ADR 0008 places: create accounts, check prices.
+- ADR 0005 Brevo: verify tagkin.app (SPF, DKIM, DMARC), test sign-in codes and inbound replies.
+- ADR 0006 Bird and ADR 0008 Google Places: create accounts at Sprint 0; set billing alerts and quotas.
 - ADR 0010 print partner: order samples (Selasey).
 - Domain tagkin.app (by 15 Nov).
 - Accounts needed: Supabase (paid plan before launch), Vercel, Expo, Stripe, Apple Developer (before TestFlight), Google Play Console (before internal testing).

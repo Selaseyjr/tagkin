@@ -1,6 +1,6 @@
-# ADR 0005: Transactional email: EU-based provider
+# ADR 0005: Transactional email: Brevo
 
-**Status:** Recommended, awaiting approval · **Date:** 11 Nov 2026
+**Status:** Accepted (approved by Selasey, 11 Nov 2026) · **Date:** 11 Nov 2026
 
 ## Context
 Sign-in codes, report alerts, replies and order emails, plus **inbound** email so finders can reply to relay emails without an account. Tagkin prefers EU storage (a choice, not a GDPR requirement: transfers are lawful with an adequacy decision such as the EU-US Data Privacy Framework, or standard contractual clauses). Research 11 Nov 2026: Resend sends from Ireland but stores account data in the US; Scaleway Transactional Email is outbound-only (no inbound); Brevo offers inbound parsing to a webhook.

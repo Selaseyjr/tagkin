@@ -1,6 +1,6 @@
-# ADR 0008: Places and maps
+# ADR 0008: Places and maps: Google Places (New)
 
-**Status:** Recommended, awaiting approval · **Date:** 11 Nov 2026
+**Status:** Accepted (approved by Selasey, 11 Nov 2026) · **Date:** 11 Nov 2026
 
 ## Context
 Finders type a place (stations, cafés, shops) and can share the item location, which becomes an address; owners open the spot in their map app. Research 11 Nov 2026: Google Places Autocomplete (New) is free within a session when the session ends with a Place Details call (otherwise the first 12 requests are billed); each SKU has a free monthly cap (Autocomplete requests 10,000; Essentials SKUs about 10,000), replacing the old $200 credit since March 2025. Mapbox Search Box offers about 500 to 2,500 free sessions a month depending on the plan, then a few dollars per 1,000; its data for small venues is weaker.
