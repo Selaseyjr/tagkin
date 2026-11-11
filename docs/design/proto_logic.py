@@ -129,8 +129,8 @@ document.addEventListener('input',e=>{const id=e.target.id;
  if(id==='it-msg')st().msgEdited=true;
  if(id==='cz-label'){const v=e.target.value;if(/\d{5,}|@/.test(v)){e.target.value='';toast('Labels can’t include phone numbers or emails');}st().label=e.target.value;render();}});
 document.addEventListener('change',e=>{if(e.target.classList.contains('ph-in')&&e.target.files[0]){const r2=new FileReader();r2.onload=()=>{st().photo=r2.result;e.target.parentElement.querySelector('span').textContent='✓ Photo added · tap to change';render();};r2.readAsDataURL(e.target.files[0]);}});
-tagsInit();setDesign('Sticker');show('launch1');
 """
+OWNER_INIT = "tagsInit();setDesign('Sticker');show('launch1');"
 
 FINDER_JS = r"""
 var H,CURS,NB=false,RET=false,RETTAG=null,MINE=false,TRIES=5;
@@ -165,4 +165,72 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{if(e.target.id==='f-reptext')repOk();});
 scan('item');
+"""
+
+MOCK_JS = r"""
+function hexes(c){return (c.match(/#[0-9a-f]{6}/gi)||[c]);}
+function qr(x,y,s,seed){let p='',r=seed||7;const m=s/25;
+ for(let j=0;j<21;j++)for(let i=0;i<21;i++){const ii=i>13?i-14:i,jj=j>13?j-14:j;const fin=(i<7&&j<7)||(i>13&&j<7)||(i<7&&j>13);let on;
+  if(fin)on=ii===0||ii===6||jj===0||jj===6||(ii>=2&&ii<=4&&jj>=2&&jj<=4);else{r=(r*1103515245+12345)&0x7fffffff;on=(r>>16)&1;}
+  if(on)p+='M'+(x+(i+2)*m).toFixed(2)+' '+(y+(j+2)*m).toFixed(2)+'h'+m.toFixed(2)+'v'+m.toFixed(2)+'h-'+m.toFixed(2)+'z';}
+ return '<rect x="'+x+'" y="'+y+'" width="'+s+'" height="'+s+'" rx="'+(s*.07)+'" fill="#fff"/><path d="'+p+'" fill="#0b1712"/>';}
+function seedOf(s){let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))|0;return Math.abs(h)||7;}
+function mock(d,code,uid){const u='m'+uid,h=hexes(d.col),c1=h[0],c2=h[1]||h[0],fg=d.col==='#0b1712'?'#ffffff':'#0b1712';
+ const k={S:.82,M:.92,L:1}[d.size]||.92,fin=(d.fin||'').toLowerCase(),seed=seedOf(code);
+ const defs='<defs><linearGradient id="'+u+'f" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></linearGradient>'
+  +'<linearGradient id="'+u+'met" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6f7"/><stop offset=".45" stop-color="#9aa3a8"/><stop offset=".55" stop-color="#d9dee0"/><stop offset="1" stop-color="#6d767b"/></linearGradient>'
+  +'<linearGradient id="'+u+'holo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset=".3" stop-color="#b9a6ff" stop-opacity=".55"/><stop offset=".5" stop-color="#6ec6ff" stop-opacity=".5"/><stop offset=".7" stop-color="#ffd23f" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity=".6"/></linearGradient>'
+  +'<pattern id="'+u+'refl" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="8" fill="#fff" opacity=".35"/></pattern>'
+  +'<filter id="'+u+'sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity=".35"/></filter>'
+  +'<filter id="'+u+'glow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#5dffb8" flood-opacity=".9"/></filter></defs>';
+ const F='url(#'+u+'f)',flt=fin==='glow'?'url(#'+u+'glow)':'url(#'+u+'sh)';
+ const over=(shape)=>(fin==='holo'?shape.replace('FILL','url(#'+u+'holo)'):'')+(fin==='reflective'?shape.replace('FILL','url(#'+u+'refl)'):'');
+ const logo=(x,y,s)=>'<svg x="'+x+'" y="'+y+'" width="'+s+'" height="'+s+'" style="color:'+fg+'"><use href="#mark"/></svg>';
+ const txt=(x,y,t,sz,w)=>'<text x="'+x+'" y="'+y+'" text-anchor="middle" font-family="Geist,system-ui,sans-serif" font-size="'+sz+'" font-weight="'+(w||700)+'" letter-spacing=".08em" fill="'+fg+'">'+t.replace(/[<&]/g,'')+'</text>';
+ const lab=(d.label||'').toUpperCase();let bg='',body='';
+ if(d.style==='Sticker'){const R=66*k;bg='<rect width="200" height="200" fill="#2a2e33"/><rect width="200" height="200" fill="url(#'+u+'lap)"/><linearGradient id="'+u+'lap" x2="0" y2="1"><stop offset="0" stop-color="#4a4f56"/><stop offset="1" stop-color="#1f2226"/></linearGradient><path d="M0 40 L200 10 L200 14 L0 44Z" fill="#fff" opacity=".05"/>';
+  const sh='<circle cx="100" cy="100" r="'+R+'" fill="FILL"/>';
+  body='<g filter="'+flt+'"><circle cx="100" cy="100" r="'+(R+5)+'" fill="#f5f5f2"/>'+sh.replace('FILL',F)+'</g>'+over(sh)+(fin==='gloss'?'<ellipse cx="80" cy="70" rx="'+R*.6+'" ry="'+R*.3+'" fill="#fff" opacity=".22" transform="rotate(-30 80 70)"/>':'')
+   +logo(100-7,100-R*.78,14)+qr(100-R*.44,100-R*.5,R*.88,seed)+txt(100,100+R*.52,code,6.5)+(lab?txt(100,100+R*.7,lab,9,800):'');}
+ else if(d.style==='Keychain'){bg='<rect width="200" height="200" fill="#c9a37b"/><path d="M0 60 Q100 50 200 70 M0 120 Q100 110 200 130 M0 170 Q100 165 200 180" stroke="#b08a63" stroke-width="3" fill="none" opacity=".6"/>';
+  const sh='<rect x="58" y="48" width="84" height="132" rx="20" fill="FILL"/>';
+  body='<circle cx="100" cy="30" r="20" fill="none" stroke="url(#'+u+'met)" stroke-width="5"/><g filter="'+flt+'">'+sh.replace('FILL',F)+'</g>'+over(sh)+'<rect x="58.5" y="48.5" width="83" height="131" rx="19.5" fill="none" stroke="#fff" stroke-opacity=".55"/><circle cx="100" cy="62" r="6" fill="#c9a37b" stroke="#0003"/><path d="M100 50 L100 56" stroke="url(#'+u+'met)" stroke-width="4"/>'
+   +(fin==='gloss'?'<path d="M64 60 Q70 52 90 52 L70 120Z" fill="#fff" opacity=".25"/>':'')+logo(93,72,14)+qr(70,90,60,seed)+txt(100,160,code,6.5)+(lab?txt(100,172,lab,8,800):'');}
+ else if(d.style==='Pet tag'){const R=56*k;bg='<rect width="200" height="200" fill="#efe7dc"/><rect y="14" width="200" height="34" fill="#a0522d"/><path d="M0 19 H200 M0 43 H200" stroke="#f3d9b5" stroke-width="1.5" stroke-dasharray="5 4"/><rect x="88" y="10" width="24" height="42" rx="6" fill="none" stroke="url(#'+u+'met)" stroke-width="4"/>';
+  const cy=60+R+10,sh='<circle cx="100" cy="'+cy+'" r="'+R+'" fill="FILL"/>';
+  body='<circle cx="100" cy="'+(cy-R-6)+'" r="9" fill="none" stroke="url(#'+u+'met)" stroke-width="3.5"/><g filter="'+flt+'"><circle cx="100" cy="'+cy+'" r="'+(R+5)+'" fill="url(#'+u+'met)"/>'+sh.replace('FILL',F)+'</g>'+over(sh)
+   +'<ellipse cx="'+(100-R*.35)+'" cy="'+(cy-R*.45)+'" rx="'+R*.45+'" ry="'+R*.18+'" fill="#fff" opacity=".3" transform="rotate(-30 '+(100-R*.35)+' '+(cy-R*.45)+')"/>'+logo(100-6,cy-R*.82,12)+qr(100-R*.42,cy-R*.52,R*.84,seed)+(lab?txt(100,cy+R*.5,lab,10,800):txt(100,cy+R*.5,code,6));}
+ else if(d.style==='Luggage label'){bg='<rect width="200" height="200" fill="#34495e"/>'+Array.from({length:9},(_,i)=>'<rect x="'+(i*24)+'" width="10" height="200" fill="#2c3e50" opacity=".6"/>').join('')+'<rect x="70" y="0" width="60" height="16" rx="6" fill="#1b2631"/>';
+  const sh='<rect x="58" y="42" width="84" height="146" rx="14" fill="FILL"/>';
+  body='<path d="M92 0 V52 M108 0 V52" stroke="#111" stroke-width="7"/><g filter="'+flt+'">'+sh.replace('FILL',F)+'</g>'+over(sh)+'<rect x="88" y="50" width="24" height="7" rx="3.5" fill="#0006"/><rect x="70" y="72" width="60" height="86" rx="6" fill="#fff" opacity=".18"/>'
+   +(fin==='gloss'?'<path d="M62 50 L100 46 L64 140Z" fill="#fff" opacity=".2"/>':'')+logo(93,62,14)+qr(70,82,60,seed)+txt(100,154,code,6.5)+(lab?txt(100,172,lab,9,800):'');}
+ else{bg='<rect width="200" height="200" fill="#e9eef0"/>';
+  body='<g filter="url(#'+u+'sh)"><rect x="50" y="8" width="100" height="184" rx="18" fill="#0b1712"/><rect x="54" y="12" width="92" height="176" rx="15" fill="'+F+'"/></g><text x="100" y="52" text-anchor="middle" font-family="Geist,system-ui" font-size="22" font-weight="600" fill="'+fg+'">9:41</text><rect x="64" y="128" width="72" height="50" rx="10" fill="#fff" opacity=".92"/>'+qr(68,131,44,seed)+'<text x="118" y="146" font-family="Geist,system-ui" font-size="5.5" font-weight="700" fill="#0b1712">Found</text><text x="118" y="153" font-family="Geist,system-ui" font-size="5.5" font-weight="700" fill="#0b1712">this?</text><text x="118" y="163" font-family="Geist,system-ui" font-size="4" fill="#4f5e57">Scan me</text>';}
+ return '<svg viewBox="0 0 200 200" class="mk" role="img" aria-label="'+d.style+' preview" preserveAspectRatio="xMidYMid slice">'+defs+bg+body+'</svg>';}
+var MID=0;
+function avatar(d){return '<span class="av-s" role="button" aria-label="Change photo">'+(d.photo?'<img alt="" src="'+d.photo+'">':itemEmo(d))+'</span>';}
+function paint(){const d=st();const c='TK-7Q4M-9XRA';
+ const w=$('#design .pm-wrap');if(w)w.innerHTML=mock(d,c,++MID);
+ const o=$('#order .pm-wrap');if(o)o.innerHTML=mock(d,c,++MID);
+ $('#order .ord-for').innerHTML=avatar(d)+'<span>For: '+(d.name||'your item').replace(/[<&]/g,'')+'</span>';
+ let ck=$('#checkout .ck-item');if(!ck){ck=document.createElement('div');ck.className='ordrow ck-item';$('#checkout .tight').before(ck);}
+ ck.innerHTML='<div class="pm-wrap sm ck-mock">'+mock(d,c,++MID)+'</div><div class="ordinfo"><b>'+$('#order .ord-name').textContent+'</b><small>'+$('#order .ord-spec').textContent+'</small><small class="ord-for">'+avatar(d)+'<span>For: '+(d.name||'your item').replace(/[<&]/g,'')+'</span></small></div>';
+ let od=$('#ordered .ord-mock');if(!od){od=document.createElement('div');od.className='pm-wrap ord-mock';$('#ordered .done').replaceWith(od);}od.innerHTML=mock(d,c,++MID);}
+const _render=render;render=function(){_render();paint();};
+var GPH=document.createElement('input');GPH.type='file';GPH.accept='image/*';GPH.hidden=true;document.body.appendChild(GPH);
+GPH.addEventListener('change',()=>{const f=GPH.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>{st().photo=fr.result;render();toast('Photo added');};fr.readAsDataURL(f);GPH.value='';});
+document.addEventListener('click',e=>{if(e.target.closest('.lp-img,.av-s')){e.stopPropagation();GPH.click();}},true);
+"""
+
+CSS3 = r"""
+.mk{width:100%;height:100%;display:block}
+.pm-wrap.cz,.pm-wrap.sm,.pm-wrap.ord-mock{overflow:hidden;padding:0}
+.pm-wrap.cz{height:170px}
+.pm-wrap.sm{width:88px;height:88px;border-radius:16px}
+.ck-item .pm-wrap.sm{width:64px;height:64px;border-radius:14px}
+.pm-wrap.ord-mock{width:150px;height:150px;margin:0 auto;border-radius:24px;min-height:0;box-shadow:var(--tk-shadow)}
+.ord-for{display:flex;align-items:center;gap:6px}
+.av-s{width:24px;height:24px;border-radius:7px;background:var(--tk-sunken);display:inline-grid;place-items:center;font-size:13px;overflow:hidden;flex:none;cursor:pointer}
+.av-s img{width:100%;height:100%;object-fit:cover}
+.lp-img{cursor:pointer}
 """

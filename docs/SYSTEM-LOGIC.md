@@ -52,6 +52,8 @@ any ──owner: retire | account deleted──▶ retired (final)
 - `lost` and `return_active` lock name, photo, description.
 - `retired`: finder page shows "This tag is no longer active"; no owner data.
 - Test mode is a flag (10 minutes), not a state: scans are marked `is_test`, no alerts.
+- **List badges (display only, not states):** `New` shows on a tag created in the last 7 days until the owner opens it (created at order paid, Make it live or activation). `Returned` shows for 7 days after the owner closes a return (Mark as returned or I picked it up); the state is already `normal`. Otherwise `normal` shows as `Active`, `lost` as `Lost`, `return_active` as `Return active`.
+- **Who triggers what:** owner (app or web): mark lost, found it myself, mark returned, retire; finder (web): report (opens or joins the return), handover confirmed (return `handed_over`, owner asked to confirm); system: tag created at order paid or activation, return auto-closes after 14 days without messages, account deletion retires tags.
 
 **Return**: `open` → (`handed_over` via handover code, optional) → `closed` (owner marks returned, or 14 days without messages).
 
