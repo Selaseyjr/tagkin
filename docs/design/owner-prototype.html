@@ -501,7 +501,7 @@ function updateTotal(u){if(u)unit=u;const q=+$('#order .step i').textContent;con
   const rows=$('#checkout').querySelectorAll('.li');rows[0].innerHTML='<span>'+name+' × '+q+'</span><span>€'+sub+'</span>';rows[1].innerHTML='<span>Shipping to Germany</span><span>'+(ship?'€2.50':'Free')+'</span>';rows[3].innerHTML='<span>Total</span><span>€'+tot+'</span>';$('#checkout .paybtn').textContent='Pay €'+tot+' with '+payWith;
   $('#ordered .xs').textContent='Order TK-10482 · '+q+' × '+name.toLowerCase();}
 all('[data-start]').forEach(b=>b.onclick=()=>show(b.dataset.start));
-const MODES={plane:['Airline, e.g. Lufthansa, Ryanair','Flight number, e.g. LH 566','Destination airport, e.g. Accra (ACC)','Travel dates, e.g. 14 to 20 Nov'],
+const MODES={plane:['Airline, e.g. Lufthansa, Ryanair','','Destination airport, e.g. Accra (ACC)','Trip ends, e.g. 20 Nov (hides it after)'],
  train:['Rail company, e.g. Deutsche Bahn, Flixtrain, ÖBB','Train number, e.g. ICE 571','Destination station, e.g. Berlin Hbf','Travel dates'],
  bus:['Bus company, e.g. FlixBus, BlaBlaCar Bus, city bus','Line or route, e.g. N1 or Frankfurt to Paris','Destination stop or city','Travel dates'],
  ferry:['Ferry company, e.g. Stena Line, DFDS','Route, e.g. Kiel to Gothenburg','Destination port','Travel dates'],

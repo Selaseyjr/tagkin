@@ -26,7 +26,7 @@ flowchart TD
   C --> D[Choose type: Item, Travel, Pet<br/>Note: type cannot change later]
   D --> E[Name and optional photo]
   E --> F{Type}
-  F -- Travel --> G[Destination or hotel, operator, travel dates]
+  F -- Travel --> G[Luggage name and photo, optional trip]
   F -- Pet --> H[Temperament, care notes]
   F -- Item --> I
   G --> I[Finder message: template or custom, 160 chars, live preview]

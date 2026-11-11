@@ -500,7 +500,7 @@ As a owner, I want to order my customised tag in copies, so that I get a durable
 - Shows my design, colour and size; copies of the same code
 - Free shipping over €15; first-tag offer once per account as a discount line
 
-### TK-51 · Delivery details before payment
+### TK-51 · Order details: copies and delivery on one page
 
 *Must · S · M2 Web beta: create, order and pay*
 

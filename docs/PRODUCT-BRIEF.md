@@ -37,7 +37,7 @@ Type is chosen at registration and **locked** afterwards.
 | Type | Purpose | Finder page focus |
 |---|---|---|
 | **Item** | Return | "Please help me get back to my owner" |
-| **Travel** | Return during a journey (plane, train, bus, ferry, taxi or ride, hotel) | Destination or hotel, operator, "hand to staff or message the owner". Trip details expire after the travel dates |
+| **Travel** | Return during a journey (plane, train, bus, ferry, taxi or ride, hotel) | Luggage name and photo; optional trip (destination or hotel, carrier) shown as "hand to staff or message the owner". The trip hides when it ends |
 | **Pet** | Help and return | Name, temperament, care notes, "please call my owner" |
 | **Care (child or older relative), phase 2** | Help, not return | "I may need help. Please contact my guardian." Minimal info; emergency details behind a tap; every view logged and alerts the guardian |
 
@@ -117,7 +117,7 @@ Owner taps **Lost**. The finder page turns urgent: "This item is missing", with 
 - 4 to 6 styles (rounded sticker, keychain, pet tag, luggage label), a few colour themes, the item's icon.
 - QR stays high contrast and scannable whatever the style.
 - **Every tag prints the address and code under the QR** (e.g. tagkin.app · TK-7Q4M-9XRA), whatever the style. It is the only way in when the QR will not scan or the finder's camera cannot read QR codes.
-- **Customise:** shape (sticker, keychain, pet tag, luggage label, lock screen), six colours filling the tag, size and price shown; the QR stays black on white. No downloads for home printing; tags are ordered. Print partner to be confirmed (Stage C).
+- **Customise:** shape (sticker, keychain, pet tag, luggage label, lock screen), size (where offered), 8 colours and 2 gradients, finish (matte, gloss, holo, glow, reflective by product) and an optional 12-character label, on a realistic product preview with price; the QR stays black on white. No downloads for home printing; tags are ordered. Print partner to be confirmed (Stage C).
 
 ## 12. Translation
 
@@ -184,7 +184,7 @@ These are internal targets, never public claims.
 - [x] Business rules document (11 Nov): docs/BUSINESS-RULES.md holds every operating rule (model, free tag, printed tags, codes and ownership, gifting, finders, privacy, copy).
 - [x] Download only for the free tag (11 Nov): "Print at home" exists only for the free tag, as a plain version; ordered tags are never downloadable. Colours and shapes are for ordered tags.
 - [x] Gift a tag is always blank tags (11 Nov): set-up tags can't be gifted or moved; the owner account gets all alerts and controls Lost mode; gift buyers never see the recipient's alerts. The For me / Gift a tag switch was removed from ordering a set-up tag.
-- [x] Customise your tag (11 Nov): type, six colours (Mint, Ink, White, Sand, Sunny, Lilac) and size shown on a realistic preview; the order screen shows the same tag. Gallery renamed "Choose your type of tag". QR always black on white.
+- [x] Customise your tag (11 Nov; extended later on 11 Nov with size, 10 colours, finish and label): type, colours and size shown on a realistic preview; the order screen shows the same tag. Gallery renamed "Choose your type of tag". QR always black on white.
 - [x] Decided (11 Nov, before build): **guest exploration, light version** (explore and customise without an account; email-code sign-up at Make it live, Continue to delivery or activation; guest gift checkout); **launch markets** Germany and the EU first, Ghana later with a local payment provider; **web beta first**, then the apps; **future-proof data model** (tag members, currency, entitlements, transfers) without their screens. Correction: Apple does not require guest access for account-based apps; the reason is conversion.
 - [ ] Print partner
 - [x] Translation provider: DeepL, Google Cloud Translation as fallback (docs/adr/0007)
@@ -298,3 +298,4 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Prototype: realistic product mockups (sticker on laptop, acrylic keychain, metal pet tag on collar, luggage label on suitcase, lock screen) drawn live from the chosen shape, size, colour, finish and label, used on Customise, Order details, Review and pay and Order placed. Item photo shown on order and checkout; tapping the item picture anywhere uploads the tester's own photo. List badges New and Returned defined in SYSTEM-LOGIC 3.
 - 11 Nov 2026: Decided: travel trip details are optional (luggage name and photo are enough; trip can be added later and hides when it ends). Item name required; photos up to 10 MB, resized to 1600 px. Draft and navigation rules added (SYSTEM-LOGIC 8). Prototype: 6 Unsplash sample photos (docs/design/assets/samples, licence in SOURCES.txt), photo sheet with full-screen preview, product preview on Customise, luggage photo. Desktop web prototype built (docs/design/build_desktop.py): owner sign-in, My tags with detail panel, Lost mode, replies, Mark as returned, messages, orders, account; finder desktop page with report, live reply, handover check and report abuse.
 - 11 Nov 2026: Desktop prototype published: https://claude.ai/artifact/7VZer2dHF7HKYbQeQzMyy9
+- 11 Nov 2026: Consistency pass before build: data model gains size, finish, label and optional trip (ends_on); validation limits for name, description and photos; brief, user flows, design-system text and TK-51 title brought in line.

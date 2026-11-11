@@ -21,8 +21,8 @@ Version 1 · 11 Nov 2026 · written from a full user walk-through of every journ
 |---|---|---|
 | **Account** | id, email (required, unique, verified), recovery_phone?, backup_email?, language, appearance, notification prefs, created_at, deleted_at | Email is the sign-in. |
 | **Session / Device** | id, account_id, platform, push_token?, last_seen | Listed in Sign-in and recovery; can be signed out remotely. |
-| **Tag** | code (TK-XXXX-XXXX), state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour, type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Code alphabet excludes 0 O 1 I L. Never reused. Ownership lives in **Tag member**, not on the tag. |
-| **Item** (the belonging) | tag_code, name, photo_url?, description?, finder_message (≤160), finder_message_lang, care_notes? (pet), temperament? (pet), trip? (travel: mode, operator, destination, dates) | One item per tag. Name, photo and description lock in Lost and Return states. |
+| **Tag** | code (TK-XXXX-XXXX), state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour (hex or gradient id), size (s, m, l where offered), finish (matte, gloss, holo, glow, reflective), label? (≤12, no contact details), type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Code alphabet excludes 0 O 1 I L. Never reused. Ownership lives in **Tag member**, not on the tag. |
+| **Item** (the belonging) | tag_code, name, photo_url?, description?, finder_message (≤160), finder_message_lang, care_notes? (pet), temperament? (pet), trip? (travel, optional: mode, carrier, destination, ends_on; ends_on only hides the trip) | One item per tag. Name, photo and description lock in Lost and Return states. |
 | **Contact** | account_id, kind (backup_person), name, email/phone, alert_after_minutes | Never shown to finders. |
 | **Status update** | tag_code, text (city level), visible, expires_at | No dates or times in text (validated). |
 | **Scan** | id, tag_code, at, city (from IP), is_test, user_agent_class | Exact location never from a scan alone. |
@@ -30,7 +30,7 @@ Version 1 · 11 Nov 2026 · written from a full user walk-through of every journ
 | **Return** (thread) | id, tag_code, state, opened_at, closed_at, handover_code_hash | Relay messages live here. |
 | **Message** | id, return_id, from (owner, finder, system), text, original_text, original_lang, translated_lang, delivered_via (push, email, sms, web), status (sent, failed, delivered) | Contact details in text trigger the share warning before sending. |
 | **Order** | id, account_id? (null for guest gift orders), guest_email?, kind (own, gift), items[], shipping_address, recipient_name?, gift_note?, hide_prices, subtotal, shipping, discount, total, **currency** (EUR at launch), market (de, eu; gh later), payment_provider (stripe; paystack later), payment_method, payment_id, partner_order_id, state, tracking_url? | Own orders link tag codes at payment; gift orders create unclaimed codes. Guest gift orders are reached by an emailed link. |
-| **Order item** | product, colour, copies, tag_code (own) or tag_codes[] (gift), unit_price | Copies = same code printed n times. |
+| **Order item** | product, colour, size, finish, label?, copies, tag_code (own) or tag_codes[] (gift), unit_price | Copies = same code printed n times. |
 | **Abuse report / block** | reporter, target (message, tag, finder thread), reason, state | Reviewed by admin. |
 | **Tag member** | tag_code, account_id, role (owner; member later), added_at | MVP: exactly one owner per tag. Ready for family sharing without moving data. |
 | **Draft** (device only) | local id, product, colour, type, item fields, finder message | Guests create drafts on the device; on sign-up they become a Tag and Item in one transaction. Never stored on the server before sign-up. |
@@ -102,6 +102,7 @@ Push falls back to email when push is off or the token is invalid. Every email h
 ## 6. Validation and limits
 
 - Finder message, gift note: 1–160 characters; contact details → public warning; abusive words → blocked with a reason.
+- Item name required, 2 to 40 characters; description ≤120. Photos: JPEG, PNG, WebP or HEIC ≤10 MB, stored at ≤1600 px with EXIF removed.
 - Status update: ≤60 characters; reject dates and times (pattern check) with a friendly message.
 - Names ≤40, descriptions ≤200, care notes ≤300, chat messages ≤1,000.
 - Tag code input: case- and dash-insensitive; rate limit code lookups per IP (e.g. 20 per hour) and globally.

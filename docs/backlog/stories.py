@@ -116,7 +116,7 @@ story("TK-45", "E4", "Report or block a finder", "owner", "to block or report a 
 # ---------- E5 Ordering and payment ----------
 story("TK-50", "E5", "Order a printed tag", "owner", "to order my customised tag in copies", "I get a durable tag",
       ["Shows my design, colour and size; copies of the same code", "Free shipping over €15; first-tag offer once per account as a discount line"], "Must", "M", "M2")
-story("TK-51", "E5", "Delivery details before payment", "owner", "to enter my address on the same page as my order", "ordering is quick and I know where it goes",
+story("TK-51", "E5", "Order details: copies and delivery on one page", "owner", "to enter my address on the same page as my order", "ordering is quick and I know where it goes",
       ["Order details holds copies and delivery details on one page, before any pay button", "Name, street, postcode, city, country, optional courier phone", "Address shared only with the print partner"], "Must", "S", "M2")
 story("TK-52", "E5", "Choose how to pay", "owner", "to pay with Apple Pay or Google Pay, card, PayPal or Klarna", "I can use what I trust",
       ["Stripe payment sheet; button names amount and method", "Personalised goods notice (no 14-day return; faulty replaced) and Terms before paying", "Declined payment shows a clear error; card not charged"], "Must", "L", "M2")
