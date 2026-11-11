@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 import sys as _sys
 _sys.path.insert(0, str(Path(__file__).resolve().parent))
 from proto_logic import CSS2, CSS3, OWNER_JS, FINDER_JS, CZ_COLS, MOCK_JS, OWNER_INIT
+from proto_v4 import OWNER_JS4, CSS5
 from proto_v3 import CSS4, OWNER_JS3, OWNER_INIT3, FINDER_JS3, SAMPLES_JS, T_DETAILS
 TOKENS = (ROOT / "docs/brand/tokens.css").read_text()
 OUT = ROOT / "docs/design/tagkin-screens.html"
@@ -273,7 +274,7 @@ textarea.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
 
-CSS += CSS2 + CSS3 + CSS4
+CSS += CSS2 + CSS3 + CSS4 + CSS5
 SVG = """<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><circle cx="22" cy="32" r="5" fill="#000"/><path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000"/></mask>
 <symbol id="mark" viewBox="0 0 64 64"><g mask="url(#mk)"><path fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" d="M8 23 L23 9 H56 V55 H23 L8 41 Z"/></g></symbol>
@@ -626,7 +627,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('.act-go')||e.target.closest('#start .btn.pri')){const act=!!e.target.closest('.act-go');[['#type',1],['#details',2],['#t-details',2],['#p-details',2],['#message',3]].forEach(([id,n])=>{const sp=document.querySelector(id+' .hdr>span:last-child');if(sp)sp.textContent=n+(act?' of 3':' of 4');});}
   const n=e.target.closest('#message .btn.pri');if(n){n.dataset.go=activating?'act-live':'design';}
 },true);
-""" + OWNER_JS + MOCK_JS + SAMPLES_JS + OWNER_JS3 + OWNER_INIT3
+""" + OWNER_JS + MOCK_JS + SAMPLES_JS + OWNER_JS3 + OWNER_JS4 + OWNER_INIT3
 
 
 def proto_screen(key, body):

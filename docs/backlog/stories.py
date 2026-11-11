@@ -79,7 +79,7 @@ story("TK-20", "E2", "Legal footer on finder pages", "finder", "to reach Impress
 
 # ---------- E3 Tags ----------
 story("TK-30", "E3", "Create a tag: type, details, message", "owner", "to create a tag for a belonging", "finders know what to do",
-      ["Choose type of tag (sticker, keychain, pet tag, luggage label, lock screen); tag type item, travel or pet is locked after creation", "Details per type: name required (2 to 40 characters), photo optional but prompted, description optional (120); travel adds a luggage photo and an optional trip (mode, carrier, destination, end date); pet temperament and care notes", "Photos: JPEG, PNG, WebP or HEIC up to 10 MB; resized to 1600 px and location data removed; the chosen photo fills its box, opens full screen to check, with Use, Replace and Remove", "Draft rules: back keeps what was entered; choosing a different type or tag style clears the item details; leaving the flow with unsaved input asks Discard or Keep editing; a new flow starts blank", "Customise preview opens full screen and returns to the same choices", "Finder message: template or own text, 160 characters, warning on contact details, emoji picker, live preview"], "Must", "L", "M3")
+      ["Choose type of tag (sticker, keychain, pet tag, luggage label, lock screen); pet tag and luggage label skip the 'What is it for?' step; tag type item, travel or pet is locked after creation", "Details per type: name required (2 to 40 characters), photo optional but prompted, description optional (120); travel adds a luggage photo and an optional trip (mode, carrier, destination, end date); pet temperament and care notes", "Photos: JPEG, PNG, WebP or HEIC up to 10 MB; resized to 1600 px and location data removed; the chosen photo fills its box, opens full screen to check, with Use, Replace and Remove", "Draft rules: back keeps what was entered; choosing a different type or tag style clears the item details; leaving the flow with unsaved input asks Discard or Keep editing; a new flow starts blank", "Customise preview opens full screen and returns to the same choices", "Finder message: template or own text, 160 characters, warning on contact details, emoji picker, live preview"], "Must", "L", "M3")
 story("TK-31", "E3", "Customise the tag", "owner", "to choose shape, size, colour, finish and a short label and see the result", "my tag feels like mine and I know what I'll receive",
       ["Shape, size (where offered), 8 colours and 2 gradients, finish by product (matte, gloss, holo, glow, reflective) and an optional label of up to 12 characters", "Live preview; QR stays black on white; label blocks phone numbers and emails", "Size, material, finish and price shown; extra finishes priced before checkout", "Lock screen leads to 'Make it live'; printed types lead to ordering"], "Must", "M", "M3")
 story("TK-32", "E3", "Free phone tag and lock screen image", "new owner", "a free lock-screen tag", "I can try Tagkin before buying",
@@ -125,7 +125,7 @@ story("TK-53", "E5", "Send paid orders to the print partner", "Tagkin", "paid or
 story("TK-54", "E5", "Tag live from order", "owner", "my new tag to work as soon as I order", "I'm protected before it arrives",
       ["Own-order tags become normal at payment", "'Your tag is live and on its way'"], "Must", "S", "M2")
 story("TK-55", "E5", "Orders list and emails", "owner", "to follow my orders", "I know when tags arrive",
-      ["States: in production, shipped, delivered", "Emails: order confirmed, shipped with tracking"], "Must", "M", "M2")
+      ["A paid order appears at the top of Orders straight away (own, blank and gift orders)", "States: paid, in production, shipped, delivered", "Order a tag and Gift a tag start a fresh journey with empty fields", "Emails: order confirmed, shipped with tracking"], "Must", "M", "M2")
 
 # ---------- E6 Gifting and activation ----------
 story("TK-60", "E6", "Gift blank tags", "buyer", "to gift blank tags of a chosen type and colour", "someone I care about can protect their things",
@@ -185,6 +185,10 @@ story("TK-101", "E6", "Guest gift checkout", "gift buyer without an account", "t
       ["Email for receipt and tracking; order status page by link", "Same payment step and personalised-goods notice as other orders"], "Should", "M", "M4")
 story("TK-102", "E8", "Create, customise and order on the web", "visitor on tagkin.app", "to create, customise and order a tag in the browser", "the web beta can sell tags before the apps launch",
       ["tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay", "Sign-up at Continue to payment; tags live from order", "Works on phone and desktop browsers"], "Must", "L", "M2")
+story("TK-105", "E3", "Order a blank tag and set it up later", "owner", "to order a tag before I have the item", "it's ready when my new bag, phone or pet arrives",
+      ["'Order a blank tag' on Create a tag: choose style and design, no item details", "Order and pay as usual; the tag is mine from payment and shows 'Set up' in My tags", "Set up later: type, name, photo, message; no PIN", "Until set up, finders see 'not set up yet' and I get a scan alert"], "Should", "M", "M2")
+story("TK-106", "E3", "Edit item name, photo and description later", "owner", "to update my item details after creating the tag", "I can add a photo once the item arrives",
+      ["Item name and photo row on the tag opens an edit sheet with the photo preview", "Name required (2 to 40), description optional (120)", "Locked during Lost mode or a return", "Tags without a photo show 'add a photo' in My tags"], "Must", "S", "M3")
 
 # Definition of Ready evidence per story (step 7 refinement). Stories listed here are Ready.
 READY = {

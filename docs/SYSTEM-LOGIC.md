@@ -45,11 +45,13 @@ Version 1 · 11 Nov 2026 · written from a full user walk-through of every journ
 ```
 unclaimed ──activate (code + PIN)──▶ normal
 (created on order, own) ───────────▶ normal
+(blank order, own) ──▶ unlinked ──owner: set up (type, name, photo)──▶ normal
 normal ──owner: mark lost──▶ lost ──owner: found it myself──▶ normal
 normal|lost ──finder report──▶ return_active ──owner: returned | 14 days silent──▶ normal
 any ──owner: retire | account deleted──▶ retired (final)
 ```
-- `lost` and `return_active` lock name, photo, description.
+- `lost` and `return_active` lock name, photo, description. In `normal` they stay editable.
+- `unlinked`: owned, no item yet. Finder page shows "not set up yet"; scans alert the owner. Shown as "Set up" in My tags.
 - `retired`: finder page shows "This tag is no longer active"; no owner data.
 - Test mode is a flag (10 minutes), not a state: scans are marked `is_test`, no alerts.
 - **List badges (display only, not states):** `New` shows on a tag created in the last 7 days until the owner opens it (created at order paid, Make it live or activation). `Returned` shows for 7 days after the owner closes a return (Mark as returned or I picked it up); the state is already `normal`. Otherwise `normal` shows as `Active`, `lost` as `Lost`, `return_active` as `Return active`.

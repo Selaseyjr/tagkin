@@ -56,6 +56,8 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 5. Unclaimed tags (shop packs, gifts) have no owner until someone activates them with the **activation PIN**, which is never printed on the tag: it is on the gift card or under a scratch panel on the pack. A finder who scans an unclaimed tag sees "This tag isn't set up yet".
 6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). A recovery phone or backup email is recommended and prompted after the first tag. At launch, SMS is used only for recovery codes.
 7. **Handover code (free for everyone):** before handing an item over, finders or desk staff can check the owner's 6-digit handover code.
+8. **Blank tags for yourself:** owners can order a tag without linking it to an item (for something not yet bought, a pet not yet home, or a pack to use later). It belongs to the owner's account from payment, shows "Set up" in My tags and is set up later with type, name and photo, no PIN needed. Until then a finder sees "This tag isn't set up yet" and the owner gets a scan alert.
+9. **Item details stay editable:** name, photo and description can be changed later (not during Lost mode or a return). A photo is optional at creation; tags without one show a reminder. A code never moves to a different belonging; for a new item, retire the tag and create a new one.
 
 ## 5. Gift a tag
 
