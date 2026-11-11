@@ -62,6 +62,7 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 | **Stage C, before choosing prices** | Confirm every product with print partners: sticker, keychain, pet tag, luggage label, gift card, scratch-panel packs; sizes, colours, costs, shipping (A3). |
 | **Stage C** | Decide message retention (suggest 90 days after a return), the no-reply wait time, and the free shipping threshold. |
 | **Stage E, before going live** | File the EU trademark for Tagkin and do the logo image search (E5). |
+| **Stage E, before going live** | Have the privacy policy, terms and every provider contract (data processing agreements, transfer safeguards) checked by someone qualified (lawyer or data protection specialist). |
 | **Stage F, before submitting** | Re-shoot store screenshots with the real app; recheck all copy against the copy rules. |
 
 ## Stage B · Figma import and Community publish
