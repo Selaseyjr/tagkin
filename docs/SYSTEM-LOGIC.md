@@ -137,7 +137,7 @@ Targets the build must meet. Numbers are starting targets, confirmed in step 6.
 |---|---|
 | **Finder page speed** | Usable on a slow mobile connection: first content within 2.5 s on a mid-range phone over 4G; page weight under 300 KB before the photo. |
 | **Availability** | Finder pages and the relay are the core promise: 99.5% monthly uptime target; a status page later. |
-| **Data location** | Personal data stored and processed in the EU (GDPR). Providers outside the EU only with standard contractual clauses. |
+| **Data location** | Tagkin's choice (not a strict GDPR rule): personal data stored and processed in the EU. Providers outside the EU only with a valid GDPR transfer basis (adequacy decision such as the EU-US Data Privacy Framework, or standard contractual clauses) and only where no good EU option exists. |
 | **Security** | HTTPS everywhere; finder contacts, recovery phone and messages encrypted at rest; PINs and handover codes hashed; secrets never in the app bundle; dependency and security scans in CI. |
 | **Privacy** | Collect only what SYSTEM-LOGIC.md lists; no tracking cookies on the website (no cookie banner needed); analytics without personal profiles. |
 | **Abuse resistance** | Rate limits on code lookups, reports, messages, PIN and code attempts; spam filtering on relayed messages. |
