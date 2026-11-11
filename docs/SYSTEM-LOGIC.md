@@ -21,7 +21,7 @@ Version 1 · 11 Nov 2026 · written from a full user walk-through of every journ
 |---|---|---|
 | **Account** | id, email (required, unique, verified), recovery_phone?, backup_email?, language, appearance, notification prefs, created_at, deleted_at | Email is the sign-in. |
 | **Session / Device** | id, account_id, platform, push_token?, last_seen | Listed in Sign-in and recovery; can be signed out remotely. |
-| **Tag** | code (TK-XXXX-XXXX), owner_account_id?, state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour, type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Code alphabet excludes 0 O 1 I L. Never reused. |
+| **Tag** | code (TK-XXXX-XXXX), state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour, type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Code alphabet excludes 0 O 1 I L. Never reused. Ownership lives in **Tag member**, not on the tag. |
 | **Item** (the belonging) | tag_code, name, photo_url?, description?, finder_message (≤160), finder_message_lang, care_notes? (pet), temperament? (pet), trip? (travel: mode, operator, destination, dates) | One item per tag. Name, photo and description lock in Lost and Return states. |
 | **Contact** | account_id, kind (backup_person), name, email/phone, alert_after_minutes | Never shown to finders. |
 | **Status update** | tag_code, text (city level), visible, expires_at | No dates or times in text (validated). |
@@ -29,9 +29,14 @@ Version 1 · 11 Nov 2026 · written from a full user walk-through of every journ
 | **Report** (finder) | id, tag_code, where_now (with_me, staff, safe_place), place_text?, lat/lng? (only if shared), address?, photo_url? (EXIF removed), note?, finder_contact_kind (email, phone, none), finder_contact (encrypted)?, lang, created_at | Creates or joins a Return. |
 | **Return** (thread) | id, tag_code, state, opened_at, closed_at, handover_code_hash | Relay messages live here. |
 | **Message** | id, return_id, from (owner, finder, system), text, original_text, original_lang, translated_lang, delivered_via (push, email, sms, web), status (sent, failed, delivered) | Contact details in text trigger the share warning before sending. |
-| **Order** | id, account_id, kind (own, gift), items[], shipping_address, recipient_name?, gift_note?, hide_prices, subtotal, shipping, discount, total, currency, payment_method, stripe_payment_id, partner_order_id, state, tracking_url? | Own orders link tag codes at payment; gift orders create unclaimed codes. |
+| **Order** | id, account_id? (null for guest gift orders), guest_email?, kind (own, gift), items[], shipping_address, recipient_name?, gift_note?, hide_prices, subtotal, shipping, discount, total, **currency** (EUR at launch), market (de, eu; gh later), payment_provider (stripe; paystack later), payment_method, payment_id, partner_order_id, state, tracking_url? | Own orders link tag codes at payment; gift orders create unclaimed codes. Guest gift orders are reached by an emailed link. |
 | **Order item** | product, colour, copies, tag_code (own) or tag_codes[] (gift), unit_price | Copies = same code printed n times. |
 | **Abuse report / block** | reporter, target (message, tag, finder thread), reason, state | Reviewed by admin. |
+| **Tag member** | tag_code, account_id, role (owner; member later), added_at | MVP: exactly one owner per tag. Ready for family sharing without moving data. |
+| **Draft** (device only) | local id, product, colour, type, item fields, finder message | Guests create drafts on the device; on sign-up they become a Tag and Item in one transaction. Never stored on the server before sign-up. |
+| **Entitlement** | account_id, key (free_phone_tag; premium features later), source (free, purchase, subscription), valid_until? | MVP: free_phone_tag only. Premium later adds rows, no schema change. |
+| **Ownership transfer** (later) | tag_code, from_account, to_email, token, state (pending, accepted, cancelled) | Table designed now, feature later (for example selling a bike). |
+| **Price** | product, colour?, market, currency, amount, valid_from | Prices per market and currency; EUR at launch. |
 
 ## 3. State machines
 
@@ -52,13 +57,16 @@ any ──owner: retire | account deleted──▶ retired (final)
 
 **Order**: `pending_payment` → `paid` → `sent_to_partner` → `in_production` → `shipped` → `delivered`. Branches: `payment_failed` (retry), `partner_failed` (admin; refund), `cancelled` (before production only), `refunded`. Own-order tags go live at `paid`.
 
-**Activation (unclaimed tag)**: scan or code → tag found and unclaimed → PIN (5 attempts, then 15-minute wait) → owner chooses type, details, message → `normal`. Wrong PIN never reveals whether a code exists beyond "unclaimed".
+**Guest to owner**: guests explore, create drafts and customise without an account. Sign-up (email code, terms) is required at: Make it live, Continue to delivery, and before the activation PIN. On sign-up, drafts become tags in one transaction. Gift checkout never requires an account (guest email only).
+
+**Activation (unclaimed tag)**: scan or code → tag found and unclaimed → (sign up if guest) → PIN (5 attempts, then 15-minute wait) → owner chooses type, details, message → `normal`. Wrong PIN never reveals whether a code exists beyond "unclaimed".
 
 ## 4. Events and who hears about them
 
 | Event | Owner | Finder | Backup contact | Notes |
 |---|---|---|---|---|
-| Sign-in requested | Email code (10 min, 5 tries) | | | Recovery: SMS code to recovery phone, or backup email. |
+| Sign-up or sign-in requested | Email code (10 min, 5 tries) | | | Asked only when needed (Make it live, delivery, activation, or Welcome back). Recovery: SMS code or backup email. |
+| Guest gift order paid | | | | Receipt and tracking to the guest email, with a link to view the order. |
 | Tag scanned (normal) | Push "scanned near {city}" (if enabled) | | | Not in test mode. |
 | Tag scanned (lost) | Push every scan, city | | | Can't be turned off while lost. |
 | Finder report | Push + email, translated | Thank-you page | After `alert_after_minutes` without owner reply: email (SMS later) | Report starts or joins a Return. |
@@ -120,6 +128,8 @@ Push falls back to email when push is off or the token is invalid. Every email h
 - `tagkin.app/TK-…/handover`: handover check for finders and desk staff.
 - `tagkin.app/r/{token}`: finder reply link from email (no account).
 - `tagkin.app/signin`, `/my-tags`: owner web.
+- `tagkin.app/create`, `/gift`: create and gift on the web without an account (web beta).
+- `tagkin.app/o/{token}`: guest order status.
 - App deep links: `tagkin://tag/{code}`, `tagkin://activate/{code}`, `tagkin://return/{id}`.
 
 ## 9. Legal touchpoints the build must include
@@ -148,6 +158,12 @@ Targets the build must meet. Numbers are starting targets, confirmed in step 6.
 | **Monitoring** | Error tracking (app and server), uptime checks on finder pages, alerts to Selasey for failed payments, partner failures and job errors. |
 | **Cost control** | Translations cached; SMS only for recovery at launch; image sizes limited. |
 
-## 11. Still to decide (Stage C)
+## 11. Markets and launch
+
+- Launch: Germany and the EU, prices in euro, Stripe. Shipping countries follow the print partner's EU coverage.
+- Ghana later: local payment provider (for example Paystack, including mobile money), cedi prices, local shipping; the data model already stores market and currency.
+- Release order: web beta first (finder pages and owner web: create, customise, order, Lost mode, messages), then the iOS and Android app.
+
+## 12. Still to decide (Stage C)
 
 Provider choices above; message retention period; no-reply wait time; final prices and shipping threshold; print partner product list; SMS markets.

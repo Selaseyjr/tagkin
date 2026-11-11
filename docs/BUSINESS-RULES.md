@@ -10,6 +10,14 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 2. There is **no subscription at launch**. Premium comes later, only for extras, and only if Notify me sign-ups show demand.
 3. Tagkin never sells or shares user data.
 
+## 1b. Accounts, guests and markets
+
+1. **Explore without an account.** Anyone can browse, choose a tag type, fill in details and the finder message, and customise a tag before signing up. Drafts are kept on the device.
+2. **Sign up at the moment it's needed**, with email and a 6-digit code: when a tag goes live ("Make it live"), before delivery details for an order ("Continue to delivery"), and before the PIN when activating a gift or shop tag. Drafts are attached to the new account.
+3. **Gift a tag works as a guest checkout**: only an email for the receipt and tracking; no account, because the buyer never owns the tags.
+4. **Launch markets:** Germany and the EU, prices in euro, Stripe for payment. Ghana follows later with a local payment provider (such as Paystack and mobile money) and local prices.
+5. **Launch sequence:** a web beta first (finder pages and the owner web at tagkin.app: create, customise, order and pay, Lost mode, messages), then the iOS and Android app after store review.
+
 ## 2. Free tag
 
 1. Every account gets **1 free tag: the phone lock-screen tag**. It protects the phone and lets owners test a real find with another phone before buying printed tags.

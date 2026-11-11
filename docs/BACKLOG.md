@@ -2,24 +2,24 @@
 
 Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).
 
-60 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
+63 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
 
 ## Milestones
 
 - **M1 Finder web and accounts**: A finder can report a tag; an owner can sign in and receive it. (12 stories)
-- **M2 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (28 stories)
-- **M3 Ordering and payment**: Printed tags can be ordered, paid and tracked. (6 stories)
-- **M4 Gifting and activation**: Blank tags can be gifted and activated with a PIN. (3 stories)
+- **M2 Web beta: create, order and pay**: Guests create and customise on the web, sign up when needed, order and pay. Web beta release. (8 stories)
+- **M3 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (28 stories)
+- **M4 Gifting and activation**: Blank tags can be gifted (guest checkout) and activated with a PIN. (4 stories)
 - **M5 Launch readiness**: Website, legal, accessibility, languages, operations and store submission. (11 stories)
 
 ## Summary
 
 | Priority | Stories |
 |---|---|
-| Must | 42 |
-| Should | 16 |
+| Must | 44 |
+| Should | 17 |
 | Could | 2 |
-| Won't (this release) | 5 items, listed below |
+| Won't (this release) | 7 items, listed below |
 
 ## Definition of Ready
 
@@ -47,16 +47,17 @@ Owners can create an account, sign in on any device, recover access and control 
 
 *Must · M · M1 Finder web and accounts*
 
-As a new owner, I want to sign in with my email and a one-time code, so that I don't need a password.
+As a new owner, I want to sign up with my email and a one-time code only when it's needed, so that I don't need a password or an account just to look around.
 
+- Sign-up is asked only at Make it live, Continue to delivery or before an activation PIN; returning owners use Welcome back
 - Email is required and verified with a 6-digit code valid for 10 minutes
 - After 5 wrong attempts the user waits before trying again
 - Resend is possible after 30 seconds; the screen suggests checking spam or using another email
-- Terms must be accepted before the account is created
+- Terms must be accepted before the account is created; guest drafts are attached to the new account
 
 ### TK-2 · First launch intro
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a new owner, I want to understand Tagkin in two screens, so that I know what I'm signing up for.
 
@@ -74,7 +75,7 @@ As a owner whose phone is lost, I want to sign in at tagkin.app on any device, s
 
 ### TK-4 · Account recovery
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner who lost access to my email, I want to recover my account with a recovery phone or backup email, so that I don't lose my tags.
 
@@ -84,7 +85,7 @@ As a owner who lost access to my email, I want to recover my account with a reco
 
 ### TK-5 · Signed-in devices
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a owner, I want to see and sign out devices, so that I stay in control if a device is lost.
 
@@ -93,7 +94,7 @@ As a owner, I want to see and sign out devices, so that I stay in control if a d
 
 ### TK-6 · Delete my account
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner, I want to delete my account in the app, so that my data is gone when I leave.
 
@@ -111,12 +112,22 @@ As a owner, I want to download my data, so that I can see what Tagkin stores.
 
 ### TK-8 · Language and appearance
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a owner, I want to choose my language and light, dark or system appearance, so that the app suits me.
 
 - Core languages: English (UK, US), German, French, Dutch, Polish, Spanish, Italian
 - Appearance default is match system
+
+### TK-100 · Explore and create without an account
+
+*Must · M · M2 Web beta: create, order and pay*
+
+As a visitor, I want to explore, create and customise a tag before signing up, so that I see my tag before giving my email.
+
+- Welcome leads straight to Create a tag; no sign-in screen first
+- Drafts kept on the device (app) or in the browser (web) until sign-up
+- On sign-up, drafts become tags in one transaction; nothing is stored on the server before
 
 
 ## E2 · Finder web
@@ -194,7 +205,7 @@ As a finder, I want to see and answer the owner's reply, so that we can arrange 
 
 ### TK-17 · Check the handover code
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a finder or desk staff, I want to check the owner's handover code before handing over, so that only the real owner gets it.
 
@@ -203,7 +214,7 @@ As a finder or desk staff, I want to check the owner's handover code before hand
 
 ### TK-18 · No reply yet
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a finder, I want to know what to do if the owner doesn't answer, so that I'm not left waiting.
 
@@ -232,7 +243,7 @@ Owners create, customise, test and manage tags for their belongings.
 
 ### TK-30 · Create a tag: type, details, message
 
-*Must · L · M2 Owner app core*
+*Must · L · M3 Owner app core*
 
 As a owner, I want to create a tag for a belonging, so that finders know what to do.
 
@@ -242,7 +253,7 @@ As a owner, I want to create a tag for a belonging, so that finders know what to
 
 ### TK-31 · Customise the tag
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner, I want to choose shape and colour and see the result, so that I know what I'll receive.
 
@@ -252,7 +263,7 @@ As a owner, I want to choose shape and colour and see the result, so that I know
 
 ### TK-32 · Free phone tag and lock screen image
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a new owner, I want a free lock-screen tag, so that I can try Tagkin before buying.
 
@@ -262,7 +273,7 @@ As a new owner, I want a free lock-screen tag, so that I can try Tagkin before b
 
 ### TK-33 · My tags list
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner, I want to see all my tags and their state, so that I know what's protected.
 
@@ -271,7 +282,7 @@ As a owner, I want to see all my tags and their state, so that I know what's pro
 
 ### TK-34 · Edit message and contacts
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner, I want to edit the finder message and contacts any time, so that details stay current.
 
@@ -280,7 +291,7 @@ As a owner, I want to edit the finder message and contacts any time, so that det
 
 ### TK-35 · Locked details during Lost mode or a return
 
-*Must · S · M2 Owner app core*
+*Must · S · M3 Owner app core*
 
 As a finder, I want the item details not to change during a return, so that I can trust what I see.
 
@@ -288,7 +299,7 @@ As a finder, I want the item details not to change during a return, so that I ca
 
 ### TK-36 · QR code and test scan
 
-*Must · S · M2 Owner app core*
+*Must · S · M3 Owner app core*
 
 As a owner, I want to show my QR and test it with another phone, so that I know it works.
 
@@ -297,7 +308,7 @@ As a owner, I want to show my QR and test it with another phone, so that I know 
 
 ### TK-37 · Status update for finders
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a owner, I want to post a short status like 'Arrived in Dubai', so that finders know where to bring it.
 
@@ -306,7 +317,7 @@ As a owner, I want to post a short status like 'Arrived in Dubai', so that finde
 
 ### TK-38 · Retire a tag
 
-*Must · S · M2 Owner app core*
+*Must · S · M3 Owner app core*
 
 As a owner, I want to retire a tag I no longer need, so that it stops working for good.
 
@@ -315,7 +326,7 @@ As a owner, I want to retire a tag I no longer need, so that it stops working fo
 
 ### TK-39 · Scan history
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a owner, I want to see when and where my tag was scanned, so that I have a clue where it is.
 
@@ -328,7 +339,7 @@ Owners and finders coordinate a return through relayed, translated messages.
 
 ### TK-40 · Mark as lost
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner, I want to mark a tag as lost in the app or on the web, so that finders see it's missing and I get alerts.
 
@@ -338,7 +349,7 @@ As a owner, I want to mark a tag as lost in the app or on the web, so that finde
 
 ### TK-41 · Relayed, translated conversation
 
-*Must · L · M2 Owner app core*
+*Must · L · M3 Owner app core*
 
 As a owner and finder, I want to message each other without sharing contact details, so that we stay private.
 
@@ -349,7 +360,7 @@ As a owner and finder, I want to message each other without sharing contact deta
 
 ### TK-42 · Safe place report with photo and map
 
-*Should · M · M2 Owner app core*
+*Should · M · M3 Owner app core*
 
 As a owner, I want to see the finder's photo, map pin and address, so that I can collect it.
 
@@ -358,7 +369,7 @@ As a owner, I want to see the finder's photo, map pin and address, so that I can
 
 ### TK-43 · Handover code
 
-*Should · S · M2 Owner app core*
+*Should · S · M3 Owner app core*
 
 As a owner, I want a handover code to show when I collect, so that nobody else can claim my item.
 
@@ -367,7 +378,7 @@ As a owner, I want a handover code to show when I collect, so that nobody else c
 
 ### TK-44 · Close a return
 
-*Must · S · M2 Owner app core*
+*Must · S · M3 Owner app core*
 
 As a owner, I want to mark the item as returned, with a private thank-you, so that the tag goes back to normal.
 
@@ -375,7 +386,7 @@ As a owner, I want to mark the item as returned, with a private thank-you, so th
 
 ### TK-45 · Report or block a finder
 
-*Must · S · M2 Owner app core*
+*Must · S · M3 Owner app core*
 
 As a owner, I want to block or report a finder, so that I'm protected from abuse and scams.
 
@@ -389,7 +400,7 @@ Owners order printed tags, pay and track delivery.
 
 ### TK-50 · Order a printed tag
 
-*Must · M · M3 Ordering and payment*
+*Must · M · M2 Web beta: create, order and pay*
 
 As a owner, I want to order my customised tag in copies, so that I get a durable tag.
 
@@ -398,7 +409,7 @@ As a owner, I want to order my customised tag in copies, so that I get a durable
 
 ### TK-51 · Delivery details before payment
 
-*Must · S · M3 Ordering and payment*
+*Must · S · M2 Web beta: create, order and pay*
 
 As a owner, I want to enter my address before any pay button, so that I know where it goes.
 
@@ -407,7 +418,7 @@ As a owner, I want to enter my address before any pay button, so that I know whe
 
 ### TK-52 · Choose how to pay
 
-*Must · L · M3 Ordering and payment*
+*Must · L · M2 Web beta: create, order and pay*
 
 As a owner, I want to pay with Apple Pay or Google Pay, card, PayPal or Klarna, so that I can use what I trust.
 
@@ -417,7 +428,7 @@ As a owner, I want to pay with Apple Pay or Google Pay, card, PayPal or Klarna, 
 
 ### TK-53 · Send paid orders to the print partner
 
-*Must · L · M3 Ordering and payment*
+*Must · L · M2 Web beta: create, order and pay*
 
 As a Tagkin, I want paid orders sent to the print partner automatically, so that tags are printed without manual work.
 
@@ -427,7 +438,7 @@ As a Tagkin, I want paid orders sent to the print partner automatically, so that
 
 ### TK-54 · Tag live from order
 
-*Must · S · M3 Ordering and payment*
+*Must · S · M2 Web beta: create, order and pay*
 
 As a owner, I want my new tag to work as soon as I order, so that I'm protected before it arrives.
 
@@ -436,7 +447,7 @@ As a owner, I want my new tag to work as soon as I order, so that I'm protected 
 
 ### TK-55 · Orders list and emails
 
-*Must · M · M3 Ordering and payment*
+*Must · M · M2 Web beta: create, order and pay*
 
 As a owner, I want to follow my orders, so that I know when tags arrive.
 
@@ -478,6 +489,15 @@ As a recipient, I want to scan or type the code and enter the PIN, so that the t
 - Activate another tag from the success screen
 - Unclaimed tag scanned by a phone camera deep-links to the app with the code
 
+### TK-101 · Guest gift checkout
+
+*Should · M · M4 Gifting and activation*
+
+As a gift buyer without an account, I want to buy a gift with only my email, so that I don't need an account for tags I won't own.
+
+- Email for receipt and tracking; order status page by link
+- Same payment step and personalised-goods notice as other orders
+
 
 ## E7 · Notifications
 
@@ -485,7 +505,7 @@ The right person hears about the right event, with fallbacks.
 
 ### TK-70 · Notification permission at the right time
 
-*Must · S · M2 Owner app core*
+*Must · S · M3 Owner app core*
 
 As a owner, I want to be asked for notifications after my first tag, so that I understand why.
 
@@ -494,7 +514,7 @@ As a owner, I want to be asked for notifications after my first tag, so that I u
 
 ### TK-71 · Event notifications with fallback
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a owner, I want push for scans, reports and messages, email if push fails, so that I never miss a find.
 
@@ -503,7 +523,7 @@ As a owner, I want push for scans, reports and messages, email if push fails, so
 
 ### TK-72 · Backup contact alert
 
-*Should · M · M2 Owner app core*
+*Should · M · M3 Owner app core*
 
 As a owner, I want my backup contact alerted if I don't reply, so that a finder isn't left waiting.
 
@@ -549,6 +569,16 @@ As a Tagkin, I want complete App Store and Google Play listings, so that the app
 - Apple privacy labels and Google Data safety match what the app collects
 - Age rating questionnaires; review notes and a test account
 
+### TK-102 · Create, customise and order on the web
+
+*Must · L · M2 Web beta: create, order and pay*
+
+As a visitor on tagkin.app, I want to create, customise and order a tag in the browser, so that the web beta can sell tags before the apps launch.
+
+- tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay
+- Sign-up at Continue to delivery; tags live from order
+- Works on phone and desktop browsers
+
 
 ## E9 · Platform and operations
 
@@ -564,7 +594,7 @@ As a Tagkin, I want to review reports and blocks, so that abuse is handled.
 
 ### TK-91 · Scheduled jobs
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a Tagkin, I want returns, test mode, status updates, retention and reconciliation handled automatically, so that the system stays correct.
 
@@ -612,7 +642,7 @@ As a owner on a tablet, I want list and detail side by side, so that the app use
 
 ### TK-97 · Empty, loading, offline and error states
 
-*Must · M · M2 Owner app core*
+*Must · M · M3 Owner app core*
 
 As a user, I want clear screens when there's nothing yet, while loading, offline or when something fails, so that I always know what's happening and what to do.
 
@@ -631,7 +661,9 @@ As a product owner, I want owners to register interest in Premium, so that I bui
 ## Won't have in this release
 
 - Premium subscription (later; Notify me measures demand)
+- Ghana launch with a local payment provider and cedi prices (later; data model ready)
+- Family sharing and ownership transfer screens (later; data model ready)
 - Shop packs with scratch panels (later; PIN flow is ready)
 - SMS replies and WhatsApp (later)
-- NFC tags, family sharing, ownership transfer (later)
+- NFC tags (later)
 - Care tags for children and older relatives (phase 2)

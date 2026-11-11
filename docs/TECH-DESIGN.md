@@ -103,6 +103,9 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 | RPC `regenerate_handover_code` | Handover code | TK-43 |
 | Supabase table: messages (+ Realtime) | Relayed chat; server translates and relays | TK-41 |
 | POST `/api/orders` | Create order (own or gift), price calculation on the server | TK-50, 51, 60 |
+| POST `/api/drafts/claim` | After sign-up, turn device drafts into tags in one transaction | TK-100 |
+| POST `/api/gift-orders` (no account) | Guest gift checkout with an email for receipt and tracking | TK-101 |
+| GET `/o/{token}` | Guest order status page | TK-101 |
 | POST `/api/orders/{id}/pay` | Create Stripe payment for the chosen method | TK-52 |
 | POST `/api/activate` | Activate unclaimed tag with PIN (rate-limited) | TK-62 |
 | POST `/api/account/export`, `/api/account/delete` | Data export and deletion | TK-6, 7 |
@@ -129,10 +132,10 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 
 Matches the milestones in BACKLOG.md:
 
-1. **Sprint 0:** monorepo, Supabase project (Frankfurt), migrations for the core tables, tokens package, CI, Vercel and EAS set up, EU email provider and Stripe test accounts.
+1. **Sprint 0:** monorepo, Supabase project (Frankfurt), migrations for the core tables (including tag members, entitlements, prices with currency, transfers), tokens package, CI, Vercel and EAS set up, Brevo and Stripe test accounts.
 2. **M1 Finder web and accounts:** finder pages and report flow, email-code sign-in, owner web dashboard, report alerts by email.
-3. **M2 Owner app core:** app shell, tags, customise, free phone tag, Lost mode, relay chat with translation, push, jobs, states.
-4. **M3 Ordering and payment:** Stripe, print partner adapter, order states and emails.
+3. **M2 Web beta: create, order and pay:** guest create and customise on the web, sign-up when needed, Stripe, print partner adapter, order states and emails. **Web beta release.**
+4. **M3 Owner app core:** app shell, tags, customise, free phone tag, Lost mode, relay chat with translation, push, jobs, states.
 5. **M4 Gifting and activation:** gift orders, PIN, activation flow.
 6. **M5 Launch readiness:** website and legal, languages, accessibility, moderation, analytics, store listings.
 
