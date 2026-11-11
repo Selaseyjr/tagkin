@@ -2,11 +2,11 @@
 
 Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).
 
-63 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
+65 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
 
 ## Milestones
 
-- **M1 Finder web and accounts**: A finder can report a tag; an owner can sign in and receive it. (12 stories)
+- **M1 Finder web and accounts**: A finder can report a tag; an owner can sign in and receive it. (14 stories)
 - **M2 Web beta: create, order and pay**: Guests create and customise on the web, sign up when needed, order and pay. Web beta release. (8 stories)
 - **M3 Owner app core**: Owners create and manage tags, run Lost mode and returns in the app. (28 stories)
 - **M4 Gifting and activation**: Blank tags can be gifted (guest checkout) and activated with a PIN. (4 stories)
@@ -16,7 +16,7 @@ Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stori
 
 | Priority | Stories |
 |---|---|
-| Must | 44 |
+| Must | 46 |
 | Should | 17 |
 | Could | 2 |
 | Won't (this release) | 7 items, listed below |
@@ -55,6 +55,12 @@ As a new owner, I want to sign up with my email and a one-time code only when it
 - Resend is possible after 30 seconds; the screen suggests checking spam or using another email
 - Terms must be accepted before the account is created; guest drafts are attached to the new account
 
+**Ready**
+- Screens: Setup 3 · Save your tag (sign up when needed); Owner 1 · Welcome back (sign in); Owner 2 · Enter code; Email 0 · Sign-in code
+- Rules: BUSINESS-RULES.md sections 1b
+- Logic: SYSTEM-LOGIC.md sections 4, 6, 8
+- Depends on: Sprint 0: Supabase Auth with email OTP; Brevo SMTP on tagkin.app (domain by 15 Nov); Guest draft claim (TK-100) lands in M2; M1 covers sign-in only
+
 ### TK-2 · First launch intro
 
 *Should · S · M3 Owner app core*
@@ -72,6 +78,12 @@ As a owner whose phone is lost, I want to sign in at tagkin.app on any device, s
 
 - Same email-code sign-in as the app
 - After sign-in the owner sees My tags with Lost mode and messages
+
+**Ready**
+- Screens: Web · Owner sign-in; Owner 2 · Enter code
+- Rules: BUSINESS-RULES.md sections 1b
+- Logic: SYSTEM-LOGIC.md sections 4, 8
+- Depends on: TK-1
 
 ### TK-4 · Account recovery
 
@@ -145,6 +157,12 @@ As a finder, I want to see the owner's message when I scan a tag, so that I know
 - Lost tags show 'This item is missing'; never the word stolen
 - Travel tags show destination and operator only; pet tags hide care notes behind a tap
 
+**Ready**
+- Screens: Finder 1 · Owner message; Finder 1b · Lost mode; Finder 1t · Travel tag; Finder 1p · Pet tag; Finder T · Owner test scan; Loading · Finder page; Desktop · Finder owner message
+- Rules: BUSINESS-RULES.md sections 4, 6, 7
+- Logic: SYSTEM-LOGIC.md sections 2, 3, 5, 8
+- Depends on: Sprint 0: tag and item tables with seed tags (no create flow until M2); DeepL key (ADR 0007); cache translations per message and language
+
 ### TK-11 · Type a code when the QR won't scan
 
 *Must · S · M1 Finder web and accounts*
@@ -154,6 +172,12 @@ As a finder, I want to type the code printed on the tag, so that I can still rep
 - Case- and dash-insensitive
 - Wrong code shows a clear error; lookups are rate-limited
 - Retired tags show 'no longer active'; unclaimed tags show 'not set up yet'
+
+**Ready**
+- Screens: Finder 0 · Enter code; Finder 0b · Code not found; Finder U · Tag not set up yet; Finder X · Tag not active
+- Rules: BUSINESS-RULES.md sections 4
+- Logic: SYSTEM-LOGIC.md sections 6, 8
+- Depends on: TK-10; Code alphabet in packages/shared
 
 ### TK-12 · Report where the item is
 
@@ -165,6 +189,12 @@ As a finder, I want to say where the item is now and where exactly, so that the 
 - Place suggestions after 2 letters; free text always allowed
 - Share item location asks browser permission; denied means city only
 
+**Ready**
+- Screens: Finder 2 · Where is it now?; Finder 3 · Where exactly?; Desktop · Finder where exactly; Loading · Sending report
+- Rules: BUSINESS-RULES.md sections 6, 7
+- Logic: SYSTEM-LOGIC.md sections 2, 3, 5, 6
+- Depends on: TK-10; Google Places (New) key with quota and billing alert (ADR 0008)
+
 ### TK-13 · Leave it in a safe place with a photo
 
 *Should · M · M1 Finder web and accounts*
@@ -175,6 +205,12 @@ As a finder who can't keep the item, I want to add a photo, note and address, so
 - Photo location data (EXIF) removed before upload
 - Address from shared location or typed text, editable
 
+**Ready**
+- Screens: Finder 3b · Show where you left it
+- Rules: BUSINESS-RULES.md sections 6
+- Logic: SYSTEM-LOGIC.md sections 2, 5, 6
+- Depends on: TK-12; Private storage bucket and EXIF-strip function
+
 ### TK-14 · Add a note safely
 
 *Must · S · M1 Finder web and accounts*
@@ -183,6 +219,12 @@ As a finder, I want to add an optional note, so that the owner has useful detail
 
 - Phone number or email in the note shows a share warning; continuing requires a tick
 - Emoji picker available
+
+**Ready**
+- Screens: Finder 4 · Anything else?
+- Rules: BUSINESS-RULES.md sections 6, 7
+- Logic: SYSTEM-LOGIC.md sections 6
+- Depends on: TK-12; Phone and email detection (libphonenumber-js) in packages/shared
 
 ### TK-15 · Choose how to get replies
 
@@ -193,6 +235,12 @@ As a finder, I want to get replies by email, phone or stay anonymous, so that my
 - Email or phone is hidden from the owner and relayed
 - Anonymous finders see replies only while the page is open
 
+**Ready**
+- Screens: Finder 5 · Want a reply?
+- Rules: BUSINESS-RULES.md sections 6
+- Logic: SYSTEM-LOGIC.md sections 2, 4, 6
+- Depends on: TK-12; Encryption at rest for finder contacts
+
 ### TK-16 · Thank-you page with live reply
 
 *Must · M · M1 Finder web and accounts*
@@ -202,6 +250,12 @@ As a finder, I want to see and answer the owner's reply, so that we can arrange 
 - Owner reply appears live; finder can reply with emoji
 - Link to the handover check
 - Invite card: protect your own things, first tag offer
+
+**Ready**
+- Screens: Finder 6 · Thank you; Email 2 · Finder: owner replied
+- Rules: BUSINESS-RULES.md sections 6
+- Logic: SYSTEM-LOGIC.md sections 4, 5
+- Depends on: TK-15; TK-104 for owner replies; Handover link shows from M3 (TK-17)
 
 ### TK-17 · Check the handover code
 
@@ -228,6 +282,12 @@ As a finder, I want to report abuse, so that the platform stays safe.
 
 - Reasons list; 112 note for emergencies; report goes to moderation
 
+**Ready**
+- Screens: Finder R · Report this tag
+- Rules: BUSINESS-RULES.md sections 7
+- Logic: SYSTEM-LOGIC.md sections 2, 4
+- Depends on: TK-10; Moderation review is manual until TK-90
+
 ### TK-20 · Legal footer on finder pages
 
 *Must · S · M1 Finder web and accounts*
@@ -235,6 +295,12 @@ As a finder, I want to report abuse, so that the platform stays safe.
 As a finder, I want to reach Impressum, privacy and terms, so that Tagkin meets German law.
 
 - Footer on every finder page
+
+**Ready**
+- Screens: Finder 1 · Owner message; Web · Privacy
+- Rules: BUSINESS-RULES.md sections 7
+- Logic: SYSTEM-LOGIC.md sections 9
+- Depends on: Placeholder legal texts until TK-81 (M5)
 
 
 ## E3 · Tags
@@ -393,6 +459,24 @@ As a owner, I want to block or report a finder, so that I'm protected from abuse
 - Block stops messages about that tag
 - Anti-scam note: never pay before you have the item
 
+### TK-104 · Reply to a finder on the web
+
+*Must · M · M1 Finder web and accounts*
+
+As a owner, I want to reply to a finder from tagkin.app, so that we can arrange the return without the app.
+
+- Owner writes in their language; the finder sees it translated with Show original
+- Finder gets the reply live on the open page, else by email if chosen; anonymous finders on the page only
+- Finder email replies come back into the conversation (Brevo inbound)
+- Contact details typed in a message show the share warning
+- Messages are rate-limited per return
+
+**Ready**
+- Screens: Owner 5 · Finder message; Owner 13b · Anonymous finder; Email 2 · Finder: owner replied
+- Rules: BUSINESS-RULES.md sections 6, 7
+- Logic: SYSTEM-LOGIC.md sections 2, 4, 5, 6
+- Depends on: TK-82; TK-15; Brevo inbound parsing (ADR 0005); DeepL (ADR 0007)
+
 
 ## E5 · Ordering and payment
 
@@ -529,6 +613,23 @@ As a owner, I want my backup contact alerted if I don't reply, so that a finder 
 
 - Scheduled job after the wait time; finder page updated
 
+### TK-103 · Finder report alert by email
+
+*Must · S · M1 Finder web and accounts*
+
+As a owner, I want an email when someone reports my tag, so that I hear about a find before the app exists.
+
+- A new report emails the owner within the event flow: item, where now, place, note, translated to the owner's language with the original kept
+- The email links to the report on tagkin.app (sign-in if needed); no finder contact details in the email
+- Sent through Brevo from tagkin.app; a failed send is retried and logged
+- Push takes over in M3 (TK-71); email stays the fallback
+
+**Ready**
+- Screens: Email 1 · Owner: item found; Owner 12 · Finder report alert
+- Rules: BUSINESS-RULES.md sections 6
+- Logic: SYSTEM-LOGIC.md sections 4, 5
+- Depends on: TK-12; Brevo verified on tagkin.app (ADR 0005)
+
 
 ## E8 · Website, legal and owner web
 
@@ -555,9 +656,18 @@ As a Tagkin, I want privacy policy, terms and Impressum published, so that we ca
 
 *Must · M · M1 Finder web and accounts*
 
-As a owner, I want to see my tags, messages and orders on the web, so that I can act without my phone.
+As a owner, I want to see my tags and finder reports on the web, so that I can act without my phone.
 
-- My tags with Mark as lost; messages; account
+- My tags shows each tag's photo, name and state (active, lost)
+- Mark as lost and Mark as found work on the web through the same database functions as the app
+- Finder reports appear per tag with place, time (city level unless shared) and note
+- Orders appear here from M2; account shows email and sign out
+
+**Ready**
+- Screens: Web · Owner dashboard; Owner 12 · Finder report alert
+- Rules: BUSINESS-RULES.md sections 6, 7
+- Logic: SYSTEM-LOGIC.md sections 3, 8
+- Depends on: TK-3; mark_lost and mark_found database functions
 
 ### TK-98 · Store listings and privacy labels
 

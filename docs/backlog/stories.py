@@ -148,8 +148,12 @@ story("TK-80", "E8", "Website home, privacy and support", "visitor", "to learn w
       ["Home, privacy in plain words, support with FAQ and email", "Required URLs for the stores"], "Must", "M", "M5")
 story("TK-81", "E8", "Legal texts and Impressum", "Tagkin", "privacy policy, terms and Impressum published", "we can launch legally",
       ["Linked from website, finder pages, emails and the app"], "Must", "M", "M5")
-story("TK-82", "E8", "Owner web dashboard", "owner", "to see my tags, messages and orders on the web", "I can act without my phone",
-      ["My tags with Mark as lost; messages; account"], "Must", "M", "M1")
+story("TK-82", "E8", "Owner web dashboard", "owner", "to see my tags and finder reports on the web", "I can act without my phone",
+      ["My tags shows each tag's photo, name and state (active, lost)", "Mark as lost and Mark as found work on the web through the same database functions as the app", "Finder reports appear per tag with place, time (city level unless shared) and note", "Orders appear here from M2; account shows email and sign out"], "Must", "M", "M1")
+story("TK-103", "E7", "Finder report alert by email", "owner", "an email when someone reports my tag", "I hear about a find before the app exists",
+      ["A new report emails the owner within the event flow: item, where now, place, note, translated to the owner's language with the original kept", "The email links to the report on tagkin.app (sign-in if needed); no finder contact details in the email", "Sent through Brevo from tagkin.app; a failed send is retried and logged", "Push takes over in M3 (TK-71); email stays the fallback"], "Must", "S", "M1")
+story("TK-104", "E4", "Reply to a finder on the web", "owner", "to reply to a finder from tagkin.app", "we can arrange the return without the app",
+      ["Owner writes in their language; the finder sees it translated with Show original", "Finder gets the reply live on the open page, else by email if chosen; anonymous finders on the page only", "Finder email replies come back into the conversation (Brevo inbound)", "Contact details typed in a message show the share warning", "Messages are rate-limited per return"], "Must", "M", "M1")
 
 # ---------- E9 Platform and operations ----------
 story("TK-90", "E9", "Moderation queue", "Tagkin", "to review reports and blocks", "abuse is handled",
@@ -182,6 +186,24 @@ story("TK-101", "E6", "Guest gift checkout", "gift buyer without an account", "t
 story("TK-102", "E8", "Create, customise and order on the web", "visitor on tagkin.app", "to create, customise and order a tag in the browser", "the web beta can sell tags before the apps launch",
       ["tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay", "Sign-up at Continue to delivery; tags live from order", "Works on phone and desktop browsers"], "Must", "L", "M2")
 
+# Definition of Ready evidence per story (step 7 refinement). Stories listed here are Ready.
+READY = {
+    "TK-1": dict(screens=["Setup 3 · Save your tag (sign up when needed)", "Owner 1 · Welcome back (sign in)", "Owner 2 · Enter code", "Email 0 · Sign-in code"], rules=["1b"], logic=["4", "6", "8"], deps=["Sprint 0: Supabase Auth with email OTP; Brevo SMTP on tagkin.app (domain by 15 Nov)", "Guest draft claim (TK-100) lands in M2; M1 covers sign-in only"]),
+    "TK-3": dict(screens=["Web · Owner sign-in", "Owner 2 · Enter code"], rules=["1b"], logic=["4", "8"], deps=["TK-1"]),
+    "TK-10": dict(screens=["Finder 1 · Owner message", "Finder 1b · Lost mode", "Finder 1t · Travel tag", "Finder 1p · Pet tag", "Finder T · Owner test scan", "Loading · Finder page", "Desktop · Finder owner message"], rules=["4", "6", "7"], logic=["2", "3", "5", "8"], deps=["Sprint 0: tag and item tables with seed tags (no create flow until M2)", "DeepL key (ADR 0007); cache translations per message and language"]),
+    "TK-11": dict(screens=["Finder 0 · Enter code", "Finder 0b · Code not found", "Finder U · Tag not set up yet", "Finder X · Tag not active"], rules=["4"], logic=["6", "8"], deps=["TK-10", "Code alphabet in packages/shared"]),
+    "TK-12": dict(screens=["Finder 2 · Where is it now?", "Finder 3 · Where exactly?", "Desktop · Finder where exactly", "Loading · Sending report"], rules=["6", "7"], logic=["2", "3", "5", "6"], deps=["TK-10", "Google Places (New) key with quota and billing alert (ADR 0008)"]),
+    "TK-13": dict(screens=["Finder 3b · Show where you left it"], rules=["6"], logic=["2", "5", "6"], deps=["TK-12", "Private storage bucket and EXIF-strip function"]),
+    "TK-14": dict(screens=["Finder 4 · Anything else?"], rules=["6", "7"], logic=["6"], deps=["TK-12", "Phone and email detection (libphonenumber-js) in packages/shared"]),
+    "TK-15": dict(screens=["Finder 5 · Want a reply?"], rules=["6"], logic=["2", "4", "6"], deps=["TK-12", "Encryption at rest for finder contacts"]),
+    "TK-16": dict(screens=["Finder 6 · Thank you", "Email 2 · Finder: owner replied"], rules=["6"], logic=["4", "5"], deps=["TK-15", "TK-104 for owner replies", "Handover link shows from M3 (TK-17)"]),
+    "TK-19": dict(screens=["Finder R · Report this tag"], rules=["7"], logic=["2", "4"], deps=["TK-10", "Moderation review is manual until TK-90"]),
+    "TK-20": dict(screens=["Finder 1 · Owner message", "Web · Privacy"], rules=["7"], logic=["9"], deps=["Placeholder legal texts until TK-81 (M5)"]),
+    "TK-82": dict(screens=["Web · Owner dashboard", "Owner 12 · Finder report alert"], rules=["6", "7"], logic=["3", "8"], deps=["TK-3", "mark_lost and mark_found database functions"]),
+    "TK-103": dict(screens=["Email 1 · Owner: item found", "Owner 12 · Finder report alert"], rules=["6"], logic=["4", "5"], deps=["TK-12", "Brevo verified on tagkin.app (ADR 0005)"]),
+    "TK-104": dict(screens=["Owner 5 · Finder message", "Owner 13b · Anonymous finder", "Email 2 · Finder: owner replied"], rules=["6", "7"], logic=["2", "4", "5", "6"], deps=["TK-82", "TK-15", "Brevo inbound parsing (ADR 0005)", "DeepL (ADR 0007)"]),
+}
+
 WONT = [
     "Premium subscription (later; Notify me measures demand)",
     "Ghana launch with a local payment provider and cedi prices (later; data model ready)",
@@ -202,7 +224,18 @@ def body(st):
     return (f"**As a** {st['who']}, **I want** {st['want']}, **so that** {st['so']}.\n\n"
             f"### Acceptance criteria\n{ac}\n\n"
             f"**Epic:** {st['epic']} {e} · **Priority:** {st['pri']} · **Size:** {st['size']} · **Milestone:** {MILESTONES[st['ms']][0]}\n\n"
-            f"Screens: docs/design/tagkin-screens.html · Rules: docs/BUSINESS-RULES.md · Logic: docs/SYSTEM-LOGIC.md")
+            + ready_md(st["id"]))
+
+
+def ready_md(i):
+    r = READY.get(i)
+    if not r:
+        return "Screens: docs/design/tagkin-screens.html · Rules: docs/BUSINESS-RULES.md · Logic: docs/SYSTEM-LOGIC.md"
+    return ("### Ready\n"
+            f"- Screens: {'; '.join(r['screens'])}\n"
+            f"- Rules: BUSINESS-RULES.md sections {', '.join(r['rules'])}\n"
+            f"- Logic: SYSTEM-LOGIC.md sections {', '.join(r['logic'])}\n"
+            f"- Depends on: {'; '.join(r['deps'])}")
 
 
 def write_md():
@@ -221,6 +254,8 @@ def write_md():
         for st in [x for x in S if x["epic"] == ek]:
             out += [f"### {st['id']} · {st['title']}", "", f"*{st['pri']} · {st['size']} · {MILESTONES[st['ms']][0]}*", "",
                     f"As a {st['who']}, I want {st['want']}, so that {st['so']}.", ""] + [f"- {a}" for a in st["ac"]] + [""]
+            if st["id"] in READY:
+                out += [ready_md(st["id"]).replace("### Ready", "**Ready**"), ""]
     out += ["## Won't have in this release", ""] + [f"- {w}" for w in WONT] + [""]
     Path(__file__).resolve().parents[1].joinpath("BACKLOG.md").write_text("\n".join(out))
     print(f"wrote docs/BACKLOG.md: {len(S)} stories")

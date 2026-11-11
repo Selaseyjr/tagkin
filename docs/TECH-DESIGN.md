@@ -133,7 +133,7 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 Matches the milestones in BACKLOG.md:
 
 1. **Sprint 0:** monorepo, Supabase project (Frankfurt), migrations for the core tables (including tag members, entitlements, prices with currency, transfers), tokens package, CI, Vercel and EAS set up, Brevo and Stripe test accounts.
-2. **M1 Finder web and accounts:** finder pages and report flow, email-code sign-in, owner web dashboard, report alerts by email.
+2. **M1 Finder web and accounts:** finder pages and report flow, email-code sign-in, owner web dashboard, report alerts by email (TK-103), owner replies on the web (TK-104). Sprint plan: docs/sprints/SPRINT-0.md.
 3. **M2 Web beta: create, order and pay:** guest create and customise on the web, sign-up when needed, Stripe, print partner adapter, order states and emails. **Web beta release.**
 4. **M3 Owner app core:** app shell, tags, customise, free phone tag, Lost mode, relay chat with translation, push, jobs, states.
 5. **M4 Gifting and activation:** gift orders, PIN, activation flow.
