@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 import sys as _sys
 _sys.path.insert(0, str(Path(__file__).resolve().parent))
 from proto_logic import CSS2, CSS3, OWNER_JS, FINDER_JS, CZ_COLS, MOCK_JS, OWNER_INIT
+from proto_v3 import CSS4, OWNER_JS3, OWNER_INIT3, FINDER_JS3, SAMPLES_JS, T_DETAILS
 TOKENS = (ROOT / "docs/brand/tokens.css").read_text()
 OUT = ROOT / "docs/design/tagkin-screens.html"
 
@@ -272,7 +273,7 @@ textarea.in:focus{background:var(--tk-surface);box-shadow:inset 0 0 0 2px var(--
 @media (prefers-reduced-motion:reduce){.dots i{animation:none}}
 """
 
-CSS += CSS2 + CSS3
+CSS += CSS2 + CSS3 + CSS4
 SVG = """<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><circle cx="22" cy="32" r="5" fill="#000"/><path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000"/></mask>
 <symbol id="mark" viewBox="0 0 64 64"><g mask="url(#mk)"><path fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round" d="M8 23 L23 9 H56 V55 H23 L8 41 Z"/></g></symbol>
@@ -431,7 +432,7 @@ STATES = [
 ]
 
 EXTRA = [
-    ("t-details", "Type 1 · Travel details", hdr(backto("type"), "2 of 4") + '<h1>Trip details</h1><input class="in" id="t-name" value="Blue suitcase" aria-label="Item name"><div class="chips modes"><span class="chip on" data-mode="plane">✈️ Plane</span><span class="chip" data-mode="train">🚆 Train</span><span class="chip" data-mode="bus">🚌 Bus</span><span class="chip" data-mode="ferry">⛴️ Ferry</span><span class="chip" data-mode="taxi">🚕 Taxi or ride</span><span class="chip" data-mode="hotel">🏨 Hotel</span></div><input class="in" id="t-a" placeholder="Airline, e.g. Lufthansa, Ryanair" aria-label="Airline"><input class="in" id="t-b" placeholder="Flight number, e.g. LH 566" aria-label="Flight number"><input class="in" id="t-c" placeholder="Destination airport, e.g. Accra (ACC)" aria-label="Destination"><input class="in" id="t-d" placeholder="Travel dates, e.g. 14 to 20 Nov" aria-label="Travel dates"><p class="xs">🔒 Finders see destination and operator only, never dates.</p><div class="sp"></div><div class="btn pri"' + go("message") + '>Next</div>'),
+    ("t-details", "Type 1 · Travel details", hdr(backto("type"), "2 of 4") + '<h1>About your luggage</h1><input class="in" id="t-name" value="Blue suitcase" maxlength="40" placeholder="Name, e.g. Blue suitcase" aria-label="Luggage name"><label class="add sm ph-pick"><input type="file" accept="image/*" class="ph-in" hidden><span>+ Add a photo of your luggage</span></label><label class="check" id="t-trip-on"><i>✓</i><span>Add a trip now <small class="xs">(optional)</small><small class="xs tdesc">Helps airline or hotel staff route it. Finders see destination and carrier only. It hides when the trip ends.</small></span></label><div id="t-trip" hidden><div class="chips modes scrollx"><span class="chip on" data-mode="plane">✈️ Plane</span><span class="chip" data-mode="train">🚆 Train</span><span class="chip" data-mode="bus">🚌 Bus</span><span class="chip" data-mode="ferry">⛴️ Ferry</span><span class="chip" data-mode="hotel">🏨 Hotel</span></div><input class="in sm" id="t-a" placeholder="Airline, e.g. Lufthansa" aria-label="Carrier"><input class="in sm" id="t-c" placeholder="Destination, e.g. Accra (ACC)" aria-label="Destination"><input class="in sm" id="t-d" placeholder="Trip ends, e.g. 20 Nov (hides it after)" aria-label="Trip ends"><input id="t-b" hidden></div><p class="xs">You can add or change a trip any time from the tag.</p><div class="sp"></div><div class="btn pri"' + go("message") + '>Next</div>'),
     ("p-details", "Type 2 · Pet details", hdr(backto("type"), "2 of 4") + '<h1>About your pet</h1><input class="in" id="p-name" value="Milo" aria-label="Pet name"><label class="add sm ph-pick"><input type="file" accept="image/*" class="ph-in" hidden><span>+ Add a photo of your pet</span></label><span class="label2">Temperament</span><div class="chips"><span class="chip on">Friendly</span><span class="chip">Shy</span><span class="chip">Nervous with dogs</span><span class="chip">Don\'t chase</span></div><div class="emowrap"><textarea class="in ta sm" aria-label="Text">Care notes: needs daily medication at 8 pm. Allergic to chicken.</textarea><span class="emobtn" role="button" aria-label="Add emoji">☺</span></div><p class="xs">Care notes stay behind a tap on the finder page.</p><div class="sp"></div><div class="btn pri"' + go("message") + '>Next</div>'),
     ("report-owner", "Safety 1 · Report or block", hdr(backto("thread"), "") + '<h1>Report or block</h1><p class="m">About this finder\'s messages on <span class="ro-name">Blue suitcase</span>.</p><div class="grp" id="ro-opts">' + opt("Block this finder", True, "🚫", "They can\'t message you about this tag again") + opt("Report a message", False, "⚑", "Abuse, spam or a scam attempt") + '</div><div id="ro-more" hidden><textarea class="in ta sm" id="ro-text" maxlength="500" placeholder="What happened? (optional)" aria-label="Details"></textarea></div><p class="note warn">Never pay a finder before you have your item back. Tagkin will never ask for payment in a message.</p><div class="sp"></div><div class="btn lostb" id="ro-go"' + go("report-done") + '>Block finder</div><div class="btn sec"' + go("thread") + '>Cancel</div>'),
     ("report-done", "Safety 2 · Blocked", hdr() + '<div class="sp"></div><div class="done">✓</div><h1 class="center" id="rd-t">Finder blocked</h1><p class="m center" id="rd-m">They can no longer message you about this tag. We review every report.</p><div class="sp"></div><div class="btn pri"' + go("inbox") + '>Back to messages</div>'),
@@ -625,7 +626,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('.act-go')||e.target.closest('#start .btn.pri')){const act=!!e.target.closest('.act-go');[['#type',1],['#details',2],['#t-details',2],['#p-details',2],['#message',3]].forEach(([id,n])=>{const sp=document.querySelector(id+' .hdr>span:last-child');if(sp)sp.textContent=n+(act?' of 3':' of 4');});}
   const n=e.target.closest('#message .btn.pri');if(n){n.dataset.go=activating?'act-live':'design';}
 },true);
-""" + OWNER_JS + MOCK_JS + OWNER_INIT
+""" + OWNER_JS + MOCK_JS + SAMPLES_JS + OWNER_JS3 + OWNER_INIT3
 
 
 def proto_screen(key, body):
@@ -752,7 +753,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('change',ev=>{if(ev.target.id==='f-photoin'&&ev.target.files[0])$('#f-phtxt').textContent='✓ Photo added: '+ev.target.files[0].name;});
 const r=document.documentElement;
-""" + FINDER_JS
+""" + FINDER_JS + SAMPLES_JS + FINDER_JS3
 finder_proto = f"""<!doctype html>
 <html lang="en">
 <head>

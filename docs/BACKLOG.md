@@ -319,7 +319,10 @@ Owners create, customise, test and manage tags for their belongings.
 As a owner, I want to create a tag for a belonging, so that finders know what to do.
 
 - Choose type of tag (sticker, keychain, pet tag, luggage label, lock screen); tag type item, travel or pet is locked after creation
-- Details per type: name and photo; travel fields change with transport mode; pet temperament and care notes
+- Details per type: name required (2 to 40 characters), photo optional but prompted, description optional (120); travel adds a luggage photo and an optional trip (mode, carrier, destination, end date); pet temperament and care notes
+- Photos: JPEG, PNG, WebP or HEIC up to 10 MB; resized to 1600 px and location data removed; the chosen photo fills its box, opens full screen to check, with Use, Replace and Remove
+- Draft rules: back keeps what was entered; choosing a different type or tag style clears the item details; leaving the flow with unsaved input asks Discard or Keep editing; a new flow starts blank
+- Customise preview opens full screen and returns to the same choices
 - Finder message: template or own text, 160 characters, warning on contact details, emoji picker, live preview
 
 ### TK-31 · Customise the tag

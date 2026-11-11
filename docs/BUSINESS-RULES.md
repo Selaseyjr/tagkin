@@ -80,7 +80,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 ## 7. Privacy and safety
 
 1. Scan locations are stored at city level unless the finder shares the item location.
-2. Travel tags show destination and operator only, never dates or the home address. Owner status updates are city level only, with no dates or times, and hide automatically.
+2. Travel tags show destination and operator only, never dates or the home address. **The trip is optional:** a travel tag works with just the luggage name and photo; the trip (mode, carrier, destination, end date) can be added at creation or later, and hides when the trip ends. The end date is used only to hide it. Owner status updates are city level only, with no dates or times, and hide automatically.
 3. Messages are deleted after a set retention period once a return ends. Retired tags keep no personal data.
 4. Owners and finders can report and block. Every report is reviewed (no fixed response time is promised).
 5. Owners can download and delete their data and delete their account in the app.

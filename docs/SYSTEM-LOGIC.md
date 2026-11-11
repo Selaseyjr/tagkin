@@ -130,6 +130,8 @@ Push falls back to email when push is off or the token is invalid. Every email h
 - `tagkin.app/TK-…/handover`: handover check for finders and desk staff, open to anyone while the tag has an open return (no session; 5 attempts, then 15 minutes). The tag page shows "Check a handover code" during a return.
 - `tagkin.app/r/{token}`: finder report link (no account), sent in every email or text and shown on the thank-you page to save. The same device is remembered, so scanning the tag again offers "Continue my report".
 
+**Drafts and forms:** back keeps what was entered on earlier screens of the same flow. Changing an earlier choice (tag type or tag style) clears the item details that depended on it. Leaving a flow with unsaved input asks "Discard this tag?" (Discard or Keep editing). Starting a flow again, or finishing it, starts from a blank draft. Required fields block Next with an inline message (item name 2 to 40 characters). Photos: JPEG, PNG, WebP or HEIC up to 10 MB, resized to 1600 px on the longest side, location data removed; the photo is shown in place and can be opened full screen before continuing.
+
 **Back navigation (app and web):** back returns to the previous screen. After a completed step that can't be undone (payment, activation, tag live, account deletion, report sent, block, handover confirmed, return closed, tag retired) the history is cleared: back leads to the home screen (My tags, or the tag page for finders) and the finished form can't be reopened or sent twice. Sign-in screens are removed from history after sign-in. Tabs start a fresh history.
 - `tagkin.app/signin`, `/my-tags`: owner web.
 - `tagkin.app/create`, `/gift`: create and gift on the web without an account (web beta).

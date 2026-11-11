@@ -219,7 +219,6 @@ function paint(){const d=st();const c='TK-7Q4M-9XRA';
 const _render=render;render=function(){_render();paint();};
 var GPH=document.createElement('input');GPH.type='file';GPH.accept='image/*';GPH.hidden=true;document.body.appendChild(GPH);
 GPH.addEventListener('change',()=>{const f=GPH.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>{st().photo=fr.result;render();toast('Photo added');};fr.readAsDataURL(f);GPH.value='';});
-document.addEventListener('click',e=>{if(e.target.closest('.lp-img,.av-s')){e.stopPropagation();GPH.click();}},true);
 """
 
 CSS3 = r"""

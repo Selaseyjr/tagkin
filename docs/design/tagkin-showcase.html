@@ -404,6 +404,27 @@ h1{font-weight:650;letter-spacing:-.025em}
 .av-s img{width:100%;height:100%;object-fit:cover}
 .lp-img{cursor:pointer}
 
+.ph-pick.has{background:center/cover no-repeat;border-style:solid;border-color:transparent;color:#fff;position:relative}
+.ph-pick.has span{position:absolute;right:8px;bottom:8px;background:rgb(0 0 0 / .55);padding:4px 10px;border-radius:99px;font-size:12px}
+.ph-pick.err{border-color:var(--tk-lost)}
+.fielderr{color:var(--tk-lost-text);font-size:13px;margin:-6px 0 0}
+#t-trip{display:flex;flex-direction:column;gap:8px}#t-trip[hidden]{display:none}
+.tdesc{display:block;margin-top:2px}
+.ov{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:rgb(0 0 0 / .55);padding:12px}
+.ov[hidden]{display:none}
+.ov.full{align-items:center;background:rgb(5 10 8 / .92)}
+.ov-c{background:var(--tk-surface);border-radius:28px;padding:22px;width:100%;max-width:400px;display:flex;flex-direction:column;gap:12px;animation:up var(--tk-slow) var(--tk-ease)}
+.ov.full .ov-c{background:transparent;padding:0;max-width:440px}
+.ov-img{width:100%;max-height:62vh;object-fit:contain;border-radius:20px;background:#000}
+.ov-svg{width:100%;aspect-ratio:1;border-radius:24px;overflow:hidden}
+.ov-cap{color:#fff;text-align:center;font-size:14px;margin:0}
+.ov h2{font:650 20px/1.2 var(--tk-font-display);margin:0}
+.samp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.samp img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;cursor:pointer}
+.ov .btn.sec.dark{background:rgb(255 255 255 / .12);color:#fff;border-color:rgb(255 255 255 / .3)}
+#design .pm-wrap.cz{cursor:zoom-in;position:relative}
+#design .pm-wrap.cz::after{content:"Tap to preview";position:absolute;right:10px;bottom:10px;background:rgb(0 0 0 / .55);color:#fff;font-size:11px;padding:3px 8px;border-radius:99px}
+
 .spec{margin-top:10px;font-size:12px;color:var(--tk-ink-2);background:var(--tk-sunken);border-radius:12px;padding:10px 12px}
 .spec p{margin:0 0 6px}.spec ul{margin:0;padding-left:16px}.spec li{margin:2px 0}
 .sgrid{display:flex;flex-direction:column;gap:10px}.lbl{font:600 11px var(--tk-font-body);letter-spacing:.05em;text-transform:uppercase;color:var(--tk-ink-2);margin-top:6px}
