@@ -8,10 +8,10 @@ Short records of key technical choices: the context, the options compared, the d
 | [0002](0002-web.md) | Web: Next.js on Vercel (Frankfurt) | Accepted |
 | [0003](0003-backend-database-auth-and-storage.md) | Backend, database, auth and storage: Supabase in Frankfurt | Accepted |
 | [0004](0004-payments.md) | Payments: Stripe | Accepted |
-| [0005](0005-transactional-email.md) | Transactional email: EU-based provider | Proposed (verify at sign-up) |
-| [0006](0006-sms-for-account-recovery.md) | SMS for account recovery | Proposed |
+| [0005](0005-transactional-email.md) | Transactional email: EU-based provider | Recommended, awaiting approval |
+| [0006](0006-sms-for-account-recovery.md) | SMS for account recovery | Recommended, awaiting approval |
 | [0007](0007-translation.md) | Translation: DeepL, with a fallback | Accepted |
-| [0008](0008-places-and-maps.md) | Places and maps | Proposed |
+| [0008](0008-places-and-maps.md) | Places and maps | Recommended, awaiting approval |
 | [0009](0009-push-notifications.md) | Push notifications: Expo push service | Accepted |
 | [0010](0010-print-partner.md) | Print partner: decide after samples | Proposed |
 | [0011](0011-repository-and-delivery-setup.md) | Repository and delivery setup | Accepted |

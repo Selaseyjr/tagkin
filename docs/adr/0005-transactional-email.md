@@ -1,24 +1,22 @@
 # ADR 0005: Transactional email: EU-based provider
 
-**Status:** Proposed (verify at sign-up) · **Date:** 11 Nov 2026
+**Status:** Recommended, awaiting approval · **Date:** 11 Nov 2026
 
 ## Context
-Sign-in codes, report alerts, replies and order emails. Personal data must stay in the EU where possible. Research (11 Nov 2026): Resend can send from Ireland but stores account data in the US.
+Sign-in codes, report alerts, replies and order emails, plus **inbound** email so finders can reply to relay emails without an account. Tagkin prefers EU storage (a choice, not a GDPR requirement: transfers are lawful with an adequacy decision such as the EU-US Data Privacy Framework, or standard contractual clauses). Research 11 Nov 2026: Resend sends from Ireland but stores account data in the US; Scaleway Transactional Email is outbound-only (no inbound); Brevo offers inbound parsing to a webhook.
 
 ## Options
 | Option | For | Against |
 |---|---|---|
-| EU-based provider, e.g. Brevo (France) or Scaleway Transactional Email (France) | Data processed and stored in the EU; SMTP for Supabase Auth plus API for our own emails. | Check deliverability, inbound email for replies, and pricing. |
-| Twilio SendGrid with EU data residency | Mature, inbound parse for replies. | EU residency tied to plan; US parent. |
-| Resend | Excellent developer experience. | Account data stored in the US. Lawful under GDPR with the EU-US Data Privacy Framework or standard contractual clauses, but not our preference (see Note). |
-
-## Note on the EU requirement
-GDPR does not require data to stay in the EU; it allows transfers with safeguards (adequacy decisions such as the EU-US Data Privacy Framework, or standard contractual clauses). Keeping data in the EU is Tagkin's own choice: privacy is the product, it simplifies compliance, and it avoids risk if a transfer framework is struck down again (as Privacy Shield was in 2020).
+| Brevo (France) | EU company; transactional API and SMTP (works as Supabase Auth's custom SMTP); **inbound parsing** to a webhook for finder replies; free tier for testing. | Inbound parsing can't guarantee 100% success, so the finder page stays the main reply path; deliverability to be tested. |
+| Scaleway Transactional Email (France) | EU, simple, cheap. | **No inbound email**: would need a second provider for replies. |
+| Twilio SendGrid with EU data residency | Mature; inbound parse. | EU residency depends on plan; US parent. |
+| Resend | Excellent developer experience. | Account data stored in the US; not our preference. |
 
 ## Decision
-Choose an EU-based provider (shortlist Brevo, Scaleway TEM) that supports custom SMTP for Supabase Auth and inbound email for finder replies. Decide after a deliverability test.
+**Recommend Brevo** as the single email provider: outbound (Supabase Auth SMTP and our own emails) and inbound parsing for finder replies. Test after tagkin.app is bought (sending and inbound both need a verified domain with SPF, DKIM and DMARC).
 
 ## Consequences
-Inbound email lets finders reply to relay emails without an account.
+One EU provider for both directions. Scaleway is no longer needed. Before launch: data processing agreement with Brevo (Stage E legal review).
 
 **Related:** TK-1, TK-15, TK-55, TK-71.
