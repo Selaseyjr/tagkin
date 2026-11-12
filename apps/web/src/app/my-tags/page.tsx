@@ -6,7 +6,7 @@ import { requireOwner, STATE_LABEL } from "@/lib/owner";
 import { TYPE_EMOJI } from "@/lib/finder";
 
 async function TagList() {
-  const { db, isDemo } = await requireOwner();
+  const { db } = await requireOwner();
   const { data: tags } = await db
     .from("tags")
     .select("code, state, product, type, items(name, photo_path)")
@@ -14,14 +14,9 @@ async function TagList() {
     .order("created_at", { ascending: true });
   return (
     <>
-      <OwnerBar isDemo={isDemo} />
+      <OwnerBar />
       <h1>My tags</h1>
-      {isDemo && (
-        <p className="note">
-          Tip: open a tag&apos;s finder page in another tab (or scan it with your phone), report it,
-          then come back here to answer.
-        </p>
-      )}
+
       <div className="opts">
         {(tags ?? []).map((t) => {
           const item = Array.isArray(t.items) ? t.items[0] : t.items;

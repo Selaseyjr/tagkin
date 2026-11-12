@@ -34,17 +34,53 @@ h2 {
 p {
   margin: 0;
 }
-.demo-bar {
-  background: var(--tk-ink);
-  color: var(--tk-surface);
-  font-size: var(--tk-text-xs);
-  text-align: center;
-  padding: 6px 12px;
-}
 .top {
   max-width: 520px;
   margin: 0 auto;
   padding: var(--tk-space-4) var(--tk-space-4) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-link {
+  font-weight: 600;
+  font-size: var(--tk-text-sm);
+  color: var(--tk-ink);
+  text-decoration: none;
+}
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.steps li {
+  display: flex;
+  gap: 12px;
+}
+.steps b.n {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--tk-brand-soft);
+  color: var(--tk-brand-text);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+.qr {
+  background: #fff;
+  border-radius: var(--tk-radius-lg);
+  padding: 16px;
+  display: grid;
+  place-items: center;
+}
+.qr svg {
+  width: 200px;
+  height: 200px;
 }
 .top.wide,
 .page.wide {
