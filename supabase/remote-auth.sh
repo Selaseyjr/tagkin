@@ -25,7 +25,10 @@ if [ "${DRY_RUN:-false}" = "true" ]; then
     "https://api.supabase.com/v1/projects/$PROJECT_REF/config/auth" -o /dev/null
   echo "Auth config readable; would apply: $(echo "$body" | python3 -c 'import json,sys;print(sorted(json.load(sys.stdin)))')"
 else
-  curl -sf -X PATCH -H "Authorization: Bearer $SUPABASE_ACCESS_TOKEN" -H "Content-Type: application/json" \
-    "https://api.supabase.com/v1/projects/$PROJECT_REF/config/auth" -d "$body" -o /dev/null
+  code=$(curl -s -X PATCH -H "Authorization: Bearer $SUPABASE_ACCESS_TOKEN" -H "Content-Type: application/json" \
+    "https://api.supabase.com/v1/projects/$PROJECT_REF/config/auth" -d "$body" -o /tmp/auth-response.json -w "%{http_code}")
+  if [ "$code" -ge 300 ]; then
+    echo "Auth config update failed (HTTP $code):"; head -c 600 /tmp/auth-response.json; echo; exit 1
+  fi
   echo "Auth config applied."
 fi
