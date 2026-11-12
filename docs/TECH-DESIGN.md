@@ -64,6 +64,8 @@ supabase/        migrations, row-level security policies, functions, seed data
 
 CI (GitHub Actions): lint, type check, unit tests, migration check on every pull request; Vercel preview per pull request; EAS builds for the app. Pull requests reference stories ("Fixes #12"), so the board moves automatically.
 
+Frontend libraries: ADR 0013. Testing and release practice: ADR 0014.
+
 ## 3. Data and security
 
 - Tables follow SYSTEM-LOGIC.md section 2: accounts, devices, tags, tag_members, items, contacts, status_updates, scans, reports, returns, messages, orders, order_items, abuse_reports, entitlements, prices, ownership_transfers.

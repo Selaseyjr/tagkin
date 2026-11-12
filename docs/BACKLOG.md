@@ -19,7 +19,7 @@ Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stori
 | Must | 47 |
 | Should | 20 |
 | Could | 3 |
-| Won't (this release) | 7 items, listed below |
+| Won't (this release) | 8 items, listed below |
 
 ## Definition of Ready
 
@@ -38,6 +38,7 @@ Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stori
 - Errors and provider failures handled as in SYSTEM-LOGIC.md
 - Tests for the logic; no new warnings
 - Documentation updated (brief change log, rules or system logic if affected)
+- Pipeline: CI green; migrations reviewed and applied only through CI; access rules (RLS) covered by database tests; no secrets in code or logs; Sentry clean after the preview check on a phone
 
 ## E1 · Accounts and sign-in
 
@@ -169,7 +170,8 @@ As a finder, I want to see the owner's message when I scan a tag, so that I know
 
 As a finder, I want to type the code printed on the tag, so that I can still report it.
 
-- Case- and dash-insensitive
+- Case-, space- and dash-insensitive
+- The check character catches typos before any lookup ('Check the code')
 - Wrong code shows a clear error; lookups are rate-limited
 - Retired tags show 'no longer active'; unclaimed tags show 'not set up yet'
 
@@ -230,9 +232,9 @@ As a finder, I want to add an optional note, so that the owner has useful detail
 
 *Must · M · M1 Finder web and accounts*
 
-As a finder, I want to get replies by email, phone or stay anonymous, so that my details stay private.
+As a finder, I want to get replies by email or stay anonymous, so that my details stay private.
 
-- Email or phone is hidden from the owner and relayed
+- Email is hidden from the owner and relayed; replies by phone (SMS) come later
 - Anonymous finders see replies only while the page is open
 
 **Ready**
@@ -850,6 +852,7 @@ As a product owner, I want owners to register interest in Premium, so that I bui
 
 ## Won't have in this release
 
+- Finder replies by phone (SMS relay; later, when SMS has a budget)
 - Premium subscription (later; Notify me measures demand)
 - Ghana launch with a local payment provider and cedi prices (later; data model ready)
 - Family sharing and ownership transfer screens (later; data model ready)

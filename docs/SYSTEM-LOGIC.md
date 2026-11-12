@@ -21,12 +21,12 @@ Version 2 · 12 Nov 2026 · written from a full user walk-through of every journ
 |---|---|---|
 | **Account** | id, email (required, unique, verified), recovery_phone?, backup_email?, language, appearance, notification prefs, created_at, deleted_at | Email is the sign-in. |
 | **Session / Device** | id, account_id, platform, push_token?, last_seen | Listed in Sign-in and recovery; can be signed out remotely. |
-| **Tag** | code (TK-XXXX-XXXX), state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour (hex or gradient id), size (s, m, l where offered), finish (matte, gloss, holo, glow, reflective), label? (≤12, no contact details), type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Code alphabet excludes 0 O 1 I L. Never reused. Ownership lives in **Tag member**, not on the tag. |
+| **Tag** | code (TK-XXXX-XXXX: 7 random + 1 check character, BUSINESS-RULES 4.1), state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour (hex or gradient id), size (s, m, l where offered), finish (matte, gloss, holo, glow, reflective), label? (≤12, no contact details), type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Alphabet 23456789ABCDEFGHJKMNPQRSTVWXYZ (no 0 1 I L O U); blocked words never issued. Never reused. Ownership lives in **Tag member**, not on the tag. |
 | **Item** (the belonging) | tag_code, name, photo_url?, description?, finder_message (≤160), finder_message_lang, care_notes? (pet), temperament? (pet), trip? (travel, optional: mode, carrier, destination, ends_on; ends_on only hides the trip) | One item per tag. Name, photo and description lock during a return (return_active) only. |
 | **Contact** | account_id, kind (backup_person), name, email/phone, alert_after_minutes | Never shown to finders. |
 | **Status update** | tag_code, text (city level), visible, expires_at | No dates or times in text (validated). |
 | **Scan** | id, tag_code, at, city (from IP), is_test, user_agent_class, report_id? | Exact location never from a scan alone. Scan history is always per tag: a new tag has none; Lost mode lists scans since `lost_at`. |
-| **Report** (finder) | id, tag_code, where_now (with_me, staff, safe_place), place_text?, lat/lng? (only if shared), address?, photo_url? (EXIF removed), note?, finder_contact_kind (email, phone, none), finder_contact (encrypted)?, lang, created_at | Creates or joins a Return. |
+| **Report** (finder) | id, tag_code, where_now (with_me, staff, safe_place), place_text?, lat/lng? (only if shared), address?, photo_url? (EXIF removed), note?, finder_contact_kind (email, none; phone later), finder_contact (encrypted)?, lang, created_at | Creates or joins a Return. |
 | **Return** (thread) | id, tag_code, state, opened_at, closed_at, handover_code_hash | Relay messages live here. |
 | **Message** | id, return_id, from (owner, finder, system), text, original_text, original_lang, translated_lang, delivered_via (push, email, sms, web), status (sent, failed, delivered) | Contact details in text trigger the share warning before sending. |
 | **Order** | id, account_id? (null for guest gift orders), guest_email?, kind (own, blank, gift), stage (see 3), exception? (reprint, delayed, delivery_failed, problem_reported), eta, replacement_of? (order id), cancelled_at?, refunded_at?, items[], shipping_address, recipient_name?, gift_note?, hide_prices, subtotal, shipping, discount, total, **currency** (EUR at launch), market (de, eu; gh later), payment_provider (stripe; paystack later), payment_method, payment_id, partner_order_id, state, tracking_url? | Own orders link tag codes at payment; gift orders create unclaimed codes. Guest gift orders are reached by an emailed link. |
@@ -112,7 +112,7 @@ Push falls back to email when push is off or the token is invalid. Every email h
 - Item name required, 2 to 40 characters; description ≤120. Photos: JPEG, PNG, WebP or HEIC ≤10 MB, stored at ≤1600 px with EXIF removed.
 - Status update: ≤60 characters; reject dates and times (pattern check) with a friendly message.
 - Care notes ≤300, chat messages ≤1,000. (Names and descriptions: see above.)
-- Tag code input: case- and dash-insensitive; rate limit code lookups per IP (e.g. 20 per hour) and globally.
+- Tag code input: case-, space- and dash-insensitive; the check character is verified before any lookup (wrong → "Check the code"); rate limit code lookups per IP (e.g. 20 per hour) and globally. Rules live in `packages/shared` and are mirrored in Postgres.
 - Activation PIN: 6 characters, hashed; 5 attempts per tag per 15 minutes.
 - Handover code: 6 digits, per return, owner can regenerate.
 - Email code: 6 digits, 10 minutes, 5 attempts, then wait.
@@ -134,13 +134,13 @@ Push falls back to email when push is off or the token is invalid. Every email h
 
 ## 8. URLs and deep links
 
-- `tagkin.app/TK-XXXX-XXXX` (printed in the QR): finder page; if the tag is unclaimed, "Not set up yet" with a deep link that opens the app (or the store) with the code prefilled for activation.
+- `HTTPS://TAGKIN.APP/TK-XXXX-XXXX` (printed in the QR in capitals; permanent, never changes; the route accepts any case): finder page; if the tag is unclaimed, "Not set up yet" with a deep link that opens the app (or the store) with the code prefilled for activation.
 - `tagkin.app/TK-…/handover`: handover check for finders and desk staff, open to anyone while the tag has an open return (no session; 5 attempts, then 15 minutes). The tag page shows "Check a handover code" during a return.
 - `tagkin.app/r/{token}`: finder report link (no account), sent in every email or text and shown on the thank-you page to save. The same device is remembered, so scanning the tag again offers "Continue my report". After the handover is confirmed the link only shows the closed state.
 - `tagkin.app/signin`, `/my-tags`, `/orders/{id}`: owner web.
 - `tagkin.app/create`, `/gift`: create and gift on the web without an account (web beta).
 - `tagkin.app/o/{token}`: guest order status.
-- App deep links: `tagkin://tag/{code}`, `tagkin://activate/{code}`, `tagkin://return/{id}`, `tagkin://order/{id}`.
+- Universal links (iOS) and App Links (Android) on tagkin.app open the app where installed: `/.well-known/apple-app-site-association` and `/.well-known/assetlinks.json` are reserved routes. Custom scheme as fallback: `tagkin://tag/{code}`, `tagkin://activate/{code}`, `tagkin://return/{id}`, `tagkin://order/{id}`.
 
 **Drafts and forms:** back keeps what was entered on earlier screens of the same flow. Changing an earlier choice (tag type or tag style) clears the item details that depended on it. Leaving a flow with unsaved input asks "Discard this tag?" (Discard or Keep editing). Starting a flow again, or finishing it, starts from a blank draft. Required fields block Next with an inline message (item name 2 to 40 characters). Photos: JPEG, PNG, WebP or HEIC up to 10 MB, resized to 1600 px on the longest side, location data removed; the photo is shown in place and can be opened full screen before continuing.
 
