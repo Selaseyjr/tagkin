@@ -9,10 +9,11 @@ import { TYPE_EMOJI } from "@/lib/finder";
 import { markFound, markLost, markReturned, ownerReply, setUpBlank } from "./actions";
 import { OwnerThread } from "./OwnerThread";
 import { SetUpForm } from "./SetUpForm";
+import { TagQr } from "@/components/TagQr";
 
 async function TagDetail({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
-  const { db, isDemo } = await requireOwner();
+  const { db } = await requireOwner();
   const { data: tag } = await db
     .from("tags")
     .select("code, state, product, type, items(name, photo_path, finder_message)")
@@ -25,7 +26,7 @@ async function TagDetail({ params }: { params: Promise<{ code: string }> }) {
   if (tag.state === "unlinked") {
     return (
       <>
-        <OwnerBar isDemo={isDemo} />
+        <OwnerBar />
         <span className={label.cls} style={{ alignSelf: "flex-start" }}>
           {label.text}
         </span>
@@ -64,7 +65,7 @@ async function TagDetail({ params }: { params: Promise<{ code: string }> }) {
 
   return (
     <>
-      <OwnerBar isDemo={isDemo} />
+      <OwnerBar />
       {item?.photo_path ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -113,6 +114,8 @@ async function TagDetail({ params }: { params: Promise<{ code: string }> }) {
           <button className="btn btn-pri">I found it myself</button>
         </form>
       )}
+
+      <TagQr code={tag.code} />
 
       <div className="card">
         <h2>Scan history</h2>

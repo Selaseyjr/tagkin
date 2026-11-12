@@ -11,3 +11,5 @@ Goal: a working Tagkin demo on tagkin.app by Monday 16 Nov, for portfolio, CV, L
 Out of the demo (shown as designs in the prototype gallery): the native app, ordering and payment, gifting, translations, push.
 
 Decisions (12 Nov): one-click demo owner; Impressum links to the portfolio (selasey-gbeddy.vercel.app/#impressum); tagkin.app has its own short demo privacy page; case study and prototype gallery included.
+
+**Decision 12 Nov (evening):** tagkin.app is the product itself, shown as an unlaunched preview: no banner, no demo labels, no demo-only screens. Recruiters enter through an unlisted link, tagkin.app/preview, which opens the sample owner account; Selasey explains the status in person. Finders reach tag pages only by scanning (owners show the QR on each tag).

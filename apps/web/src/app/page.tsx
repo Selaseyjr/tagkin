@@ -1,48 +1,50 @@
 import Link from "next/link";
 import { Shell } from "@/components/Shell";
 
-const DEMO = [
-  { code: "TK-D3M7-BKPB", label: "Black backpack", note: "Everyday item" },
-  { code: "TK-D3M7-PTGR", label: "Milo the dog", note: "Marked as lost" },
-  { code: "TK-D3M7-TRVS", label: "Blue suitcase", note: "Travelling to Accra" },
-  { code: "TK-D3M7-KYC4", label: "Blank keychain", note: "Not set up yet" },
-];
-
-// Day 1 landing; the full landing and case study arrive on day 3 (docs/sprints/DEMO-SPRINT.md).
 export default function Home() {
   return (
     <Shell>
-      <h1>Protect what you value.</h1>
+      <h1 style={{ fontSize: 34 }}>Protect what you value.</h1>
       <p className="m">
-        Tagkin puts a QR tag on your bags, keys and pets. Whoever finds them scans the tag and tells
-        you where they are, privately, without an app.
+        Put a Tagkin tag on your bags, keys, luggage and pets. Whoever finds them scans the tag and
+        tells you where they are. No app needed for them, and nobody sees your number or email.
       </p>
-      <h2>Try it as a finder</h2>
-      <div className="opts">
-        {DEMO.map((d) => (
-          <Link
-            key={d.code}
-            className="opt"
-            href={`/${d.code}`}
-            style={{ justifyContent: "space-between", textDecoration: "none", color: "inherit" }}
-          >
-            <span>
-              <b>{d.label}</b>
-              <br />
-              <span className="xs">{d.note}</span>
+      <ol className="steps">
+        <li>
+          <b className="n">1</b>
+          <span>
+            <b>Tag it.</b>{" "}
+            <span className="m">
+              Sticker, keychain, pet tag or luggage label, with your own message for the finder.
             </span>
-            <span className="xs">{d.code}</span>
-          </Link>
-        ))}
-      </div>
-      <h2>Try it as the owner</h2>
-      <p className="m">See the reports, answer the finder and close the return.</p>
-      <Link className="btn btn-pri" href="/signin">
-        Try the owner side
+          </span>
+        </li>
+        <li>
+          <b className="n">2</b>
+          <span>
+            <b>Someone finds it.</b>{" "}
+            <span className="m">They scan the QR and say where it is, in their own language.</span>
+          </span>
+        </li>
+        <li>
+          <b className="n">3</b>
+          <span>
+            <b>You get it back.</b>{" "}
+            <span className="m">
+              You reply privately and arrange the handover. Lost mode makes the page urgent.
+            </span>
+          </span>
+        </li>
+      </ol>
+      <Link className="btn btn-pri" href="/my-tags">
+        Sign in to My tags
       </Link>
       <Link className="btn btn-sec" href="/find">
-        Type a code
+        Found something? Enter its code
       </Link>
+      <p className="priv">
+        🔒 Private by default. Messages are relayed, never your contact details.
+      </p>
     </Shell>
   );
 }

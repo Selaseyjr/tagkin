@@ -45,26 +45,26 @@ export async function verifyCode(prev: SignInState, form: FormData): Promise<Sig
   redirect("/my-tags");
 }
 
-/** One-click demo owner: signs in to the shared demo account without email (docs/sprints/DEMO-SPRINT.md). */
-export async function tryDemoOwner() {
+/** Sample account sign-in for tagkin.app/preview (unlisted; docs/sprints/DEMO-SPRINT.md). */
+export async function signInSample() {
   const admin = adminClient();
   const { data: allowed } = await admin.rpc("check_rate_limit", {
     p_key: await clientKey("demo"),
     p_max: 30,
     p_window_seconds: 3600,
   });
-  if (!allowed) redirect("/signin?e=busy");
+  if (!allowed) redirect("/signin");
   const { data, error } = await admin.auth.admin.generateLink({
     type: "magiclink",
     email: DEMO_EMAIL,
   });
-  if (error || !data.properties?.hashed_token) redirect("/signin?e=demo");
+  if (error || !data.properties?.hashed_token) redirect("/signin");
   const db = await ownerClient();
   const res = await db.auth.verifyOtp({
     type: "magiclink",
     token_hash: data.properties.hashed_token,
   });
-  if (res.error) redirect("/signin?e=demo");
+  if (res.error) redirect("/signin");
   redirect("/my-tags");
 }
 
