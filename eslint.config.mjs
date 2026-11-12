@@ -7,4 +7,9 @@ export default tseslint.config(
   { ignores: ["**/node_modules/**", "**/dist/**", "apps/**", "docs/**"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    // Build scripts run in Node.
+    files: ["**/scripts/**/*.mjs"],
+    languageOptions: { globals: { process: "readonly", console: "readonly" } },
+  },
 );

@@ -1,0 +1,84 @@
+/* Copied from docs/brand/tokens.css by scripts/generate.mjs. Do not edit. */
+/* Tagkin design tokens v1 (visual design pass A, 10 Nov 2026; Fresh mint palette 11 Nov).
+   Source of truth for colour, type, spacing, radius and motion.
+   Reused as-is when the app is built. */
+
+:root {
+  /* Colour: clean neutrals with a faint mint bias */
+  --tk-bg: #f6f8f7;          /* page */
+  --tk-surface: #ffffff;     /* cards, screens */
+  --tk-sunken: #edf1ef;      /* inputs, wells */
+  --tk-line: #dbe3df;        /* borders, dividers */
+  --tk-ink: #0b1712;         /* text, logo */
+  --tk-ink-2: #4f5e57;       /* secondary text */
+
+  /* Brand: Fresh mint (chosen 11 Nov 2026) */
+  --tk-brand: #00c48c;       /* fills: primary buttons, icon tiles, logo hole */
+  --tk-brand-press: #00ab7a;
+  --tk-on-brand: #03261a;    /* text on mint: always dark */
+  --tk-brand-soft: #d9f7ec;  /* selected states, Return active */
+  --tk-brand-text: #007a57;  /* mint as text or links on light surfaces */
+
+  /* Meaning (separate from brand) */
+  --tk-lost: #e02a17;        /* Lost mode, urgent */
+  --tk-lost-soft: #ffe5e1;
+  --tk-on-lost: #ffffff;
+  --tk-lost-text: #c62d1b;
+  --tk-warn: #8a5a00;        /* privacy and share warnings (text) */
+  --tk-warn-soft: #fdf1d6;
+  --tk-ok: #007a57;          /* returned, shared, done */
+
+  /* Type */
+  --tk-font-brand: "Bricolage Grotesque", system-ui, sans-serif; /* wordmark only */
+  --tk-font-display: "Geist", system-ui, -apple-system, sans-serif; /* headings (modern pass 11 Nov) */
+  --tk-font-body: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tk-text-xs: 12px;
+  --tk-text-sm: 14px;
+  --tk-text-md: 16px;   /* body; never smaller for inputs (iOS zoom) */
+  --tk-text-lg: 20px;
+  --tk-text-xl: 26px;   /* screen titles */
+  --tk-text-2xl: 34px;  /* thank-you, hero */
+
+  /* Spacing: 4-point scale */
+  --tk-space-1: 4px;  --tk-space-2: 8px;  --tk-space-3: 12px;
+  --tk-space-4: 16px; --tk-space-5: 24px; --tk-space-6: 32px; --tk-space-7: 48px;
+
+  /* Radius */
+  --tk-radius-sm: 8px;  /* chips, badges */
+  --tk-radius-md: 14px; /* buttons, inputs, options */
+  --tk-radius-lg: 22px; /* cards, sheets, tags */
+
+  /* Elevation and motion */
+  --tk-shadow: 0 1px 2px rgb(20 32 28 / .06), 0 6px 20px rgb(20 32 28 / .06);
+  --tk-ease: cubic-bezier(.2, .8, .2, 1);
+  --tk-fast: 140ms;
+  --tk-slow: 280ms;
+
+  /* Sizes */
+  --tk-tap: 52px; /* minimum height for primary controls */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tk-bg: #07110d; --tk-surface: #0f1b16; --tk-sunken: #16251f; --tk-line: #24372f;
+    --tk-ink: #eefaf5; --tk-ink-2: #9db3aa;
+    --tk-brand: #1fe0a6; --tk-brand-press: #5cebc0; --tk-on-brand: #03261a; --tk-brand-soft: #0f3a2c; --tk-brand-text: #1fe0a6;
+    --tk-lost: #ff6b57; --tk-lost-soft: #3a1712; --tk-on-lost: #1f0703; --tk-lost-text: #ff8a7a;
+    --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #1fe0a6;
+    --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --tk-bg: #07110d; --tk-surface: #0f1b16; --tk-sunken: #16251f; --tk-line: #24372f;
+  --tk-ink: #eefaf5; --tk-ink-2: #9db3aa;
+  --tk-brand: #1fe0a6; --tk-brand-press: #5cebc0; --tk-on-brand: #03261a; --tk-brand-soft: #0f3a2c; --tk-brand-text: #1fe0a6;
+  --tk-lost: #ff6b57; --tk-lost-soft: #3a1712; --tk-on-lost: #1f0703; --tk-lost-text: #ff8a7a;
+  --tk-warn: #f2c66b; --tk-warn-soft: #3a2f16; --tk-ok: #1fe0a6;
+  --tk-shadow: 0 1px 2px rgb(0 0 0 / .4), 0 8px 24px rgb(0 0 0 / .35);
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --tk-fast: 0ms; --tk-slow: 0ms; }
+}

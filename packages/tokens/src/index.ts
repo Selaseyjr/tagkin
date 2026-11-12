@@ -1,2 +1,3 @@
-// Filled in Sprint 0 item S0-7: tokens generated from docs/brand/tokens.css.
-export {};
+export { tokens } from "./generated";
+export type { Tokens, ColorScheme, ColorToken } from "./generated";
+// Web: import "@tagkin/tokens/tokens.css" for the CSS variables (light, dark, reduced motion).

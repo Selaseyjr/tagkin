@@ -5,3 +5,5 @@ pnpm-lock.yaml
 **/dist/
 apps/web/next-env.d.ts
 *.md
+packages/tokens/src/generated.ts
+packages/tokens/src/tokens.css

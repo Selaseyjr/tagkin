@@ -1,0 +1,14 @@
+{
+  "app": {
+    "name": "Tagkin",
+    "tagline": "Protect what you value."
+  },
+  "code": {
+    "not_a_code": "That doesn't look like a Tagkin code. Check the letters and numbers.",
+    "check_the_code": "Check the code: one character looks wrong.",
+    "not_found": "No tag with that code. Check the letters and numbers and try again."
+  },
+  "privacy": {
+    "finder_line": "Your details stay private unless you choose to share them."
+  }
+}

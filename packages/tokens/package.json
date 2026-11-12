@@ -5,15 +5,18 @@
   "description": "Design tokens generated from docs/brand/tokens.css.",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/tokens.css"
   },
   "scripts": {
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "generate": "node scripts/generate.mjs"
   },
   "devDependencies": {
     "typescript": "~6.0.3",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.0",
+    "@types/node": "^24"
   }
 }
