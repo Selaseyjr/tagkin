@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from proto_v3 import SAMPLES_JS
+from desktop_v6 import DCSS6, DJS6
 
 ROOT = Path(__file__).resolve().parents[2]
 TOKENS = (ROOT / "docs/brand/tokens.css").read_text()
@@ -133,7 +134,7 @@ let tt;function toast(t){const e=$('.toast');e.textContent=t;e.classList.add('sh
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let TAGS=[{n:'Black backpack',p:'backpack',code:'TK-7Q4M-9XRA',st:'normal',scans:[['3 Nov 09:41','Frankfurt']]},{n:'Milo',p:'dog',code:'TK-M3PF-2KWD',st:'lost',scans:[['Today 14:02','Darmstadt'],['Yesterday 18:20','Griesheim']]},{n:'Blue suitcase',p:'suitcase',code:'TK-H8RC-4TNE',st:'return',scans:[['Today 11:05','Darmstadt']],rep:{where:'Handed to staff',place:'Darmstadt Hbf, Lost & Found desk',note:'Je l’ai laissée au guichet 2.',tr:'I left it at counter 2.',lang:'French'},msgs:[]},{n:'House keys',p:'keys',code:'TK-Q2LP-7HNC',st:'normal',ret:true,scans:[]}];
 let SEL=-1,MSEL=-1;
-const BADGE=t=>t.st==='lost'?'<span class="badge b-l">Lost</span>':t.st==='return'?'<span class="badge b-r">Return active</span>':t.ret?'<span class="badge b-r">Returned</span>':'<span class="badge b-n">Active</span>';
+let BADGE=t=>t.st==='lost'?'<span class="badge b-l">Lost</span>':t.st==='return'?'<span class="badge b-r">Return active</span>':t.ret?'<span class="badge b-r">Returned</span>':'<span class="badge b-n">Active</span>';
 function grid(){$('#grid').innerHTML=TAGS.map((t,i)=>'<button class="card'+(i===SEL?' sel':'')+'" data-t="'+i+'" aria-label="'+esc(t.n)+'"><span class="ph" style="background-image:url('+SAMPLE[t.p]+')"></span><span class="bd"><b>'+esc(t.n)+'</b><span class="xs">'+t.code+'</span>'+BADGE(t)+'</span></button>').join('');
  $('.nav .dot').hidden=!TAGS.some(t=>t.st==='return');}
 function thread(t){const r=t.rep;return '<div class="thread"><div class="bub in2"><b>'+esc(r.where)+'</b> · '+esc(r.place)+'<br>'+esc(r.tr)+'<small>Translated from '+r.lang+' · original: “'+esc(r.note)+'”</small></div>'+t.msgs.map(m=>'<div class="bub out">'+esc(m)+'</div>').join('')+'</div><div class="compose"><input class="in" data-reply placeholder="Write a reply (sent translated)" aria-label="Reply"><button class="btn pri" data-send>Send</button></div><div class="hcode"><span>🔑 Handover code</span><b>739 204</b></div><p class="xs">Show this code when you collect it. Never share it in a message.</p>';}
@@ -168,7 +169,7 @@ document.addEventListener('click',e=>{const q=s=>e.target.closest(s);
  if(q('[data-t]')){SEL=+q('[data-t]').dataset.t;grid();panel();}
  if(q('[data-close]')){SEL=-1;grid();panel();}
  const a=q('[data-act]');if(a){const t=TAGS[SEL],k=a.dataset.act;
-  if(k==='lost')modal('<h2>Mark '+esc(t.n)+' as lost?</h2><p class="m">Finders see an urgent page. You get an alert with the city every time it’s scanned. Name, photo and description lock until it’s found.</p><button class="btn lostb" data-confirm="lost">Mark as lost</button><button class="btn sec" data-mclose>Cancel</button>');
+  if(k==='lost')modal('<h2>Mark '+esc(t.n)+' as lost?</h2><p class="m">Finders see an urgent page. You get an alert with the city every time it’s scanned. You can still update the photo.</p><button class="btn lostb" data-confirm="lost">Mark as lost</button><button class="btn sec" data-mclose>Cancel</button>');
   if(k==='found'){t.st='normal';toast('Marked as found');}
   if(k==='simulate'){t.st='return';t.rep={where:'With me',place:'Herrngarten, Darmstadt',note:'Ich habe ihn. Er ist ruhig.',tr:'I have him. He is calm.',lang:'German'};t.msgs=[];toast('New report: '+t.n);}
   if(k==='returned')modal('<h2>Got '+esc(t.n)+' back?</h2><p class="m">The return closes and the tag goes back to Active. You can thank the finder privately.</p><textarea class="in" placeholder="Private thank-you (optional)" aria-label="Thank-you"></textarea><button class="btn pri" data-confirm="returned">Mark as returned</button><button class="btn sec" data-mclose>Cancel</button>');
@@ -210,11 +211,11 @@ page = f"""<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Geist:wght@400;500;600;700&display=swap">
 <style>{TOKENS}</style>
-<style>{CSS}</style>
+<style>{CSS}{DCSS6}</style>
 </head>
 <body>
 {MARK}{HTML}
-<script>{SAMPLES_JS}{JS}</script>
+<script>{SAMPLES_JS}{JS}{DJS6}</script>
 </body>
 </html>
 """

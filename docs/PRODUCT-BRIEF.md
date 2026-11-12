@@ -77,7 +77,7 @@ Phone detection: **libphonenumber-js** (open-source port of Google's libphonenum
 
 ## 7. Editing rules
 
-| Locked forever | Locked during Lost mode or an active return | Always editable |
+| Locked forever | Locked during an active return | Always editable |
 |---|---|---|
 | Tag ID and QR link | Item name, photo, description | Contacts, names, numbers |
 | Tag type | | Emergency and medical notes |
@@ -204,7 +204,7 @@ Nov 2026: Selasey spoke with 3 people about losing and returning belongings. Com
 | A public reward could tempt people to take things | No reward amount on the tag; owner thanks privately |
 | "I have it" is not enough to find the item | Three short steps: status, exact place with location, optional note |
 | Details change after a tag is printed | Permanent QR link; contacts and notes always editable |
-| Editing a photo mid-return could confuse or mislead | Name, photo and description locked during Lost mode or a return; visible edit history |
+| Editing a photo mid-return could confuse or mislead | Name, photo and description locked during a return; visible edit history |
 | Luggage travels by train, bus, ferry and taxi too | Travel mode for every transport type; trip details expire |
 | Pets and people need help, not "return me" | Pet and Care tags with their own messages |
 | Owners want to choose what the finder reads | Templates per type plus custom text with preview |
@@ -301,3 +301,7 @@ Nov 2026: the clickable finder prototype was tested on phones by Selasey and 4 o
 - 11 Nov 2026: Consistency pass before build: data model gains size, finish, label and optional trip (ends_on); validation limits for name, description and photos; brief, user flows, design-system text and TK-51 title brought in line.
 - 11 Nov 2026: Owner journey fixes: paid orders appear in Orders (own, blank, gift); Order a tag and Gift a tag start fresh with empty fields; blank tags for yourself (order now, set up later, state unlinked, shown as Set up); item name, photo and description editable later (TK-106); Order more copies from a tag; pet tag and luggage label skip the redundant type step. Rules 4.8 and 4.9, SYSTEM-LOGIC tag states, stories TK-105, TK-106, TK-30, TK-55.
 - 11 Nov 2026: Owner speed-ups added to prototype and backlog: one-tap suggested message, saved address card, Undo bar for found and returned, quick actions (⋯ and reply from notification), suggested replies, set up blank tags in a row, order timeline, one nudge card at a time. New stories TK-107 to TK-109; TK-30, TK-51, TK-55, TK-105, TK-106 updated. Express wallet-first payment was already in place (Apple Pay default).
+- 12 Nov 2026: Shape fit decided (BUSINESS-RULES 3c): one table sets which item types each shape fits (sticker: item or travel; keychain: item; luggage label: travel; pet tag: pet; lock screen: phone only, never blank or gift). Type step, Customise and blank set-up only show what fits.
+- 12 Nov 2026: Name, photo and description now lock only during a return, not in Lost mode (a better photo helps finders). Photo edit from the tag screen updates every place the item appears.
+- 12 Nov 2026: Order lifecycle decided (BUSINESS-RULES 3d): seven stages from Paid to Delivered, cancel before printing, address change until shipped, free reprint, free resend after failed delivery, free replacement for problems. Order details page in app and web (TK-55 now L).
+- 12 Nov 2026: Owner web is the lighter companion: manage tags, Lost mode, messages, orders, edits and blank set-up; creating, ordering, scanning, push alerts and the lock-screen tag stay in the app, with a Get the app prompt. Each tag now has its own scan history; desktop finder page closes after the handover.

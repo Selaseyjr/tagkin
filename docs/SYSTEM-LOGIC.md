@@ -22,7 +22,7 @@ Version 1 · 11 Nov 2026 · written from a full user walk-through of every journ
 | **Account** | id, email (required, unique, verified), recovery_phone?, backup_email?, language, appearance, notification prefs, created_at, deleted_at | Email is the sign-in. |
 | **Session / Device** | id, account_id, platform, push_token?, last_seen | Listed in Sign-in and recovery; can be signed out remotely. |
 | **Tag** | code (TK-XXXX-XXXX), state, product (sticker, keychain, pet_tag, luggage_label, lock_screen), colour (hex or gradient id), size (s, m, l where offered), finish (matte, gloss, holo, glow, reflective), label? (≤12, no contact details), type (item, travel, pet), is_free, activation_pin_hash?, created_at, retired_at | Code alphabet excludes 0 O 1 I L. Never reused. Ownership lives in **Tag member**, not on the tag. |
-| **Item** (the belonging) | tag_code, name, photo_url?, description?, finder_message (≤160), finder_message_lang, care_notes? (pet), temperament? (pet), trip? (travel, optional: mode, carrier, destination, ends_on; ends_on only hides the trip) | One item per tag. Name, photo and description lock in Lost and Return states. |
+| **Item** (the belonging) | tag_code, name, photo_url?, description?, finder_message (≤160), finder_message_lang, care_notes? (pet), temperament? (pet), trip? (travel, optional: mode, carrier, destination, ends_on; ends_on only hides the trip) | One item per tag. Name, photo and description lock during a return (return_active) only. |
 | **Contact** | account_id, kind (backup_person), name, email/phone, alert_after_minutes | Never shown to finders. |
 | **Status update** | tag_code, text (city level), visible, expires_at | No dates or times in text (validated). |
 | **Scan** | id, tag_code, at, city (from IP), is_test, user_agent_class | Exact location never from a scan alone. |
@@ -50,7 +50,7 @@ normal ──owner: mark lost──▶ lost ──owner: found it myself──�
 normal|lost ──finder report──▶ return_active ──owner: returned | 14 days silent──▶ normal
 any ──owner: retire | account deleted──▶ retired (final)
 ```
-- `lost` and `return_active` lock name, photo, description. In `normal` they stay editable.
+- `return_active` locks name, photo, description. In `normal` and `lost` they stay editable (a better photo helps finders).
 - `unlinked`: owned, no item yet. Finder page shows "not set up yet"; scans alert the owner. Shown as "Set up" in My tags.
 - `retired`: finder page shows "This tag is no longer active"; no owner data.
 - Test mode is a flag (10 minutes), not a state: scans are marked `is_test`, no alerts.
@@ -59,7 +59,9 @@ any ──owner: retire | account deleted──▶ retired (final)
 
 **Return**: `open` → (`handed_over` via handover code, optional) → `closed` (owner marks returned, or 14 days without messages).
 
-**Order**: `pending_payment` → `paid` → `sent_to_partner` → `in_production` → `shipped` → `delivered`. Branches: `payment_failed` (retry), `partner_failed` (admin; refund), `cancelled` (before production only), `refunded`. Own-order tags go live at `paid`.
+**Order**: `pending_payment` → `paid` → `sent_to_partner` → `in_production` → `quality_check` → `shipped` → `out_for_delivery` → `delivered`. UI labels: Paid, Sent to print, Printing, Quality check, Shipped, Out for delivery, Delivered. Branches: `payment_failed` (retry at checkout, no order shown), `reprint` (failed quality check, back to `in_production`, ETA +2 days), `delayed` (flag from the carrier, ETA updated), `delivery_failed` (owner confirms address → `shipped` again, free), `problem_reported` after delivery (free replacement order at €0, linked to the original), `cancelled` (only before `in_production`; refund; blank tags of the order are retired, linked tags stay), `partner_failed` (admin; refund), `refunded`. Address editable until `shipped`. Own-order tags go live at `paid`.
+
+**Shape fit** (BUSINESS-RULES 3c): `product` → allowed `type`: sticker → item, travel; keychain → item; luggage_label → travel; pet_tag → pet; lock_screen → item (phone only, never blank or gift). Enforced in the database on create, set-up and activation, and used by every screen to filter choices.
 
 **Guest to owner**: guests explore, create drafts and customise without an account. Sign-up (email code, terms) is required at: Make it live, Continue to payment (Order details), and before the activation PIN. On sign-up, drafts become tags in one transaction. Gift checkout never requires an account (guest email only).
 

@@ -267,7 +267,7 @@ As a finder or desk staff, I want to check the owner's handover code before hand
 - Anyone holding the item can check it from the tag page while a return is open ('Check a handover code'); no session needed
 - 6-digit code checked against the open return; clear match or no-match message with tries left
 - 5 attempts, then a 15-minute wait
-- After a match, 'I've handed it over' closes the conversation and shows a thank-you page with the protect-your-things offer
+- After a match, 'I've handed it over' closes the conversation and shows a thank-you page with the protect-your-things offer; from then on the report page only shows the closed state (phone and desktop)
 
 ### TK-18 · No reply yet
 
@@ -318,7 +318,7 @@ Owners create, customise, test and manage tags for their belongings.
 
 As a owner, I want to create a tag for a belonging, so that finders know what to do.
 
-- Choose type of tag (sticker, keychain, pet tag, luggage label, lock screen); pet tag and luggage label skip the 'What is it for?' step; tag type item, travel or pet is locked after creation
+- Choose type of tag (sticker, keychain, pet tag, luggage label, lock screen); 'What is it for?' only offers item types that fit the shape (shape-fit table, BUSINESS-RULES 3c) and is skipped when only one fits (keychain, pet tag, luggage label, lock screen); tag type item, travel or pet is locked after creation
 - Details per type: name required (2 to 40 characters), photo optional but prompted, description optional (120); travel adds a luggage photo and an optional trip (mode, carrier, destination, end date); pet temperament and care notes
 - Photos: JPEG, PNG, WebP or HEIC up to 10 MB; resized to 1600 px and location data removed; the chosen photo fills its box, opens full screen to check, with Use, Replace and Remove
 - Draft rules: back keeps what was entered; choosing a different type or tag style clears the item details; leaving the flow with unsaved input asks Discard or Keep editing; a new flow starts blank
@@ -335,6 +335,7 @@ As a owner, I want to choose shape, size, colour, finish and a short label and s
 - Live preview; QR stays black on white; label blocks phone numbers and emails
 - Size, material, finish and price shown; extra finishes priced before checkout
 - Lock screen leads to 'Make it live'; printed types lead to ordering
+- Shape only offers shapes that fit the item type (item: sticker, keychain; travel: luggage label, sticker; pet: pet tag, so no shape choice); the lock-screen tag shows no shape choice; a blank tag offers every printed shape
 
 ### TK-32 · Free phone tag and lock screen image
 
@@ -364,13 +365,13 @@ As a owner, I want to edit the finder message and contacts any time, so that det
 - Always editable, also during Lost mode or a return
 - Backup contact with alert-after time; never shown to finders
 
-### TK-35 · Locked details during Lost mode or a return
+### TK-35 · Locked details during a return
 
 *Must · S · M3 Owner app core*
 
 As a finder, I want the item details not to change during a return, so that I can trust what I see.
 
-- Name, photo and description locked in lost and return_active states; UI shows the lock
+- Name, photo and description locked in return_active only; UI shows the lock; in Lost mode they stay editable
 
 ### TK-36 · QR code and test scan
 
@@ -406,6 +407,8 @@ As a owner, I want to retire a tag I no longer need, so that it stops working fo
 As a owner, I want to see when and where my tag was scanned, so that I have a clue where it is.
 
 - Time and city per scan; exact place only if a finder shared it
+- Each tag shows only its own scans; a new tag starts with 'No scans yet' and a prompt to test it
+- Lost mode lists scans since it was marked lost; test scans are labelled and send no alert
 
 ### TK-105 · Order a blank tag and set it up later
 
@@ -415,7 +418,10 @@ As a owner, I want to order a tag before I have the item, so that it's ready whe
 
 - 'Order a blank tag' on Create a tag: choose style and design, no item details
 - Order and pay as usual; the tag is mine from payment and shows 'Set up' in My tags
-- Set up later: type, name, photo, message; no PIN
+- The blank tag keeps the shape chosen at order; set-up only offers item types that fit it and skips the type step when only one fits
+- Ordering n blank tags creates n tags in My tags
+- The lock-screen tag is never offered as a blank (it is digital and free)
+- Set up later in the app or on the web: type, name, photo, message; no PIN
 - Until set up, finders see 'not set up yet' and I get a scan alert
 - After setting one up, 'Set up next blank tag (n left)' continues straight to the next
 
@@ -425,9 +431,10 @@ As a owner, I want to order a tag before I have the item, so that it's ready whe
 
 As a owner, I want to update my item details after creating the tag, so that I can add a photo once the item arrives.
 
-- Item name and photo row on the tag opens an edit sheet with the photo preview
+- Item name and photo row, or tapping the photo on the tag (active or lost), opens an edit sheet with the photo preview
+- A new photo or name shows everywhere the item appears: My tags, tag screens, Messages and the finder page
 - Name required (2 to 40), description optional (120)
-- Locked during Lost mode or a return
+- Locked only during a return (a finder has reported it); in Lost mode a better photo helps finders
 - Tags without a photo show 'add a photo' in My tags
 - My tags shows one nudge card at a time (photo, then backup contact, then recovery phone); each can be dismissed
 
@@ -595,14 +602,17 @@ As a owner, I want my new tag to work as soon as I order, so that I'm protected 
 
 ### TK-55 · Orders list and emails
 
-*Must · M · M2 Web beta: create, order and pay*
+*Must · L · M2 Web beta: create, order and pay*
 
 As a owner, I want to follow my orders, so that I know when tags arrive.
 
 - A paid order appears at the top of Orders straight away (own, blank and gift orders)
-- States: paid, in production, shipped, delivered; tapping an order shows a timeline and Track parcel once shipped
+- Stages: Paid, Sent to print, Printing, Quality check, Shipped, Out for delivery, Delivered, each with a date or expected date
+- Problems shown with a plain reason: Reprinting (failed print check, +2 days, free), Delayed, Delivery failed (owner checks the address, free resend), Cancelled (refund), Replacement on its way
+- Tapping an order opens Order details: timeline, items and colour, which tag it is for, delivery address, amount and payment method
+- Actions by stage: cancel before printing; change address until shipped; track once shipped; send again after a failed delivery; report a problem after delivery (damaged, never arrived, wrong colour or size, QR won't scan) gets a free replacement with no return
 - Order a tag and Gift a tag start a fresh journey with empty fields
-- Emails: order confirmed, shipped with tracking
+- Emails: order confirmed, shipped with tracking, delayed, delivery failed, cancelled and refunded
 
 
 ## E6 · Gifting and activation
@@ -728,6 +738,9 @@ As a owner, I want to see my tags and finder reports on the web, so that I can a
 - Mark as lost and Mark as found work on the web through the same database functions as the app
 - Finder reports appear per tag with place, time (city level unless shared) and note
 - Orders appear here from M2; account shows email and sign out
+- Edit a tag's name and photo (not during a return); set up blank tags with the shape-fit rule
+- Order rows open the same Order details as the app
+- Creating tags and ordering stay in the app: web buttons open a Get the app sheet; a sidebar card offers instant alerts in the app
 
 **Ready**
 - Screens: Web · Owner dashboard; Owner 12 · Finder report alert

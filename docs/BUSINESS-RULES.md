@@ -46,18 +46,45 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 
 1. The lock-screen tag is a digital product for the phone itself. It is set up like any tag (type, details, finder message, colour) and works the same way for finders.
 2. It is never printed or shipped, and never swapped for a physical product.
+3. It fits the phone only. It is never offered as a blank tag, a gift, or a shape when customising another item. A printed tag for the phone itself (for example a sticker on the case) is ordered as an item tag.
+
+## 3c. Shape fit
+
+One table decides which item types each shape can go on. Every screen reads from it: Choose your type of tag, What is it for?, Customise, blank-tag set-up, gifts and activation.
+
+| Shape | Item | Travel | Pet |
+|---|---|---|---|
+| Sticker | yes | yes | no |
+| Keychain | yes | no | no |
+| Luggage label | no | yes | no |
+| Pet tag | no | no | yes |
+| Lock screen (digital) | phone only | no | no |
+
+1. Only shapes that fit are shown; shapes that don't fit are hidden, not greyed out.
+2. When only one type fits a shape, the type step is skipped. When only one shape fits a type (pet), Customise shows no shape choice.
+3. A blank tag keeps the shape chosen at order; set-up only offers the types that fit it.
+4. Changing the shape or the type clears only the choices that no longer fit.
+
+## 3d. Orders after payment
+
+1. Stages: Paid, Sent to print, Printing, Quality check, Shipped, Out for delivery, Delivered. Each shows a date or an expected date.
+2. **Cancel:** possible until printing starts, with a full refund. A linked tag stays in My tags (the code keeps working); blank tags from that order are removed.
+3. **Address:** can be changed until the order ships.
+4. **Failed print check:** we reprint at our cost (about 2 days extra) and tell the owner.
+5. **Delivery failed:** the parcel returns to us; the owner checks the address and we send it again for free.
+6. **Problem after delivery** (damaged, never arrived, wrong colour or size, QR won't scan): free replacement, nothing to send back.
 
 ## 4. Codes and ownership
 
 1. Every tag has a random code (TK-7Q4M-9XRA format), at least 8 characters, never reused.
 2. A tag belongs to **one account** (its owner) and **one belonging**. The owner receives every alert and message and controls Lost mode.
 3. A tag code cannot move to another account. (A later feature may allow a transfer the new owner must accept, e.g. when selling a bike.)
-4. Tag type is locked after set-up. Name, photo and description lock during Lost mode or a return. Contacts, finder message and status updates are always editable.
+4. Tag type is locked after set-up. Name, photo and description lock only during a return (once a finder has reported it), so the finder sees what they expect. In Lost mode they stay editable, because a better photo helps finders. Contacts, finder message and status updates are always editable.
 5. Unclaimed tags (shop packs, gifts) have no owner until someone activates them with the **activation PIN**, which is never printed on the tag: it is on the gift card or under a scratch panel on the pack. A finder who scans an unclaimed tag sees "This tag isn't set up yet".
-6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). A recovery phone or backup email is recommended and prompted after the first tag. At launch, SMS is used only for recovery codes.
+6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). **Web and app:** the web manages what the owner already has (tags, Lost mode, messages, orders, editing details, setting up blank tags). Creating tags, ordering, scanning to activate, push alerts and the lock-screen tag stay in the app, and the web always offers the app for instant alerts. A recovery phone or backup email is recommended and prompted after the first tag. At launch, SMS is used only for recovery codes.
 7. **Handover code (free for everyone):** before handing an item over, finders or desk staff can check the owner's 6-digit handover code.
-8. **Blank tags for yourself:** owners can order a tag without linking it to an item (for something not yet bought, a pet not yet home, or a pack to use later). It belongs to the owner's account from payment, shows "Set up" in My tags and is set up later with type, name and photo, no PIN needed. Until then a finder sees "This tag isn't set up yet" and the owner gets a scan alert.
-9. **Item details stay editable:** name, photo and description can be changed later (not during Lost mode or a return). A photo is optional at creation; tags without one show a reminder. A code never moves to a different belonging; for a new item, retire the tag and create a new one.
+8. **Blank tags for yourself:** owners can order a tag without linking it to an item (for something not yet bought, a pet not yet home, or a pack to use later). It belongs to the owner's account from payment, shows "Set up" in My tags and is set up later with type (only types that fit its shape, see 3c), name and photo, no PIN needed, in the app or on the web. Until then a finder sees "This tag isn't set up yet" and the owner gets a scan alert.
+9. **Item details stay editable:** name, photo and description can be changed later (not during a return). A change shows everywhere the item appears. A photo is optional at creation; tags without one show a reminder. A code never moves to a different belonging; for a new item, retire the tag and create a new one.
 
 ## 5. Gift a tag
 

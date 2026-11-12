@@ -444,6 +444,20 @@ h1{font-weight:650;letter-spacing:-.025em}
 .tl li::after{content:"";position:absolute;left:9px;top:19px;bottom:0;width:2px;background:var(--tk-line)}.tl li:last-child::after{display:none}
 .tl li.on{color:var(--tk-ink)}.tl li.on::before{background:var(--tk-brand)}.tl b{display:block;font-size:15px}.tl small{font-size:12px}
 
+.grp .opt[hidden],.blanknote[hidden]{display:none}
+.photo.editable{position:relative;cursor:pointer}
+.photo .ph-edit{position:absolute;right:10px;bottom:10px;font:600 12px var(--tk-font-body);font-style:normal;background:rgb(0 0 0 / .55);color:#fff;padding:4px 10px;border-radius:99px}
+#ord-view .ovb{display:flex;flex-direction:column;gap:12px}
+#ord-view .row2{display:flex;align-items:center;justify-content:space-between;gap:10px}#ord-view h1{margin:0}
+#ord-view .tl li{padding-bottom:9px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}#ord-view .tl li::after{top:17px}#ord-view .tl b{font-size:14px}#ord-view .tl li.now b{color:var(--tk-ink)}
+#ord-view .ocard{display:flex;gap:12px;align-items:center;border:1px solid var(--tk-line);border-radius:var(--tk-radius-md);padding:10px 12px}
+#ord-view .ocard .ic{font-size:24px}#ord-view .ocard b{display:block}#ord-view .ocard .tx span{font-size:13px;color:var(--tk-ink-2)}
+#ord-view .oaddr{text-align:right;max-width:60%}
+#ord-view .lostt{color:var(--tk-lost-text)}
+#ord-view .demo{border:1px dashed var(--tk-line);border-radius:var(--tk-radius-md);padding:10px;display:flex;flex-direction:column;gap:8px}
+#ord-view .sm2{min-height:40px;font-size:14px}
+#orders .chev{color:var(--tk-ink-2);font-size:18px;margin-left:4px}
+
 body{display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:0 max(16px,env(safe-area-inset-left,0px))}
 .ctl{width:100%;max-width:420px;display:flex;flex-wrap:wrap;gap:8px;padding:12px 0;font-size:12px;color:var(--tk-ink-2);align-items:center}
 .ctl button{font:500 12px var(--tk-font-body);border:1px solid var(--tk-line);background:var(--tk-surface);color:var(--tk-ink);border-radius:99px;padding:6px 10px;cursor:pointer}
