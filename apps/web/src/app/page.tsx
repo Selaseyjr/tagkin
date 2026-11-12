@@ -35,6 +35,11 @@ export default function Home() {
           </Link>
         ))}
       </div>
+      <h2>Try it as the owner</h2>
+      <p className="m">See the reports, answer the finder and close the return.</p>
+      <Link className="btn btn-pri" href="/signin">
+        Try the owner side
+      </Link>
       <Link className="btn btn-sec" href="/find">
         Type a code
       </Link>
