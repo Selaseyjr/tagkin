@@ -55,6 +55,7 @@ As a new owner, I want to sign up with my email and a one-time code only when it
 - After 5 wrong attempts the user waits before trying again
 - Resend is possible after 30 seconds; the screen suggests checking spam or using another email
 - Terms must be accepted before the account is created; guest drafts are attached to the new account
+- Sign-in emails can never be switched off by an unsubscribe: Brevo adds an unsubscribe header to every email, so either send sign-in codes through the Supabase send-email hook and the Brevo API without it, or alert on new entries in Brevo's blocked list and unblock them (decide in the story)
 
 **Ready**
 - Screens: Setup 3 · Save your tag (sign up when needed); Owner 1 · Welcome back (sign in); Owner 2 · Enter code; Email 0 · Sign-in code

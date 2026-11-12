@@ -19,7 +19,7 @@ No user stories are built in Sprint 0. It makes M1 buildable.
 | S0-7 ✓ | `packages/tokens` generated from docs/brand/tokens.css; `packages/shared` with code alphabet, limits, shape-fit table, Zod schemas | Web renders a token-styled page; code parser and shape fit tested. **Done 12 Nov:** codes (check character catches every single typo, blocklist, permanent capitalised QR address), shape fit, limits, schemas (links, contact details, dates blocked where public), tag and order state rules; tokens generated with a sync test; i18next package; 35 tests | S0-1 |
 | S0-8 ✓ | Vercel project for `apps/web`, preview per pull request | **Done 12 Nov:** project `tagkin` (Hobby, functions in Frankfurt); tagkin.app live with HTTPS, www redirects to it; previews per pull request; public Supabase values set for production, preview and development | S0-1, S0-3 |
 | S0-9 | Expo app shell builds with EAS (development build only) | Opens the splash on a simulator | S0-1 |
-| S0-10 ✓ | Domain, DNS on Cloudflare, Brevo, sign-in email, inbound route | **Done 12 Nov:** Brevo domain authenticated (DKIM, DMARC at p=none); hosted Supabase Auth sends through Brevo SMTP; first email reached the Gmail inbox; sign-in email is a 6-digit code without links (set in the dashboard, checked read-only by CI). Not yet: hello@ forwarding and the Brevo inbound route (with TK-104) | Domain ✓ |
+| S0-10 ✓ | Domain, DNS on Cloudflare, Brevo, sign-in email, inbound route | **Done 12 Nov:** Brevo domain authenticated (DKIM, DMARC at p=none); hosted Supabase Auth sends through Brevo SMTP; first email reached the Gmail inbox; sign-in email is a 6-digit code without links (set in the dashboard, checked read-only by CI). hello@tagkin.app forwards to Gmail. Not yet: the Brevo inbound route (with TK-104) | Domain ✓ |
 | S0-11 | Provider accounts and keys in env per environment: DeepL, Google Places (quota + billing alert), Stripe test, PostHog EU, Sentry EU | Keys in Vercel and Supabase secrets, none in the repo; billing alerts on | |
 | S0-12 | Tracking plan for the MVP success measures (brief 13b): event names, properties, no personal data | Reviewed against ADR 0012 | |
 
@@ -40,5 +40,7 @@ TK-10, TK-11, TK-12, TK-14, TK-15, TK-20, TK-103. Sprint 2: TK-1, TK-3, TK-82, T
 - ~~Domain late~~: resolved, tagkin.app bought 12 Nov.
 - **Brevo deliverability:** a new domain may land in spam; DMARC at `p=none` first, warm with test sends.
 - **Solo capacity:** 12 items in a week is tight; S0-9 and S0-12 can carry.
+
+**Reminders:** Brevo SMTP key `supabase-auth` expires 12 Nov 2027. DMARC: move from p=none to p=quarantine around 10 Dec 2026 after reviewing reports. Supabase Free has no backups: decide Pro or a nightly encrypted export before the Demo release. Hosted sign-ups are off (invite-only demo).
 
 **Credentials to renew:** Supabase CI token (`SUPABASE_ACCESS_TOKEN`, scoped to the tagkin project) expires around **10 Feb 2027**; generate a new one with the same five permissions and replace the GitHub secret.

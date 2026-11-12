@@ -50,6 +50,7 @@ normal ──owner: mark lost──▶ lost ──owner: found it myself──�
 normal|lost ──finder report──▶ return_active ──owner: returned | 14 days silent──▶ normal
 any ──owner: retire | account deleted──▶ retired (final)
 ```
+- Items can never move to another tag (no `tag_code` update right; trigger refuses it). Finder message and description refuse links.
 - `return_active` locks name, photo, description. In `normal` and `lost` they stay editable (a better photo helps finders).
 - `unlinked`: owned, no item yet. Finder page shows "not set up yet"; scans alert the owner. Shown as "Set up" in My tags.
 - `retired`: finder page shows "This tag is no longer active"; no owner data.
@@ -94,7 +95,7 @@ Push falls back to email when push is off or the token is invalid. Every email h
 
 | Moment | Provider (decided in step 6, see docs/adr) | Normal path | If it fails |
 |---|---|---|---|
-| Sign-in code | Brevo (EU) via Supabase Auth SMTP | Code arrives within a minute | "Not there? Check spam or use a different email"; resend after 30 s; recovery phone. |
+| Sign-in code | Brevo (EU) via Supabase Auth SMTP; open tracking anonymous (Brevo cannot switch it off for SMTP), no email previews stored, logs kept 1 month; Brevo adds an unsubscribe header to every email (see TK-1) | Code arrives within a minute | "Not there? Check spam or use a different email"; resend after 30 s; recovery phone. |
 | Recovery code | Bird via Supabase phone provider (Twilio Verify fallback) | Used only for account recovery at launch | Backup email; support with an order number. |
 | Payment | Stripe (Apple Pay, Google Pay, card, PayPal, Klarna) | Payment sheet, 3-D Secure if needed, webhook confirms | Decline: error screen, card not charged. Webhook missing: order stays `pending_payment`, reconcile job checks Stripe. |
 | Printing and shipping | Print-on-demand partner API (partner after samples, ADR 0010) | Order sent after `paid`; production, quality check, reprint, shipping and carrier status by webhook | Partner rejects: admin alert, customer email, refund in Stripe. |
@@ -110,8 +111,9 @@ Push falls back to email when push is off or the token is invalid. Every email h
 
 - Finder message, gift note: 1–160 characters; contact details → public warning; abusive words → blocked with a reason.
 - Item name required, 2 to 40 characters; description ≤120. Photos: JPEG, PNG, WebP or HEIC ≤10 MB, stored at ≤1600 px with EXIF removed.
-- Status update: ≤60 characters; reject dates and times (pattern check) with a friendly message.
+- Status update: ≤60 characters; reject dates, times and links, expiry capped at 7 days, only on active tags (enforced by a database trigger as well as the client).
 - Care notes ≤300, chat messages ≤1,000. (Names and descriptions: see above.)
+- Finder lookup (`get_finder_page`) runs only on our server with the service role, never from the public API, so rate limits always apply.
 - Tag code input: case-, space- and dash-insensitive; the check character is verified before any lookup (wrong → "Check the code"); rate limit code lookups per IP (e.g. 20 per hour) and globally. Rules live in `packages/shared` and are mirrored in Postgres.
 - Activation PIN: 6 characters, hashed; 5 attempts per tag per 15 minutes.
 - Handover code: 6 digits, per return, owner can regenerate.
