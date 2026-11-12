@@ -317,8 +317,17 @@ isOneToOne: false
             [_ in never]: never
           }
           Functions: {
-            "get_finder_page":
+            "check_rate_limit":
+{ Args: { "p_key": string,"p_max": number,"p_window_seconds": number }; Returns: boolean
+                           },
+"finder_reply":
+{ Args: { "p_body": string,"p_token_hash": string }; Returns: undefined
+                           },
+"get_finder_page":
 { Args: { "p_input": string }; Returns: Json
+                           },
+"get_report_view":
+{ Args: { "p_token_hash": string }; Returns: Json
                            },
 "mark_found":
 { Args: { "p_code": string }; Returns: Database["public"]['Enums']["tag_state"]
@@ -329,11 +338,20 @@ isOneToOne: false
 "mark_returned":
 { Args: { "p_code": string }; Returns: Database["public"]['Enums']["tag_state"]
                            },
+"owner_reply":
+{ Args: { "p_body": string,"p_code": string }; Returns: undefined
+                           },
+"record_scan":
+{ Args: { "p_city": string,"p_code": string,"p_ua_class": string }; Returns: undefined
+                           },
 "retire_tag":
 { Args: { "p_code": string }; Returns: Database["public"]['Enums']["tag_state"]
                            },
 "setup_blank_tag":
 { Args: { "p_code": string,"p_finder_message": string,"p_name": string,"p_type": Database["public"]['Enums']["tag_type"] }; Returns: Database["public"]['Enums']["tag_state"]
+                           },
+"submit_report":
+{ Args: { "p_code": string,"p_contact_email": string,"p_lang": string,"p_note": string,"p_place": string,"p_token_hash": string,"p_where": Database["public"]['Enums']["where_now"] }; Returns: string
                            }
           }
           Enums: {
