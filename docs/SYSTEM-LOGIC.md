@@ -94,7 +94,7 @@ Push falls back to email when push is off or the token is invalid. Every email h
 
 | Moment | Provider (decided in step 6, see docs/adr) | Normal path | If it fails |
 |---|---|---|---|
-| Sign-in code | Brevo (EU) via Supabase Auth SMTP | Code arrives within a minute | "Not there? Check spam or use a different email"; resend after 30 s; recovery phone. |
+| Sign-in code | Brevo (EU) via Supabase Auth SMTP; open tracking anonymous (Brevo cannot switch it off for SMTP), no email previews stored, logs kept 1 month; Brevo adds an unsubscribe header to every email (see TK-1) | Code arrives within a minute | "Not there? Check spam or use a different email"; resend after 30 s; recovery phone. |
 | Recovery code | Bird via Supabase phone provider (Twilio Verify fallback) | Used only for account recovery at launch | Backup email; support with an order number. |
 | Payment | Stripe (Apple Pay, Google Pay, card, PayPal, Klarna) | Payment sheet, 3-D Secure if needed, webhook confirms | Decline: error screen, card not charged. Webhook missing: order stays `pending_payment`, reconcile job checks Stripe. |
 | Printing and shipping | Print-on-demand partner API (partner after samples, ADR 0010) | Order sent after `paid`; production, quality check, reprint, shipping and carrier status by webhook | Partner rejects: admin alert, customer email, refund in Stripe. |
