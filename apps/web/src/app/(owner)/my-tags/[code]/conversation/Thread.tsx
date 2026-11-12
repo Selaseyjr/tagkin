@@ -4,12 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Msg = { from: "owner" | "finder" | "system"; body: string; at: string };
 const time = (iso: string) =>
-  new Date(iso).toLocaleString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    day: "numeric",
-    month: "short",
-  });
+  new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
 const SUGGESTED = [
   "Thank you so much!",
   "I'll pick it up today",
@@ -17,8 +12,8 @@ const SUGGESTED = [
   "Where exactly is it?",
 ];
 
-/** The owner's live conversation with the finder (polls every 4 s). */
-export function OwnerThread({
+/** Owner ↔ finder conversation (prototype Owner 13), live every 4 s. */
+export function Thread({
   code,
   initial,
   reply,
@@ -29,6 +24,7 @@ export function OwnerThread({
 }) {
   const [messages, setMessages] = useState(initial);
   const input = useRef<HTMLInputElement>(null);
+  const end = useRef<HTMLDivElement>(null);
   const refresh = async () => {
     const r = await fetch(`/api/owner/${code}`, { cache: "no-store" });
     if (r.ok) setMessages((await r.json()).messages);
@@ -38,37 +34,33 @@ export function OwnerThread({
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code]);
+  useEffect(() => end.current?.scrollIntoView({ block: "end" }), [messages.length]);
   return (
     <>
       <div className="thread" aria-live="polite">
         {messages.map((m, i) => (
-          <div key={i} className={m.from === "owner" ? "bub me" : "bub them"}>
-            {m.from === "finder" && (
-              <b>
-                Finder
-                <br />
-              </b>
-            )}
+          <div key={i} className={m.from === "owner" ? "bub out" : "bub in2"}>
             {m.body}
-            <small>{time(m.at)}</small>
+            <time>{time(m.at)}</time>
           </div>
         ))}
+        <div ref={end} />
       </div>
+      <div className="sp" />
       <div className="chips">
         {SUGGESTED.map((s) => (
           <button
             key={s}
             type="button"
-            className="badge"
-            style={{ border: 0, cursor: "pointer" }}
-            onClick={() => input.current && (input.current.value = s)}
+            className="chip"
+            onClick={() => input.current && ((input.current.value = s), input.current.focus())}
           >
             {s}
           </button>
         ))}
       </div>
       <form
-        className="row"
+        className="compose"
         action={async (f) => {
           await reply(f);
           if (input.current) input.current.value = "";
@@ -79,17 +71,18 @@ export function OwnerThread({
           ref={input}
           className="in"
           name="body"
-          placeholder="Reply to the finder"
-          aria-label="Reply"
+          placeholder="Write a reply"
+          aria-label="Write a reply"
           maxLength={1000}
           required
+          autoComplete="off"
         />
-        <button className="btn btn-pri" style={{ width: "auto" }}>
-          Send
+        <button className="send" aria-label="Send">
+          ↑
         </button>
       </form>
-      <p className="xs">
-        Your reply reaches the finder on their report page. Your email and number stay hidden.
+      <p className="xs center">
+        Your reply reaches the finder on their page. Your email and number stay hidden.
       </p>
     </>
   );

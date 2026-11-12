@@ -1,24 +1,28 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { fits, type TagType } from "@tagkin/shared";
 import { requireOwner } from "@/lib/owner";
 
 async function call(fn: "mark_lost" | "mark_found" | "mark_returned", code: string) {
   const { db } = await requireOwner();
   await db.rpc(fn, { p_code: code });
-  revalidatePath(`/my-tags/${code}`);
   revalidatePath("/my-tags");
+  revalidatePath(`/my-tags/${code}`);
 }
 
 export async function markLost(code: string) {
   await call("mark_lost", code);
+  redirect(`/my-tags/${code}`);
 }
 export async function markFound(code: string) {
   await call("mark_found", code);
+  redirect(`/my-tags/${code}`);
 }
 export async function markReturned(code: string) {
   await call("mark_returned", code);
+  redirect("/my-tags");
 }
 
 export async function ownerReply(code: string, form: FormData) {
@@ -26,7 +30,7 @@ export async function ownerReply(code: string, form: FormData) {
   if (!body) return;
   const { db } = await requireOwner();
   await db.rpc("owner_reply", { p_code: code, p_body: body.slice(0, 1000) });
-  revalidatePath(`/my-tags/${code}`);
+  revalidatePath(`/my-tags/${code}/conversation`);
 }
 
 export async function setUpBlank(
@@ -49,7 +53,6 @@ export async function setUpBlank(
     p_finder_message: message,
   });
   if (error) return { error: "That didn't work. Check the details and try again." };
-  revalidatePath(`/my-tags/${code}`);
   revalidatePath("/my-tags");
-  return {};
+  redirect(`/my-tags/${code}`);
 }
