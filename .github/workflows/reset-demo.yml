@@ -1,0 +1,25 @@
+name: Reset demo data
+
+# Every night: the shared demo owner's tags, reports and messages go back to their starting state
+# (docs/sprints/DEMO-SPRINT.md). Also clears old rate-limit counters.
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - name: Reset through the IPv4 pooler
+        run: |
+          pw=$(python3 -c 'import os,urllib.parse;print(urllib.parse.quote(os.environ["SUPABASE_DB_PASSWORD"],safe=""))')
+          echo "::add-mask::$pw"
+          psql "postgresql://postgres.czcquowolvtcdifcnijo:${pw}@aws-1-eu-central-1.pooler.supabase.com:5432/postgres" \
+            -v ON_ERROR_STOP=1 -Atc "select private.reset_demo(); select 'demo reset'"
