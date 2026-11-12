@@ -41,13 +41,13 @@ jobs:
           echo "DB_URL=$url" >> "$GITHUB_ENV"
       - name: Migrations (dry run on pull requests)
         if: github.event_name == 'pull_request'
-        run: supabase db push --db-url "$DB_URL" --dry-run
+        run: supabase db push --remote="$DB_URL" --dry-run
       - name: Auth settings (dry run on pull requests)
         if: github.event_name == 'pull_request'
         run: DRY_RUN=true ./supabase/remote-auth.sh
       - name: Apply migrations
         if: github.event_name != 'pull_request'
-        run: supabase db push --db-url "$DB_URL"
+        run: supabase db push --remote="$DB_URL" --yes
       - name: Apply auth settings and sign-in email
         if: github.event_name != 'pull_request'
         run: ./supabase/remote-auth.sh
