@@ -36,13 +36,13 @@ jobs:
         run: supabase link --project-ref "$PROJECT_REF" -p "$SUPABASE_DB_PASSWORD"
       - name: Migrations (dry run on pull requests)
         if: github.event_name == 'pull_request'
-        run: supabase db push --dry-run -p "$SUPABASE_DB_PASSWORD"
+        run: supabase db push --linked --dry-run -p "$SUPABASE_DB_PASSWORD"
       - name: Auth settings (dry run on pull requests)
         if: github.event_name == 'pull_request'
         run: DRY_RUN=true ./supabase/remote-auth.sh
       - name: Apply migrations
         if: github.event_name != 'pull_request'
-        run: supabase db push -p "$SUPABASE_DB_PASSWORD"
+        run: supabase db push --linked -p "$SUPABASE_DB_PASSWORD"
       - name: Apply auth settings and sign-in email
         if: github.event_name != 'pull_request'
         run: ./supabase/remote-auth.sh
