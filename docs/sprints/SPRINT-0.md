@@ -11,7 +11,7 @@ No user stories are built in Sprint 0. It makes M1 buildable.
 | # | Item | Done when | Blocked by |
 |---|---|---|---|
 | S0-1 ✓ | Monorepo (pnpm + Turborepo): `apps/web`, `apps/mobile`, `packages/shared`, `packages/tokens`, `packages/i18n` (`supabase/` comes with S0-3) | `pnpm build` and `pnpm lint` pass from a clean clone. **Done 12 Nov:** Node 24, pnpm 12, Next 16.4, Expo SDK 58, TypeScript 6.0 everywhere; app ids `app.tagkin`, scheme `tagkin://`; 13 checks green, web builds, Expo doctor 20/20, iOS bundle resolves the shared package | |
-| S0-2 | CI on GitHub Actions: lint, type check, unit tests, migration check | Required check on `main`; red on a broken migration | S0-1 |
+| S0-2 ✓ | CI on GitHub Actions: lint, type check, unit tests, migration check | Required check on `main`; red on a broken migration. **Done 12 Nov:** format, lint, typecheck, tests and build on every PR and push to main; gitleaks secret scan (GitHub's own secret and code scanning need a paid plan for private repos); Dependabot weekly (Expo SDK upgrades excluded); PR template with the Definition of Done. Migration check arrives with S0-3. Branch protection waits for Selasey's OK | S0-1 |
 | S0-3 | Supabase: staging and production projects in Frankfurt; local dev with the CLI | `supabase start` works; staging linked | |
 | S0-4 | Core migrations: accounts, devices, tags, items, contacts, scans, reports, returns, messages, abuse_reports; tag members, entitlements, prices with currency, transfers as empty tables | Migrations apply clean; row-level security on every table; tests for owner-only access | S0-3 |
 | S0-5 | State machines in Postgres: tag (`mark_lost`, `mark_found`) and return (open, closed) | Illegal transitions rejected in tests | S0-4 |
