@@ -19,10 +19,13 @@ export async function proxy(request: NextRequest) {
     },
   );
   const { data } = await supabase.auth.getUser();
-  if (!data.user && request.nextUrl.pathname.startsWith("/my-tags")) {
+  const owner = ["/my-tags", "/messages", "/orders", "/account"];
+  if (!data.user && owner.some((p) => request.nextUrl.pathname.startsWith(p))) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
   return response;
 }
 
-export const config = { matcher: ["/my-tags/:path*", "/signin", "/api/owner/:path*"] };
+export const config = {
+  matcher: ["/my-tags/:path*", "/messages", "/orders", "/account", "/signin", "/api/owner/:path*"],
+};
