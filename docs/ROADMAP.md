@@ -21,7 +21,7 @@ One defined sequence, each step with its artefact. The stages below (A to G) sit
 | 9 | **Launch** | Release | Store listings, website live | Stage F |
 | 10 | **Measure and learn** | Did it work? What next? | Metrics, case study, next backlog | Stage G |
 
-Running alongside: buy the domain (by 15 Nov), Figma import and Community publish (Stage B, after the domain), order print samples (decides ADR 0010).
+Running alongside: domain bought 12 Nov ✓, Figma import and Community publish (Stage B, now unblocked), order print samples (decides ADR 0010).
 
 ## Stage A · Design completion (done 11 Nov 2026)
 
@@ -58,7 +58,7 @@ Trigger: start now. The Figma import and Community publish wait until this stage
 
 | When | Reminder |
 |---|---|
-| **This weekend (by 15 Nov 2026), before Community publish** | Buy tagkin.app (E4). Do not publish the showcase until the domain is owned. |
+| ~~By 15 Nov 2026, before Community publish~~ | ✓ tagkin.app bought 12 Nov 2026 (E4). |
 | **Stage C, before choosing prices** | Confirm every product with print partners: sticker, keychain, pet tag, luggage label, gift card, scratch-panel packs; sizes, colours, costs, shipping (A3). |
 | **Stage C** | Decide message retention (suggest 90 days after a return), the no-reply wait time, and the free shipping threshold. |
 | **Stage E, before going live** | File the EU trademark for Tagkin and do the logo image search (E5). |
@@ -124,7 +124,7 @@ Trigger: start drafting during Stage D; must be final before Stage F.
 
 Trigger: Stages D and E done, app tested on real devices.
 
-- [ ] Buy tagkin.app (planned around 14 Nov 2026; needed before printing real tags)
+- [x] Buy tagkin.app (bought 12 Nov 2026, Cloudflare Registrar)
 - [ ] Apple Developer account ($99 a year) and Google Play Console ($25 once)
 - [ ] Store listings: name, subtitle, description, keywords, preview video; re-shoot the 5 screenshot concepts (docs/design) with the real app
 - [ ] TestFlight and Google internal testing with the earlier testers
