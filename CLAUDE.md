@@ -17,6 +17,7 @@ Read docs/PRODUCT-BRIEF.md first. It is the single source of truth: add every de
 ## Code
 - Monorepo: pnpm workspaces + Turborepo; Node 24 via fnm (`eval "$(fnm env)" && fnm use 24` in each shell); pnpm through Corepack.
 - Before any handover: `pnpm check` and `pnpm build` must pass; add Expo packages with `pnpm expo install` in apps/mobile.
+- Merge only with every check green: `gh pr checks <n> --watch && gh pr merge ...` (the && stops the merge on any failure). Build without local env files before handing over (`mv apps/web/.env.local /tmp` while building).
 - One branch and pull request per Sprint item (`s0/...`, later `tk-<n>-...`); never push to main directly.
 
 ## Business rules
