@@ -33,6 +33,26 @@ jobs:
       - run: pnpm check
       - run: pnpm build
 
+  database:
+    name: Database migrations and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: supabase/setup-cli@v3
+        with:
+          version: 3.1.0
+      - name: Apply migrations and seed to a fresh database
+        run: supabase db start
+      - name: Lint SQL
+        run: supabase db lint --level warning --fail-on warning
+      - name: Database tests (access rules, state machines, codes)
+        run: supabase test db
+      - name: Generated types are up to date
+        run: |
+          supabase gen types typescript --local --schema public > /tmp/types.ts
+          diff -u packages/shared/src/database.types.ts /tmp/types.ts
+
   secrets:
     name: Secret scan
     runs-on: ubuntu-latest

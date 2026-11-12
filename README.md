@@ -18,6 +18,8 @@ corepack enable
 pnpm install
 pnpm check         # lint, typecheck, tests
 pnpm build
+supabase start     # local database with migrations and seed (Docker)
+supabase test db   # database tests
 ```
 
 | Path | What |
@@ -27,3 +29,4 @@ pnpm build
 | `packages/shared` | Rules shared everywhere: code alphabet, limits, shape fit, schemas |
 | `packages/tokens` | Design tokens from `docs/brand/tokens.css` |
 | `packages/i18n` | Core languages and translation files |
+| `supabase/` | Migrations, seed data and database tests |
