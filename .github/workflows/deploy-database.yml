@@ -1,7 +1,7 @@
 name: Database deploy
 
 # Pull requests: checks the hosted project can be reached and lists pending migrations (no changes).
-# Main: applies migrations and auth settings to the hosted project (ADR 0014: migrations only through CI).
+# Main: applies migrations (ADR 0014: migrations only through CI). Both: check hosted sign-in settings match the repo.
 on:
   pull_request:
     paths: ["supabase/**", ".github/workflows/deploy-database.yml"]
@@ -42,12 +42,8 @@ jobs:
       - name: Migrations (dry run on pull requests)
         if: github.event_name == 'pull_request'
         run: supabase db push --remote="$DB_URL" --dry-run
-      - name: Auth settings (dry run on pull requests)
-        if: github.event_name == 'pull_request'
-        run: DRY_RUN=true ./supabase/remote-auth.sh
       - name: Apply migrations
         if: github.event_name != 'pull_request'
         run: supabase db push --remote="$DB_URL" --yes
-      - name: Apply auth settings and sign-in email
-        if: github.event_name != 'pull_request'
-        run: ./supabase/remote-auth.sh
+      - name: Hosted sign-in settings match the repo (read-only)
+        run: ./supabase/check-remote-auth.sh
