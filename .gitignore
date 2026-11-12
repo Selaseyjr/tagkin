@@ -1,3 +1,40 @@
+# OS and editors
 .DS_Store
+
+# Dependencies and build output
 node_modules/
+.turbo/
+dist/
+*.tsbuildinfo
+
+# Next.js
+.next/
+out/
+
+# Expo and native
+.expo/
+web-build/
+expo-env.d.ts
+/apps/mobile/ios/
+/apps/mobile/android/
+.metro-health-check*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Secrets: never commit env files (examples are allowed)
 .env
+.env*.local
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+
+# Vercel and Supabase local state
+.vercel/
+supabase/.temp/
