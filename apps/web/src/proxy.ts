@@ -1,0 +1,28 @@
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+
+// Keeps the owner's session fresh and sends signed-out visitors of /my-tags to sign-in.
+export async function proxy(request: NextRequest) {
+  let response = NextResponse.next({ request });
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    {
+      cookies: {
+        getAll: () => request.cookies.getAll(),
+        setAll: (list) => {
+          list.forEach(({ name, value }) => request.cookies.set(name, value));
+          response = NextResponse.next({ request });
+          list.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
+        },
+      },
+    },
+  );
+  const { data } = await supabase.auth.getUser();
+  if (!data.user && request.nextUrl.pathname.startsWith("/my-tags")) {
+    return NextResponse.redirect(new URL("/signin", request.url));
+  }
+  return response;
+}
+
+export const config = { matcher: ["/my-tags/:path*", "/signin", "/api/owner/:path*"] };
