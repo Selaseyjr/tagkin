@@ -1,0 +1,48 @@
+name: Database deploy
+
+# Pull requests: checks the hosted project can be reached and lists pending migrations (no changes).
+# Main: applies migrations and auth settings to the hosted project (ADR 0014: migrations only through CI).
+on:
+  pull_request:
+    paths: ["supabase/**", ".github/workflows/deploy-database.yml"]
+  push:
+    branches: [main]
+    paths: ["supabase/**", ".github/workflows/deploy-database.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: database-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  PROJECT_REF: czcquowolvtcdifcnijo
+  SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+  SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+
+jobs:
+  deploy:
+    name: ${{ github.event_name == 'pull_request' && 'Hosted database dry run' || 'Deploy to hosted database' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: supabase/setup-cli@v3
+        with:
+          version: 3.1.0
+      - name: Link the hosted project
+        run: supabase link --project-ref "$PROJECT_REF" -p "$SUPABASE_DB_PASSWORD"
+      - name: Migrations (dry run on pull requests)
+        if: github.event_name == 'pull_request'
+        run: supabase db push --dry-run -p "$SUPABASE_DB_PASSWORD"
+      - name: Auth settings (dry run on pull requests)
+        if: github.event_name == 'pull_request'
+        run: DRY_RUN=true ./supabase/remote-auth.sh
+      - name: Apply migrations
+        if: github.event_name != 'pull_request'
+        run: supabase db push -p "$SUPABASE_DB_PASSWORD"
+      - name: Apply auth settings and sign-in email
+        if: github.event_name != 'pull_request'
+        run: ./supabase/remote-auth.sh

@@ -2,12 +2,13 @@
 -- Codes carry valid check characters (computed with packages/shared). Demo data only; no real people.
 
 insert into auth.users (instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
-  raw_app_meta_data, raw_user_meta_data, created_at, updated_at)
+  raw_app_meta_data, raw_user_meta_data, created_at, updated_at,
+  confirmation_token, recovery_token, email_change_token_new, email_change, email_change_token_current, reauthentication_token, phone_change, phone_change_token)
 values
   ('00000000-0000-0000-0000-000000000000', '11111111-1111-1111-1111-111111111111', 'authenticated', 'authenticated',
-   'alex@example.com', '', now(), '{"provider":"email","providers":["email"]}', '{}', now(), now()),
+   'alex@example.com', '', now(), '{"provider":"email","providers":["email"]}', '{}', now(), now(), '', '', '', '', '', '', '', ''),
   ('00000000-0000-0000-0000-000000000000', '22222222-2222-2222-2222-222222222222', 'authenticated', 'authenticated',
-   'sam@example.com', '', now(), '{"provider":"email","providers":["email"]}', '{}', now(), now());
+   'sam@example.com', '', now(), '{"provider":"email","providers":["email"]}', '{}', now(), now(), '', '', '', '', '', '', '', '');
 
 insert into public.tags (code, state, product, type, colour, size, finish, is_free) values
   ('TK-7Q4M-9XRD', 'normal',        'sticker',       'item',   '#00c48c', 'm', 'matte', false),

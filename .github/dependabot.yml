@@ -20,6 +20,14 @@ updates:
       - dependency-name: "react"
       - dependency-name: "react-dom"
       - dependency-name: "@types/react*"
+      # Stay on majors we run and that our frameworks support: Node 24 (types follow it),
+      # ESLint 9 (eslint-config-next and eslint-config-expo).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
