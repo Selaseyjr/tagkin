@@ -84,7 +84,7 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 
 | Method and path | Purpose | Story |
 |---|---|---|
-| GET `/{code}` | Finder page: tag state, item, translated message, banners (lost, test, travel, status) | TK-10 |
+| GET `/{code}` | Finder page: tag state, item, translated message, banners (lost, test, travel, status). Calls `get_finder_page` with the service role (closed to the public API), behind the rate limit | TK-10 |
 | POST `/api/lookup` | Typed code → redirect or error (rate-limited) | TK-11 |
 | POST `/api/reports` | Create report (where now, place, location, note, reply channel); returns a report token | TK-12, 14, 15 |
 | POST `/api/reports/{token}/photo` | Upload safe-place photo | TK-13 |

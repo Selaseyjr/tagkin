@@ -41,4 +41,6 @@ TK-10, TK-11, TK-12, TK-14, TK-15, TK-20, TK-103. Sprint 2: TK-1, TK-3, TK-82, T
 - **Brevo deliverability:** a new domain may land in spam; DMARC at `p=none` first, warm with test sends.
 - **Solo capacity:** 12 items in a week is tight; S0-9 and S0-12 can carry.
 
+**Reminders:** Brevo SMTP key `supabase-auth` expires 12 Nov 2027. DMARC: move from p=none to p=quarantine around 10 Dec 2026 after reviewing reports. Supabase Free has no backups: decide Pro or a nightly encrypted export before the Demo release. Hosted sign-ups are off (invite-only demo).
+
 **Credentials to renew:** Supabase CI token (`SUPABASE_ACCESS_TOKEN`, scoped to the tagkin project) expires around **10 Feb 2027**; generate a new one with the same five permissions and replace the GitHub secret.
