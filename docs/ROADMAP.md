@@ -4,6 +4,10 @@ Every open item, grouped by the stage where it belongs. Each item says **when** 
 
 Target: a fully working live app on the App Store and Google Play. Owners use the app; finders use the web (no install).
 
+## Demo first (decided 12 Nov 2026)
+
+Until funding, Tagkin is built as a real, working demo for portfolio, recruiters and investors: finder pages, owner web and the Android app on tagkin.app with demo data, Stripe test mode and a simulated print partner, at about €0 a month. Store publishing, sales, legal entity, tax, GPSR, LUCID, trademark and paid hosting wait behind the funding gate (docs/sprints/BUILD-BATCHES.md).
+
 ## Product owner flow (how Tagkin is run)
 
 One defined sequence, each step with its artefact. The stages below (A to G) sit inside it.
