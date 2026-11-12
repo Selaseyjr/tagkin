@@ -6,7 +6,7 @@
 <title>Tagkin design system</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Geist:wght@400;500;600;700&display=swap">
 <style id="tokens">
 /* Inlined copy of tokens.css: edit tokens.css, then re-inline. */
 /* Tagkin design tokens v1 (visual design pass A, 10 Nov 2026; Fresh mint palette 11 Nov).
@@ -39,8 +39,9 @@
   --tk-ok: #007a57;          /* returned, shared, done */
 
   /* Type */
-  --tk-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
-  --tk-font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --tk-font-brand: "Bricolage Grotesque", system-ui, sans-serif; /* wordmark only */
+  --tk-font-display: "Geist", system-ui, -apple-system, sans-serif; /* headings (modern pass 11 Nov) */
+  --tk-font-body: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --tk-text-xs: 12px;
   --tk-text-sm: 14px;
   --tk-text-md: 16px;   /* body; never smaller for inputs (iOS zoom) */
@@ -212,7 +213,7 @@ code{font-size:12px;color:var(--tk-ink-2)}
 </div>
 
 <h2>Type</h2>
-<p class="lead">Bricolage Grotesque for titles: warm, a little quirky, matches the lowercase logo. Inter for everything people read and type. Inputs are never below 16 px, so phones don't zoom.</p>
+<p class="lead">Geist for titles and everything people read and type: clean and modern. Bricolage Grotesque only for the tagkin wordmark. Inputs are never below 16 px, so phones don't zoom.</p>
 <div class="panel type">
 <p class="t-2xl">Thank you.</p>
 <p class="t-xl">Where is it now?</p>

@@ -2,7 +2,7 @@
 
 Step 6 of the product owner flow. How Tagkin will be built. Inputs: BUSINESS-RULES.md (what must be true), SYSTEM-LOGIC.md (behaviour, data, states, events, requirements), BACKLOG.md (what to build). Decisions and their reasons: docs/adr/.
 
-Version 1 · 11 Nov 2026.
+Version 2 · 12 Nov 2026 (order lifecycle, shape fit, blank set-up and item edits added).
 
 ## 1. Architecture
 
@@ -66,8 +66,9 @@ CI (GitHub Actions): lint, type check, unit tests, migration check on every pull
 
 ## 3. Data and security
 
-- Tables follow SYSTEM-LOGIC.md section 2: accounts, devices, tags, items, contacts, status_updates, scans, reports, returns, messages, orders, order_items, abuse_reports.
-- **State machines** (tag, return, order, activation) are enforced in Postgres functions, so no client can skip a state.
+- Tables follow SYSTEM-LOGIC.md section 2: accounts, devices, tags, tag_members, items, contacts, status_updates, scans, reports, returns, messages, orders, order_items, abuse_reports, entitlements, prices, ownership_transfers.
+- **Shape fit** (BUSINESS-RULES 3c) lives in `packages/shared` as a constant and in Postgres as a check used by create, set-up and activation, so no client can save a sticker as a pet tag.
+- **State machines** (tag, return, order, activation) are enforced in Postgres functions, so no client can skip a state. Item edits are rejected while the tag is `return_active`.
 - **Row-level security**: owners read and write only their own rows; finders act through server functions with a per-report token; admin role for moderation.
 - **Secrets**: activation PINs, handover codes and finder report tokens are hashed; finder contacts, recovery phone and message bodies encrypted at rest (pgsodium/Vault or application-level encryption).
 - **Rate limits**: code lookups, PIN and code attempts, reports and messages, enforced in the route handlers (with a store such as Upstash in the EU, or Postgres counters).
@@ -87,7 +88,8 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 | POST `/api/reports/{token}/photo` | Upload safe-place photo | TK-13 |
 | GET `/api/reports/{token}/messages` (+ Realtime channel) | Live owner replies | TK-16 |
 | POST `/api/reports/{token}/messages` | Finder reply | TK-16 |
-| POST `/api/returns/{token}/handover-check` | Check handover code (rate-limited) | TK-17 |
+| POST `/api/tags/{code}/handover-check` | Check handover code against the open return; no token needed (5 attempts, then 15 min) | TK-17 |
+| POST `/api/returns/{token}/handed-over` | Finder confirms the handover; return moves to `handed_over` | TK-17 |
 | POST `/api/abuse` | Report a tag or message | TK-19 |
 | POST `/api/places/suggest`, `/api/places/reverse` | Proxy to Places and geocoding (keys stay on the server) | TK-12 |
 
@@ -98,7 +100,9 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 | Supabase Auth: email code sign-in | Sign up, sign in on app and web | TK-1, 3 |
 | POST `/api/recovery/start`, `/api/recovery/verify` | Recovery by SMS or backup email | TK-4 |
 | Supabase tables: tags, items, contacts, status_updates | Create, edit, customise; locks enforced by database functions | TK-30 to 39 |
-| RPC `mark_lost`, `mark_found`, `mark_returned`, `retire_tag` | State changes | TK-38, 40, 44 |
+| RPC `mark_lost`, `mark_found`, `mark_returned`, `retire_tag` | State changes (found and returned support a 5-second undo) | TK-38, 40, 44, 107 |
+| RPC `setup_blank_tag` | `unlinked` → `normal` with type (shape fit), name, photo, message | TK-105 |
+| RPC `update_item` | Name, photo, description; blocked in `return_active` | TK-106 |
 | RPC `start_test_mode` | 10-minute test scans | TK-36 |
 | RPC `regenerate_handover_code` | Handover code | TK-43 |
 | Supabase table: messages (+ Realtime) | Relayed chat; server translates and relays | TK-41 |
@@ -107,6 +111,10 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 | POST `/api/gift-orders` (no account) | Guest gift checkout with an email for receipt and tracking | TK-101 |
 | GET `/o/{token}` | Guest order status page | TK-101 |
 | POST `/api/orders/{id}/pay` | Create Stripe payment for the chosen method | TK-52 |
+| GET `/api/orders/{id}` | Order details: stage, exception, ETA, timeline, items, address | TK-55 |
+| POST `/api/orders/{id}/cancel` | Cancel before printing; Stripe refund; blank tags of the order retired | TK-55 |
+| PATCH `/api/orders/{id}/address` | Change address until shipped (also resends after a failed delivery) | TK-55 |
+| POST `/api/orders/{id}/problem` | Report a problem after delivery; creates a €0 replacement order | TK-55 |
 | POST `/api/activate` | Activate unclaimed tag with PIN (rate-limited) | TK-62 |
 | POST `/api/account/export`, `/api/account/delete` | Data export and deletion | TK-6, 7 |
 
@@ -115,7 +123,7 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 | Endpoint or job | Purpose |
 |---|---|
 | POST `/api/webhooks/stripe` | Payment succeeded or failed → order state; tag live; send to partner |
-| POST `/api/webhooks/print-partner` | Production, shipped, tracking, failure |
+| POST `/api/webhooks/print-partner` | Production, quality check, reprint, shipped, carrier status (out for delivery, delayed, delivery failed), tracking, failure |
 | POST `/api/webhooks/email-inbound` | Finder replies by email → message |
 | pg_cron jobs | Close silent returns, backup contact alerts, expire status and trips, end test mode, retention, reconciliation (SYSTEM-LOGIC.md section 7) |
 
@@ -133,8 +141,8 @@ Most owner reads and writes go straight to Supabase under row-level security. Th
 Matches the milestones in BACKLOG.md:
 
 1. **Sprint 0:** monorepo, Supabase project (Frankfurt), migrations for the core tables (including tag members, entitlements, prices with currency, transfers), tokens package, CI, Vercel and EAS set up, Brevo and Stripe test accounts.
-2. **M1 Finder web and accounts:** finder pages and report flow, email-code sign-in, owner web dashboard, report alerts by email.
-3. **M2 Web beta: create, order and pay:** guest create and customise on the web, sign-up when needed, Stripe, print partner adapter, order states and emails. **Web beta release.**
+2. **M1 Finder web and accounts:** finder pages and report flow, email-code sign-in, owner web dashboard, report alerts by email (TK-103), owner replies on the web (TK-104). Sprint plan: docs/sprints/SPRINT-0.md.
+3. **M2 Web beta: create, order and pay:** guest create and customise on the web (shape fit), blank tags, sign-up when needed, Stripe, print partner adapter, order lifecycle (stages, cancel, address change, problems) and emails. **Web beta release.**
 4. **M3 Owner app core:** app shell, tags, customise, free phone tag, Lost mode, relay chat with translation, push, jobs, states.
 5. **M4 Gifting and activation:** gift orders, PIN, activation flow.
 6. **M5 Launch readiness:** website and legal, languages, accessibility, moderation, analytics, store listings.
