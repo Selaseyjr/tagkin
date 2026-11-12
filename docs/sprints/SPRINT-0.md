@@ -19,7 +19,7 @@ No user stories are built in Sprint 0. It makes M1 buildable.
 | S0-7 | `packages/tokens` generated from docs/brand/tokens.css; `packages/shared` with code alphabet, limits, shape-fit table, Zod schemas | Web renders a token-styled page; code parser and shape fit tested | S0-1 |
 | S0-8 | Vercel project for `apps/web`, preview per pull request against staging | A PR comment shows the preview URL | S0-1, S0-3 |
 | S0-9 | Expo app shell builds with EAS (development build only) | Opens the splash on a simulator | S0-1 |
-| S0-10 | Domain tagkin.app: DNS on Vercel; Brevo verified (SPF, DKIM, DMARC); Supabase Auth sends codes through Brevo SMTP; inbound route set | A sign-in code arrives in Gmail inbox, not spam; a reply reaches the inbound webhook | **Domain (Selasey, by 15 Nov)** |
+| S0-10 | Domain tagkin.app (Cloudflare Registrar): DNS stays on Cloudflare, records point to Vercel with the proxy off; hello@ forwarded by Cloudflare Email Routing; Brevo inbound on a reply subdomain; Brevo verified (SPF, DKIM, DMARC); Supabase Auth sends codes through Brevo SMTP; inbound route set | A sign-in code arrives in Gmail inbox, not spam; a reply reaches the inbound webhook | **Domain (Selasey, by 15 Nov)** |
 | S0-11 | Provider accounts and keys in env per environment: DeepL, Google Places (quota + billing alert), Stripe test, PostHog EU, Sentry EU | Keys in Vercel and Supabase secrets, none in the repo; billing alerts on | |
 | S0-12 | Tracking plan for the MVP success measures (brief 13b): event names, properties, no personal data | Reviewed against ADR 0012 | |
 
