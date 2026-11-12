@@ -7,8 +7,8 @@ select is((select count(*) from pg_tables where schemaname = 'public' and not ro
   'row-level security is on for every public table');
 
 set local role anon;
-select is((select count(*) from public.tags), 0::bigint, 'anonymous visitors read no tags');
-select is((select count(*) from public.items), 0::bigint, 'anonymous visitors read no items');
+select throws_ok($$ select count(*) from public.tags $$, '42501', null, 'anonymous visitors cannot read tags at all');
+select throws_ok($$ select count(*) from public.items $$, '42501', null, 'anonymous visitors cannot read items at all');
 select is((select count(*) from public.prices), 5::bigint, 'anonymous visitors can read prices');
 
 set local role authenticated;

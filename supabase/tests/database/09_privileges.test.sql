@@ -1,0 +1,14 @@
+begin;
+create extension if not exists pgtap with schema extensions;
+select plan(9);
+select ok(has_table_privilege('authenticated', 'public.tags', 'select'), 'owners can read tags (rows filtered by RLS)');
+select ok(has_table_privilege('authenticated', 'public.messages', 'select'), 'owners can read messages');
+select ok(not has_table_privilege('authenticated', 'public.tags', 'update'), 'owners cannot update tags directly');
+select ok(not has_table_privilege('authenticated', 'public.messages', 'insert'), 'owners cannot insert messages directly');
+select ok(not has_table_privilege('authenticated', 'public.items', 'delete'), 'owners cannot delete items');
+select ok(not has_column_privilege('authenticated', 'public.items', 'tag_code', 'update'), 'owners cannot move an item');
+select ok(not has_table_privilege('anon', 'public.tags', 'select'), 'visitors cannot read tags');
+select ok(not has_table_privilege('anon', 'public.reports', 'insert'), 'visitors cannot write reports');
+select ok(has_table_privilege('anon', 'public.prices', 'select'), 'visitors can read prices');
+select * from finish();
+rollback;
