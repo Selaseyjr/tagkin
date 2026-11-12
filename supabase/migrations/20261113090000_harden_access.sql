@@ -1,4 +1,4 @@
--- Audit 13 Nov 2026: close access loopholes found by probing the database as an owner and as an
+-- Audit 12 Nov 2026: close access loopholes found by probing the database as an owner and as an
 -- anonymous visitor, and by Supabase's security advisor.
 
 -- 1. A code never moves to a different belonging (rule 4.9): owners may edit item fields, never tag_code.

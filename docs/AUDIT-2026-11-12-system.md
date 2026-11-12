@@ -1,4 +1,4 @@
-# Tagkin: system audit, 13 Nov 2026
+# Tagkin: system audit, 12 Nov 2026
 
 Scope: what is actually built and configured after batches 1 to 4: database and access rules, CI and deploys, hosting, domain and email, accounts, docs. Method: exploits tried against the local database as an owner and as an anonymous visitor; Supabase's security advisor on the hosted project; live checks of tagkin.app, DNS, Vercel and GitHub settings.
 
