@@ -1,10 +1,14 @@
-/* Replaced by @tagkin/tokens in S0-7. */
+@import "@tagkin/tokens/tokens.css";
+
 html,
 body {
   margin: 0;
-  font-family: var(--font-geist), system-ui, sans-serif;
+  background: var(--tk-bg);
+  color: var(--tk-ink);
+  font-family: var(--font-geist), var(--tk-font-body);
+  font-size: var(--tk-text-md);
 }
 
 main {
-  padding: 48px 24px;
+  padding: var(--tk-space-7) var(--tk-space-5);
 }
