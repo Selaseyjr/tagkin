@@ -76,7 +76,9 @@ One table decides which item types each shape can go on. Every screen reads from
 
 ## 4. Codes and ownership
 
-1. Every tag has a random code (TK-7Q4M-9XRA format), at least 8 characters, never reused.
+1. Every tag has a code in the format TK-XXXX-XXXX: 7 random characters plus 1 check character, from the alphabet 23456789ABCDEFGHJKMNPQRSTVWXYZ (no 0, 1, I, L, O or U, so it reads aloud and types cleanly). A code is never reused, and codes containing blocked words are never issued.
+   - **Permanent address:** the QR holds `HTTPS://TAGKIN.APP/TK-XXXX-XXXX` in capitals (smaller, more reliable QR). This address never changes; the domain is renewed for as long as any tag exists.
+   - The check character lets a mistyped code be caught before any lookup.
 2. A tag belongs to **one account** (its owner) and **one belonging**. The owner receives every alert and message and controls Lost mode.
 3. A tag code cannot move to another account. (A later feature may allow a transfer the new owner must accept, e.g. when selling a bike.)
 4. Tag type is locked after set-up. Name, photo and description lock only during a return (once a finder has reported it), so the finder sees what they expect. In Lost mode they stay editable, because a better photo helps finders. Contacts, finder message and status updates are always editable.

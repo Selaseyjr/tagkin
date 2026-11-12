@@ -57,15 +57,15 @@ story("TK-8", "E1", "Language and appearance", "owner", "to choose my language a
 story("TK-10", "E2", "Open a tag from its QR code", "finder", "to see the owner's message when I scan a tag", "I know what to do",
       ["tagkin.app/TK-… shows the photo, message translated to my browser language and Show original", "No app or account is needed", "Lost tags show 'This item is missing'; never the word stolen", "Travel tags show destination and operator only; pet tags hide care notes behind a tap"], "Must", "M", "M1")
 story("TK-11", "E2", "Type a code when the QR won't scan", "finder", "to type the code printed on the tag", "I can still report it",
-      ["Case- and dash-insensitive", "Wrong code shows a clear error; lookups are rate-limited", "Retired tags show 'no longer active'; unclaimed tags show 'not set up yet'"], "Must", "S", "M1")
+      ["Case-, space- and dash-insensitive", "The check character catches typos before any lookup ('Check the code')", "Wrong code shows a clear error; lookups are rate-limited", "Retired tags show 'no longer active'; unclaimed tags show 'not set up yet'"], "Must", "S", "M1")
 story("TK-12", "E2", "Report where the item is", "finder", "to say where the item is now and where exactly", "the owner can get it back",
       ["Choose with me, handed to staff, or left in a safe place", "Place suggestions after 2 letters; free text always allowed", "Share item location asks browser permission; denied means city only"], "Must", "M", "M1")
 story("TK-13", "E2", "Leave it in a safe place with a photo", "finder who can't keep the item", "to add a photo, note and address", "the owner can find the exact spot",
       ["Only for 'left in a safe place'", "Photo location data (EXIF) removed before upload", "Address from shared location or typed text, editable"], "Should", "M", "M1")
 story("TK-14", "E2", "Add a note safely", "finder", "to add an optional note", "the owner has useful details",
       ["Phone number or email in the note shows a share warning; continuing requires a tick", "Emoji picker available"], "Must", "S", "M1")
-story("TK-15", "E2", "Choose how to get replies", "finder", "to get replies by email, phone or stay anonymous", "my details stay private",
-      ["Email or phone is hidden from the owner and relayed", "Anonymous finders see replies only while the page is open"], "Must", "M", "M1")
+story("TK-15", "E2", "Choose how to get replies", "finder", "to get replies by email or stay anonymous", "my details stay private",
+      ["Email is hidden from the owner and relayed; replies by phone (SMS) come later", "Anonymous finders see replies only while the page is open"], "Must", "M", "M1")
 story("TK-16", "E2", "Thank-you page with live reply", "finder", "to see and answer the owner's reply", "we can arrange the return",
       ["Owner reply appears live; finder can reply with emoji", "Link to the handover check", "Report link to copy; the same link is in every email or text; the same device is remembered", "Invite card: protect your own things, first tag offer"], "Must", "M", "M1")
 story("TK-17", "E2", "Check the handover code", "finder or desk staff", "to check the owner's handover code before handing over", "only the real owner gets it",
@@ -215,6 +215,7 @@ READY = {
 }
 
 WONT = [
+    "Finder replies by phone (SMS relay; later, when SMS has a budget)",
     "Premium subscription (later; Notify me measures demand)",
     "Ghana launch with a local payment provider and cedi prices (later; data model ready)",
     "Family sharing and ownership transfer screens (later; data model ready)",
@@ -225,7 +226,7 @@ WONT = [
 ]
 
 DOR = ["Story written as 'As a … I want … so that …'", "Acceptance criteria agreed", "Screens linked (tagkin-screens.html frame names)", "Business rules and SYSTEM-LOGIC.md sections checked", "Dependencies known; size estimated (S, M, L)"]
-DOD = ["Acceptance criteria met and demoed", "Works on iOS, Android and web where relevant; checked at phone and desktop widths", "Copy checked against the copy rules (no speed, any-language or fixed-time promises)", "Accessibility basics: labels, contrast, text scaling", "Errors and provider failures handled as in SYSTEM-LOGIC.md", "Tests for the logic; no new warnings", "Documentation updated (brief change log, rules or system logic if affected)"]
+DOD = ["Acceptance criteria met and demoed", "Works on iOS, Android and web where relevant; checked at phone and desktop widths", "Copy checked against the copy rules (no speed, any-language or fixed-time promises)", "Accessibility basics: labels, contrast, text scaling", "Errors and provider failures handled as in SYSTEM-LOGIC.md", "Tests for the logic; no new warnings", "Documentation updated (brief change log, rules or system logic if affected)", "Pipeline: CI green; migrations reviewed and applied only through CI; access rules (RLS) covered by database tests; no secrets in code or logs; Sentry clean after the preview check on a phone"]
 
 
 def body(st):

@@ -12,7 +12,7 @@ App, web and shared code must stay in step; one developer needs fast, safe relea
 | Separate repositories | Simple per app. | Shared code drifts. |
 
 ## Decision
-Monorepo: apps/mobile (Expo), apps/web (Next.js), packages/shared (types, Zod schemas, state machines), packages/ui-tokens (from tokens.css), packages/i18n. GitHub Actions for lint, type check, tests; EAS for app builds; Vercel previews per pull request.
+Monorepo: apps/mobile (Expo), apps/web (Next.js), packages/shared (types, Zod schemas, state machines), packages/tokens (from tokens.css), packages/i18n. GitHub Actions for lint, type check, tests; EAS for app builds; Vercel previews per pull request.
 
 ## Consequences
 Board automations already link pull requests to stories.
