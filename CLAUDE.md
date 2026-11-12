@@ -14,6 +14,11 @@ Read docs/PRODUCT-BRIEF.md first. It is the single source of truth: add every de
 - Figma: account selaseygbeddy@gmail.com, Starter plan (MCP tool-call limit was hit on 6 Nov; Chrome export works when signed in).
 - Portfolio: ~/Documents/career-workspace/portfolio/site (Vercel project selasey-gbeddy).
 
+## Code
+- Monorepo: pnpm workspaces + Turborepo; Node 24 via fnm (`eval "$(fnm env)" && fnm use 24` in each shell); pnpm through Corepack.
+- Before any handover: `pnpm check` and `pnpm build` must pass; add Expo packages with `pnpm expo install` in apps/mobile.
+- One branch and pull request per Sprint item (`s0/...`, later `tk-<n>-...`); never push to main directly.
+
 ## Business rules
 docs/BUSINESS-RULES.md lists the rules Tagkin runs by. Check new features against it, and update it in the same turn as any rule change.
 

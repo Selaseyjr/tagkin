@@ -1,0 +1,7 @@
+docs/
+pnpm-lock.yaml
+**/.next/
+**/.expo/
+**/dist/
+apps/web/next-env.d.ts
+*.md
