@@ -126,7 +126,7 @@ def build_showcase():
     owner_pick = pick(SETUP + OWNER + GIFT + LOST + EXTRA, ["Setup 1 · Welcome", "Setup 5 · Create a tag", "Owner 3 · Tag type", "Owner 6 · Customise", "Owner 7 · Phone tag is live", "Gift 1 · Gift a tag", "Owner 8 · My tags", "Owner 11 · Lost: scans", "Owner 13 · Message thread", "Manage 6 · QR code and test", "Account 7 · Appearance"])
     cover = """<section class="flow coverp"><div class="cov"><div><p class="eyebrow">Tagkin · app design</p><h1 class="wh">Protect what you value.</h1><p class="m">QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately. No app needed for finders.</p></div><div class="covgrid">
 <div><b>What’s inside</b><span>Finder web flow, owner app, Gift a tag, store screenshots, printed tags and marketing visuals.</span></div>
-<div><b>Design system</b><span>Fresh mint, Bricolage Grotesque and Inter, light and dark, WCAG AA contrast.</span></div>
+<div><b>Design system</b><span>Fresh mint, Geist (Bricolage Grotesque for the wordmark), light and dark, WCAG AA contrast.</span></div>
 <div><b>Designed by</b><span>Selasey Gbeddy · Technical Product Owner</span></div>
 <div><b>Status</b><span>Design v1, November 2026. App in development.</span></div>
 </div></div></section>"""

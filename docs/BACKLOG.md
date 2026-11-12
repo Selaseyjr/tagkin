@@ -1,6 +1,6 @@
 # Tagkin: product backlog
 
-Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).
+Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Status: Backlog, Ready, In progress, Review, Done).
 
 70 stories in 9 epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).
 
@@ -353,7 +353,7 @@ As a new owner, I want a free lock-screen tag, so that I can try Tagkin before b
 
 As a owner, I want to see all my tags and their state, so that I know what's protected.
 
-- Each row: name, code, state badge (normal, lost, return active), QR button
+- Each row: photo, name, code, badge (Active, Lost, Return active, Set up for blank tags, New and Returned as display badges), QR button and ⋯
 - + New starts a printed tag when the free tag is used
 
 ### TK-34 · Edit message and contacts
@@ -468,7 +468,7 @@ Owners and finders coordinate a return through relayed, translated messages.
 
 As a owner, I want to mark a tag as lost in the app or on the web, so that finders see it's missing and I get alerts.
 
-- Confirmation explains locks and no public reward
+- Confirmation explains the urgent finder page, alerts at every scan and no public reward; name and photo stay editable
 - Every scan alerts with city; can't be turned off while lost
 - 'I found it myself' returns to normal
 
@@ -588,7 +588,7 @@ As a owner, I want to pay with Apple Pay or Google Pay, card, PayPal or Klarna, 
 As a Tagkin, I want paid orders sent to the print partner automatically, so that tags are printed without manual work.
 
 - Order created at the partner after payment webhook
-- Partner status and tracking update the order
+- Partner status updates the order stage (sent to print, printing, quality check, reprint, shipped) and carrier status (out for delivery, delayed, delivery failed, delivered) with tracking
 - Partner failure alerts admin and triggers refund
 
 ### TK-54 · Tag live from order
@@ -626,6 +626,7 @@ People gift blank tags; recipients activate them safely with a PIN.
 As a buyer, I want to gift blank tags of a chosen type and colour, so that someone I care about can protect their things.
 
 - From Create a tag: For myself / Gift a tag
+- Products: sticker, keychain, pet tag, luggage label (never the lock-screen tag)
 - Gift note, recipient address, hide prices on packing slip
 - Same payment step as orders
 
@@ -645,7 +646,7 @@ As a recipient, I want a PIN on the gift card, not on the tag, so that only I ca
 As a recipient, I want to scan or type the code and enter the PIN, so that the tag becomes mine.
 
 - Unclaimed → normal after PIN; 5 attempts then wait
-- Then type, details and message; style and order steps skipped
+- Then type (only types that fit the tag's shape), details and message; style and order steps skipped
 - Activate another tag from the success screen
 - Unclaimed tag scanned by a phone camera deep-links to the app with the code
 
@@ -740,7 +741,7 @@ As a owner, I want to see my tags and finder reports on the web, so that I can a
 - Orders appear here from M2; account shows email and sign out
 - Edit a tag's name and photo (not during a return); set up blank tags with the shape-fit rule
 - Order rows open the same Order details as the app
-- Creating tags and ordering stay in the app: web buttons open a Get the app sheet; a sidebar card offers instant alerts in the app
+- Create and order open the web flow (TK-102, M2); a sidebar card offers the app for instant alerts
 
 **Ready**
 - Screens: Web · Owner dashboard; Owner 12 · Finder report alert
@@ -764,7 +765,7 @@ As a Tagkin, I want complete App Store and Google Play listings, so that the app
 
 As a visitor on tagkin.app, I want to create, customise and order a tag in the browser, so that the web beta can sell tags before the apps launch.
 
-- tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay
+- tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay, with the shape-fit rule and blank tags
 - Sign-up at Continue to payment; tags live from order
 - Works on phone and desktop browsers
 

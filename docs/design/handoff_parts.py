@@ -25,18 +25,21 @@ NOTES = {
     "Finder U · Tag not set up yet": "Unclaimed shop or gift tag. Activate opens the app or the store.",
     "Finder X · Tag not active": "Retired tag. No owner data is shown.",
     "Finder R · Report this tag": "Goes to moderation. 112 note for emergencies.",
-    "Setup 5b · Pick your tag": "Each card preselects style and type: sticker, keychain and lock screen → item; luggage label → travel; pet tag → pet. A live preview card follows through details and message.",
+    "Setup 5b · Pick your tag": "Shapes follow the shape-fit table (rule 3c). Sticker → What is it for? (item or travel); keychain and lock screen → item details; luggage label → travel details; pet tag → pet details. Blank tag: lock screen hidden, goes straight to Customise. A live preview card follows through details and message.",
     "Manage 7 · Status update": "Opt-in note on the finder page. City only, no dates or times. Hides automatically after the trip or 7 days.",
     "Setup 3 · Save your tag (sign up when needed)": "Shown only when needed: at Make it live, Continue to payment, or before the activation PIN. Terms accepted here. Drafts made as a guest are attached to the new account. Gift checkout never needs it.",
     "Owner 2 · Enter code": "6-digit email code, valid 10 minutes, 5 attempts.",
-    "Owner 3 · Tag type": "Type is locked after creation. Item → details, Travel → Type 1, Pet → Type 2.",
+    "Owner 3 · Tag type": "Only types that fit the chosen shape are shown; skipped when only one fits. Type is locked after creation. Item → details, Travel → Type 1, Pet → Type 2.",
     "Owner 5 · Finder message": "Template or own text, 160 characters, live count. Warns on phone or email; blocks abusive words.",
-    "Owner 6 · Customise": "Preselected from type: item → sticker, travel → luggage label, pet → pet tag. Address and code always printed.",
-    "Owner 7c · Order your tag": "For me / Gift a tag switch. Prices are samples until the print partner is chosen.",
+    "Owner 6 · Customise": "Shape chips show only shapes that fit the type (item: sticker, keychain; travel: luggage label, sticker). No shape row for pets or the lock-screen tag; all printed shapes for a blank tag. Address and code always printed.",
+    "Owner 7c · Order your tag": "Copies and delivery on one page; saved address card for signed-in owners. Prices are samples until the print partner is chosen.",
     "Owner 7e · Review and pay": "First tag offer as a discount line (not a struck-through price, EU rule). Pay with Apple Pay or Google Pay (shown per device), card, PayPal or Klarna through Stripe; Tagkin is the seller, the print partner only prints and ships.",
-    "Owner 10 · Confirm Lost": "Locks name, photo, description until found or returned.",
+    "Owner 10 · Confirm Lost": "Name, photo and description stay editable while lost; they lock only when a finder reports it (return).",
     "Owner 13 · Message thread": "Relayed and translated both ways. Report · Block in the header.",
     "Owner 14 · Mark returned": "Return also closes after 14 days with no messages.",
+    "Owner 9 · Tag detail": "Tap the photo to edit name and photo; the change shows everywhere. Scan history shows only this tag's scans (None yet for a new tag). Order more copies keeps the tag's shape.",
+    "Owner 11 · Lost: scans": "Scans since marked lost only; empty until someone scans. Photo stays editable.",
+    "Owner 16 · Orders": "Badges show the stage or problem. Tapping a row opens Order details: timeline (Paid, Sent to print, Printing, Quality check, Shipped, Out for delivery, Delivered), items, address, payment, and actions by stage (cancel before printing, change address until shipped, track, send again, report a problem). See the owner prototype.",
     "Manage 1 · Tag during a return": "Locked fields shown greyed with a lock. Message and contacts stay editable.",
     "Manage 5 · Retire tag": "Irreversible. Code never reused. Retiring the free phone tag frees its slot.",
     "Setup 9a · Activation PIN": "Unclaimed tags (gifts, shop packs) need the PIN from the gift card or scratch panel. 5 attempts, then wait. Lost PIN: support with order or receipt.",
@@ -164,7 +167,7 @@ COVER = f"""<section class="flow coverp"><div class="cov"><div><p class="eyebrow
 <div><b>Read this file</b><span>Flow map → screens by journey → states → emails → web → marketing. Grey notes under each screen say what every button does.</span></div>
 <div><b>Try it</b><span>Finder prototype: {FINDER_PROTO_URL}<br>Owner prototype: docs/design/owner-prototype.html in the repo</span></div>
 <div><b>Source of truth</b><span>Rules: docs/PRODUCT-BRIEF.md · Tokens: docs/brand/tokens.css · Screens: docs/design/build_screens.py</span></div>
-<div><b>Design system</b><span>Fresh mint, Bricolage Grotesque and Inter, 4-point spacing, radius 8/14/22, light and dark. WCAG AA checked.</span></div>
+<div><b>Design system</b><span>Fresh mint, Geist (Bricolage Grotesque for the wordmark), 4-point spacing, radius 8/14/22, light and dark. WCAG AA checked.</span></div>
 </div></div></section>"""
 
 HANDOFF_CSS = """

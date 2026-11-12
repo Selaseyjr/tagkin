@@ -2,7 +2,7 @@
 
 The rules Tagkin runs by. Product, design, build, support and marketing follow this document. Decisions and their reasons are logged in PRODUCT-BRIEF.md; when a rule changes, update it here and add a change-log line there.
 
-Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT-2026-11-11.md.
+Last updated: 12 Nov 2026. Open findings that may change these rules: docs/AUDIT-2026-11-11.md.
 
 ## 1. Business model
 
@@ -29,7 +29,7 @@ Last updated: 11 Nov 2026. Open findings that may change these rules: docs/AUDIT
 ## 3. Printed tags
 
 1. A bought tag is **free to use for life**: no subscription, no activation fee, and it never counts toward the free tag.
-2. Owners choose the type (sticker, keychain, pet tag, luggage label), size (where the product has sizes), colour, finish (matte, gloss, holo, glow or reflective, by product) and an optional label of up to 12 characters (a name or initials), plus the number of copies, and see the result before paying.
+2. Owners choose the type (sticker, keychain, pet tag, luggage label; only shapes that fit the item, see 3c), size (where the product has sizes), colour, finish (matte, gloss, holo, glow or reflective, by product) and an optional label of up to 12 characters (a name or initials), plus the number of copies, and see the result before paying.
    - The QR always prints black on white with its margin, and the code and tagkin.app always print. Colour and finish never touch the QR.
    - Labels never carry a phone number, email or address; the app blocks them.
    - Options per product follow what the print partner can make; extra finishes cost extra and show in the price before checkout.
@@ -81,7 +81,7 @@ One table decides which item types each shape can go on. Every screen reads from
 3. A tag code cannot move to another account. (A later feature may allow a transfer the new owner must accept, e.g. when selling a bike.)
 4. Tag type is locked after set-up. Name, photo and description lock only during a return (once a finder has reported it), so the finder sees what they expect. In Lost mode they stay editable, because a better photo helps finders. Contacts, finder message and status updates are always editable.
 5. Unclaimed tags (shop packs, gifts) have no owner until someone activates them with the **activation PIN**, which is never printed on the tag: it is on the gift card or under a scratch panel on the pack. A finder who scans an unclaimed tag sees "This tag isn't set up yet".
-6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). **Web and app:** the web manages what the owner already has (tags, Lost mode, messages, orders, editing details, setting up blank tags). Creating tags, ordering, scanning to activate, push alerts and the lock-screen tag stay in the app, and the web always offers the app for instant alerts. A recovery phone or backup email is recommended and prompted after the first tag. At launch, SMS is used only for recovery codes.
+6. **Email is required** to sign up; it is the sign-in. Owners can sign in on the app or at tagkin.app on any device (for example when the phone itself is lost). **Web and app:** the web beta ships first and covers everything that doesn't need a phone: create, customise, order, gift, set up blank tags, edit details, Lost mode, messages and orders. Only the app has push alerts, the lock-screen tag and activation of gift and shop tags by scanning. The owner web always offers the app for instant alerts. A recovery phone or backup email is recommended and prompted after the first tag. At launch, SMS is used only for recovery codes.
 7. **Handover code (free for everyone):** before handing an item over, finders or desk staff can check the owner's 6-digit handover code.
 8. **Blank tags for yourself:** owners can order a tag without linking it to an item (for something not yet bought, a pet not yet home, or a pack to use later). It belongs to the owner's account from payment, shows "Set up" in My tags and is set up later with type (only types that fit its shape, see 3c), name and photo, no PIN needed, in the app or on the web. Until then a finder sees "This tag isn't set up yet" and the owner gets a scan alert.
 9. **Item details stay editable:** name, photo and description can be changed later (not during a return). A change shows everywhere the item appears. A photo is optional at creation; tags without one show a reminder. A code never moves to a different belonging; for a new item, retire the tag and create a new one.
@@ -93,7 +93,7 @@ One table decides which item types each shape can go on. Every screen reads from
 3. The buyer never receives alerts or messages for gifted tags and has no access to them after delivery.
 4. Free tags cannot be gifted. Invite a friend is the free way to share Tagkin.
 5. Gift a tag starts from Create a tag, Orders, "Your tag is live", and later the website. It is never a switch inside ordering a set-up tag.
-6. The product shape suggests a tag type, but the recipient sets the type at set-up; after that it is locked.
+6. The recipient sets the type at set-up, choosing only from the types that fit the gifted shape (3c); after that it is locked.
 
 ## 6. Finders
 

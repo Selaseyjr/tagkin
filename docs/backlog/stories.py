@@ -85,7 +85,7 @@ story("TK-31", "E3", "Customise the tag", "owner", "to choose shape, size, colou
 story("TK-32", "E3", "Free phone tag and lock screen image", "new owner", "a free lock-screen tag", "I can try Tagkin before buying",
       ["One free tag per account: the phone lock-screen tag", "Set as lock screen saves the image", "Retiring it frees the slot; codes never return"], "Must", "M", "M3")
 story("TK-33", "E3", "My tags list", "owner", "to see all my tags and their state", "I know what's protected",
-      ["Each row: name, code, state badge (normal, lost, return active), QR button", "+ New starts a printed tag when the free tag is used"], "Must", "M", "M3")
+      ["Each row: photo, name, code, badge (Active, Lost, Return active, Set up for blank tags, New and Returned as display badges), QR button and ⋯", "+ New starts a printed tag when the free tag is used"], "Must", "M", "M3")
 story("TK-34", "E3", "Edit message and contacts", "owner", "to edit the finder message and contacts any time", "details stay current",
       ["Always editable, also during Lost mode or a return", "Backup contact with alert-after time; never shown to finders"], "Must", "M", "M3")
 story("TK-35", "E3", "Locked details during a return", "finder", "the item details not to change during a return", "I can trust what I see",
@@ -101,7 +101,7 @@ story("TK-39", "E3", "Scan history", "owner", "to see when and where my tag was 
 
 # ---------- E4 Lost mode and returns ----------
 story("TK-40", "E4", "Mark as lost", "owner", "to mark a tag as lost in the app or on the web", "finders see it's missing and I get alerts",
-      ["Confirmation explains locks and no public reward", "Every scan alerts with city; can't be turned off while lost", "'I found it myself' returns to normal"], "Must", "M", "M3")
+      ["Confirmation explains the urgent finder page, alerts at every scan and no public reward; name and photo stay editable", "Every scan alerts with city; can't be turned off while lost", "'I found it myself' returns to normal"], "Must", "M", "M3")
 story("TK-41", "E4", "Relayed, translated conversation", "owner and finder", "to message each other without sharing contact details", "we stay private",
       ["Messages relayed by Tagkin; translated both ways with Show original", "Contact details in text trigger a share warning", "Emoji in every message box", "Failed messages show 'Not sent · Tap to retry'"], "Must", "L", "M3")
 story("TK-42", "E4", "Safe place report with photo and map", "owner", "to see the finder's photo, map pin and address", "I can collect it",
@@ -121,7 +121,7 @@ story("TK-51", "E5", "Order details: copies and delivery on one page", "owner", 
 story("TK-52", "E5", "Choose how to pay", "owner", "to pay with Apple Pay or Google Pay, card, PayPal or Klarna", "I can use what I trust",
       ["Stripe payment sheet; button names amount and method", "Personalised goods notice (no 14-day return; faulty replaced) and Terms before paying", "Declined payment shows a clear error; card not charged"], "Must", "L", "M2")
 story("TK-53", "E5", "Send paid orders to the print partner", "Tagkin", "paid orders sent to the print partner automatically", "tags are printed without manual work",
-      ["Order created at the partner after payment webhook", "Partner status and tracking update the order", "Partner failure alerts admin and triggers refund"], "Must", "L", "M2")
+      ["Order created at the partner after payment webhook", "Partner status updates the order stage (sent to print, printing, quality check, reprint, shipped) and carrier status (out for delivery, delayed, delivery failed, delivered) with tracking", "Partner failure alerts admin and triggers refund"], "Must", "L", "M2")
 story("TK-54", "E5", "Tag live from order", "owner", "my new tag to work as soon as I order", "I'm protected before it arrives",
       ["Own-order tags become normal at payment", "'Your tag is live and on its way'"], "Must", "S", "M2")
 story("TK-55", "E5", "Orders list and emails", "owner", "to follow my orders", "I know when tags arrive",
@@ -129,11 +129,11 @@ story("TK-55", "E5", "Orders list and emails", "owner", "to follow my orders", "
 
 # ---------- E6 Gifting and activation ----------
 story("TK-60", "E6", "Gift blank tags", "buyer", "to gift blank tags of a chosen type and colour", "someone I care about can protect their things",
-      ["From Create a tag: For myself / Gift a tag", "Gift note, recipient address, hide prices on packing slip", "Same payment step as orders"], "Should", "M", "M4")
+      ["From Create a tag: For myself / Gift a tag", "Products: sticker, keychain, pet tag, luggage label (never the lock-screen tag)", "Gift note, recipient address, hide prices on packing slip", "Same payment step as orders"], "Should", "M", "M4")
 story("TK-61", "E6", "Gift card with activation PIN", "recipient", "a PIN on the gift card, not on the tag", "only I can claim the tags",
       ["Unclaimed codes and a hashed PIN created per gift order", "PIN printed on the gift card by the print partner"], "Should", "M", "M4")
 story("TK-62", "E6", "Activate a tag with a PIN", "recipient", "to scan or type the code and enter the PIN", "the tag becomes mine",
-      ["Unclaimed → normal after PIN; 5 attempts then wait", "Then type, details and message; style and order steps skipped", "Activate another tag from the success screen", "Unclaimed tag scanned by a phone camera deep-links to the app with the code"], "Should", "M", "M4")
+      ["Unclaimed → normal after PIN; 5 attempts then wait", "Then type (only types that fit the tag's shape), details and message; style and order steps skipped", "Activate another tag from the success screen", "Unclaimed tag scanned by a phone camera deep-links to the app with the code"], "Should", "M", "M4")
 
 # ---------- E7 Notifications ----------
 story("TK-70", "E7", "Notification permission at the right time", "owner", "to be asked for notifications after my first tag", "I understand why",
@@ -149,7 +149,7 @@ story("TK-80", "E8", "Website home, privacy and support", "visitor", "to learn w
 story("TK-81", "E8", "Legal texts and Impressum", "Tagkin", "privacy policy, terms and Impressum published", "we can launch legally",
       ["Linked from website, finder pages, emails and the app"], "Must", "M", "M5")
 story("TK-82", "E8", "Owner web dashboard", "owner", "to see my tags and finder reports on the web", "I can act without my phone",
-      ["My tags shows each tag's photo, name and state (active, lost)", "Mark as lost and Mark as found work on the web through the same database functions as the app", "Finder reports appear per tag with place, time (city level unless shared) and note", "Orders appear here from M2; account shows email and sign out", "Edit a tag's name and photo (not during a return); set up blank tags with the shape-fit rule", "Order rows open the same Order details as the app", "Creating tags and ordering stay in the app: web buttons open a Get the app sheet; a sidebar card offers instant alerts in the app"], "Must", "M", "M1")
+      ["My tags shows each tag's photo, name and state (active, lost)", "Mark as lost and Mark as found work on the web through the same database functions as the app", "Finder reports appear per tag with place, time (city level unless shared) and note", "Orders appear here from M2; account shows email and sign out", "Edit a tag's name and photo (not during a return); set up blank tags with the shape-fit rule", "Order rows open the same Order details as the app", "Create and order open the web flow (TK-102, M2); a sidebar card offers the app for instant alerts"], "Must", "M", "M1")
 story("TK-103", "E7", "Finder report alert by email", "owner", "an email when someone reports my tag", "I hear about a find before the app exists",
       ["A new report emails the owner within the event flow: item, where now, place, note, translated to the owner's language with the original kept", "The email links to the report on tagkin.app (sign-in if needed); no finder contact details in the email", "Sent through Brevo from tagkin.app; a failed send is retried and logged", "Push takes over in M3 (TK-71); email stays the fallback"], "Must", "S", "M1")
 story("TK-104", "E4", "Reply to a finder on the web", "owner", "to reply to a finder from tagkin.app", "we can arrange the return without the app",
@@ -184,7 +184,7 @@ story("TK-100", "E1", "Explore and create without an account", "visitor", "to ex
 story("TK-101", "E6", "Guest gift checkout", "gift buyer without an account", "to buy a gift with only my email", "I don't need an account for tags I won't own",
       ["Email for receipt and tracking; order status page by link", "Same payment step and personalised-goods notice as other orders"], "Should", "M", "M4")
 story("TK-102", "E8", "Create, customise and order on the web", "visitor on tagkin.app", "to create, customise and order a tag in the browser", "the web beta can sell tags before the apps launch",
-      ["tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay", "Sign-up at Continue to payment; tags live from order", "Works on phone and desktop browsers"], "Must", "L", "M2")
+      ["tagkin.app/create mirrors the app flow: type, details, message, customise, order, delivery, pay, with the shape-fit rule and blank tags", "Sign-up at Continue to payment; tags live from order", "Works on phone and desktop browsers"], "Must", "L", "M2")
 story("TK-105", "E3", "Order a blank tag and set it up later", "owner", "to order a tag before I have the item", "it's ready when my new bag, phone or pet arrives",
       ["'Order a blank tag' on Create a tag: choose style and design, no item details", "Order and pay as usual; the tag is mine from payment and shows 'Set up' in My tags", "The blank tag keeps the shape chosen at order; set-up only offers item types that fit it and skips the type step when only one fits", "Ordering n blank tags creates n tags in My tags", "The lock-screen tag is never offered as a blank (it is digital and free)", "Set up later in the app or on the web: type, name, photo, message; no PIN", "Until set up, finders see 'not set up yet' and I get a scan alert", "After setting one up, 'Set up next blank tag (n left)' continues straight to the next"], "Should", "M", "M2")
 story("TK-106", "E3", "Edit item name, photo and description later", "owner", "to update my item details after creating the tag", "I can add a photo once the item arrives",
@@ -249,7 +249,7 @@ def ready_md(i):
 
 
 def write_md():
-    out = ["# Tagkin: product backlog", "", "Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Stage: Backlog, Ready, In progress, Review, Done).", "",
+    out = ["# Tagkin: product backlog", "", "Step 5 of the product owner flow (ROADMAP.md). Generated from docs/backlog/stories.py; GitHub issues are created from the same source. Board: https://github.com/users/Selaseyjr/projects/2 (Status: Backlog, Ready, In progress, Review, Done).", "",
            f"{len(S)} stories in {len(EPICS)} epics. Priorities use MoSCoW; the MVP is every Must story. Sizes: S (≤1 day), M (2–3 days), L (about a week).", "",
            "## Milestones", ""]
     for k, (n, d) in MILESTONES.items():

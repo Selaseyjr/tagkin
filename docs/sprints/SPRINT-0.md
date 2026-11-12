@@ -15,8 +15,8 @@ No user stories are built in Sprint 0. It makes M1 buildable.
 | S0-3 | Supabase: staging and production projects in Frankfurt; local dev with the CLI | `supabase start` works; staging linked | |
 | S0-4 | Core migrations: accounts, devices, tags, items, contacts, scans, reports, returns, messages, abuse_reports; tag members, entitlements, prices with currency, transfers as empty tables | Migrations apply clean; row-level security on every table; tests for owner-only access | S0-3 |
 | S0-5 | State machines in Postgres: tag (`mark_lost`, `mark_found`) and return (open, closed) | Illegal transitions rejected in tests | S0-4 |
-| S0-6 | Seed data: 6 tags covering active, lost, travel, pet, unclaimed, retired | Each opens at `/{code}` locally | S0-4 |
-| S0-7 | `packages/tokens` generated from docs/brand/tokens.css; `packages/shared` with code alphabet, limits, Zod schemas | Web renders a token-styled page; code parser tested | S0-1 |
+| S0-6 | Seed data: 7 tags covering active, lost, travel, pet, unclaimed, unlinked (blank), retired, each with its own scans | Each opens at `/{code}` locally | S0-4 |
+| S0-7 | `packages/tokens` generated from docs/brand/tokens.css; `packages/shared` with code alphabet, limits, shape-fit table, Zod schemas | Web renders a token-styled page; code parser and shape fit tested | S0-1 |
 | S0-8 | Vercel project for `apps/web`, preview per pull request against staging | A PR comment shows the preview URL | S0-1, S0-3 |
 | S0-9 | Expo app shell builds with EAS (development build only) | Opens the splash on a simulator | S0-1 |
 | S0-10 | Domain tagkin.app: DNS on Vercel; Brevo verified (SPF, DKIM, DMARC); Supabase Auth sends codes through Brevo SMTP; inbound route set | A sign-in code arrives in Gmail inbox, not spam; a reply reaches the inbound webhook | **Domain (Selasey, by 15 Nov)** |

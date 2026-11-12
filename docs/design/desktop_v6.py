@@ -1,5 +1,5 @@
-"""Desktop round 6 (12 Nov 2026): owner web as the lighter companion to the app (manage, not
-create), blank tags set up on the web with the shape-fit rule, photo and name edit, order details
+"""Desktop round 6 (12 Nov 2026): owner web with a Get the app card for instant alerts (create and
+order stay on the web beta), blank tags set up on the web with the shape-fit rule, photo and name edit, order details
 with the full lifecycle, and a finder page that closes after the handover."""
 
 DCSS6 = r"""
@@ -44,7 +44,7 @@ function panel(){const t=TAGS[SEL];$('#split').classList.toggle('closed',!t);if(
  if(t.st==='normal')h+='<p class="m">Scan history</p>'+(t.scans.map(s=>'<div class="li"><span>'+s[0]+'</span><span class="muted">'+s[1]+'</span></div>').join('')||'<p class="note info">No scans yet. Scan the QR with your phone to test it.</p>');
  h+='<button class="link" data-toast="QR image downloaded">Download QR code</button>';$('#panel').innerHTML=h;}
 function editModal(){const t=TAGS[SEL];EDP=PH(t)||null;modal('<h2>Item details</h2><div class="edph" id="ed-ph" style="'+(EDP?'background-image:url('+EDP+')':'')+'">'+(EDP?'':'🏷️')+'</div>'+sampPick(EDP)+'<input class="in" id="ed-name" maxlength="40" aria-label="Name"><p class="errt" id="ed-err" hidden>Give it a name, at least 2 characters.</p><div class="row"><button class="btn ghost" data-mclose>Cancel</button><span class="sp"></span><button class="btn pri" id="ed-save">Save</button></div>');$('#ed-name').value=t.n;}
-function appModal(what){modal('<h2>'+what+' in the app</h2><p class="m">Creating tags and ordering prints happen in the Tagkin app, where you can scan, take photos and get instant alerts. On the web you manage what you already have.</p><div class="stores"><button class="btn pri" data-toast="Opens the App Store">App Store</button><button class="btn pri" data-toast="Opens Google Play">Google Play</button></div><p class="xs">Or scan the QR on this page with your phone.</p><button class="btn ghost" data-mclose>Close</button>');}
+function appModal(what){modal('<h2>Get instant alerts</h2><p class="m">Everything works here on the web. The app adds what needs a phone: an alert the second someone scans a lost tag, your free lock-screen tag, and scanning gift or shop tags to activate them.</p><div class="stores"><button class="btn pri" data-toast="Opens the App Store">App Store</button><button class="btn pri" data-toast="Opens Google Play">Google Play</button></div><p class="xs">Or scan the QR on this page with your phone.</p><button class="btn ghost" data-mclose>Close</button>');}
 // orders
 var STG=['Paid','Sent to print','Printing','Quality check','Shipped','Out for delivery','Delivered'],PLAN=[0,0,1,2,3,5,5];
 var EXC={cancelled:['Cancelled','b-n','Cancelled before printing. Refunded in 3 to 5 working days.'],reprint:['Reprinting','warnb','It failed our print check, so we’re printing it again. About 2 days extra, no cost to you.'],delayed:['Delayed','warnb','The carrier is running late.'],failed:['Delivery failed','b-l','The carrier couldn’t deliver it. Check your address and we’ll send it again for free.'],problem:['Replacement on its way','warnb','A free replacement is being printed. No need to send anything back.']};
@@ -65,8 +65,8 @@ function orderModal(){const o=OS,x=oX(o);let h='<div class="row"><h2>Order TK-'+
  h+='<button class="btn ghost" data-mclose>Close</button>';modal(h);}
 // sidebar: get the app
 (function(){const g=document.createElement('div');g.className='getapp';g.innerHTML='<b>Get instant alerts</b><span class="xs">The app tells you the second someone scans a lost tag. The web only shows it when you look.</span><button class="btn pri" data-app="Get alerts">Get the app</button>';$('.nav').appendChild(g);})();
-all('#v-tags .btn.sec[data-toast]').forEach(b=>{b.removeAttribute('data-toast');b.dataset.app='Create a tag';});
-all('#v-orders .btn.sec[data-toast]').forEach(b=>{b.removeAttribute('data-toast');b.dataset.app='Order a tag';});
+all('#v-tags .btn.sec[data-toast]').forEach(b=>{b.dataset.toast='Opens tagkin.app/create: the same steps as the app (web beta)';});
+all('#v-orders .btn.sec[data-toast]').forEach(b=>{b.dataset.toast='Opens tagkin.app/create to order a tag (web beta)';});
 const _nav=nav;nav=function(v){_nav(v);if(v==='orders')orders();};
 // finder: the handover closes the report
 (function(){const c=document.createElement('div');c.className='box closed';c.id='f-closed';c.hidden=true;c.innerHTML='<div class="done">✓</div><h2>Handed over. Thank you.</h2><p class="m">The owner has their item back and this conversation is closed. Nothing else to do.</p><div class="note okn">Protect your own things: your first printed tag is €2 off.</div><button class="btn sec" data-toast="Opens tagkin.app">Discover Tagkin</button>';$('#f-done').after(c);})();

@@ -11,17 +11,17 @@ One defined sequence, each step with its artefact. The stages below (A to G) sit
 | # | Step | Question it answers | Artefact | Status |
 |---|---|---|---|---|
 | 1 | **Discover and define** | What problem, for whom, why now? | PRODUCT-BRIEF.md (problem, principles, competitors, positioning) | Done |
-| 2 | **Validate** | Do real people have this problem and understand the solution? | 3 interviews; finder prototype tested by 5 people | Done |
-| 3 | **Design** | What will people see and do? | User flows, wireframes, prototypes, design system, 87 screens | Done (Stage A) |
+| 2 | **Validate** | Do real people have this problem and understand the solution? | 3 interviews; finder prototype tested by 5 people; owner and desktop prototypes tested by Eli (12 Nov; the 5-person owner round was skipped) | Done |
+| 3 | **Design** | What will people see and do? | Design system, 86 hand-off screens, owner, finder and desktop prototypes | Done (Stage A; revised after Eli's test, 12 Nov) |
 | 4 | **Specify** | What must be true, and how does it behave? | BUSINESS-RULES.md, SYSTEM-LOGIC.md (functional spec), audit | Done |
-| 5 | **Plan the backlog** | What exactly gets built, in what order, and when is it done? | docs/BACKLOG.md and 63 GitHub issues (9 epics, 5 milestones, MoSCoW, sizes, acceptance criteria); Definition of Ready and Done | Done: board at github.com/users/Selaseyjr/projects/2 |
-| 6 | **Technical design** | How will it be built? | docs/TECH-DESIGN.md (architecture, repo, security, API outline, environments, build order) and 12 decision records in docs/adr | **In progress**: 11 of 12 decided; open: print partner (0010, after samples); Brevo test after the domain |
+| 5 | **Plan the backlog** | What exactly gets built, in what order, and when is it done? | docs/BACKLOG.md and 70 GitHub issues (9 epics, 5 milestones, MoSCoW, sizes, acceptance criteria); Definition of Ready and Done | Done: board at github.com/users/Selaseyjr/projects/2 |
+| 6 | **Technical design** | How will it be built? | docs/TECH-DESIGN.md (architecture, repo, security, API outline, environments, build order) and 12 decision records in docs/adr | **Done except one**: 11 of 12 decided; open: print partner (0010, after samples); Brevo test after the domain |
 | 7 | **Build** | Sprints against the backlog: web beta first (finder pages, owner web, ordering), then the apps | Working increments, demos, web beta release; docs/sprints | **Started**: M1 Ready (14 stories); Sprint 0 12 to 18 Nov |
 | 8 | **Test and comply** | Does it work, and is it allowed? | Test plan, beta, legal texts, store reviews | Stages D to F |
 | 9 | **Launch** | Release | Store listings, website live | Stage F |
 | 10 | **Measure and learn** | Did it work? What next? | Metrics, case study, next backlog | Stage G |
 
-Running alongside: buy the domain (by 15 Nov), Figma import and Community publish (Stage B, after the domain), order print samples (before step 6 decisions).
+Running alongside: buy the domain (by 15 Nov), Figma import and Community publish (Stage B, after the domain), order print samples (decides ADR 0010).
 
 ## Stage A · Design completion (done 11 Nov 2026)
 
@@ -82,13 +82,13 @@ Input: docs/SYSTEM-LOGIC.md section 10 lists the open decisions.
 
 Trigger: right after Stage B, before any app code.
 
-- [ ] Tech stack. Recommended: React Native with Expo (one codebase for iPhone and Android), a backend (brief suggests Cloudflare Workers, D1, R2), and the finder website
-- [ ] Authentication provider for email one-time codes
-- [ ] Payments: printed tags through Stripe or the print partner. No Premium at launch; when it comes, it goes through Apple and Google in-app purchase (15 percent in their small business programmes)
+- [x] Tech stack: Expo app, Next.js on Vercel, Supabase Frankfurt, monorepo (ADR 0001 to 0003, 0011)
+- [x] Authentication: Supabase Auth email codes sent through Brevo (ADR 0003, 0005)
+- [x] Payments: Tagkin sells through Stripe (ADR 0004). No Premium at launch; when it comes, it goes through Apple and Google in-app purchase
 - [ ] Print partner (Printful, Printify or Gelato: stickers, keychains, pet tags, shipping to Europe and Ghana)
-- [ ] Translation provider (Google, DeepL or an AI model; check prices)
-- [ ] SMS provider for phone replies, and in which markets
-- [ ] Places search provider for location suggestions
+- [x] Translation: DeepL, Google fallback (ADR 0007)
+- [x] SMS: Bird via Supabase, recovery only at launch (ADR 0006); phone replies later
+- [x] Places: Google Places (New) (ADR 0008)
 - [ ] Message retention period (screens show 90 days as a sample)
 - [ ] Final prices for tags and Premium
 
@@ -102,7 +102,7 @@ Trigger: Stage C decided.
 - [ ] Owner app, flow by flow: auth, registration and activation, tags, Lost mode, messages, orders, account
 - [ ] Message relay (email and SMS), translation both ways, phone and email detection (libphonenumber-js)
 - [ ] Push notifications for scans and messages
-- [ ] Ordering through the print partner, and Premium in-app purchase
+- [ ] Ordering through the print partner, with the full order lifecycle (stages, cancel, address change, reprint, resend, replacement). No Premium at launch
 - [ ] Modern motion: screen transitions, micro-interactions, haptics (noted after the finder test)
 - [ ] Accessibility: screen readers, dynamic text size, contrast
 - [ ] Data retention jobs; retired tags keep no personal data
@@ -142,7 +142,7 @@ Trigger: live in both stores.
 - [ ] Future markets: countries outside Stripe and print-partner coverage (Ghana first, with a local payment provider)
 - [ ] Phase 2: Care tags (children, older relatives), with extra safety and legal review
 - [ ] Later channels: WhatsApp, SMS-only finders, NFC tags, family sharing
-- [x] Gift a tag designed: For me / Gift a tag in ordering, gift note, delivery to recipient, link on Tag is live, finder page for an unclaimed tag
+- [x] Gift a tag designed: For myself / Gift a tag on Create a tag, gift note, delivery to recipient, link on Tag is live, finder page for an unclaimed tag
 - [ ] Price ready-made packs against single in-app tags (same price per tag in every channel)
 - [x] Invite a friend: designed in Account (share link)
 - [ ] First printed tag offer at checkout (decide amount)

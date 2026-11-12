@@ -1,4 +1,4 @@
-> **Superseded (11 Nov 2026).** This is the first draft of 8 Nov. Current flows: the flow map in docs/design/tagkin-screens.html, the prototypes, BUSINESS-RULES.md and SYSTEM-LOGIC.md.
+> **Superseded (11 Nov 2026).** This is the first draft of 8 Nov. Current flows: the flow map in docs/design/tagkin-screens.html, the prototypes, BUSINESS-RULES.md and SYSTEM-LOGIC.md. Changed since this draft, among others: Lost mode no longer locks details (only a return does); one free phone tag instead of 3; no PNG or PDF downloads; shapes follow the shape-fit table; blank tags; orders with a full lifecycle.
 
 # Tagkin: user flows (MVP)
 

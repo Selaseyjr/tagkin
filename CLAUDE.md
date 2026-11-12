@@ -29,4 +29,4 @@ docs/ROADMAP.md lists every open item by stage with its trigger. At the start of
 Follow the 10-step flow in docs/ROADMAP.md (discover, validate, design, specify, backlog, technical design, build, test, launch, measure). Name the current step when proposing work.
 
 ## Phase status
-1 Define: done. 2 Validate: done (3 conversations). Product owner flow steps 1 to 5 done (discover, validate, design, specify, backlog). Step 6 (technical design): 11 of 12 decided (print partner after samples). Step 7 (build) started: M1 Ready, Sprint 0 in docs/sprints. Target: App Store and Google Play.
+1 Define: done. 2 Validate: done (3 conversations; owner prototype tested by Eli on 12 Nov, 5-person round skipped). Product owner flow steps 1 to 5 done (discover, validate, design, specify, backlog). Step 6 (technical design): 11 of 12 decided (print partner after samples). Step 7 (build) started: M1 Ready, Sprint 0 in docs/sprints. Target: App Store and Google Play.
