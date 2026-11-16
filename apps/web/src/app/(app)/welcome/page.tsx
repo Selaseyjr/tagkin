@@ -11,16 +11,20 @@ export default function Welcome() {
       </div>
       <h1 className="big center">Protect what you value.</h1>
       <p className="m center">
-        Tag your bags, keys, gear and pets. If one ever goes missing, whoever finds it can scan the tag and alert you,
-        privately and in their own language.
+        Tag your bags, keys, gear and pets. If one ever goes missing, whoever finds it can scan the
+        tag and alert you, privately and in their own language.
       </p>
       <Spacer />
       <div className="pager" aria-label="Page 1 of 2">
         <i className="on" />
         <i />
       </div>
-      <Link className="btn pri" href="/welcome/private">Next</Link>
-      <Link className="btn ghost" href="/sign-in">I have an account</Link>
+      <Link className="btn pri" href="/welcome/private">
+        Next
+      </Link>
+      <Link className="btn ghost" href="/sign-in">
+        I have an account
+      </Link>
     </Screen>
   );
 }

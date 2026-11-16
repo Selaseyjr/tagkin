@@ -3,7 +3,15 @@ import type { ReactNode } from "react";
 import { Icon } from "./Sprite";
 
 /** Empty states (e-tags, e-inbox, e-orders in the prototype). */
-export function EmptyState({ title, children, action }: { title: string; children: ReactNode; action?: { href: string; label: string } }) {
+export function EmptyState({
+  title,
+  children,
+  action,
+}: {
+  title: string;
+  children: ReactNode;
+  action?: { href: string; label: string };
+}) {
   return (
     <>
       <div className="sp" />

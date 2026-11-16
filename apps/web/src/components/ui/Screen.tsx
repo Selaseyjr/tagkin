@@ -23,7 +23,11 @@ export function Back({ href, label = "Back" }: { href: string; label?: string })
 }
 
 /** Privacy line (PRIV in the prototype). */
-export function Priv({ children = "Your details stay private unless you choose to share them." }: { children?: ReactNode }) {
+export function Priv({
+  children = "Your details stay private unless you choose to share them.",
+}: {
+  children?: ReactNode;
+}) {
   return (
     <p className="priv">
       <Icon name="lock" size={14} />
@@ -34,7 +38,12 @@ export function Priv({ children = "Your details stay private unless you choose t
 
 export type Tab = "tags" | "inbox" | "orders" | "account";
 
-const TABS: { key: Tab; href: string; icon: "i-tag" | "i-chat" | "i-box" | "i-user"; label: string }[] = [
+const TABS: {
+  key: Tab;
+  href: string;
+  icon: "i-tag" | "i-chat" | "i-box" | "i-user";
+  label: string;
+}[] = [
   { key: "tags", href: "/tags", icon: "i-tag", label: "My tags" },
   { key: "inbox", href: "/messages", icon: "i-chat", label: "Messages" },
   { key: "orders", href: "/orders", icon: "i-box", label: "Orders" },
@@ -45,7 +54,12 @@ export function Tabs({ active, unread = false }: { active: Tab; unread?: boolean
   return (
     <nav className="tabs" aria-label="Main">
       {TABS.map((t) => (
-        <Link key={t.key} href={t.href} className={`tab${t.key === active ? " on" : ""}`} aria-current={t.key === active ? "page" : undefined}>
+        <Link
+          key={t.key}
+          href={t.href}
+          className={`tab${t.key === active ? " on" : ""}`}
+          aria-current={t.key === active ? "page" : undefined}
+        >
           <Icon name={t.icon} />
           {t.label}
           {t.key === "inbox" && unread && active !== "inbox" ? <b className="dot2" /> : null}

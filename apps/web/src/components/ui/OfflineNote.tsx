@@ -13,11 +13,16 @@ function subscribe(cb: () => void) {
 
 /** State 4 · Offline (err-offline): shown above the content while the device has no connection. */
 export function OfflineNote() {
-  const offline = useSyncExternalStore(subscribe, () => !navigator.onLine, () => false);
+  const offline = useSyncExternalStore(
+    subscribe,
+    () => !navigator.onLine,
+    () => false,
+  );
   if (!offline) return null;
   return (
     <div className="note offl" role="status">
-      You&apos;re offline. Your tags still work for finders. New messages appear when you&apos;re back online.
+      You&apos;re offline. Your tags still work for finders. New messages appear when you&apos;re
+      back online.
     </div>
   );
 }
