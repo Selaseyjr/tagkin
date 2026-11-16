@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "eval \"$(fnm env)\" && fnm use 24 && pnpm --filter web dev"],
+      "port": 3000
+    }
+  ]
+}
