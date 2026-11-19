@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Tagkin prototype</title>
+    <meta
+      name="description"
+      content="Clickable prototype of Tagkin: QR tags that help lost things find their way back, privately."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Geist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f8f7;
+        --surface: #fff;
+        --line: #dbe3df;
+        --ink: #0b1712;
+        --ink-2: #4f5e57;
+        --brand: #00c48c;
+        --brand-soft: #d9f7ec;
+        --brand-text: #007a57;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b1712;
+          --surface: #13221b;
+          --line: #24362d;
+          --ink: #eef5f1;
+          --ink-2: #a7b8af;
+          --brand-soft: #123a2c;
+          --brand-text: #5fe0b5;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          400 16px/1.5 Geist,
+          system-ui,
+          sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 56px 16px 32px;
+      }
+      main {
+        width: 100%;
+        max-width: 880px;
+      }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font:
+          700 30px "Bricolage Grotesque",
+          system-ui;
+        letter-spacing: -0.02em;
+      }
+      h1 {
+        font:
+          700 clamp(30px, 5vw, 44px)/1.1 Geist,
+          system-ui;
+        letter-spacing: -0.03em;
+        margin: 28px 0 10px;
+      }
+      .lead {
+        color: var(--ink-2);
+        margin: 0 0 36px;
+        max-width: 560px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      a.card {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 22px;
+        color: inherit;
+        text-decoration: none;
+        transition:
+          border-color 0.15s,
+          transform 0.15s;
+      }
+      a.card:hover,
+      a.card:focus-visible {
+        border-color: var(--brand);
+        transform: translateY(-2px);
+        outline: none;
+      }
+      .ic {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--brand-soft);
+        color: var(--brand-text);
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+      .card b {
+        font-size: 18px;
+      }
+      .card span {
+        color: var(--ink-2);
+        font-size: 14px;
+      }
+      .card em {
+        font-style: normal;
+        color: var(--brand-text);
+        font-weight: 600;
+        font-size: 14px;
+        margin-top: auto;
+        padding-top: 10px;
+      }
+      .tip {
+        color: var(--ink-2);
+        font-size: 13px;
+        margin: 24px 0 0;
+      }
+      footer {
+        margin-top: auto;
+        padding-top: 48px;
+        font-size: 12px;
+        color: var(--ink-2);
+      }
+      footer a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="logo"
+        ><svg width="40" height="40" viewBox="0 0 64 64" aria-hidden="true">
+          <mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+            <rect width="64" height="64" fill="#fff" />
+            <circle cx="22" cy="32" r="5" fill="#000" />
+            <path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000" />
+          </mask>
+          <g mask="url(#mk)">
+            <path
+              fill="var(--brand)"
+              stroke="var(--brand)"
+              stroke-width="4"
+              stroke-linejoin="round"
+              d="M8 23 L23 9 H56 V55 H23 L8 41 Z"
+            />
+          </g></svg
+        >tagkin</span
+      >
+      <h1>Protect what you value.</h1>
+      <p class="lead">
+        QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the
+        owner, privately. Click through the prototype.
+      </p>
+      <div class="grid">
+        <a class="card" href="/owner"
+          ><span class="ic">📱</span><b>Owner app</b
+          ><span>Create a tag, order it, get alerts and talk to the finder.</span><em>Open →</em></a
+        >
+        <a class="card" href="/finder"
+          ><span class="ic">🔍</span><b>Finder</b
+          ><span>Scan a tag and tell the owner where it is. No app, no sign-up.</span
+          ><em>Open →</em></a
+        >
+        <a class="card" href="/desktop"
+          ><span class="ic">💻</span><b>Desktop</b
+          ><span>The owner web app and the finder page on a large screen.</span><em>Open →</em></a
+        >
+      </div>
+      <p class="tip">Best on a phone for the owner app and finder.</p>
+    </main>
+    <footer>
+      Design prototype · Selasey Gbeddy ·
+      <a href="https://selasey-gbeddy.vercel.app/#impressum">Impressum</a>
+    </footer>
+  </body>
+</html>
