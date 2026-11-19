@@ -15,6 +15,8 @@ Product owner and analyst work, end to end: from a real problem to a tested, cli
 
 **[prototype.tagkin.app](https://prototype.tagkin.app)** · the owner app, the finder flow and desktop, fully clickable.
 
+**[Figma Community file](https://www.figma.com/community/file/1705237136336735109/tagkin-qr-lost-and-found-app-design)** · showcase, store screenshots, printed tags and a clickable finder flow.
+
 ## What I delivered
 
 | Step | Output |
