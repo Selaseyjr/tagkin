@@ -1,47 +1,34 @@
-# Tagkin
+<p align="center"><img src="media/store/tagkin-app-icon.png" alt="Tagkin app icon" width="96"></p>
 
-**Protect what you value.** QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately. No app needed for finders.
+<h1 align="center">Tagkin</h1>
 
-Product owner and analyst work, end to end: from a real problem to a tested, clickable product and a build-ready specification. Ready for engineering handover, with the product owner staying on.
+<p align="center"><b>Protect what you value.</b><br>QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the owner, privately.</p>
+
+<p align="center">
+<a href="https://selasey-gbeddy.vercel.app/#story-tagkin"><b>Case study</b></a> &nbsp;·&nbsp;
+<a href="https://prototype.tagkin.app"><b>Clickable prototype</b></a> &nbsp;·&nbsp;
+<a href="https://github.com/users/Selaseyjr/projects/2"><b>Project board</b></a> &nbsp;·&nbsp;
+<a href="https://www.figma.com/community/file/1705237136336735109/tagkin-qr-lost-and-found-app-design"><b>Figma</b></a>
+</p>
+
+<p align="center"><img src="media/store/tagkin-store-strip.jpg" alt="Tagkin App Store screenshots: brand, finder alert, private by default, every belonging, travel" width="100%"></p>
+
+A product owner and analyst case, end to end: problem, research, rules, journeys, a tested prototype and a build-ready backlog. Ready for engineering handover, with the product owner staying on.
 
 ## Watch it
 
 | Owner experience · 1:32 | Finder experience · 1:01 |
 | --- | --- |
 | [![Owner experience](media/tagkin-owner-experience.jpg)](https://prototype.tagkin.app/media/tagkin-owner-experience.mp4) | [![Finder experience](media/tagkin-finder-experience.jpg)](https://prototype.tagkin.app/media/tagkin-finder-experience.mp4) |
-| Create and design a tag, sign in and order, lost mode, settings, the found alert | Scan, the owner's message, report, private reply, chat, safe handover |
 
-## Try it
+## Read more
 
-**[prototype.tagkin.app](https://prototype.tagkin.app)** · the owner app, the finder flow and desktop, fully clickable.
+- **[Case study](https://selasey-gbeddy.vercel.app/#story-tagkin)** · the problem, research, decisions and what I delivered
+- **[Project board](https://github.com/users/Selaseyjr/projects/2)** · phases, sprints and 70 user stories
+- **Product documents** · [brief](docs/PRODUCT-BRIEF.md) · [business rules](docs/BUSINESS-RULES.md) · [user flows](docs/USER-FLOWS.md) · [system logic](docs/SYSTEM-LOGIC.md) · [roadmap](docs/ROADMAP.md) · [decisions](docs/adr/README.md)
 
-**[Figma Community file](https://www.figma.com/community/file/1705237136336735109/tagkin-qr-lost-and-found-app-design)** · showcase, store screenshots, printed tags and a clickable finder flow.
-
-## What I delivered
-
-| Step | Output |
-| --- | --- |
-| Problem and research | 3 user conversations; every theme became a product rule ([brief, section 15](docs/PRODUCT-BRIEF.md)) |
-| Product definition | [Product brief](docs/PRODUCT-BRIEF.md) with a dated decision log · [Business rules](docs/BUSINESS-RULES.md) |
-| Journeys and design | [User flows](docs/USER-FLOWS.md) · 68 owner screens, finder flow and desktop · design system in [docs/brand](docs/brand) |
-| Testing | Finder flow tested with 5 people, owner app with 1 tester; each finding changed a rule or a screen |
-| Specification | [System logic](docs/SYSTEM-LOGIC.md): data, states, events and providers |
-| Backlog and delivery | 70 user stories in the [backlog](docs/BACKLOG.md) · [project board](https://github.com/users/Selaseyjr/projects/2) · [roadmap](docs/ROADMAP.md) with stage triggers |
-| Technical design | [Tech design](docs/TECH-DESIGN.md) and 14 [decision records](docs/adr/README.md) |
-| Quality | System and product [audits](docs/AUDIT-2026-11-12-system.md) with fixes · CI, database tests and a secret scan on every change |
-| Foundation | Monorepo, database with row-level security, sign-in by email code, finder reports and owner replies |
-
-Built with Claude Code, directed and reviewed by me: I set the specs and guardrails, reviewed every result as a user, and rejected work that didn't match.
-
-## Key decisions
-
-- **Private by default.** Messages are relayed; neither side sees the other's contact unless they choose to share it. Raised by a finder, not an owner.
-- **No reward on the tag.** Research showed a public reward tempts people to keep things.
-- **Three short steps for the finder:** where it is now, the exact place, an optional note.
-- **Locked during a return.** Name, photo and description can't change while an item is out of the owner's hands.
-- **A handover code** so the item goes back to the right person.
-
-## Develop
+<details>
+<summary><b>Develop</b></summary>
 
 Node 24 (see `.nvmrc`) and pnpm through Corepack.
 
@@ -63,3 +50,5 @@ supabase test db   # database tests
 | `packages/tokens` | Design tokens from `docs/brand/tokens.css` |
 | `packages/i18n` | Core languages and translation files |
 | `supabase/` | Migrations, seed data and database tests |
+
+</details>
