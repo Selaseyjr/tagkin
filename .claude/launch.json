@@ -10,7 +10,10 @@
     {
       "name": "design",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "eval \"$(fnm env)\" && fnm use 24 && pnpm dlx serve@14.2.4 -l 8765 docs/design"],
+      "runtimeArgs": [
+        "-c",
+        "eval \"$(fnm env)\" && fnm use 24 && pnpm dlx serve@14.2.4 -l 8765 docs/design"
+      ],
       "port": 8765
     }
   ]
