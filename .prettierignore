@@ -8,3 +8,4 @@ apps/web/next-env.d.ts
 packages/tokens/src/generated.ts
 packages/tokens/src/tokens.css
 packages/shared/src/database.types.ts
+apps/web/src/styles/proto.css

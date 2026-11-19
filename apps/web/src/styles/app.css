@@ -1,0 +1,77 @@
+/* Adapts the prototype's gallery frames to a real app: one screen fills the viewport on phones,
+   centred at phone width on larger screens until the desktop layouts (batch R10). */
+body {
+  background: var(--tk-bg);
+}
+.scr {
+  height: auto;
+  min-height: 100dvh;
+  max-width: 440px;
+  margin: 0 auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 18px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+  overflow: visible;
+}
+.scr.with-tabs {
+  padding-bottom: 96px;
+}
+.scr .tabs {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 440px;
+  margin: 0;
+  z-index: 10;
+  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+}
+.scr a {
+  color: inherit;
+  text-decoration: none;
+}
+.scr a.link,
+.scr .link {
+  color: var(--tk-brand-text);
+  text-decoration: underline;
+}
+.scr button {
+  font: inherit;
+  cursor: pointer;
+}
+.scr button.btn,
+.scr button.opt,
+.scr button.chip,
+.scr button.send {
+  width: auto;
+}
+.scr .btn {
+  cursor: pointer;
+}
+.scr input.in,
+.scr textarea.in {
+  border: 0;
+  width: 100%;
+  font: 400 16px var(--tk-font-body);
+  color: var(--tk-ink);
+}
+.scr input.in:focus,
+.scr textarea.in:focus {
+  outline: none;
+  background: var(--tk-surface);
+  box-shadow: inset 0 0 0 2px var(--tk-brand);
+}
+.scr .splash,
+.scr .cam {
+  margin: -18px -20px -22px;
+  border-radius: 0;
+  min-height: 100dvh;
+}
+@media (min-width: 440px) {
+  .scr {
+    border-left: 1px solid var(--tk-line);
+    border-right: 1px solid var(--tk-line);
+  }
+}
