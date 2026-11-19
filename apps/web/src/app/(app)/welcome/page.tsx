@@ -12,7 +12,7 @@ export default function Welcome() {
       <h1 className="big center">Protect what you value.</h1>
       <p className="m center">
         Tag your bags, keys, gear and pets. If one ever goes missing, whoever finds it can scan the
-        tag and alert you, privately and in their own language.
+        tag and alert you, privately and in many languages.
       </p>
       <Spacer />
       <div className="pager" aria-label="Page 1 of 2">
