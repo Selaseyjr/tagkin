@@ -4,10 +4,36 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/figma",
+      "destination": "https://www.figma.com/community/file/1705237136336735109/tagkin-qr-lost-and-found-app-design",
+      "permanent": false
+    },
+    {
+      "source": "/owner-video",
+      "destination": "/media/tagkin-owner-experience.mp4",
+      "permanent": false
+    },
+    {
+      "source": "/finder-video",
+      "destination": "/media/tagkin-finder-experience.mp4",
+      "permanent": false
     }
   ]
 }
