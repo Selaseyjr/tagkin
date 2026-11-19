@@ -2,6 +2,8 @@
 
 - `tagkin-owner-experience.mp4` · 1:32 · owner journey
 - `tagkin-finder-experience.mp4` · 1:01 · finder journey
+- `tagkin-teaser.mp4` · 0:33 · teaser (`-silent` for autoplay)
+- `tagkin-figma-thumbnail.jpg` and `figma-carousel/01` to `09` · Figma Community cover and gallery, 1920 × 1080
 
 Recorded from the real prototypes in `docs/design`, with original music synthesised in code (no samples, no licences). Live on prototype.tagkin.app.
 
