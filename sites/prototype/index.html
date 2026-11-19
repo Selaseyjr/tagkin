@@ -144,6 +144,39 @@
       footer a {
         color: inherit;
       }
+      .videos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        margin: 0 0 40px;
+      }
+      .videos figure {
+        margin: 0;
+      }
+      .videos video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 16px;
+        background: #0b1712;
+        display: block;
+      }
+      .videos figcaption {
+        font-size: 14px;
+        color: var(--ink-2);
+        margin-top: 8px;
+      }
+      .videos figcaption b {
+        color: var(--ink);
+      }
+      h2 {
+        font:
+          600 14px Geist,
+          system-ui;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        margin: 0 0 14px;
+      }
     </style>
   </head>
   <body>
@@ -171,6 +204,24 @@
         QR tags for bags, keys, gear and pets. Whoever finds something scans the tag and alerts the
         owner, privately. Click through the prototype.
       </p>
+      <h2>Watch</h2>
+      <div class="videos">
+        <figure>
+          <video controls preload="none" playsinline poster="/media/tagkin-owner-experience.jpg">
+            <source src="/media/tagkin-owner-experience.mp4" type="video/mp4" />
+          </video>
+          <figcaption>
+            <b>Owner experience</b> · 1:32 · create, order, lost mode, settings
+          </figcaption>
+        </figure>
+        <figure>
+          <video controls preload="none" playsinline poster="/media/tagkin-finder-experience.jpg">
+            <source src="/media/tagkin-finder-experience.mp4" type="video/mp4" />
+          </video>
+          <figcaption><b>Finder experience</b> · 1:01 · scan, report, chat, handover</figcaption>
+        </figure>
+      </div>
+      <h2>Try it</h2>
       <div class="grid">
         <a class="card" href="/owner"
           ><span class="ic">📱</span><b>Owner app</b
