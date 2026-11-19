@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Geist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0b1712;
+        --ink2: #a7b8af;
+        --brand: #00c48c;
+        --soft: #d9f7ec;
+        --deep: #03261a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--ink);
+        color: #eef5f1;
+        font-family: Geist, system-ui, sans-serif;
+      }
+      .bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(1200px 800px at 75% 40%, rgba(0, 196, 140, 0.22), transparent 60%),
+          radial-gradient(900px 700px at 10% 100%, rgba(0, 196, 140, 0.1), transparent 60%),
+          var(--ink);
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.05;
+        background-image: repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 3px);
+      }
+      /* scenes */
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.7s ease;
+      }
+      .scene.on {
+        opacity: 1;
+      }
+      /* intro / outro signature */
+      .sig {
+        flex-direction: column;
+        gap: 26px;
+        text-align: center;
+      }
+      .markwrap {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+      .markwrap svg {
+        position: absolute;
+        inset: 0;
+        transform: scale(0.6) rotate(-12deg);
+        opacity: 0;
+        transition:
+          transform 1.1s cubic-bezier(0.2, 0.9, 0.2, 1.25),
+          opacity 0.5s;
+      }
+      .on .markwrap svg {
+        transform: none;
+        opacity: 1;
+      }
+      .ring {
+        position: absolute;
+        inset: -30px;
+        border-radius: 50%;
+        border: 2px solid var(--brand);
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      .on .ring {
+        animation: ring 1.6s 0.35s ease-out forwards;
+      }
+      @keyframes ring {
+        0% {
+          opacity: 0.8;
+          transform: scale(0.5);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.8);
+        }
+      }
+      .word {
+        font:
+          700 128px/1 "Bricolage Grotesque",
+          system-ui;
+        letter-spacing: -0.03em;
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 1s 0.55s cubic-bezier(0.6, 0, 0.2, 1);
+      }
+      .on .word {
+        clip-path: inset(0 0 0 0);
+      }
+      .tag {
+        font: 500 40px Geist;
+        color: var(--ink2);
+        opacity: 0;
+        transform: translateY(16px);
+        transition: all 0.8s 1.25s ease;
+      }
+      .on .tag {
+        opacity: 1;
+        transform: none;
+      }
+      .vt {
+        font: 600 30px Geist;
+        color: var(--brand);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 0.8s 1.6s;
+      }
+      .on .vt {
+        opacity: 1;
+      }
+      .small {
+        font: 500 28px Geist;
+        color: var(--ink2);
+        opacity: 0;
+        transition: opacity 0.8s 1.9s;
+      }
+      .on .vt {
+        font: 600 30px Geist;
+        color: var(--brand);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 0.8s 1.6s;
+      }
+      .on .vt {
+        opacity: 1;
+      }
+      .small {
+        opacity: 1;
+      }
+      .url {
+        display: inline-block;
+        margin-top: 10px;
+        font: 600 44px Geist;
+        color: var(--ink);
+        background: var(--brand);
+        padding: 16px 34px;
+        border-radius: 999px;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.7s 1.6s cubic-bezier(0.2, 0.9, 0.2, 1.2);
+      }
+      .on .url {
+        opacity: 1;
+        transform: none;
+      }
+      /* main */
+      .main {
+        justify-content: flex-start;
+        padding-left: 170px;
+        gap: 150px;
+      }
+      .cap {
+        width: 720px;
+        position: relative;
+        height: 520px;
+      }
+      .cap .c {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .cap .c.on {
+        opacity: 1;
+        transform: none;
+      }
+      .kick {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font: 600 26px Geist;
+        color: var(--brand);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .kick i {
+        font-style: normal;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--brand);
+        color: var(--deep);
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        letter-spacing: 0;
+      }
+      .cap h2 {
+        margin: 0;
+        font: 700 78px/1.04 Geist;
+        letter-spacing: -0.035em;
+      }
+      .cap p {
+        margin: 0;
+        font: 400 32px/1.4 Geist;
+        color: var(--ink2);
+        max-width: 640px;
+      }
+      .who {
+        position: absolute;
+        top: 70px;
+        left: 170px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font: 700 34px "Bricolage Grotesque";
+        opacity: 0.9;
+      }
+      .prog {
+        position: absolute;
+        left: 170px;
+        bottom: 80px;
+        display: flex;
+        gap: 10px;
+      }
+      .prog b {
+        width: 56px;
+        height: 6px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.14);
+        transition: background 0.4s;
+      }
+      .prog b.on {
+        background: var(--brand);
+      }
+      .phone {
+        position: relative;
+        width: 418px;
+        height: 872px;
+        border-radius: 64px;
+        background: #050b08;
+        padding: 14px;
+        box-shadow:
+          0 60px 120px rgba(0, 0, 0, 0.55),
+          0 0 0 2px #24362d,
+          inset 0 0 0 2px #1a2a22;
+        transform: scale(1.16);
+      }
+      .phone .isl {
+        position: absolute;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 34px;
+        border-radius: 20px;
+        background: #000;
+        z-index: 5;
+      }
+      .screen {
+        position: relative;
+        width: 390px;
+        height: 844px;
+        border-radius: 50px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .screen iframe {
+        position: absolute;
+        inset: 0;
+        width: 390px;
+        height: 844px;
+        border: 0;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+      .screen iframe.on {
+        opacity: 1;
+      }
+      .tap {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        margin: -28px 0 0 -28px;
+        border-radius: 50%;
+        background: rgba(0, 196, 140, 0.35);
+        border: 3px solid rgba(0, 196, 140, 0.9);
+        pointer-events: none;
+        z-index: 9;
+        animation: tap 0.6s ease-out forwards;
+      }
+      @keyframes tap {
+        0% {
+          transform: scale(0.4);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      .banner {
+        position: absolute;
+        top: 58px;
+        left: 16px;
+        right: 16px;
+        z-index: 8;
+        background: rgba(245, 248, 247, 0.96);
+        color: #0b1712;
+        border-radius: 22px;
+        padding: 14px 16px;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        transform: translateY(-140%);
+        transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1.15);
+        font: 400 15px/1.3 Geist;
+      }
+      .banner.on {
+        transform: none;
+      }
+      .banner .ai {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--brand);
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .banner b {
+        display: block;
+        font-weight: 600;
+      }
+      .cam {
+        position: absolute;
+        inset: 0;
+        z-index: 7;
+        background: radial-gradient(circle at 50% 45%, #2b3a33, #0d1511 70%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+      }
+      .cam.on {
+        opacity: 1;
+      }
+      .tagcard {
+        width: 210px;
+        height: 250px;
+        border-radius: 26px;
+        background: #00c48c;
+        color: #03261a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transform: rotate(-6deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+      .tagcard b {
+        font: 700 26px "Bricolage Grotesque";
+      }
+      .tagcard small {
+        font: 500 13px Geist;
+      }
+      .qr {
+        width: 120px;
+        height: 120px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 8px;
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+        gap: 1px;
+      }
+      .qr i {
+        background: #0b1712;
+        border-radius: 1px;
+      }
+      .qr i.o {
+        background: transparent;
+      }
+      .vf {
+        position: absolute;
+        width: 270px;
+        height: 270px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -55%);
+      }
+      .vf i {
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        border: 4px solid #fff;
+        border-radius: 6px;
+      }
+      .vf i:nth-child(1) {
+        top: 0;
+        left: 0;
+        border-right: 0;
+        border-bottom: 0;
+      }
+      .vf i:nth-child(2) {
+        top: 0;
+        right: 0;
+        border-left: 0;
+        border-bottom: 0;
+      }
+      .vf i:nth-child(3) {
+        bottom: 0;
+        left: 0;
+        border-right: 0;
+        border-top: 0;
+      }
+      .vf i:nth-child(4) {
+        bottom: 0;
+        right: 0;
+        border-left: 0;
+        border-top: 0;
+      }
+      .vf .line {
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        height: 3px;
+        background: #00c48c;
+        box-shadow: 0 0 16px #00c48c;
+        animation: scanl 1.4s ease-in-out infinite alternate;
+      }
+      @keyframes scanl {
+        from {
+          top: 10px;
+        }
+        to {
+          top: 256px;
+        }
+      }
+      .cam.hit .vf i {
+        border-color: #00c48c;
+      }
+      .camlbl {
+        position: absolute;
+        bottom: 90px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: #fff;
+        font: 500 16px Geist;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="grain"></div>
+    <svg width="0" height="0" style="position: absolute">
+      <defs>
+        <mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+          <rect width="64" height="64" fill="#fff" />
+          <circle cx="22" cy="32" r="5" fill="#000" />
+          <path d="M31 14 h5 v20 l8 -8 h7 l-9 9 l10 13 h-7 l-7 -9 l-2 2 v7 h-5 Z" fill="#000" />
+        </mask>
+        <symbol id="mark" viewBox="0 0 64 64">
+          <g mask="url(#mk)">
+            <path
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linejoin="round"
+              d="M8 23 L23 9 H56 V55 H23 L8 41 Z"
+            />
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+
+    <section class="scene sig" id="intro">
+      <div class="markwrap">
+        <span class="ring"></span
+        ><svg width="200" height="200" style="color: var(--brand)"><use href="#mark" /></svg>
+      </div>
+      <div class="word">tagkin</div>
+      <div class="tag">Protect what you value.</div>
+      <div class="vt"></div>
+    </section>
+
+    <section class="scene main" id="main">
+      <div class="who">
+        <svg width="40" height="40" style="color: var(--brand)"><use href="#mark" /></svg>tagkin
+      </div>
+      <div class="cap" id="cap"></div>
+      <div class="phone">
+        <span class="isl"></span>
+        <div class="screen" id="screen">
+          <div class="cam" id="cam">
+            <div class="tagcard">
+              <div class="qr" id="qr"></div>
+              <b>tagkin</b><small>Found me? Scan me.</small>
+            </div>
+            <div class="vf"><i></i><i></i><i></i><i></i><span class="line"></span></div>
+            <div class="camlbl">Point your camera at the tag</div>
+          </div>
+          <iframe id="finder" src="finder-prototype.html"></iframe>
+          <iframe id="owner" src="owner-prototype.html"></iframe>
+        </div>
+      </div>
+      <div class="prog" id="prog"></div>
+    </section>
+
+    <section class="scene sig" id="outro">
+      <div class="markwrap">
+        <span class="ring"></span
+        ><svg width="200" height="200" style="color: var(--brand)"><use href="#mark" /></svg>
+      </div>
+      <div class="word">tagkin</div>
+      <div class="tag">Protect what you value.</div>
+      <div class="vt"></div>
+      <div class="url">prototype.tagkin.app</div>
+      <div class="small">Product design and ownership · Selasey Gbeddy</div>
+    </section>
+
+    <script>
+      const $ = (s) => document.querySelector(s);
+      window.scene = (id) =>
+        document.querySelectorAll(".scene").forEach((s) => s.classList.toggle("on", s.id === id));
+      window.app = (id) =>
+        document
+          .querySelectorAll(".screen iframe")
+          .forEach((f) => f.classList.toggle("on", f.id === id));
+
+      let n = 0;
+      window.caption = (k, title, body, step, total) => {
+        const old = document.querySelector(".cap .c.on");
+        if (old) {
+          old.classList.remove("on");
+          setTimeout(() => old.remove(), 600);
+        }
+        const c = document.createElement("div");
+        c.className = "c";
+        c.innerHTML = `<span class="kick"><i>${step}</i>${k}</span><h2>${title}</h2><p>${body}</p>`;
+        $("#cap").appendChild(c);
+        requestAnimationFrame(() => requestAnimationFrame(() => c.classList.add("on")));
+        $("#prog").innerHTML = Array.from(
+          { length: total },
+          (_, i) => `<b class="${i < step ? "on" : ""}"></b>`,
+        ).join("");
+      };
+      window.setTitle = (t) => document.querySelectorAll(".vt").forEach((e) => (e.textContent = t));
+      window.cam = (m) => {
+        const c = document.getElementById("cam");
+        c.classList.toggle("on", m !== "off");
+        c.classList.toggle("hit", m === "hit");
+      };
+      {
+        const q = document.getElementById("qr");
+        let s = 3;
+        for (let i = 0; i < 121; i++) {
+          s = (s * 37 + 11) % 101;
+          const r = Math.floor(i / 11),
+            c = i % 11;
+          const fin = (r < 3 && c < 3) || (r < 3 && c > 7) || (r > 7 && c < 3);
+          const el = document.createElement("i");
+          if (
+            !(fin
+              ? !((r % 10 === 1 || r === 9) && (c % 10 === 1 || c === 9)) ||
+                (r === 1 && c === 1) ||
+                (r === 1 && c === 9) ||
+                (r === 9 && c === 1)
+              : s % 2)
+          )
+            el.className = "o";
+          q.appendChild(el);
+        }
+      }
+      window.tapAt = (x, y) => {
+        const t = document.createElement("span");
+        t.className = "tap";
+        t.style.left = x + "px";
+        t.style.top = y + "px";
+        $("#screen").appendChild(t);
+        setTimeout(() => t.remove(), 700);
+      };
+    </script>
+  </body>
+</html>
